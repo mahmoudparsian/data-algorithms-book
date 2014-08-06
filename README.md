@@ -12,3 +12,9 @@ URL To Data Algorithms Book
 Source Code
 ===========
 All source code and scripts will be posted here soon...
+
+Software Used
+=============
+* JDK6/JDK7
+* Hadoop 2.4.1
+* Spark 1.0.0
