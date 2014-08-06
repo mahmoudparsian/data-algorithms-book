@@ -4,10 +4,10 @@ This repository will host all source code and scripts for "Data Algorithms" Book
 
 URL To Purchase Data Algorithms Book
 ====================================
-Title: Data Algorithms 
-Author: Mahmoud Parsian
-Publisher: O'Reilly Media 
-URL: http://shop.oreilly.com/product/0636920033950.do
+* Title: Data Algorithms 
+* Author: Mahmoud Parsian
+* Publisher: O'Reilly Media 
+* URL: http://shop.oreilly.com/product/0636920033950.do
 
 Source Code
 ===========
