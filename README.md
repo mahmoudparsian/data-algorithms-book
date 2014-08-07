@@ -1,13 +1,13 @@
 Data Algorithms Book
 ====================
 This repository will host all source code and scripts for "Data Algorithms" Book.
+This book provides a set of MapReduce algrithms (implemented in Hadoop and Spark).
 
 URL To Data Algorithms Book
 ===========================
-* Title: Data Algorithms 
+* Title: [Data Algorithms](http://shop.oreilly.com/product/0636920033950.do)
 * Author: Mahmoud Parsian
 * Publisher: O'Reilly Media 
-* URL: http://shop.oreilly.com/product/0636920033950.do
 
 Source Code
 ===========
