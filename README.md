@@ -24,7 +24,8 @@ Software Used
 
 How To Build
 ============
-Apache's ant is used for building the project.
+[Apache's ant 1.9.4](http://ant.apache.org/) is used for building the project.
+
 * To clean up:
 
   ant clean
