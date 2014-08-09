@@ -23,6 +23,8 @@ How To Build
 ============
 Apache's ant is used for building the project.
 * To clean up:
+
   ant clean
 * To build:
+
   ant
