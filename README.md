@@ -18,3 +18,11 @@ Software Used
 * JDK6/JDK7
 * Hadoop 2.4.1
 * Spark 1.0.0
+
+How To Build
+============
+Apache's ant is used for building the project.
+* To clean up:
+** ant clean
+* To build:
+** ant
