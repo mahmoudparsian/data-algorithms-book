@@ -21,6 +21,14 @@ Software Used
 * JDK6/JDK7
 * Hadoop 2.4.1
 * Spark 1.0.0
+ 
+Structure of Repository
+=======================
+* README.md -- the file you are reading now
+* src -- source files for MapReduce/Hadoop/Spark
+* lib -- required jar files
+* build.xml -- The ant build script
+
 
 How To Build
 ============
@@ -29,6 +37,6 @@ How To Build
 * To clean up:
 
   ant clean
-* To build:
+* To build: the build will create <install-dir>/dist/data_algorithms_book.jar file.
 
   ant
