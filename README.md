@@ -24,10 +24,13 @@ Software Used
  
 Structure of Repository
 =======================
-* README.md -- the file you are reading now
-* src -- source files for MapReduce/Hadoop/Spark
-* lib -- required jar files
-* build.xml -- The ant build script
+
+Name         | Description
+------------ |------------
+README.md    | The file you are reading now
+src          | Source files for MapReduce/Hadoop/Spark
+lib          | Required jar files
+build.xml    | The ant build script
 
 
 How To Build
