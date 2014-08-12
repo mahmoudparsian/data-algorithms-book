@@ -31,6 +31,8 @@ README.md    | The file you are reading now
 src          | Source files for MapReduce/Hadoop/Spark
 lib          | Required jar files
 build.xml    | The ant build script
+dist         | The ant build's output directory 
+LICENSE      | License for using this repository
 
 
 How To Build
