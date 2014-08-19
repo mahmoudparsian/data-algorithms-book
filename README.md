@@ -33,6 +33,7 @@ lib          | Required jar files
 build.xml    | The ant build script
 dist         | The ant build's output directory 
 LICENSE      | License for using this repository
+misc         | misc. files for this repository
 
 Structure of src Directory
 ==========================
