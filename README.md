@@ -59,7 +59,7 @@ How To Build
 Sample Builds
 =============
 [Sample Build for MacBook](https://raw.githubusercontent.com/mahmoudparsian/DataAlgorithmsBook/master/misc/sample_build_mac.txt)    
-[Sample Build for Linux](https://raw.githubusercontent.com/mahmoudparsian/DataAlgorithmsBook/master/misc/sample_build_mac.txt)
+[Sample Build for Linux](https://raw.githubusercontent.com/mahmoudparsian/DataAlgorithmsBook/master/misc/sample_build_linux.txt)
 
 
 
