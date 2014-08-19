@@ -1,0 +1,73 @@
+	$  export JAVA_HOME=/usr/local/java/jdk7
+	$  export ANT_HOME=/usr/local/apache-ant-1.9.4
+	$  export PATH=$JAVA_HOME/bin:$ANT_HOME/bin:$PATH
+	$  
+	$  ant clean
+	Buildfile: /home/mahmoud/DataAlgorithmsBook/build.xml
+
+	clean:
+	   [delete] Deleting directory /home/mahmoud/DataAlgorithmsBook/build
+	   [delete] Deleting directory /home/mahmoud/DataAlgorithmsBook/dist
+	   [delete] Deleting directory /home/mahmoud/DataAlgorithmsBook/reports
+
+	BUILD SUCCESSFUL
+	Total time: 1 second
+	$  ant 
+	Buildfile: /home/mahmoud/DataAlgorithmsBook/build.xml
+
+	init:
+		[mkdir] Created dir: /home/mahmoud/DataAlgorithmsBook/build
+		[mkdir] Created dir: /home/mahmoud/DataAlgorithmsBook/dist
+		[mkdir] Created dir: /home/mahmoud/DataAlgorithmsBook/reports
+		[mkdir] Created dir: /home/mahmoud/DataAlgorithmsBook/reports/raw
+		[mkdir] Created dir: /home/mahmoud/DataAlgorithmsBook/reports/html
+
+	build_jar:
+		 [echo] javac
+		 [echo] compiling src...
+		[javac] Compiling 134 source files to /home/mahmoud/DataAlgorithmsBook/build
+		[javac] Note: Some input files use or override a deprecated API.
+		[javac] Note: Recompile with -Xlint:deprecation for details.
+		[javac] Note: Some input files use unchecked or unsafe operations.
+		[javac] Note: Recompile with -Xlint:unchecked for details.
+		[javac] Creating empty /home/mahmoud/DataAlgorithmsBook/build/main/java/org/dataalgorithms/chap06/package-info.class
+		[javac] Creating empty /home/mahmoud/DataAlgorithmsBook/build/main/java/org/dataalgorithms/chap05/package-info.class
+		[javac] Creating empty /home/mahmoud/DataAlgorithmsBook/build/main/java/org/dataalgorithms/chap08/package-info.class
+		[javac] Creating empty /home/mahmoud/DataAlgorithmsBook/build/main/java/org/dataalgorithms/chap07/package-info.class
+		[javac] Creating empty /home/mahmoud/DataAlgorithmsBook/build/main/java/org/dataalgorithms/chap09/package-info.class
+		[javac] Creating empty /home/mahmoud/DataAlgorithmsBook/build/main/java/org/dataalgorithms/chap11/projection/secondarysort/package-info.class
+		[javac] Creating empty /home/mahmoud/DataAlgorithmsBook/build/main/java/org/dataalgorithms/chap11/projection/package-info.class
+		[javac] Creating empty /home/mahmoud/DataAlgorithmsBook/build/main/java/org/dataalgorithms/chap11/projection/memorysort/package-info.class
+		[javac] Creating empty /home/mahmoud/DataAlgorithmsBook/build/main/java/org/dataalgorithms/chap02/package-info.class
+		[javac] Creating empty /home/mahmoud/DataAlgorithmsBook/build/main/java/org/dataalgorithms/chap01/package-info.class
+		[javac] Creating empty /home/mahmoud/DataAlgorithmsBook/build/main/java/org/dataalgorithms/chap04/package-info.class
+		[javac] Creating empty /home/mahmoud/DataAlgorithmsBook/build/main/java/org/dataalgorithms/chap03/package-info.class
+		[javac] Creating empty /home/mahmoud/DataAlgorithmsBook/build/main/java/org/dataalgorithms/chap30/package-info.class
+		[javac] Creating empty /home/mahmoud/DataAlgorithmsBook/build/main/java/org/dataalgorithms/chap25/package-info.class
+		[javac] Creating empty /home/mahmoud/DataAlgorithmsBook/build/main/java/org/dataalgorithms/chap13/package-info.class
+		[javac] Creating empty /home/mahmoud/DataAlgorithmsBook/build/main/java/org/dataalgorithms/chap14/package-info.class
+		[javac] Creating empty /home/mahmoud/DataAlgorithmsBook/build/main/java/org/dataalgorithms/chap10/package-info.class
+		[javac] Creating empty /home/mahmoud/DataAlgorithmsBook/build/main/java/org/dataalgorithms/chap11/package-info.class
+		[javac] Creating empty /home/mahmoud/DataAlgorithmsBook/build/main/java/org/dataalgorithms/chap06/memorysort/package-info.class
+		[javac] Creating empty /home/mahmoud/DataAlgorithmsBook/build/main/java/org/dataalgorithms/chap06/secondarysort/package-info.class
+		[javac] Creating empty /home/mahmoud/DataAlgorithmsBook/build/main/java/org/dataalgorithms/chap11/statemodel/package-info.class
+		  [jar] Building jar: /home/mahmoud/DataAlgorithmsBook/dist/data_algorithms_book.jar
+
+	BUILD SUCCESSFUL
+	Total time: 18 seconds
+	$  ant myenv
+	Buildfile: /home/mahmoud/DataAlgorithmsBook/build.xml
+
+	myenv:
+		 [echo] ----------------------------
+		 [echo] "ant.file=/home/mahmoud/DataAlgorithmsBook/build.xml"
+		 [echo] "ant.version=Apache Ant(TM) version 1.9.4 compiled on April 29 2014"
+		 [echo] "ant.project.name=Data Algorithms Book"
+		 [echo] "ant.java.version=1.7"
+		 [echo] "java.home=/usr/local/java/jdk7"
+		 [echo] "ANT_HOME=/usr/local/apache-ant-1.9.4"
+		 [echo] "JAVA_HOME=/usr/local/java/jdk7"
+		 [echo] ----------------------------
+
+	BUILD SUCCESSFUL
+	Total time: 1 second
