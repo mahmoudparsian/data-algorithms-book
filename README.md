@@ -46,11 +46,11 @@ How To Build
 
 * To clean up:
 
-  ant clean
+  **ant clean**
 
 * To build: the build will create <install-dir>/dist/data_algorithms_book.jar file.
 
-  ant
+  **ant**
 
 How To Run Programs
 ===================
