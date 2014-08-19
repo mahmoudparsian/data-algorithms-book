@@ -55,5 +55,5 @@ How To Run Programs
 ===================
  To run programs, you have to make sure that your CLASSPATH contains the 
  `<install-dir>/dist/data_algorithms_book.jar` and all jar files in the 
- `<install-dir>/lib` directory. Make sure that you use the full path for 
+ `<install-dir>/lib/` directory. Make sure that you use the full path for 
  all jar files.
