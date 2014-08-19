@@ -1,5 +1,6 @@
 	$  export JAVA_HOME=`/usr/libexec/java_home`
 	$  export ANT_HOME=/home/mahmoud/apache-ant-1.9.4
+	$  export PATH=$JAVA_HOME/bin:$ANT_HOME/bin:$PATH
 	$  
 	$  ant clean
 	Buildfile: /home/mahmoud/DataAlgorithmsBook/build.xml
@@ -64,7 +65,7 @@
 		 [echo] "ant.project.name=Data Algorithms Book"
 		 [echo] "ant.java.version=1.6"
 		 [echo] "java.home=/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home"
-		 [echo] "ANT_HOME=/home/mahmoud/zmp/zs/apache-ant-1.9.4"
+		 [echo] "ANT_HOME=/home/mahmoud/apache-ant-1.9.4"
 		 [echo] "JAVA_HOME=/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home"
 		 [echo] ----------------------------
 

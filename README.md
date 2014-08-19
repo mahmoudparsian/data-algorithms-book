@@ -52,6 +52,17 @@ How To Build
 
   **ant**
 
+* To check your build environment:
+
+  **ant  myenv**
+ 
+Sample Builds
+=============
+[Sample Build for MacBook](https://raw.githubusercontent.com/mahmoudparsian/DataAlgorithmsBook/master/misc/sample_build_mac.txt)    
+[Sample Build for Linux](https://raw.githubusercontent.com/mahmoudparsian/DataAlgorithmsBook/master/misc/sample_build_mac.txt)
+
+
+
 How To Run Programs
 ===================
  To run programs, you have to make sure that your CLASSPATH contains  
