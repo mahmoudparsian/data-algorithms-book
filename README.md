@@ -34,6 +34,10 @@ build.xml    | The ant build script
 dist         | The ant build's output directory 
 LICENSE      | License for using this repository
 
+Structure of src Directory
+==========================
+![src directory](https://raw.githubusercontent.com/mahmoudparsian/DataAlgorithmsBook/master/misc/source_tree.png)
+
 
 How To Build
 ============
