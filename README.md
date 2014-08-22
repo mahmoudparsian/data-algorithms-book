@@ -8,7 +8,7 @@ work in progress...
 This repository will host all source code and scripts for "Data Algorithms" Book.
 This book provides a set of MapReduce algrithms, which are implemented using Hadoop 2.4.1 and Spark 1.0.0. Please note that this is a work in progress...
 
-![Data Algorithms Book Work In Progress](./misc/work_in_progress.jpeg)
+![Data Algorithms Book Work In Progress](./misc/work_in_progress2.jpeg)
 
 
 URL To Data Algorithms Book
@@ -42,7 +42,7 @@ misc         | misc. files for this repository
 
 Structure of src Directory
 ==========================
-![src directory](https://raw.githubusercontent.com/mahmoudparsian/DataAlgorithmsBook/master/misc/source_tree.png)
+![src directory](./misc/source_tree.png)
 
 
 How To Build
@@ -63,8 +63,8 @@ How To Build
  
 Sample Builds
 =============
-* [Sample Build for MacBook](https://raw.githubusercontent.com/mahmoudparsian/DataAlgorithmsBook/master/misc/sample_build_mac.txt)    
-* [Sample Build for Linux](https://raw.githubusercontent.com/mahmoudparsian/DataAlgorithmsBook/master/misc/sample_build_linux.txt)
+* [Sample Build for MacBook](./misc/sample_build_mac.txt)    
+* [Sample Build for Linux](./misc/sample_build_linux.txt)
 
 
 
