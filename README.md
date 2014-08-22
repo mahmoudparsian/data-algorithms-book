@@ -8,6 +8,9 @@ This book provides a set of MapReduce algrithms, which are implemented using Had
 
 ![Data Algorithms Book Work In Progress](https://raw.githubusercontent.com/mahmoudparsian/DataAlgorithmsBook/master/misc/work_in_progress.jpeg =100x100)
 
+\centerline{\includegraphics[height=2in]{./misc/work_in_progress.jpeg}}
+
+
 URL To Data Algorithms Book
 ===========================
 * Title: [Data Algorithms](http://shop.oreilly.com/product/0636920033950.do)
