@@ -1,4 +1,4 @@
-Data Algorithms Book
+Data Algorithms Book: work in progress...
 ====================
 ![Data Algorithms Book](http://akamaicovers.oreilly.com/images/0636920033950/rc_lrg.jpg)
 
