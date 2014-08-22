@@ -4,7 +4,9 @@ Data Algorithms Book
 
 
 This repository will host all source code and scripts for "Data Algorithms" Book.
-This book provides a set of MapReduce algrithms, which are implemented using Hadoop 2.4.1 and Spark 1.0.0.
+This book provides a set of MapReduce algrithms, which are implemented using Hadoop 2.4.1 and Spark 1.0.0. Please note that this is a work in progress...
+
+![Data Algorithms Book Work In Progress](https://raw.githubusercontent.com/mahmoudparsian/DataAlgorithmsBook/master/misc/work_in_progress.jpeg)
 
 URL To Data Algorithms Book
 ===========================
