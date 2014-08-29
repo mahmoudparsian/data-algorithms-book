@@ -82,3 +82,10 @@ How To Run Programs
  the  `<install-dir>/dist/data_algorithms_book.jar` and all jar files  
  in the `<install-dir>/lib/` directory. Make sure that you use the full  
  path for all jar files.
+ 
+
+Questions/Comments
+==================
+Please send me an email: mahmoud.parsian@yahoo.com
+
+Thank you!
