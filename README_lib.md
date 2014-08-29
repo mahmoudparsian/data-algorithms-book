@@ -26,7 +26,7 @@ You may build this jar file from the Spark 1.0.2 version: this is how:
             SPARK_HADOOP_VERSION=2.5.0 SPARK_YARN=true sbt/sbt assembly
 
 
-Once your build is successful, then you will have your desired jar file as:
+* Once your build is successful, then you will have your desired jar file as:
     
             <your-install-dir>/spark-1.0.2/assembly/target/scala-2.10/spark-assembly-1.0.2-hadoop2.5.0.jar
 
