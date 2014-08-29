@@ -28,9 +28,10 @@ All source code and scripts will be posted here soon...
 
 Software Used
 =============
-* JDK6/JDK7
-* Hadoop 2.4.1
-* Spark 1.0.0
+* JDK7
+* Hadoop 2.5.0
+* Spark 1.0.2
+* Ant 1.9.4 (for build process)
  
 Structure of Repository
 =======================
