@@ -2,8 +2,8 @@ Getting JARs for the "lib" Directory
 ====================================
 GitHub does not let to push large files (size of bigger than 100MB) to GIT repository. I have one jar, which is larger than 100 MB, therefore, you should copy that jar to you "lib" directory.  There are at least two options (Option-1 and Option-2) to get that jar file:
 
-Option-1: Download from http://www.mapreduce4hackers.com/
-=========================================================
+Option-1: Download 
+==================
 You may download that jar file from the following URL:
 
 
