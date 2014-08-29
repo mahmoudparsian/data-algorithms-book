@@ -6,11 +6,9 @@ Option-1: Download
 ==================
 You may download that jar file from the following URL:
 
-        [spark-assembly-1.0.2-hadoop2.5.0.jar](http://www.mapreduce4hackers.com/dataalgorithmsbook/lib/spark-assembly-1.0.2-hadoop2.5.0.jar)
-    
-        size of this jar is: 130,007,545 bytes
-    
-        This jar is built using Spark 1.0.2 against Hadoop 2.5.0
+* [spark-assembly-1.0.2-hadoop2.5.0.jar](http://www.mapreduce4hackers.com/dataalgorithmsbook/lib/spark-assembly-1.0.2-hadoop2.5.0.jar)
+* size of this jar is: 130,007,545 bytes
+*This jar is built using Spark 1.0.2 against Hadoop 2.5.0
     
 
 Option-2: Build Your Own JAR from Spark Source
