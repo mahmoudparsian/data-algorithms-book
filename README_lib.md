@@ -9,11 +9,13 @@ directory from this URL:
     size of this jar is: 130,007,545 bytes
     
     This jar is built using Spark 1.0.2 against Hadoop 2.5.0
+    
+    [Data Algorithms Book](http://shop.oreilly.com/product/0636920033950.do)
 
 Build Your Own JAR
 ==================
 You may build this jar file from the Spark 1.0.2 version: this is how:
-* Download Spark 1.0.2 from http://d3kbcqa49mib13.cloudfront.net/spark-1.0.2.tgz to your designated dir
+* Download [Spark 1.0.2](http://d3kbcqa49mib13.cloudfront.net/spark-1.0.2.tgz) to your designated directory:
 
             <your-install-dir>/spark-1.0.2.tgz
    
