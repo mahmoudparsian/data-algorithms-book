@@ -5,6 +5,10 @@ I have one jar, which is larger than 100 MB, therefore, you should copy the jars
 directory from this URL: 
 
     http://www.mapreduce4hackers.com/dataalgorithmsbook/lib/spark-assembly-1.0.2-hadoop2.5.0.jar
+    
+    size of this jar is: 130,007,545 bytes
+    
+    This jar is built using Spark 1.0.2 against Hadoop 2.5.0
 
 
 Thanks,
