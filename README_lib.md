@@ -5,5 +5,7 @@ I have one jar, which is larger than 100 MB, therefore, you should copy the jars
 directory from this URL: http://mapreduce4hackers.com/dataalgorithmsbook/lib/
 
 Thanks,
+
 best regards,
+
 Mahmoud Parsian
