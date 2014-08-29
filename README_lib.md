@@ -10,6 +10,21 @@ directory from this URL:
     
     This jar is built using Spark 1.0.2 against Hadoop 2.5.0
 
+Build Your Own JAR
+==================
+You may build this jar file from the Spark 1.0.2 version: this is how:
+* Download Spark 1.0.2 from http://d3kbcqa49mib13.cloudfront.net/spark-1.0.2.tgz to your designated dir
+        <your-install-dir>/spark-1.0.2.tgz
+* Open it it up by
+        cd <your-install-dir>
+        tar zvfx spark-1.0.2.tgz
+        cd spark-1.0.2
+        SPARK_HADOOP_VERSION=2.5.0 SPARK_YARN=true sbt/sbt assembly
+
+Once your build is successful, then you will have your desired jar file as:
+    
+        <your-install-dir>/spark-1.0.2/assembly/target/scala-2.10/spark-assembly-1.0.2-hadoop2.5.0.jar
+
 
 Thanks,
 
