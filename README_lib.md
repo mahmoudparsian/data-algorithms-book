@@ -10,7 +10,6 @@ directory from this URL:
     
     This jar is built using Spark 1.0.2 against Hadoop 2.5.0
     
-    [Data Algorithms Book](http://shop.oreilly.com/product/0636920033950.do)
 
 Build Your Own JAR
 ==================
