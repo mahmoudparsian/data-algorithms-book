@@ -6,8 +6,8 @@
 
 This repository will host all source code and scripts for "Data Algorithms" Book.
 This book provides a set of MapReduce algrithms, which are implemented using 
-* MapReduce Hadoop 2.4.1
-* Spark 1.0.0 
+* MapReduce Hadoop 2.5.0
+* Spark 1.0.2 
 
 Work in Progress...
 ===================
@@ -36,15 +36,17 @@ Software Used
 Structure of Repository
 =======================
 
-Name         | Description
------------- |------------
-README.md    | The file you are reading now
-src          | Source files for MapReduce/Hadoop/Spark
-lib          | Required jar files
-build.xml    | The ant build script
-dist         | The ant build's output directory 
-LICENSE      | License for using this repository
-misc         | misc. files for this repository
+Name          | Description
+--------------|------------
+README.md     | The file you are reading now
+README_lib.md | The file you are reading now (must read before build)
+src           | Source files for MapReduce/Hadoop/Spark
+lib           | Required jar files
+build.xml     | The ant build script
+dist          | The ant build's output directory 
+LICENSE       | License for using this repository
+misc          | misc. files for this repository
+setenv        | example of how to set your environment variables before building
 
 Structure of src Directory
 ==========================
