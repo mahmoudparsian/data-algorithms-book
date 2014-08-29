@@ -22,12 +22,12 @@ You may build this jar file from the Spark 1.0.2 version: this is how:
             cd <your-install-dir>
             tar zvfx spark-1.0.2.tgz
             cd spark-1.0.2
-             SPARK_HADOOP_VERSION=2.5.0 SPARK_YARN=true sbt/sbt assembly
+            SPARK_HADOOP_VERSION=2.5.0 SPARK_YARN=true sbt/sbt assembly
 
 
 Once your build is successful, then you will have your desired jar file as:
     
-         <your-install-dir>/spark-1.0.2/assembly/target/scala-2.10/spark-assembly-1.0.2-hadoop2.5.0.jar
+            <your-install-dir>/spark-1.0.2/assembly/target/scala-2.10/spark-assembly-1.0.2-hadoop2.5.0.jar
 
 
 Thanks,
