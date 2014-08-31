@@ -1,0 +1,77 @@
+# set up your environment
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.7.0_67.jdk/Contents/Home
+export ANT_HOME=/Users/mahmoud/apache-ant-1.9.4
+export PATH=$JAVA_HOME/bin:$ANT_HOME/bin:$PATH
+
+$  ant clean
+Buildfile: build.xml
+
+clean:
+
+BUILD SUCCESSFUL
+Total time: 0 seconds
+
+$  ant 
+Buildfile: build.xml
+
+init:
+    [mkdir] Created dir: /Users/mahmoud/DataAlgorithmsBook/build
+    [mkdir] Created dir: /Users/mahmoud/DataAlgorithmsBook/dist
+    [mkdir] Created dir: /Users/mahmoud/DataAlgorithmsBook/reports
+    [mkdir] Created dir: /Users/mahmoud/DataAlgorithmsBook/reports/raw
+    [mkdir] Created dir: /Users/mahmoud/DataAlgorithmsBook/reports/html
+
+copy_jar:
+     [echo] copying spark-assembly-1.0.2-hadoop2.5.0.jar...
+     [copy] Copying 1 resource to /Users/mahmoud/DataAlgorithmsBook/lib
+
+build_jar:
+     [echo] javac
+     [echo] compiling src...
+    [javac] Compiling 140 source files to /Users/mahmoud/DataAlgorithmsBook/build
+    [javac] Note: Some input files use or override a deprecated API.
+    [javac] Note: Recompile with -Xlint:deprecation for details.
+    [javac] Note: Some input files use unchecked or unsafe operations.
+    [javac] Note: Recompile with -Xlint:unchecked for details.
+      [jar] Building jar: /Users/mahmoud/DataAlgorithmsBook/dist/data_algorithms_book.jar
+
+BUILD SUCCESSFUL
+Total time: 2 minutes 5 seconds
+
+$  ant clean
+Buildfile: build.xml
+
+clean:
+   [delete] Deleting directory /Users/mahmoud/DataAlgorithmsBook/build
+   [delete] Deleting directory /Users/mahmoud/DataAlgorithmsBook/dist
+   [delete] Deleting directory /Users/mahmoud/DataAlgorithmsBook/reports
+
+BUILD SUCCESSFUL
+Total time: 0 seconds
+
+$  ant
+Buildfile: build.xml
+
+init:
+    [mkdir] Created dir: /Users/mahmoud/DataAlgorithmsBook/build
+    [mkdir] Created dir: /Users/mahmoud/DataAlgorithmsBook/dist
+    [mkdir] Created dir: /Users/mahmoud/DataAlgorithmsBook/reports
+    [mkdir] Created dir: /Users/mahmoud/DataAlgorithmsBook/reports/raw
+    [mkdir] Created dir: /Users/mahmoud/DataAlgorithmsBook/reports/html
+
+copy_jar:
+     [echo] copying spark-assembly-1.0.2-hadoop2.5.0.jar...
+
+build_jar:
+     [echo] javac
+     [echo] compiling src...
+    [javac] Compiling 140 source files to /Users/mahmoud/DataAlgorithmsBook/build
+    [javac] Note: Some input files use or override a deprecated API.
+    [javac] Note: Recompile with -Xlint:deprecation for details.
+    [javac] Note: Some input files use unchecked or unsafe operations.
+    [javac] Note: Recompile with -Xlint:unchecked for details.
+      [jar] Building jar: /Users/mahmoud/DataAlgorithmsBook/dist/data_algorithms_book.jar
+
+BUILD SUCCESSFUL
+Total time: 4 seconds
+$  
