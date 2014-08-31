@@ -12,7 +12,7 @@ The `spark-assembly-1.0.2-hadoop2.5.0.jar` will be copied/downloaded from the fo
 
         http://www.mapreduce4hackers.com/dataalgorithmsbook/lib/
     
-Subsequent buils will not copy the big jar file.
+Subsequent builds will not copy the big jar file.
 
 
 Option-2: Download 
