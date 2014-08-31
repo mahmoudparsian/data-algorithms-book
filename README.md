@@ -4,10 +4,11 @@
 ![Data Algorithms Book](http://akamaicovers.oreilly.com/images/0636920033950/rc_lrg.jpg)
 
 
-This repository will host all source code and scripts for "Data Algorithms" Book.
+This repository will host all source code and scripts for 
+[Data Algorithms Book](http://shop.oreilly.com/product/0636920033950.do).
 This book provides a set of MapReduce algrithms, which are implemented using 
-* MapReduce Hadoop 2.5.0
-* Spark 1.0.2 
+* Java/MapReduce Hadoop 2.5.0
+* Java/Spark 1.0.2 
 
 Work in Progress...
 ===================
