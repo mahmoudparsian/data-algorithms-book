@@ -14,7 +14,7 @@ The `spark-assembly-1.0.2-hadoop2.5.0.jar` will be copied/downloaded from the fo
     
 Subsequent builds will not copy the big jar file.
 
-Sample [log](./misc/option-1-log.txt) of Option-1 is provided.
+Sample [log](./misc/option1-log.txt) of Option-1 is provided.
 
 Option-2: Download 
 ==================
