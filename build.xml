@@ -18,7 +18,7 @@
    </path>
 
    <!-- =========================================================================  -->
-   <!-- note that since the size of  spark-assembly-1.0.2-hadoop2.5.0.jar is over  -->
+   <!-- Note that since the size of  spark-assembly-1.0.2-hadoop2.5.0.jar is over  -->
    <!-- 100MB, I could not upload this jar to the lib directory. I needed to add   -->
    <!-- the "copy_jar", so that it can copy it from my web site.                   -->
    <!-- Once this task is done (the jar is copied to your lib), subsequent builds  -->
