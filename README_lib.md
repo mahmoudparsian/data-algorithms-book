@@ -8,7 +8,7 @@ The first time you build by
 
         ant
     
-The spark-assembly-1.0.2-hadoop2.5.0.jar will be copied/downloaded from the following URL directory:
+The `spark-assembly-1.0.2-hadoop2.5.0.jar` will be copied/downloaded from the following URL directory:
 
         http://www.mapreduce4hackers.com/dataalgorithmsbook/lib/
     
