@@ -4,21 +4,35 @@
 <!-- @author: Mahmoud Parsian                                      -->
 <!-- ============================================================= -->
             
-  <property name="src" location="src/main/java"/>
-  <property name="test" location="src/test/java"/>
-  <property name="build" location="build"/>
-  <property name="dist"  location="dist"/>
-  <property name="lib"  location="lib"/>
-  <property name="reports" location="reports"/>
-  <property environment="env"/>  
-  <property name="project_name" value="Data Algorithms Book"/>
+   <property name="src" location="src/main/java"/>
+   <property name="test" location="src/test/java"/>
+   <property name="build" location="build"/>
+   <property name="dist"  location="dist"/>
+   <property name="lib"  location="lib"/>
+   <property name="reports" location="reports"/>
+   <property environment="env"/>  
+   <property name="project_name" value="Data Algorithms Book"/>
   
-  <path id="required_libs">
+   <path id="required_libs">
         <fileset dir="lib" includes="**/*.jar"/>
-  </path>
+   </path>
+
+   <!-- =========================================================================  -->
+   <!-- note that since the size of  spark-assembly-1.0.2-hadoop2.5.0.jar is over  -->
+   <!-- 100MB, I could not upload this jar to the lib directory. I needed to add   -->
+   <!-- the "copy_jar", so that it can copy it from my web site.                   -->
+   <!-- Once this task is done (the jar is copied to your lib), subsequent builds  -->
+   <!-- will not dowload the jar dile.                                             -->
+   <!-- =========================================================================  -->
+   <target name="copy_jar"  depends="init">
+      <echo message="copying spark-assembly-1.0.2-hadoop2.5.0.jar..."/>    
+      <copy todir="lib" flatten="true">
+          <url url="http://www.mapreduce4hackers.com/dataalgorithmsbook/lib/spark-assembly-1.0.2-hadoop2.5.0.jar"/>
+      </copy>  
+   </target>
     
-    <target name="build_jar"  depends="init">
-        <echo message="javac"/>		    
+   <target name="build_jar"  depends="copy_jar">
+        <echo message="javac"/>    
         <echo message="compiling src..."/>              
         <javac includeantruntime="false"
                srcdir="src" 
@@ -35,108 +49,105 @@
                verbose="false">
                <compilerarg line="-encoding ISO-8859-1"/>
         </javac> 
-    	<!-- <copy file="conf/conf.xml" todir="build"/> -->
         <jar destfile="dist/data_algorithms_book.jar"
-       	     basedir="build"
+             basedir="build"
         />  
-    </target>
+   </target>
     
-    <target name="myenv"  description="print some basic information about my environment">
-	  <echo>----------------------------</echo>
-	  <echo>"ant.file=${ant.file}"</echo>
-	  <echo>"ant.version=${ant.version}"</echo>
-	  <echo>"ant.project.name=${ant.project.name}"</echo>
-	  <echo>"ant.java.version=${ant.java.version}"</echo>
-	  <echo>"java.home=${java.home}"</echo>
-	  <echo>"ANT_HOME=${env.ANT_HOME}"</echo>
-	  <echo>"JAVA_HOME=${env.JAVA_HOME}"</echo>
-	  <echo>----------------------------</echo>
-    </target>
+   <target name="myenv"  description="print some basic information about my environment">
+      <echo>----------------------------</echo>
+      <echo>"ant.file=${ant.file}"</echo>
+      <echo>"ant.version=${ant.version}"</echo>
+      <echo>"ant.project.name=${ant.project.name}"</echo>
+      <echo>"ant.java.version=${ant.java.version}"</echo>
+      <echo>"java.home=${java.home}"</echo>
+      <echo>"ANT_HOME=${env.ANT_HOME}"</echo>
+      <echo>"JAVA_HOME=${env.JAVA_HOME}"</echo>
+      <echo>----------------------------</echo>
+   </target>
  
-  <target name="compile" depends="build_jar" description="compile the source code " >
-		<javac includeantruntime="false"
-		               srcdir="test" 
-		               destdir="build"
-		               source="1.7" 
-		               target="1.7" 
-		               debug="true" 
-		               fork="true" 
-		               memorymaximumsize="512m"
-		               deprecation="false" 
-		               optimize="false" 
-		               failonerror="true" 
-               		   verbose="false">
-		
-			<classpath>
-				<fileset dir="lib">
-					<include name="**/*.jar"/>
-				</fileset>
-				<fileset dir="dist">
-					<include name="**/*.jar"/>
-				</fileset>
-			</classpath>
-		</javac>
-  </target>
+   <target name="compile" depends="build_jar" description="compile the source code " >
+      <javac includeantruntime="false"
+             srcdir="test" 
+             destdir="build"
+             source="1.7" 
+             target="1.7" 
+             debug="true" 
+             fork="true" 
+             memorymaximumsize="512m"
+             deprecation="false" 
+             optimize="false" 
+             failonerror="true" 
+             verbose="false">
 
-  <target name="dist" depends="clean,compile" description="generate the distributable files " >      
-  </target>
+             <classpath>
+                <fileset dir="lib">
+                    <include name="**/*.jar"/>
+                </fileset>
+                <fileset dir="dist">
+                    <include name="**/*.jar"/>
+                </fileset>
+             </classpath>
+       </javac>
+   </target>
 
-  <target name="clean"
-        description="clean up" >
-    <delete dir="${build}"/>
-    <delete dir="${dist}"/>
-    <delete dir="${reports}"/>
-  </target>
+   <target name="dist" depends="clean,compile" description="generate the distributable files " >
+   </target>
 
-  <target name="runtests" depends="compile" description="run your test suite" >
+   <target name="clean"  description="clean up" >
+      <delete dir="${build}"/>
+      <delete dir="${dist}"/>
+      <delete dir="${reports}"/>
+   </target>
 
-	<junit printsummary="yes" haltonfailure="yes" showoutput="yes" >
-		<classpath>
-			<pathelement path="${build}"/>
-			<fileset dir="lib">
-				<include name="**/*.jar"/>
-			</fileset>
-			<fileset dir="dist">
-				<include name="**/*.jar"/>
-			</fileset>
-		</classpath>			
+   <target name="runtests" depends="compile" description="run your test suite" >
 
-	  <batchtest fork="yes" todir="${reports}/raw/">
-		<formatter type="xml"/>
-	    <fileset dir="${tests}">
-	      <include name="**/Test*.java"/>
-	    </fileset>
-	  </batchtest>
-	</junit>	
-  </target>
-	
-  <target name ="test" depends="runtests">
-		<junitreport todir="${reports}">
-		  <fileset dir="${reports}/raw/">
-		    <include name="TEST-*.xml"/>
-		  </fileset>
-		  <report format="frames" todir="${reports}\html\"/>
-		</junitreport>
-  </target>
+      <junit printsummary="yes" haltonfailure="yes" showoutput="yes" >
+        <classpath>
+             <pathelement path="${build}"/>
+             <fileset dir="lib">
+                 <include name="**/*.jar"/>
+             </fileset>
+             <fileset dir="dist">
+                 <include name="**/*.jar"/>
+             </fileset>
+        </classpath>
 
-  <target name ="run" depends="" description="if this project can be run, run it" >	
-  </target>
+        <batchtest fork="yes" todir="${reports}/raw/">
+           <formatter type="xml"/>
+           <fileset dir="${tests}">
+               <include name="**/Test*.java"/>
+           </fileset>
+        </batchtest>
+      </junit>
+   </target>
 
-  <!-- supporting targets -->
-  <target name="init" description="initialize the build environment" >
-    <!-- Create the time stamp -->
-    <tstamp/>
-    <!-- Create directory structures -->
-    <mkdir dir="${build}"/>
-    <mkdir dir="${lib}"/>
-    <mkdir dir="${dist}"/>
-    <mkdir dir="${reports}"/>
-    <mkdir dir="${reports}/raw/"/>
-    <mkdir dir="${reports}/html/"/>
-  </target>
+   <target name ="test" depends="runtests">
+       <junitreport todir="${reports}">
+           <fileset dir="${reports}/raw/">
+               <include name="TEST-*.xml"/>
+           </fileset>
+           <report format="frames" todir="${reports}\html\"/>
+       </junitreport>
+   </target>
+
+   <target name ="run" depends="" description="if this project can be run, run it" >
+   </target>
+
+   <!-- supporting targets -->
+   <target name="init" description="initialize the build environment" >
+       <!-- Create the time stamp -->
+       <tstamp/>
+       <!-- Create directory structures -->
+       <mkdir dir="${build}"/>
+       <mkdir dir="${lib}"/>
+       <mkdir dir="${dist}"/>
+       <mkdir dir="${reports}"/>
+       <mkdir dir="${reports}/raw/"/>
+       <mkdir dir="${reports}/html/"/>
+   </target>
   
-  <target name="all" depends="clean, test">
-  </target>
+   <target name="all" depends="clean, test">
+   </target>
  
-    
 </project>
