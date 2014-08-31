@@ -17,7 +17,7 @@ Subsequent builds will not copy the big jar file.
 
 Option-2: Download 
 ==================
-You may download that jar file from the following URL:
+You may download that jar file from the following URL and then copy it to the `lib` directory:
 
 * [spark-assembly-1.0.2-hadoop2.5.0.jar](http://www.mapreduce4hackers.com/dataalgorithmsbook/lib/spark-assembly-1.0.2-hadoop2.5.0.jar)
 * Size of this jar is: 130,007,545 bytes
@@ -42,6 +42,9 @@ You may build this jar file from the Spark 1.0.2 version: this is how:
 * Once your build is successful, then you will have your desired jar file as:
     
             <your-install-dir>/spark-1.0.2/assembly/target/scala-2.10/spark-assembly-1.0.2-hadoop2.5.0.jar
+
+* Finally, copy `spark-assembly-1.0.2-hadoop2.5.0.jar` to the `lib` directory.
+
 
 
 Thanks,
