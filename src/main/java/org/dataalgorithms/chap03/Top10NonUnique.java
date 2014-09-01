@@ -25,6 +25,9 @@ import java.util.Collections;
  * The main assumption is that for all input (K, V)'s, K's
  * are non-unique. It means that you will find entries like
  * (A, 2), ..., (A, 5),...
+ * 
+ * This is a general top-N algorithm which will work unique
+ * and non-unique keys.
  *
  * This class may be used to find bottom-N as well (by 
  * just keeping N-smallest elements in the set.
