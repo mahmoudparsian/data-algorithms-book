@@ -22,16 +22,23 @@ URL To Data Algorithms Book
 * Author: Mahmoud Parsian
 * Publisher: O'Reilly Media 
 
+
 Source Code
 ===========
-All source code and scripts will be posted here soon...
+* All source code, libraries, and build scripts are posted here
+* Shell scripts will be posted for running Spark/Hadoop program (soon!)
+
 
 Software Used
 =============
-* JDK7
-* Hadoop 2.5.0
-* Spark 1.0.2
-* Ant 1.9.4 (for build process)
+
+Software | Version
+---------|--------
+Java     | JDK7
+Hadoop   | 2.5.0
+Spark    | 1.0.2
+Ant      | 1.9.4 
+
  
 Structure of Repository
 =======================
