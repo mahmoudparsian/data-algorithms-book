@@ -91,7 +91,14 @@ How To Run Programs
  * `<install-dir>/dist/data_algorithms_book.jar` 
  * all jar files  in the `<install-dir>/lib/` directory
  
-Make sure that you use the full path for all jar files.
+Make sure that you use the full path for all jar files. This is how you can set up your CLASSPATH in a Linux bash environment:
+  
+  BOOK_HOME=<install-dir>
+  export CLASSPATH=.:$BOOK_HOME/dist/data_algorithms_book.jar
+  jars=`find $BOOK_HOME/lib -name '*.jar'`
+  for j in $jars ; do
+    export CLASSPATH=$CLASSPATH:$j
+  done
  
 
 Questions/Comments
