@@ -1,8 +1,7 @@
 [Data Algorithms Book](http://shop.oreilly.com/product/0636920033950.do)
 ======================
 
-![Data Algorithms Book](./misc/da_small.gif)
-
+[![Data Algorithms Book](./misc/da_small.gif)](http://shop.oreilly.com/product/0636920033950.do)
 
 This repository will host all source code and scripts for 
 [Data Algorithms Book](http://shop.oreilly.com/product/0636920033950.do).
