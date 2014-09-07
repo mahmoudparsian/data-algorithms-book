@@ -3,68 +3,68 @@
 	$ export PATH=$JAVA_HOME/bin:$ANT_HOME/bin:$PATH
 	$
 	$ ant clean
-	Buildfile: /Users/mahmoudparsian/DataAlgorithmsBook/github/build.xml
+	Buildfile: /Users/mahmoudparsian/data-algorithms-book/github/build.xml
 
 	clean:
-	   [delete] Deleting directory /Users/mahmoudparsian/DataAlgorithmsBook/github/build
-	   [delete] Deleting directory /Users/mahmoudparsian/DataAlgorithmsBook/github/dist
-	   [delete] Deleting directory /Users/mahmoudparsian/DataAlgorithmsBook/github/reports
+	   [delete] Deleting directory /Users/mahmoudparsian/data-algorithms-book/github/build
+	   [delete] Deleting directory /Users/mahmoudparsian/data-algorithms-book/github/dist
+	   [delete] Deleting directory /Users/mahmoudparsian/data-algorithms-book/github/reports
 
 	BUILD SUCCESSFUL
 	Total time: 0 seconds
 
 
 	$ ant
-	Buildfile: /Users/mahmoudparsian/DataAlgorithmsBook/github/build.xml
+	Buildfile: /Users/mahmoudparsian/data-algorithms-book/github/build.xml
 
 	init:
-		[mkdir] Created dir: /Users/mahmoudparsian/DataAlgorithmsBook/github/build
-		[mkdir] Created dir: /Users/mahmoudparsian/DataAlgorithmsBook/github/dist
-		[mkdir] Created dir: /Users/mahmoudparsian/DataAlgorithmsBook/github/reports
-		[mkdir] Created dir: /Users/mahmoudparsian/DataAlgorithmsBook/github/reports/raw
-		[mkdir] Created dir: /Users/mahmoudparsian/DataAlgorithmsBook/github/reports/html
+		[mkdir] Created dir: /Users/mahmoudparsian/data-algorithms-book/github/build
+		[mkdir] Created dir: /Users/mahmoudparsian/data-algorithms-book/github/dist
+		[mkdir] Created dir: /Users/mahmoudparsian/data-algorithms-book/github/reports
+		[mkdir] Created dir: /Users/mahmoudparsian/data-algorithms-book/github/reports/raw
+		[mkdir] Created dir: /Users/mahmoudparsian/data-algorithms-book/github/reports/html
 
 	build_jar:
 		 [echo] javac
 		 [echo] compiling src...
-		[javac] Compiling 134 source files to /Users/mahmoudparsian/DataAlgorithmsBook/github/build
+		[javac] Compiling 134 source files to /Users/mahmoudparsian/data-algorithms-book/github/build
 		[javac] Note: Some input files use or override a deprecated API.
 		[javac] Note: Recompile with -Xlint:deprecation for details.
 		[javac] Note: Some input files use unchecked or unsafe operations.
 		[javac] Note: Recompile with -Xlint:unchecked for details.
-		[javac] Creating empty /Users/mahmoudparsian/DataAlgorithmsBook/github/build/main/java/org/dataalgorithms/chap06/package-info.class
-		[javac] Creating empty /Users/mahmoudparsian/DataAlgorithmsBook/github/build/main/java/org/dataalgorithms/chap05/package-info.class
-		[javac] Creating empty /Users/mahmoudparsian/DataAlgorithmsBook/github/build/main/java/org/dataalgorithms/chap08/package-info.class
-		[javac] Creating empty /Users/mahmoudparsian/DataAlgorithmsBook/github/build/main/java/org/dataalgorithms/chap07/package-info.class
-		[javac] Creating empty /Users/mahmoudparsian/DataAlgorithmsBook/github/build/main/java/org/dataalgorithms/chap09/package-info.class
-		[javac] Creating empty /Users/mahmoudparsian/DataAlgorithmsBook/github/build/main/java/org/dataalgorithms/chap11/projection/secondarysort/package-info.class
-		[javac] Creating empty /Users/mahmoudparsian/DataAlgorithmsBook/github/build/main/java/org/dataalgorithms/chap11/projection/package-info.class
-		[javac] Creating empty /Users/mahmoudparsian/DataAlgorithmsBook/github/build/main/java/org/dataalgorithms/chap11/projection/memorysort/package-info.class
-		[javac] Creating empty /Users/mahmoudparsian/DataAlgorithmsBook/github/build/main/java/org/dataalgorithms/chap02/package-info.class
-		[javac] Creating empty /Users/mahmoudparsian/DataAlgorithmsBook/github/build/main/java/org/dataalgorithms/chap01/package-info.class
-		[javac] Creating empty /Users/mahmoudparsian/DataAlgorithmsBook/github/build/main/java/org/dataalgorithms/chap04/package-info.class
-		[javac] Creating empty /Users/mahmoudparsian/DataAlgorithmsBook/github/build/main/java/org/dataalgorithms/chap03/package-info.class
-		[javac] Creating empty /Users/mahmoudparsian/DataAlgorithmsBook/github/build/main/java/org/dataalgorithms/chap30/package-info.class
-		[javac] Creating empty /Users/mahmoudparsian/DataAlgorithmsBook/github/build/main/java/org/dataalgorithms/chap25/package-info.class
-		[javac] Creating empty /Users/mahmoudparsian/DataAlgorithmsBook/github/build/main/java/org/dataalgorithms/chap13/package-info.class
-		[javac] Creating empty /Users/mahmoudparsian/DataAlgorithmsBook/github/build/main/java/org/dataalgorithms/chap14/package-info.class
-		[javac] Creating empty /Users/mahmoudparsian/DataAlgorithmsBook/github/build/main/java/org/dataalgorithms/chap10/package-info.class
-		[javac] Creating empty /Users/mahmoudparsian/DataAlgorithmsBook/github/build/main/java/org/dataalgorithms/chap11/package-info.class
-		[javac] Creating empty /Users/mahmoudparsian/DataAlgorithmsBook/github/build/main/java/org/dataalgorithms/chap06/memorysort/package-info.class
-		[javac] Creating empty /Users/mahmoudparsian/DataAlgorithmsBook/github/build/main/java/org/dataalgorithms/chap06/secondarysort/package-info.class
-		[javac] Creating empty /Users/mahmoudparsian/DataAlgorithmsBook/github/build/main/java/org/dataalgorithms/chap11/statemodel/package-info.class
-		  [jar] Building jar: /Users/mahmoudparsian/DataAlgorithmsBook/github/dist/data_algorithms_book.jar
+		[javac] Creating empty /Users/mahmoudparsian/data-algorithms-book/github/build/main/java/org/dataalgorithms/chap06/package-info.class
+		[javac] Creating empty /Users/mahmoudparsian/data-algorithms-book/github/build/main/java/org/dataalgorithms/chap05/package-info.class
+		[javac] Creating empty /Users/mahmoudparsian/data-algorithms-book/github/build/main/java/org/dataalgorithms/chap08/package-info.class
+		[javac] Creating empty /Users/mahmoudparsian/data-algorithms-book/github/build/main/java/org/dataalgorithms/chap07/package-info.class
+		[javac] Creating empty /Users/mahmoudparsian/data-algorithms-book/github/build/main/java/org/dataalgorithms/chap09/package-info.class
+		[javac] Creating empty /Users/mahmoudparsian/data-algorithms-book/github/build/main/java/org/dataalgorithms/chap11/projection/secondarysort/package-info.class
+		[javac] Creating empty /Users/mahmoudparsian/data-algorithms-book/github/build/main/java/org/dataalgorithms/chap11/projection/package-info.class
+		[javac] Creating empty /Users/mahmoudparsian/data-algorithms-book/github/build/main/java/org/dataalgorithms/chap11/projection/memorysort/package-info.class
+		[javac] Creating empty /Users/mahmoudparsian/data-algorithms-book/github/build/main/java/org/dataalgorithms/chap02/package-info.class
+		[javac] Creating empty /Users/mahmoudparsian/data-algorithms-book/github/build/main/java/org/dataalgorithms/chap01/package-info.class
+		[javac] Creating empty /Users/mahmoudparsian/data-algorithms-book/github/build/main/java/org/dataalgorithms/chap04/package-info.class
+		[javac] Creating empty /Users/mahmoudparsian/data-algorithms-book/github/build/main/java/org/dataalgorithms/chap03/package-info.class
+		[javac] Creating empty /Users/mahmoudparsian/data-algorithms-book/github/build/main/java/org/dataalgorithms/chap30/package-info.class
+		[javac] Creating empty /Users/mahmoudparsian/data-algorithms-book/github/build/main/java/org/dataalgorithms/chap25/package-info.class
+		[javac] Creating empty /Users/mahmoudparsian/data-algorithms-book/github/build/main/java/org/dataalgorithms/chap13/package-info.class
+		[javac] Creating empty /Users/mahmoudparsian/data-algorithms-book/github/build/main/java/org/dataalgorithms/chap14/package-info.class
+		[javac] Creating empty /Users/mahmoudparsian/data-algorithms-book/github/build/main/java/org/dataalgorithms/chap10/package-info.class
+		[javac] Creating empty /Users/mahmoudparsian/data-algorithms-book/github/build/main/java/org/dataalgorithms/chap11/package-info.class
+		[javac] Creating empty /Users/mahmoudparsian/data-algorithms-book/github/build/main/java/org/dataalgorithms/chap06/memorysort/package-info.class
+		[javac] Creating empty /Users/mahmoudparsian/data-algorithms-book/github/build/main/java/org/dataalgorithms/chap06/secondarysort/package-info.class
+		[javac] Creating empty /Users/mahmoudparsian/data-algorithms-book/github/build/main/java/org/dataalgorithms/chap11/statemodel/package-info.class
+		  [jar] Building jar: /Users/mahmoudparsian/data-algorithms-book/github/dist/data_algorithms_book.jar
 
 	BUILD SUCCESSFUL
 	Total time: 5 seconds
 
 
 	$ ant myenv
-	Buildfile: /Users/mahmoudparsian/DataAlgorithmsBook/github/build.xml
+	Buildfile: /Users/mahmoudparsian/data-algorithms-book/github/build.xml
 
 	myenv:
 		 [echo] ----------------------------
-		 [echo] "ant.file=/Users/mahmoudparsian/DataAlgorithmsBook/github/build.xml"
+		 [echo] "ant.file=/Users/mahmoudparsian/data-algorithms-book/github/build.xml"
 		 [echo] "ant.version=Apache Ant(TM) version 1.9.4 compiled on April 29 2014"
 		 [echo] "ant.project.name=Data Algorithms Book"
 		 [echo] "ant.java.version=1.7"

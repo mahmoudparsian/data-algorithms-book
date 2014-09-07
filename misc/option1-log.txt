@@ -15,25 +15,25 @@ $  ant
 Buildfile: build.xml
 
 init:
-    [mkdir] Created dir: /Users/mahmoud/DataAlgorithmsBook/build
-    [mkdir] Created dir: /Users/mahmoud/DataAlgorithmsBook/dist
-    [mkdir] Created dir: /Users/mahmoud/DataAlgorithmsBook/reports
-    [mkdir] Created dir: /Users/mahmoud/DataAlgorithmsBook/reports/raw
-    [mkdir] Created dir: /Users/mahmoud/DataAlgorithmsBook/reports/html
+    [mkdir] Created dir: /Users/mahmoud/data-algorithms-book/build
+    [mkdir] Created dir: /Users/mahmoud/data-algorithms-book/dist
+    [mkdir] Created dir: /Users/mahmoud/data-algorithms-book/reports
+    [mkdir] Created dir: /Users/mahmoud/data-algorithms-book/reports/raw
+    [mkdir] Created dir: /Users/mahmoud/data-algorithms-book/reports/html
 
 copy_jar:
      [echo] copying spark-assembly-1.0.2-hadoop2.5.0.jar...
-     [copy] Copying 1 resource to /Users/mahmoud/DataAlgorithmsBook/lib
+     [copy] Copying 1 resource to /Users/mahmoud/data-algorithms-book/lib
 
 build_jar:
      [echo] javac
      [echo] compiling src...
-    [javac] Compiling 140 source files to /Users/mahmoud/DataAlgorithmsBook/build
+    [javac] Compiling 140 source files to /Users/mahmoud/data-algorithms-book/build
     [javac] Note: Some input files use or override a deprecated API.
     [javac] Note: Recompile with -Xlint:deprecation for details.
     [javac] Note: Some input files use unchecked or unsafe operations.
     [javac] Note: Recompile with -Xlint:unchecked for details.
-      [jar] Building jar: /Users/mahmoud/DataAlgorithmsBook/dist/data_algorithms_book.jar
+      [jar] Building jar: /Users/mahmoud/data-algorithms-book/dist/data_algorithms_book.jar
 
 BUILD SUCCESSFUL
 Total time: 2 minutes 5 seconds
@@ -42,9 +42,9 @@ $  ant clean
 Buildfile: build.xml
 
 clean:
-   [delete] Deleting directory /Users/mahmoud/DataAlgorithmsBook/build
-   [delete] Deleting directory /Users/mahmoud/DataAlgorithmsBook/dist
-   [delete] Deleting directory /Users/mahmoud/DataAlgorithmsBook/reports
+   [delete] Deleting directory /Users/mahmoud/data-algorithms-book/build
+   [delete] Deleting directory /Users/mahmoud/data-algorithms-book/dist
+   [delete] Deleting directory /Users/mahmoud/data-algorithms-book/reports
 
 BUILD SUCCESSFUL
 Total time: 0 seconds
@@ -53,11 +53,11 @@ $  ant
 Buildfile: build.xml
 
 init:
-    [mkdir] Created dir: /Users/mahmoud/DataAlgorithmsBook/build
-    [mkdir] Created dir: /Users/mahmoud/DataAlgorithmsBook/dist
-    [mkdir] Created dir: /Users/mahmoud/DataAlgorithmsBook/reports
-    [mkdir] Created dir: /Users/mahmoud/DataAlgorithmsBook/reports/raw
-    [mkdir] Created dir: /Users/mahmoud/DataAlgorithmsBook/reports/html
+    [mkdir] Created dir: /Users/mahmoud/data-algorithms-book/build
+    [mkdir] Created dir: /Users/mahmoud/data-algorithms-book/dist
+    [mkdir] Created dir: /Users/mahmoud/data-algorithms-book/reports
+    [mkdir] Created dir: /Users/mahmoud/data-algorithms-book/reports/raw
+    [mkdir] Created dir: /Users/mahmoud/data-algorithms-book/reports/html
 
 copy_jar:
      [echo] copying spark-assembly-1.0.2-hadoop2.5.0.jar...
@@ -65,12 +65,12 @@ copy_jar:
 build_jar:
      [echo] javac
      [echo] compiling src...
-    [javac] Compiling 140 source files to /Users/mahmoud/DataAlgorithmsBook/build
+    [javac] Compiling 140 source files to /Users/mahmoud/data-algorithms-book/build
     [javac] Note: Some input files use or override a deprecated API.
     [javac] Note: Recompile with -Xlint:deprecation for details.
     [javac] Note: Some input files use unchecked or unsafe operations.
     [javac] Note: Recompile with -Xlint:unchecked for details.
-      [jar] Building jar: /Users/mahmoud/DataAlgorithmsBook/dist/data_algorithms_book.jar
+      [jar] Building jar: /Users/mahmoud/data-algorithms-book/dist/data_algorithms_book.jar
 
 BUILD SUCCESSFUL
 Total time: 4 seconds
