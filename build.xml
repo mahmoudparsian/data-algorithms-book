@@ -25,9 +25,9 @@
    <!-- will not dowload the jar dile.                                             -->
    <!-- =========================================================================  -->
    <target name="copy_jar"  depends="init">
-      <echo message="copying spark-assembly-1.0.2-hadoop2.5.0.jar..."/>    
+      <echo message="copying spark-assembly-1.1.0-hadoop2.5.0.jar..."/>    
       <copy todir="lib" flatten="true">
-          <url url="http://www.mapreduce4hackers.com/dataalgorithmsbook/lib/spark-assembly-1.0.2-hadoop2.5.0.jar"/>
+          <url url="http://www.mapreduce4hackers.com/dataalgorithmsbook/lib/spark-assembly-1.1.0-hadoop2.5.0.jar"/>
       </copy>  
    </target>
     
