@@ -49,7 +49,7 @@ public class CustomRecordReader extends RecordReader<PairOfStringLong, Text> {
    @Override
    public void initialize(InputSplit arg0, TaskAttemptContext arg1)
       throws IOException, InterruptedException {
-      // Won't be called, use custom Constructor
+      // This will not be called, use custom Constructor
    }
 
    @Override
