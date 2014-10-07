@@ -1,6 +1,6 @@
 To Create a large set of small files in Linux, you may use a shell script as:
 
-    #!/bib/bash
+    #!/bin/bash
     x=0
     y=10000
     smallfile="file.txt"
