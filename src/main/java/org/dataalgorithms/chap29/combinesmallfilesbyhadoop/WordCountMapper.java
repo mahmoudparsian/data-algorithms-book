@@ -1,4 +1,4 @@
-package org.dataalgorithms.chap29.combinesmallfiles;
+package org.dataalgorithms.chap29.combinesmallfilesbyhadoop;
 
 import java.io.IOException;
 import org.apache.hadoop.io.IntWritable;

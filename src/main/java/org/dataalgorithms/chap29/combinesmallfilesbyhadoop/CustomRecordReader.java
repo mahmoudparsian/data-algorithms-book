@@ -1,4 +1,4 @@
-package org.dataalgorithms.chap29.combinesmallfiles;
+package org.dataalgorithms.chap29.combinesmallfilesbyhadoop;
 
 import java.io.IOException;
 import org.apache.hadoop.fs.FSDataInputStream;
@@ -14,7 +14,12 @@ import org.apache.hadoop.util.LineReader;
 import edu.umd.cloud9.io.pair.PairOfStringLong;
 // PairOfStringLong = Tuple2<String, Long> = Tuple2<FileName, Offset>
 
-
+/**
+ * A custom record reader class.
+ *
+ * @author Mahmoud Parsian
+ *
+ */
 public class CustomRecordReader extends RecordReader<PairOfStringLong, Text> {
    // define (K,V)
    private PairOfStringLong key; 

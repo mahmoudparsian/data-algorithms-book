@@ -1,4 +1,4 @@
-package org.dataalgorithms.chap29.combinesmallfiles;
+package org.dataalgorithms.chap29.combinesmallfilesbyhadoop;
 
 import java.io.IOException;
 import org.apache.hadoop.fs.Path;
@@ -16,7 +16,7 @@ import edu.umd.cloud9.io.pair.PairOfStringLong;
 // https://raw.githubusercontent.com/lintool/Cloud9/master/src/dist/edu/umd/cloud9/io/pair/PairOfStringLong.java
 
 /**
- *  A custom file input format, which combines smaller files into big files
+ *  A custom file input format, which combines/merges smaller files into big files
  *  controlled by MAX_SPLIT_SIZE
  *
  * @author Mahmoud Parsian

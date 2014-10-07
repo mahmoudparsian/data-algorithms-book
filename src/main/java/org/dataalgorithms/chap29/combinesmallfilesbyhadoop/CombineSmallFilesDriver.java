@@ -1,4 +1,4 @@
-package org.dataalgorithms.chap29.combinesmallfiles;
+package org.dataalgorithms.chap29.combinesmallfilesbyhadoop;
 
 import java.io.IOException;
 import org.apache.hadoop.util.Tool;
@@ -14,7 +14,12 @@ import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 
 import org.dataalgorithms.util.HadoopUtil;
 
-
+/**
+ *  A driver class to testing combining/merging small files into big ines.
+ *
+ * @author Mahmoud Parsian
+ *
+ */
 public class CombineSmallFilesDriver extends Configured implements Tool {
 
   public static void main(String[] args) throws Exception {

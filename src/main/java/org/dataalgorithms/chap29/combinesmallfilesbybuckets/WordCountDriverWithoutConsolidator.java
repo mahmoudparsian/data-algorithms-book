@@ -1,4 +1,4 @@
-package org.dataalgorithms.chap29;
+package org.dataalgorithms.chap29.combinesmallfilesbybuckets;
 
 import org.apache.log4j.Logger;
 import org.apache.hadoop.util.Tool;

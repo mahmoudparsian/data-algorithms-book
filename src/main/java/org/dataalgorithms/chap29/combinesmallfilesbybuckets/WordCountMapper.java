@@ -1,4 +1,4 @@
-package org.dataalgorithms.chap29;
+package org.dataalgorithms.chap29.combinesmallfilesbybuckets;
 
 import java.io.IOException;
 import org.apache.hadoop.io.Text;
