@@ -1,0 +1,11 @@
+To Create a large set of small files in Linux, you may use a shell script as:
+
+    #!/bib/bash
+    x=0
+    y=10000
+    smallfile="file.txt"
+    for ((i=x; i<=y; i++)) ; do
+      cp "$smallfile"  "$smallfile$i"
+    done
+    
+Then use Hadoop's "copyFromLocal" to copy to HDFS.
