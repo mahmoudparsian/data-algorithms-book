@@ -56,6 +56,18 @@ public class SparkUtil {
       return ctx;
    }
    
+   /**
+    * Create a JavaSparkContext that loads settings from system properties 
+    * (for instance, when launching with ./bin/spark-submit).
+    *
+    * @return a JavaSparkContext
+    *
+    */
+   public static JavaSparkContext createJavaSparkContext() 
+      throws Exception {
+      return new JavaSparkContext();   
+   }
+   
    public static String version() {
       return "1.0.0";
    }   
