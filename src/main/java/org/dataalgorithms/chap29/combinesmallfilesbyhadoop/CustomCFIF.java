@@ -23,7 +23,8 @@ import edu.umd.cloud9.io.pair.PairOfStringLong;
  *
  */
 public class CustomCFIF extends CombineFileInputFormat<PairOfStringLong, Text> {
-   final static long MAX_SPLIT_SIZE = 67108864; // 64 MB
+   //final static long MAX_SPLIT_SIZE = 67108864; // 64 MB
+   final static long MAX_SPLIT_SIZE = 134217728; // 128 MB
    
    public CustomCFIF() {
       super();
