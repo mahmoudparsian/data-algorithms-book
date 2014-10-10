@@ -49,23 +49,20 @@ public class Top10 {
    public static void main(String[] args) throws Exception {
   
       // STEP-1: handle input parameters
-      if (args.length < 2) {
-         // Spark master URL:
-         //  format:   spark://<spark-master-host-name>:7077
-         //  example:  spark://myserver00:7077
-         System.err.println("Usage: Top10 <spark-master-URL> <file>");
+      if (args.length < 1) {
+         System.err.println("Usage: Top10 <input-file>");
          System.exit(1);
       }
-      System.out.println("args[0]: <spark-master-URL>="+args[0]);
-      System.out.println("args[1]: <input-path>="+args[1]);
+      String inputPath = args[0];
+      System.out.println("args[0]: <input-path>="+inputPath);
 
       // STEP-2: create an instance of JavaSparkContext
-      JavaSparkContext ctx = SparkUtil.createJavaSparkContext(args[0], "Top10");
+      JavaSparkContext ctx = SparkUtil.createJavaSparkContext();
 
       // STEP-3: create an RDD for input
       // input record format:
       //  <string-key><,><integer-value>,
-      JavaRDD<String> lines = ctx.textFile(args[1], 1);
+      JavaRDD<String> lines = ctx.textFile(inputPath, 1);
 
     
       // STEP-4: create (K, V) pairs
