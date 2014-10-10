@@ -10,7 +10,6 @@ import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.api.java.function.FlatMapFunction;
 import org.apache.spark.api.java.function.PairFunction;
 import org.apache.spark.api.java.function.Function2;
-import org.apache.spark.broadcast.Broadcast;
 
 import java.util.List;
 import java.util.Map;
@@ -60,28 +59,24 @@ public class Top10UsingTakeOrdered implements Serializable {
       }
       System.out.println("args[0]: <input-path>="+args[0]);
       System.out.println("args[1]: <topN>="+args[1]);
-      String inputPath = args[0];
+      final String inputPath = args[0];
       final int N = Integer.parseInt(args[1]);
 
       // STEP-2: create a Java Spark Context object
       JavaSparkContext ctx = SparkUtil.createJavaSparkContext();
 
-      // STEP-3: broadcast the topN to all cluster nodes
-      // final Broadcast<Integer> topN = ctx.broadcast(N);
-      // now topN is available to be read from all cluster nodes
-
-      // STEP-4: create an RDD from input
+      // STEP-3: create an RDD from input
       //    input record format:
       //        <string-key><,><integer-value-count>
       JavaRDD<String> lines = ctx.textFile(inputPath, 1);
       lines.saveAsTextFile("/output/1");
 
-      // STEP-5: partition RDD
+      // STEP-4: partition RDD
       // public JavaRDD<T> coalesce(int numPartitions)
       // Return a new RDD that is reduced into numPartitions partitions.
       JavaRDD<String> rdd = lines.coalesce(9);
 
-      // STEP-6: map input(T) into (K,V) pair
+      // STEP-5: map input(T) into (K,V) pair
       // PairFunction<T, K, V>
       // T => Tuple2<K, V>
       JavaPairRDD<String,Integer> kv = rdd.mapToPair(new PairFunction<String,String,Integer>() {
@@ -92,7 +87,7 @@ public class Top10UsingTakeOrdered implements Serializable {
       });
       kv.saveAsTextFile("/output/2");
 
-      // STEP-7: reduce frequent K's
+      // STEP-6: reduce frequent K's
       JavaPairRDD<String, Integer> uniqueKeys = kv.reduceByKey(new Function2<Integer, Integer, Integer>() {
          public Integer call(Integer i1, Integer i2) {
             return i1 + i2;
@@ -100,9 +95,10 @@ public class Top10UsingTakeOrdered implements Serializable {
       });
       uniqueKeys.saveAsTextFile("/output/3");
 
+      // STEP-7: find final top-N by calling takeOrdered()
       List<Tuple2<String, Integer>> topNResult = uniqueKeys.takeOrdered(N, MyTupleComparator.INSTANCE);
 
-      // STEP-10: emit final top-N
+      // STEP-8: emit final top-N
       for (Tuple2<String, Integer> entry : topNResult) {
          System.out.println(entry._2 + "--" + entry._1);
       }
