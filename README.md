@@ -103,6 +103,15 @@ Make sure that you use the full path for all jar files. This is how you can set 
 ```` 
  
 
+How To Run Python Programs
+==========================
+
+To run python programs just call them with `spark-submit` together with the arguments to the program:
+
+```
+spark-submit src/python/chap01/SparkSecondarySort.py local data.csv
+```
+
 Questions/Comments
 ==================
 Please send me an email: mahmoud.parsian@yahoo.com
