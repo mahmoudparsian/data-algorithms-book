@@ -80,8 +80,8 @@ Before you build, you should read [README_lib.md](./README_lib.md)
 
 Sample Builds
 =============
-* [Sample Build for MacBook](./misc/sample_build_mac.txt)
-* [Sample Build for Linux](./misc/sample_build_linux.txt)
+* [Sample Build by Ant for MacBook](./misc/sample_build_mac.txt)
+* [Sample Build by Ant for Linux](./misc/sample_build_linux.txt)
 
 
 
