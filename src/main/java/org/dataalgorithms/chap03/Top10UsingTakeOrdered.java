@@ -109,7 +109,8 @@ public class Top10UsingTakeOrdered implements Serializable {
    static class MyTupleComparator implements Comparator<Tuple2<String, Integer>> ,Serializable {
        final static MyTupleComparator INSTANCE = new MyTupleComparator();
        public int compare(Tuple2<String, Integer> t1, Tuple2<String, Integer> t2) {
-          return t1._2.compareTo(t2._2);
+          return -t1._2.compareTo(t2._2);     // sorts RDD elements descending (use for Top-N)
+          // return t1._2.compareTo(t2._2);   // sorts RDD elements ascending (use for Bottom-N)
        }
    }
 }
