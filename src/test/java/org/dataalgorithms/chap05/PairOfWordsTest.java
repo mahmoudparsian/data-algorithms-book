@@ -1,19 +1,24 @@
 package org.dataalgorithms.chap05;
 
+import static org.junit.Assert.*;
+import static org.hamcrest.Matchers.*;
 
-/** 
+import org.junit.Test;
+
+/**
  * This is a  test class.
  * This class tests the map() for Relative Frequency of words.
  *
  * @author Mahmoud Parsian
  *
  */
-public class TestMapper {
+public class PairOfWordsTest {
 
 	private static final int neighborWindow = 2;
     private static PairOfWords pair = new PairOfWords();
 
-    public static void main(String[] args)  {
+    @Test
+    public void canGetRelativeFrequency() {
         int totalCount;
 		String value = "w1 w2 w3 w4 w5 w6";
         String[] tokens = value.split(" ");
@@ -35,20 +40,21 @@ public class TestMapper {
 			for (int j = start; j <= end; j++) {
 				if (j == i) continue;
 				pair.setNeighbor(tokens[j].replaceAll("\\W",""));
+
 				System.out.println("pair="+pair+" 1");
 			}
 			pair.setNeighbor("*");
 			totalCount = end - start;
+
 			System.out.println("pair="+pair+ "  "+ totalCount);
+
+            assertThat(totalCount, greaterThan(1));
 		}        
     }
 }
 
 /*
 Sample run:
-
-Please make sure that all lib/*.jar and dist/dala_algorithms_book.jar 
-are in your CLASSPATH.
 
 # java org.dataalgorithms.chap05.TestMapper
 pair=(w1, w2) 1
@@ -75,5 +81,4 @@ pair=(w5, *)  3
 pair=(w6, w4) 1
 pair=(w6, w5) 1
 pair=(w6, *)  2
-
 */
