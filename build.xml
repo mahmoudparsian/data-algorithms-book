@@ -1,6 +1,8 @@
 <project name="Data Algorithms Book"  default="build_jar" basedir=".">
 <!-- ============================================================= -->
 <!-- This is the build script for Data Algorithms Book             -->
+<!-- by using Apache's Ant  (http://ant.apache.org)                -->
+<!--                                                               -->
 <!-- @author: Mahmoud Parsian                                      -->
 <!-- ============================================================= -->
             
