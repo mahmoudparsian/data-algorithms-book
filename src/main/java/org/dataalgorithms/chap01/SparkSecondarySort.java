@@ -56,22 +56,19 @@ public class SparkSecondarySort {
   public static void main(String[] args) throws Exception {
   
     // STEP-1: read input parameters and validate them
-    if (args.length < 2) {
-       System.err.println("Usage: SparkSecondarySort <spark-master-URL> <file>");
+    if (args.length < 1) {
+       System.err.println("Usage: SparkSecondarySort <file>");
        System.exit(1);
     }
-
-    System.out.println("args[0]: <spark-master-URL>="+args[0]);
-    System.out.println("args[1]: <file>="+args[1]);
+    String inputPath = args[0];
+    System.out.println("inputPath: <file>="+inputPath);
 
     // STEP-2: Connect to the Sark master by creating JavaSparkContext object
-    final JavaSparkContext ctx = SparkUtil.createJavaSparkContext(
-					args[0], 
-					"SparkSecondarySort");
+    final JavaSparkContext ctx = SparkUtil.createJavaSparkContext();
 
     // STEP-3: Use ctx to create JavaRDD<String>
     //  input record format: <name><,><time><,><value>
-    JavaRDD<String> lines = ctx.textFile(args[1], 1);
+    JavaRDD<String> lines = ctx.textFile(inputPath, 1);
 
 	// STEP-4: create (key, value) pairs from JavaRDD<String> where
 	// key is the {name} and value is a pair of (time, value).
@@ -144,22 +141,6 @@ public class SparkSecondarySort {
     */
     
     
-    // OPTION-3 : Have NOT completed yet
-	//mapValues[U](f: (V) ⇒ U): JavaPairRDD[K, U]
-	//Pass each value in the key-value pair RDD through a map function without changing the keys; this also retains the original RDD's partitioning.
-    //*
-    /***
-    JavaPairRDD<String, List<Tuple2<Integer, Integer>>> sorted = groups.mapValues(new Function<List<Tuple2<Integer, Integer>>,      // input
-                                                                                               List<Tuple2<Integer, Integer>>       // output
-                                                                                               >() {  
-      public List<Tuple2<Integer, Integer>> call(List<Tuple2<Integer, Integer>> s) {
-        List<Tuple2<Integer, Integer>> sortedList = ctx.parallelizePairs(s).sortByKey().collect();
-        return sortedList;
-      }
-    });
-    ***/
-    
-
     // STEP-9: validate STEP-8, we collect all values from JavaPairRDD<> and print it.    
     System.out.println("===  DEBUG STEP-8 ===");
     List<Tuple2<String, Iterable<Tuple2<Integer, Integer>>>> output3 = sorted.collect();

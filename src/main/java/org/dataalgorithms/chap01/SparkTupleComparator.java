@@ -3,6 +3,7 @@ package org.dataalgorithms.chap01;
 
 import scala.Tuple2;
 import java.util.Comparator;
+import java.io.Serializable;
 
 /** 
  * The SparkTupleComparator class enable us to compare two 
@@ -12,7 +13,8 @@ import java.util.Comparator;
  * @author Mahmoud Parsian
  *
  */
-public class SparkTupleComparator implements Comparator<Tuple2<Integer, Integer>> {
+public class SparkTupleComparator 
+   implements Comparator<Tuple2<Integer, Integer>>, Serializable {
 
    static final SparkTupleComparator INSTANCE = new SparkTupleComparator();
    
