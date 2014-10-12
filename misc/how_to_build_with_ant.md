@@ -4,7 +4,7 @@ Here I am assuming that your install directory is ````<install-dir-data-algorith
 
 [Apache's ant 1.9.4](http://ant.apache.org/) is used for building the project.
 
-Before you build, you do need to define the following:
+Before you build, you do need to define the following (please edit these directories accordingly):
 
     # This is an example to set 3 environment variables
     # You should update your script accrodingly
