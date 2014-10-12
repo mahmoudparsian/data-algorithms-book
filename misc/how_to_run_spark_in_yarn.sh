@@ -1,15 +1,28 @@
 #!/bin/bash
-export JAVA_HOME=/usr/java/jdk7
-export MP=/home/hadoop/testspark
-export SPARK_HOME=/home/hadoop/spark-1.1.0
-export THE_SPARK_JAR=$MP/lib/spark-assembly-1.1.0-hadoop2.5.0.jar
-export APP_JAR=$MP/dist/data_algorithms_book.jar
+
+# Here, I am assuming that you want to run your spark program in YARN
+# This script is a kind of template ...
+#   --------------------------------------------------------------------------------
+#   1. You have installed the data-algorithms-book  in /home/hadoop/testspark (DAB)
+#   2. Hadoop is installed at /usr/local/hadoop-2.5.0 (HADOOP_HOME)
+#   3. Hadoop's conf directory is $HADOOP_HOME
+#   4. Spark 1.1.0 is installed at /home/hadoop/spark-1.1.0
+#   5. And you have built the source code and generated $DAB/dist/data_algorithms_book.jar
+#   6. And you have two input parameters identified as P1 and P2
+#   7. You need to modify spark-submit parameters accordingly
+#   --------------------------------------------------------------------------------
 #
-export HADOOP_HOME=/usr/local/hadoop/hadoop-2.5.0
+export JAVA_HOME=/usr/java/jdk7
+export DAB=/home/hadoop/testspark
+export SPARK_HOME=/home/hadoop/spark-1.1.0
+export THE_SPARK_JAR=$DAB/lib/spark-assembly-1.1.0-hadoop2.5.0.jar
+export APP_JAR=$DAB/dist/data_algorithms_book.jar
+#
+export HADOOP_HOME=/usr/local/hadoop-2.5.0
 export HADOOP_CONF_DIR=$HADOOP_HOME/etc/hadoop
 #
 # build all other dependent jars in OTHER_JARS
-JARS=`find $MP/lib -name '*.jar'`
+JARS=`find $DAB/lib -name '*.jar'`
 OTHER_JARS=""
 for J in $JARS ; do 
    OTHER_JARS=$J,$OTHER_JARS
