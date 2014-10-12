@@ -60,29 +60,15 @@ Structure of src Directory
 ![src directory](./misc/source_tree.png)
 
 
-How To Build
-============
-Before you build, you should read [README_lib.md](./README_lib.md)
+How To Build using Apache's Ant
+===============================
+[How To Build by Ant](./misc/how_to_build_with_ant.md)
 
-[Apache's ant 1.9.4](http://ant.apache.org/) is used for building the project.
 
-* To clean up:
-
-  **ant clean**
-
-* To build: the build will create <install-dir>/dist/data_algorithms_book.jar file.
-
-  **ant**
-
-* To check your build environment:
-
-  **ant  myenv**
-
-Sample Builds
-=============
+Sample Builds by Ant
+====================
 * [Sample Build by Ant for MacBook](./misc/sample_build_mac.txt)
 * [Sample Build by Ant for Linux](./misc/sample_build_linux.txt)
-
 
 
 How To Run Java/Spark Programs
