@@ -1,43 +1,37 @@
 #!/bin/bash
 
-# Here, I am assuming that you want to run your spark program in YARN
+# Here, I am assuming that you want to run your MapReduce/Hadoop 
+# program in Hadoop's MapReduce environment.
+#
 # This script is a kind of template ...
 #   --------------------------------------------------------------------------------
 #   1. You have installed the data-algorithms-book  in /home/mp/data-algorithms-book (DAB)
 #   2. Hadoop is installed at /usr/local/hadoop-2.5.0 (HADOOP_HOME)
 #   3. Hadoop's conf directory is $HADOOP_HOME/etc/hadoop
-#   4. Spark 1.1.0 is installed at /usr/local/spark-1.1.0
-#   5. And you have built the source code and generated $DAB/dist/data_algorithms_book.jar
+#   4. You have built the source code and generated $DAB/dist/data_algorithms_book.jar
+#   5. You have all dependent jars in $DAB/lib/*.jar
 #   6. And you have two input parameters identified as P1 and P2
-#   7. You need to modify spark-submit parameters accordingly
+#   7. You need to modify directories and parameters accordingly
 #   --------------------------------------------------------------------------------
 #
 export JAVA_HOME=/usr/java/jdk7
 # java is defined at $JAVA_HOME/bin/java
 export DAB=/home/mp/data-algorithms-book
-export SPARK_HOME=/usr/local/spark-1.1.0
-export THE_SPARK_JAR=$DAB/lib/spark-assembly-1.1.0-hadoop2.5.0.jar
 export APP_JAR=$DAB/dist/data_algorithms_book.jar
 #
 export HADOOP_HOME=/usr/local/hadoop-2.5.0
 export HADOOP_CONF_DIR=$HADOOP_HOME/etc/hadoop
+export PATH=.:$JAVA_HOME/bin:$HADOOP_HOME/bin:$PATH
 #
-# build all other dependent jars in OTHER_JARS
-JARS=`find $DAB/lib -name '*.jar'`
-OTHER_JARS=""
-for J in $JARS ; do 
-   OTHER_JARS=$J,$OTHER_JARS
-done
+# copy all jars to HDFS's /lib/ directory
+# It is assumed that all jars in /lib/*.jar will be put 
+# into Hadoop's Distributed cache by the DRIVER_CLASS_NAME
+# for details see org.dataalgorithms.util.HadoopUtil class
+hadoop fs -mkdir /lib
+hadoop fs -copyFromLocal $APP_JAR  /lib/
+hadoop fs -copyFromLocal $DAB/lib/*.jar  /lib/
 #
 P1=<input-parameter-1-for-DRIVER_CLASS_NAME>
 P2=<input-parameter-2-for-DRIVER_CLASS_NAME>
 DRIVER_CLASS_NAME=<your-driver-class-name>
-$SPARK_HOME/bin/spark-submit --class $DRIVER_CLASS_NAME \
-    --master yarn-cluster \
-    --num-executors 12 \
-    --driver-memory 3g \
-    --executor-memory 7g \
-    --executor-cores 12 \
-    --conf "spark.yarn.jar=$THE_SPARK_JAR" \
-    --jars $OTHER_JARS \   
-    $APP_JAR $P1 $P2
+$HADOOP_HOME/bin/hadoop  jar $APP_JAR $DRIVER_CLASS_NAME $P1 $P2
