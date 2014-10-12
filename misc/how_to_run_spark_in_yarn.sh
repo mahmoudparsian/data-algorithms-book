@@ -3,18 +3,19 @@
 # Here, I am assuming that you want to run your spark program in YARN
 # This script is a kind of template ...
 #   --------------------------------------------------------------------------------
-#   1. You have installed the data-algorithms-book  in /home/hadoop/testspark (DAB)
+#   1. You have installed the data-algorithms-book  in /home/mp/data-algorithms-book (DAB)
 #   2. Hadoop is installed at /usr/local/hadoop-2.5.0 (HADOOP_HOME)
 #   3. Hadoop's conf directory is $HADOOP_HOME
-#   4. Spark 1.1.0 is installed at /home/hadoop/spark-1.1.0
+#   4. Spark 1.1.0 is installed at /usr/local/spark-1.1.0
 #   5. And you have built the source code and generated $DAB/dist/data_algorithms_book.jar
 #   6. And you have two input parameters identified as P1 and P2
 #   7. You need to modify spark-submit parameters accordingly
 #   --------------------------------------------------------------------------------
 #
 export JAVA_HOME=/usr/java/jdk7
-export DAB=/home/hadoop/testspark
-export SPARK_HOME=/home/hadoop/spark-1.1.0
+# java is defined at $JAVA_HOME/bin/java
+export DAB=/home/mp/data-algorithms-book
+export SPARK_HOME=/usr/local/spark-1.1.0
 export THE_SPARK_JAR=$DAB/lib/spark-assembly-1.1.0-hadoop2.5.0.jar
 export APP_JAR=$DAB/dist/data_algorithms_book.jar
 #
