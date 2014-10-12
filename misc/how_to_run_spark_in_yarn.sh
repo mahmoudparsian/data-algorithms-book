@@ -3,7 +3,7 @@
 # Here, I am assuming that you want to run your spark program in YARN
 # This script is a kind of template ...
 #   --------------------------------------------------------------------------------
-#   1. You have installed the data-algorithms-book  in /home/hadoop/data-algorithms-book (DAB)
+#   1. You have installed the data-algorithms-book  in /home/mp/data-algorithms-book (DAB)
 #   2. Hadoop is installed at /usr/local/hadoop-2.5.0 (HADOOP_HOME)
 #   3. Hadoop's conf directory is $HADOOP_HOME
 #   4. Spark 1.1.0 is installed at /home/hadoop/spark-1.1.0
@@ -13,7 +13,7 @@
 #   --------------------------------------------------------------------------------
 #
 export JAVA_HOME=/usr/java/jdk7
-export DAB=/home/hadoop/data-algorithms-book
+export DAB=/home/mp/data-algorithms-book
 export SPARK_HOME=/home/hadoop/spark-1.1.0
 export THE_SPARK_JAR=$DAB/lib/spark-assembly-1.1.0-hadoop2.5.0.jar
 export APP_JAR=$DAB/dist/data_algorithms_book.jar
