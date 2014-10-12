@@ -14,7 +14,7 @@
 #
 export JAVA_HOME=/usr/java/jdk7
 export DAB=/home/mp/data-algorithms-book
-export SPARK_HOME=/home/hadoop/spark-1.1.0
+export SPARK_HOME=/usr/local/spark-1.1.0
 export THE_SPARK_JAR=$DAB/lib/spark-assembly-1.1.0-hadoop2.5.0.jar
 export APP_JAR=$DAB/dist/data_algorithms_book.jar
 #
