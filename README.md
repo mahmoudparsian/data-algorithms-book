@@ -85,22 +85,10 @@ Sample Builds
 
 
 
-How To Run Programs
-===================
- To run programs, you have to make sure that your CLASSPATH contains all of the following JAR files:
- * `<install-dir>/dist/data_algorithms_book.jar`
- * all jar files  in the `<install-dir>/lib/` directory
+How To Run Java/Spark Programs
+==============================
+![How To Run Java/Spark Programs in YARN](./misc/how_to_run_spark_in_yarn.sh)
 
-Make sure that you use the full path for all jar files. This is how you can set up your CLASSPATH in a Linux bash environment:
-
-```
-BOOK_HOME=<install-dir>
-export CLASSPATH=.:$BOOK_HOME/dist/data_algorithms_book.jar
-jars=`find $BOOK_HOME/lib -name '*.jar'`
-for j in $jars ; do
-  export CLASSPATH=$CLASSPATH:$j
-done
-```
 
 How To Run Python Programs
 ==========================
