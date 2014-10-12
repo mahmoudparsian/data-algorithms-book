@@ -87,7 +87,7 @@ Sample Builds
 
 How To Run Java/Spark Programs
 ==============================
-![How To Run Java/Spark Programs in YARN](./misc/how_to_run_spark_in_yarn.sh)
+[How To Run Java/Spark Programs in YARN](./misc/how_to_run_spark_in_yarn.sh)
 
 
 How To Run Python Programs
