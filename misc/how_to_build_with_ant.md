@@ -1,4 +1,4 @@
-Before you build, you should read [README_lib.md](./README_lib.md)
+Before you build, you should read [README_lib.md](../README_lib.md)
 
 [Apache's ant 1.9.4](http://ant.apache.org/) is used for building the project.
 
