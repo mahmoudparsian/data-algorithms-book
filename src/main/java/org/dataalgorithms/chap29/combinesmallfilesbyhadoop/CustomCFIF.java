@@ -16,19 +16,18 @@ import edu.umd.cloud9.io.pair.PairOfStringLong;
 // https://raw.githubusercontent.com/lintool/Cloud9/master/src/dist/edu/umd/cloud9/io/pair/PairOfStringLong.java
 
 /**
- *  A custom file input format, which combines/merges smaller files into big files
- *  controlled by MAX_SPLIT_SIZE
+ *  A custom file input format, which combines/merges smaller 
+ *  files into big files controlled by MAX_SPLIT_SIZE_64MB
  *
  * @author Mahmoud Parsian
  *
  */
 public class CustomCFIF extends CombineFileInputFormat<PairOfStringLong, Text> {
-   //final static long MAX_SPLIT_SIZE = 67108864; // 64 MB
-   final static long MAX_SPLIT_SIZE = 134217728; // 128 MB
+   final static long MAX_SPLIT_SIZE_64MB = 67108864; // 64 MB = 64*1024*1024
    
    public CustomCFIF() {
       super();
-      setMaxSplitSize(MAX_SPLIT_SIZE); 
+      setMaxSplitSize(MAX_SPLIT_SIZE_64MB); 
    }
   
    public RecordReader<PairOfStringLong, Text> createRecordReader(InputSplit split, 
