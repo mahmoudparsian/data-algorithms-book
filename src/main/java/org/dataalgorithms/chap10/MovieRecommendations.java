@@ -34,24 +34,15 @@ public class MovieRecommendations {
   public static void main(String[] args) throws Exception {
 
     //STEP-1: handle input parameters
-    if (args.length < 2) {
-      //
-      // format of spark master URL: 
-      //       spark://<spark-master-host-name>:7077
-      //
-      System.err.println("Usage: MovieRecommendations <spark-master-URL> <users-ratings>");
+    if (args.length < 1) {
+      System.err.println("Usage: MovieRecommendations <users-ratings>");
       System.exit(1);
     }
-    
-    String sparkMasterURL = args[0];
-    String usersRatingsInputFile = args[1];
-    System.out.println("sparkMasterURL="+ sparkMasterURL);
+    String usersRatingsInputFile = args[0];
     System.out.println("usersRatingsInputFile="+ usersRatingsInputFile);
        
     //STEP-2: create a Spark's context object
-    JavaSparkContext ctx = SparkUtil.createJavaSparkContext(
-					sparkMasterURL, 
-					"MovieRecommendationsWithJoin");
+    JavaSparkContext ctx = SparkUtil.createJavaSparkContext();
 					
     //STEP-3: read HDFS file and create the first RDD
     JavaRDD<String> usersRatings = ctx.textFile(usersRatingsInputFile, 1);
@@ -196,7 +187,7 @@ public class MovieRecommendations {
            Tuple3<String,Integer,Integer> movie1 = twoMovies.get(0);
            Tuple3<String,Integer,Integer> movie2 = twoMovies.get(1);
            //Tuple2<String,String> k3 = new Tuple2<String,String>(movie1._1, movie2._1);
-           Tuple2<String,String> k3 = new Tuple2<String,String>(movie1.first(), movie2.first());
+           Tuple2<String,String> k3 = new Tuple2<String,String>(movie1._1, movie2._1);
            Tuple7<Integer,Integer,Integer,Integer,Integer,Integer,Integer> v3 = getTuple7(movie1, movie2);
            Tuple2<Tuple2<String,String>, Tuple7<Integer,Integer,Integer,Integer,Integer,Integer,Integer>> k3v3 =
            new Tuple2<Tuple2<String,String>, Tuple7<Integer,Integer,Integer,Integer,Integer,Integer,Integer>>(k3, v3);
@@ -247,15 +238,15 @@ public class MovieRecommendations {
        // Tuple3<String,Integer,Integer> movie1 = (movie, rating, numberOfRaters)
        // Tuple3<String,Integer,Integer> movie2 = (movie, rating, numberOfRaters)
 	   // calculate additional information, which will be needed by correlation
-	   int ratingProduct = movie1.second() * movie2.second();  // movie1.rating * movie2.rating;
-	   int rating1Squared = movie1.second() * movie1.second(); // movie1.rating * movie1.rating;
-	   int rating2Squared = movie2.second() * movie2.second(); // movie2.rating * movie2.rating;
+	   int ratingProduct = movie1._2 * movie2._2;  // movie1.rating * movie2.rating;
+	   int rating1Squared = movie1._2 * movie1._2; // movie1.rating * movie1.rating;
+	   int rating2Squared = movie2._2 * movie2._2; // movie2.rating * movie2.rating;
 
 	   return new Tuple7<Integer,Integer,Integer,Integer,Integer,Integer,Integer>(
-	           movie1.second(), // movie1.rating,
-	           movie1.third(),  // movie1.numberOfRaters,
-	           movie2.second(), // movie2.rating,
-	           movie2.third(),  // movie2.numberOfRaters,
+	           movie1._2, // movie1.rating,
+	           movie1._3,  // movie1.numberOfRaters,
+	           movie2._2, // movie2.rating,
+	           movie2._3,  // movie2.numberOfRaters,
 	           ratingProduct,
 	           rating1Squared,
 	           rating2Squared);               

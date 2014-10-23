@@ -34,30 +34,19 @@ public class MovieRecommendationsWithJoin {
   public static void main(String[] args) throws Exception {
 
     //STEP-1: handle input parameters
-    if (args.length < 2) {
-      //
-      // format of spark master URL: 
-      //       spark://<spark-master-host-name>:7077
-      //
-      System.err.println("Usage: MovieRecommendationsWithJoin <spark-master-URL> <users-ratings>");
-      System.exit(1);
+    if (args.length < 1) {
+       System.err.println("Usage: MovieRecommendationsWithJoin <users-ratings>");
+       System.exit(1);
     }
-    
-    String sparkMaster = args[0];
-    String usersRatingsInputFile = args[1];
-    System.out.println("sparkMaster="+ sparkMaster);
+    String usersRatingsInputFile = args[0];
     System.out.println("usersRatingsInputFile="+ usersRatingsInputFile);
        
     //STEP-2: create a Spark's context object
-    JavaSparkContext ctx = SparkUtil.createJavaSparkContext(
-					sparkMaster, 
-					"MovieRecommendationsWithJoin");
+    JavaSparkContext ctx = SparkUtil.createJavaSparkContext();
 					
     //STEP-3: read HDFS file and create the first RDD
     JavaRDD<String> usersRatings = ctx.textFile(usersRatingsInputFile, 1);
-
-
-    
+  
 	//STEP-4: find who has seen this movie
     // <K2,V2> JavaPairRDD<K2,V2> mapToPair(PairFunction<T,K2,V2> f)
     // Return a new RDD by applying a function to all elements of this RDD.
@@ -168,8 +157,8 @@ public class MovieRecommendationsWithJoin {
       public Boolean call(Tuple2<String, Tuple2<Tuple3<String,Integer,Integer>,Tuple3<String,Integer,Integer>>> s) {
       	 Tuple3<String,Integer,Integer> movie1 = s._2._1;
       	 Tuple3<String,Integer,Integer> movie2 = s._2._2;
-      	 String movieName1  = movie1.first();
-      	 String movieName2  = movie2.first();
+      	 String movieName1  = movie1._1;
+      	 String movieName2  = movie2._1;
       	 if (movieName1.compareTo(movieName2) < 0) {
       	 	return true;
       	 }
@@ -216,16 +205,16 @@ public class MovieRecommendationsWithJoin {
             // String user = s._1; // will be dropped
             Tuple3<String,Integer,Integer> movie1 = s._2._1;
             Tuple3<String,Integer,Integer> movie2 = s._2._2;
-            Tuple2<String,String> m1m2Key = new Tuple2<String,String>(movie1.first(), movie2.first());
-	        int ratingProduct = movie1.second() * movie2.second();  // movie1.rating * movie2.rating;
-	        int rating1Squared = movie1.second() * movie1.second(); // movie1.rating * movie1.rating;
-	        int rating2Squared = movie2.second() * movie2.second(); // movie2.rating * movie2.rating;
+            Tuple2<String,String> m1m2Key = new Tuple2<String,String>(movie1._1, movie2._1);
+	        int ratingProduct = movie1._2 * movie2._2;  // movie1.rating * movie2.rating;
+	        int rating1Squared = movie1._2 * movie1._2; // movie1.rating * movie1.rating;
+	        int rating2Squared = movie2._2 * movie2._2; // movie2.rating * movie2.rating;
             Tuple7<Integer,Integer,Integer,Integer,Integer,Integer,Integer> t7 = 
 	           new Tuple7<Integer,Integer,Integer,Integer,Integer,Integer,Integer>(
-	                 movie1.second(), // movie1.rating,
-	                 movie1.third(),  // movie1.numberOfRaters,
-	                 movie2.second(), // movie2.rating,
-	                 movie2.third(),  // movie2.numberOfRaters,
+	                 movie1._2, // movie1.rating,
+	                 movie1._3,  // movie1.numberOfRaters,
+	                 movie2._2, // movie2.rating,
+	                 movie2._3,  // movie2.numberOfRaters,
 	                 ratingProduct,
 	                 rating1Squared,
 	                 rating2Squared); 
@@ -275,15 +264,15 @@ public class MovieRecommendationsWithJoin {
        // Tuple3<String,Integer,Integer> movie1 = (movie, rating, numberOfRaters)
        // Tuple3<String,Integer,Integer> movie2 = (movie, rating, numberOfRaters)
 	   // calculate additional information, which will be needed by correlation
-	   int ratingProduct = movie1.second() * movie2.second();  // movie1.rating * movie2.rating;
-	   int rating1Squared = movie1.second() * movie1.second(); // movie1.rating * movie1.rating;
-	   int rating2Squared = movie2.second() * movie2.second(); // movie2.rating * movie2.rating;
+	   int ratingProduct = movie1._2 * movie2._2;  // movie1.rating * movie2.rating;
+	   int rating1Squared = movie1._2 * movie1._2; // movie1.rating * movie1.rating;
+	   int rating2Squared = movie2._2 * movie2._2; // movie2.rating * movie2.rating;
 
 	   return new Tuple7<Integer,Integer,Integer,Integer,Integer,Integer,Integer>(
-	           movie1.second(), // movie1.rating,
-	           movie1.third(),  // movie1.numberOfRaters,
-	           movie2.second(), // movie2.rating,
-	           movie2.third(),  // movie2.numberOfRaters,
+	           movie1._2, // movie1.rating,
+	           movie1._3,  // movie1.numberOfRaters,
+	           movie2._2, // movie2.rating,
+	           movie2._3,  // movie2.numberOfRaters,
 	           ratingProduct,
 	           rating1Squared,
 	           rating2Squared);               
@@ -336,9 +325,13 @@ public class MovieRecommendationsWithJoin {
                rating1NormSq,
                rating2NormSq); 
                
-     double cosine = calculateCosineCorrelation(dotProduct, Math.sqrt(rating1NormSq), Math.sqrt(rating2NormSq));
+     double cosine = calculateCosineCorrelation(dotProduct, 
+                                                Math.sqrt(rating1NormSq), 
+                                                Math.sqrt(rating2NormSq));
      
-     double jaccard = calculateJaccardCorrelation(groupSize, maxNumOfumRaters1, maxNumOfumRaters2);
+     double jaccard = calculateJaccardCorrelation(groupSize, 
+                                                  maxNumOfumRaters1, 
+                                                  maxNumOfumRaters2);
      
      return  new Tuple3<Double,Double,Double>(pearson, cosine, jaccard);         
   }
