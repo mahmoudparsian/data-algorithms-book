@@ -36,8 +36,12 @@ public class MeanDriver {
           System.err.println("Usage: MeanDriver <input> <output>");
           System.exit(1);
        }
+       
+       // define I/O paths
+       Path inputPath = new Path(otherArgs[0]);
+       Path outputPath = new Path(otherArgs[1]);
+       
        Job job = new Job(conf, "MeanDriver");
-
        // add jars to distributed cache
        HadoopUtil.addJarsToDistributedCache(job, "/lib/");
        
@@ -56,13 +60,15 @@ public class MeanDriver {
        job.setOutputKeyClass(Text.class);
        job.setOutputValueClass(DoubleWritable.class);
        
-       // define I/O
-       FileInputFormat.addInputPath(job, new Path(otherArgs[0]));
-       FileOutputFormat.setOutputPath(job, new Path(otherArgs[1]));
+       // set I/O
+       FileInputFormat.addInputPath(job, inputPath);
+       FileOutputFormat.setOutputPath(job, outputPath);
        
+       // define the format of I/O
        job.setInputFormatClass(SequenceFileInputFormat.class); 
        job.setOutputFormatClass(SequenceFileOutputFormat.class);
        
+       // run job and return the status
        System.exit(job.waitForCompletion(true) ? 0 : 1);
     }
 }
