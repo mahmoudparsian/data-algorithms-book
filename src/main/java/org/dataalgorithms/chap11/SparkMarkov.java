@@ -246,35 +246,47 @@ public class SparkMarkov implements Serializable {
                                  Tuple2<String,String>,         // K
                                  Integer                        // V
                                 >() {
-      public Iterable<Tuple2<Tuple2<String,String>, Integer>> call(Tuple2<String, List<String>> s) {
-         List<String> states = s._2;
-         if ( (states == null) || (states.size() < 2) ) {
-            return Collections.emptyList();
-         }
+         public Iterable<Tuple2<Tuple2<String,String>, Integer>> call(Tuple2<String, List<String>> s) {
+            List<String> states = s._2;
+            if ( (states == null) || (states.size() < 2) ) {
+               return Collections.emptyList();
+            }
          
-         List<Tuple2<Tuple2<String,String>, Integer>> mapperOutput =
-             new ArrayList<Tuple2<Tuple2<String,String>, Integer>>();
-         for (int i = 0; i < (states.size() -1); i++) {
-             String fromState = states.get(i);
-             String toState = states.get(i+1);
-             Tuple2<String,String> k = new Tuple2<String,String>(fromState, toState);
-             mapperOutput.add(new Tuple2<Tuple2<String,String>, Integer>(k, 1));
+            List<Tuple2<Tuple2<String,String>, Integer>> mapperOutput =
+                new ArrayList<Tuple2<Tuple2<String,String>, Integer>>();
+            for (int i = 0; i < (states.size() -1); i++) {
+                String fromState = states.get(i);
+                String toState = states.get(i+1);
+                Tuple2<String,String> k = new Tuple2<String,String>(fromState, toState);
+                mapperOutput.add(new Tuple2<Tuple2<String,String>, Integer>(k, 1));
+            }
+            return mapperOutput;
          }
-         return mapperOutput;
-      }
-    });
-    model.saveAsTextFile("/output/6.1");
+       });
+       model.saveAsTextFile("/output/6.1");
     
-    // combine/reduce frequent (fromState, toState)
-    JavaPairRDD<Tuple2<String,String>, Integer> markovModel = 
-         model.reduceByKey(new Function2<Integer, Integer, Integer>() {
-         public Integer call(Integer i1, Integer i2) {
-            return i1 + i2;
-         }
-    });
-    markovModel.saveAsTextFile("/output/6.2");    
+       // combine/reduce frequent (fromState, toState)
+       JavaPairRDD<Tuple2<String,String>, Integer> markovModel = 
+           model.reduceByKey(new Function2<Integer, Integer, Integer>() {
+           public Integer call(Integer i1, Integer i2) {
+              return i1 + i2;
+           }
+       });
+       markovModel.saveAsTextFile("/output/6.2");    
 
-      System.exit(0);
+       // STEP-7: emit final output
+       // convert markovModel into "<fromState><,><toState><TAB><count>"
+       // Use map() to convert JavaPairRDD into JavaRDD:
+       // <R> JavaRDD<R> map(Function<T,R> f)
+       // Return a new RDD by applying a function to all elements of this RDD.
+       JavaRDD<String> markovModelFormatted = 
+          markovModel.map(new Function<Tuple2<Tuple2<String,String>, Integer>, String>() {
+          public String call(Tuple2<Tuple2<String,String>, Integer> t) {
+            return t._1._1 + "," + t._1._2 + "\t" + t._2;
+          }
+       });
+       markovModelFormatted.saveAsTextFile("/output/6.3");
+       System.exit(0);
    }
 
    static class TupleComparatorAscending implements Comparator<Tuple2<Long, Integer>>, Serializable {
