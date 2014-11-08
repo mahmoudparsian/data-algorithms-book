@@ -90,7 +90,8 @@ public class StateTransitionTableBuilder {
     public String serializeRow(int rowNumber) {
         StringBuilder builder = new StringBuilder();
         for (int column = 0; column < numberOfStates; column++) {
-        	builder.append(table[rowNumber][column]);
+        	double element = table[rowNumber][column];
+        	builder.append(String.format("%.4g", element));
             if (column < (numberOfStates-1)) {
             	builder.append(",");
             }
