@@ -1,6 +1,5 @@
 package org.dataalgorithms.chap26;
 
-import org.dataalgorithms.util.SparkUtil;
 import org.dataalgorithms.util.PairOfDoubleInteger;
 
 import scala.Tuple2;
@@ -45,31 +44,31 @@ public class SparkGeneAggregationByAverage {
       BufferedReader in = new BufferedReader(new FileReader(biosets));
       String line = null;
       while ((line = in.readLine()) != null) {
-		String aBiosetFile = line.trim();
-		biosetFiles.add(aBiosetFile);
+         String aBiosetFile = line.trim();
+         biosetFiles.add(aBiosetFile);
       }
       in.close();
       return biosetFiles;
    }
    
    private static JavaRDD<String> readInputFiles(JavaSparkContext ctx,
-			                             String filename)
+                                                 String filename)
       throws Exception {
          List<String> biosetFiles = toList(filename);
-		 int counter = 0;
-		 JavaRDD[] rdds = new JavaRDD[biosetFiles.size()];
-		 for (String biosetFileName : biosetFiles) {
-			System.out.println("debug1 biosetFileName=" + biosetFileName);
-			JavaRDD<String> record = ctx.textFile(biosetFileName);
-			rdds[counter] = record;
-			counter++;
+         int counter = 0;
+         JavaRDD[] rdds = new JavaRDD[biosetFiles.size()];
+         for (String biosetFileName : biosetFiles) {
+            System.out.println("debug1 biosetFileName=" + biosetFileName);
+            JavaRDD<String> record = ctx.textFile(biosetFileName);
+            rdds[counter] = record;
+            counter++;
          }
-		 JavaRDD<String> allBiosets = ctx.union(rdds);
-		 return allBiosets.coalesce(9, false);
+         JavaRDD<String> allBiosets = ctx.union(rdds);
+         return allBiosets.coalesce(9, false);
    } // readInputFiles
    
    private static Map<String,PairOfDoubleInteger>  buildPatientsMap(Iterable<String> values) {
-      Map<String, PairOfDoubleInteger> patients = new HashMap<String, PairOfDoubleInteger>();      
+      Map<String, PairOfDoubleInteger> patients = new HashMap<String, PairOfDoubleInteger>(); 
       for (String patientIdAndGeneValue : values) {
           String[] tokens = StringUtils.split(patientIdAndGeneValue, ","); 
           String patientID = tokens[0];
@@ -121,8 +120,8 @@ public class SparkGeneAggregationByAverage {
   
      
   public static void main(String[] args) throws Exception {
-    if (args.length != 5) {
-      System.err.println("Usage: SparkGeneAggregationByIndividual <referenceType> <filterType> <filterValueThreshold> <biosets> <YARN's-resource-manager>");
+    if (args.length != 4) {
+      System.err.println("Usage: SparkGeneAggregationByIndividual <referenceType> <filterType> <filterValueThreshold> <biosets> ");
       System.exit(1);
     }
     
@@ -130,21 +129,18 @@ public class SparkGeneAggregationByAverage {
     final String filterType = args[1];           // {"up", "down", "abs"}
     final Double filterValueThreshold = new Double(args[2]);
     final String biosets = args[3]; 
-    final String yarnResourceManager = args[4];
      
     System.out.println("args[0]: <referenceType>="+referenceType);
     System.out.println("args[1]: <filterType>="+filterType);
     System.out.println("args[2]: <filterValueThreshold>="+filterValueThreshold);
     System.out.println("args[3]: <biosets>="+biosets);
-    System.out.println("args[4]: <yarn-resource-manager>="+yarnResourceManager);
-	
-	JavaSparkContext ctx = 	SparkUtil.createJavaSparkContext(yarnResourceManager);		
-	
-	final Broadcast<String> broadcastVarReferenceType = ctx.broadcast(referenceType);
-	final Broadcast<String> broadcastVarFilterType = ctx.broadcast(filterType);
-	final Broadcast<Double> broadcastVarFilterValueThreshold = ctx.broadcast(filterValueThreshold);
-	
-					
+
+    JavaSparkContext ctx = new JavaSparkContext();
+
+    final Broadcast<String> broadcastVarReferenceType = ctx.broadcast(referenceType);
+    final Broadcast<String> broadcastVarFilterType = ctx.broadcast(filterType);
+    final Broadcast<Double> broadcastVarFilterValueThreshold = ctx.broadcast(filterValueThreshold);
+
     JavaRDD<String> records = readInputFiles(ctx, biosets);
     
     // debug1
@@ -179,19 +175,19 @@ public class SparkGeneAggregationByAverage {
       }
     });
     
- 	// public JavaPairRDD<K,V> filter(Function<Tuple2<K,V>,Boolean> f)
-	// Return a new RDD containing only the elements that satisfy a predicate;
-	// If K = "n", then exclude them 
+    // public JavaPairRDD<K,V> filter(Function<Tuple2<K,V>,Boolean> f)
+    // Return a new RDD containing only the elements that satisfy a predicate;
+    // If K = "n", then exclude them 
     JavaPairRDD<String,String> filteredGenes = genes.filter(new Function<Tuple2<String,String>,Boolean>() {
       public Boolean call(Tuple2<String, String> s) {
-      	 String value = s._1;
-      	 if (value.equals("n")) {
-      	    // exclude null entries
-      	 	return false;
-      	 }
-      	 else {
-      	 	return true;
-      	 }
+         String value = s._1;
+         if (value.equals("n")) {
+            // exclude null entries
+            return false;
+         }
+         else {
+            return true;
+         }
       }
     });
     
@@ -202,16 +198,16 @@ public class SparkGeneAggregationByAverage {
     JavaPairRDD<String, Iterable<String>> genesByID = filteredGenes.groupByKey();
 
 
-	//mapValues[U](f: (V) => U): JavaPairRDD[K, U]
-	// Pass each value in the key-value pair RDD through a map function without 
-	// changing the keys; this also retains the original RDD's partitioning.
+    //mapValues[U](f: (V) => U): JavaPairRDD[K, U]
+    // Pass each value in the key-value pair RDD through a map function without 
+    // changing the keys; this also retains the original RDD's partitioning.
     JavaPairRDD<String, Integer> frequency = genesByID.mapValues(new Function< Iterable<String>,  // input
                                                                                Integer            // output
                                                                              >() {  
        public Integer call(Iterable<String> values) {
           Map<String, PairOfDoubleInteger>  patients = buildPatientsMap(values);          
           String filterType = (String) broadcastVarFilterType.value();
-	      Double filterValueThreshold = (Double) broadcastVarFilterValueThreshold.value();
+          Double filterValueThreshold = (Double) broadcastVarFilterValueThreshold.value();
           int passedTheTest = getNumberOfPatientsPassedTheTest(patients, filterType, filterValueThreshold);
           return passedTheTest;
        }

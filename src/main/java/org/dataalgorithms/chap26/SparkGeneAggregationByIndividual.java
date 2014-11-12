@@ -1,7 +1,6 @@
-package org.dataalgorithms.chap29;
+package org.dataalgorithms.chap26;
 
 //STEP-0: import required classes and interfaces
-import org.dataalgorithms.util.SparkUtil;
 import scala.Tuple2;
 import org.apache.spark.api.java.JavaPairRDD;
 import org.apache.spark.api.java.JavaRDD;
@@ -31,8 +30,8 @@ public class SparkGeneAggregationByIndividual {
    
    public static void main(String[] args) throws Exception {
       //STEP-1: handle input parameters
-      if (args.length != 5) {
-         System.err.println("Usage: SparkGeneAggregationByIndividual <referenceType> <filterType> <filterValueThreshold> <biosets> <yarn-resource-manager>");
+      if (args.length != 4) {
+         System.err.println("Usage: SparkGeneAggregationByIndividual <referenceType> <filterType> <filterValueThreshold> <biosets> ");
          System.exit(1);
       }
     
@@ -40,17 +39,15 @@ public class SparkGeneAggregationByIndividual {
     final String filterType = args[1];           // {"up", "down", "abs"}
     final Double filterValueThreshold = new Double(args[2]);
     final String biosets = args[3]; 
-    final String yarnResourceManager = args[4];
      
     //System.out.println("args[0]: <sparkMasterURL>="+sparkMasterURL);
     System.out.println("args[0]: <referenceType>="+referenceType);
     System.out.println("args[1]: <filterType>="+filterType);
     System.out.println("args[2]: <filterValueThreshold>="+filterValueThreshold);
     System.out.println("args[3]: <biosets>="+biosets);
-    System.out.println("args[4]: <yarnResourceManager>="+yarnResourceManager);
      
     //STEP-2: create a spark context object 
-	JavaSparkContext ctx = 	SparkUtil.createJavaSparkContext(yarnResourceManager);		
+    JavaSparkContext ctx = new JavaSparkContext();
    
     //STEP-3: broadcast shard variables   
     final Broadcast<String> broadcastVarReferenceType = ctx.broadcast(referenceType);
