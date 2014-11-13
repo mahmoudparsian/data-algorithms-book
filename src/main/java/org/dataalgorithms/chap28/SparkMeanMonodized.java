@@ -48,7 +48,7 @@ public class SparkMeanMonodized  {
 
       // STEP-2: create an RDD from input
       //    input record format:
-      //        <string-key><,><long-value>
+      //        <string-key><TAB><long-value>
       JavaSparkContext ctx = new JavaSparkContext();
       JavaRDD<String> records = ctx.textFile(inputPath, 1);
       records.saveAsTextFile("/output/2");
