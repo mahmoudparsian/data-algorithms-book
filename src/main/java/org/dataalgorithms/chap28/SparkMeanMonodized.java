@@ -15,6 +15,23 @@ import org.apache.spark.api.java.function.PairFunction;
  * then the "mean" of "mean" will correctly return the mean of all 
  * values. For this example, we create monoids so that combiners 
  * can be utilized without losing the semantics of "mean" function.
+ * 
+ * In Spark, calling reduceByKey() will automatically perform 
+ * combining locally on each machine before computing global totals 
+ * for each key. The programmer does not need to specify a combiner. 
+ * Since combining is automatic, we need to pay an extra attention to
+ * reduceByKey(), to make sure that using combiners will not alter 
+ * the sematics of our desired function (in this example, the desired 
+ * functionality is the "mean" function). Below, we provide a solution
+ * to "mean" function by providing monoids structures so that the correct 
+ * semantics of "mean" function is preserved. The entire solution is 
+ * presented as a single Java class.
+ * 
+ * Note that "mean" of "mean" is not a monoid. Therefore, to preseve
+ * the semantics of "mean" over a set of long data type numbers, we 
+ * have to provide a monoid structure so that combiners can be used 
+ * efficiently and correctly.
+ * 
  *
  * @author Mahmoud Parsian
  *
@@ -31,7 +48,7 @@ public class SparkMeanMonodized  {
 
       // STEP-2: create an RDD from input
       //    input record format:
-      //        <string-key><,><long-value>
+      //        <string-key><TAB><long-value>
       JavaSparkContext ctx = new JavaSparkContext();
       JavaRDD<String> records = ctx.textFile(inputPath, 1);
       records.saveAsTextFile("/output/2");
