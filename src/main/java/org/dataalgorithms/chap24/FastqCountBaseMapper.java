@@ -55,16 +55,13 @@ public class FastqCountBaseMapper
 	   String sequence = lines[1].toLowerCase();
 	   char[] array = sequence.toCharArray(); 
 	   for(char c : array){
-		   Long v = dnaBaseCounter.get(c);
-		   if (v == null) {
-			  dnaBaseCounter.put(c, 1l);
-		   }
-		   else {
-			  dnaBaseCounter.put(c, v+1l);
-		   }
+	      Long v = dnaBaseCounter.get(c);
+	      if (v == null) {
+		   dnaBaseCounter.put(c, 1l);
+	      }
+	      else {
+		   dnaBaseCounter.put(c, v+1l);
+	      }
 	   }
     }
 }
-
-
-
