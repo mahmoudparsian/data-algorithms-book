@@ -46,22 +46,21 @@ public class FastqCountBaseMapper
     
     public void map(Object key, Text value, Context context) 
        throws IOException, InterruptedException {
-	   String fastq = value.toString().toLowerCase();
-	   //String fastq = value.toString();
-	   LOG.info("map(): fastq="+fastq);
-	   // 4 lines lines are separated by ",;,"
-	   String[] lines = fastq.split(",;,");
+       // fastqRecord = 4 lines and lines are separated by delimiter ",;,"
+	   String fastqRecord = value.toString();
+	   // LOG.info("map(): fastqRecord="+fastqRecord);
+	   String[] lines = fastqRecord.split(",;,");
 	   debug(lines);
 	   // 2nd line (lines[1]) is the sequence
-	   char[] array = lines[1].toCharArray(); 
+	   String sequence = lines[1].toLowerCase();
+	   char[] array = sequence.toCharArray(); 
 	   for(char c : array){
 		   Long v = dnaBaseCounter.get(c);
 		   if (v == null) {
 			  dnaBaseCounter.put(c, 1l);
 		   }
 		   else {
-			  v++;
-			  dnaBaseCounter.put(c, v);
+			  dnaBaseCounter.put(c, v+1l);
 		   }
 	   }
     }
