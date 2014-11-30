@@ -1,4 +1,4 @@
-package org.dataalgorithms.chap01;
+package org.dataalgorithms.chap01.spark;
 
 
 import scala.Tuple2;

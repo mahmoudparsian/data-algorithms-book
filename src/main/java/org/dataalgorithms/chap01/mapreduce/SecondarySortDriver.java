@@ -1,4 +1,4 @@
-package org.dataalgorithms.chap01;
+package org.dataalgorithms.chap01.mapreduce;
 
 import org.apache.log4j.Logger;
 import java.io.IOException;
