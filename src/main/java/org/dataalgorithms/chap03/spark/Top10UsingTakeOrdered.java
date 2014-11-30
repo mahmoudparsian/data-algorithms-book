@@ -1,4 +1,4 @@
-package org.dataalgorithms.chap03;
+package org.dataalgorithms.chap03.spark;
 
 // STEP-0: import required classes and interfaces
 import org.dataalgorithms.util.SparkUtil;
