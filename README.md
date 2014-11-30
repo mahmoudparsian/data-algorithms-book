@@ -59,6 +59,11 @@ Structure of src Directory
 ==========================
 ![src directory](./misc/source_tree.png)
 
+Also, each chapter has two sub folders:
+```
+org.dataalgorithms.chapNN.spark     (for Spark programs)
+org.dataalgorithms.chapNN.mapreduce (for Mapreduce/Hadoop programs)
+```
 
 How To Build using Apache's Ant
 ===============================
@@ -82,9 +87,7 @@ How To Run Python Programs
 
 To run python programs just call them with `spark-submit` together with the arguments to the program:
 
-```
-spark-submit src/python/chap01/SparkSecondarySort.py local data.csv
-```
+ 
 
 Questions/Comments
 ==================
