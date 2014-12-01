@@ -1,4 +1,4 @@
-package org.dataalgorithms.chap05;
+package org.dataalgorithms.chap05.mapreduce;
 
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.mapreduce.Reducer;

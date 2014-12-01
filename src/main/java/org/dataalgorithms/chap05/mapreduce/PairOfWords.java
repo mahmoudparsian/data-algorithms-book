@@ -1,5 +1,4 @@
-package org.dataalgorithms.chap05;
-
+package org.dataalgorithms.chap05.mapreduce;
  
 import java.io.DataInput;
 import java.io.DataOutput;
