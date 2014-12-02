@@ -1,4 +1,4 @@
-package org.dataalgorithms.chap07;
+package org.dataalgorithms.chap07.spark;
 
 
 // STEP-0: import required classes and interfaces
@@ -54,15 +54,14 @@ public class FindAssociationRules {
   
    public static void main(String[] args) throws Exception {
       // STEP-1: handle input parameters
-      if (args.length < 2) {
-         System.err.println("Usage: FindAssociationRules <transactions> <yarn-resource-manager>");
+      if (args.length < 1) {
+         System.err.println("Usage: FindAssociationRules <transactions>");
          System.exit(1);
       }
       String transactionsFileName =  args[0];
-      String yarnResourceManager =  args[1];
 
       // STEP-2: create a Spark context object
-      JavaSparkContext ctx = SparkUtil.createJavaSparkContext(yarnResourceManager);
+      JavaSparkContext ctx = new JavaSparkContext();
        
       // STEP-3: read all transactions from HDFS and create the first RDD                   
       JavaRDD<String> transactions = ctx.textFile(transactionsFileName, 1);
@@ -71,11 +70,12 @@ public class FindAssociationRules {
       // STEP-4: generate frequent patterns
       // PairFlatMapFunction<T, K, V>     
       // T => Iterable<Tuple2<K, V>>
-      JavaPairRDD<List<String>,Integer> patterns = transactions.flatMapToPair(new PairFlatMapFunction<
-          String,        // T
-          List<String>,  // K
-          Integer        // V
-        >() {
+      JavaPairRDD<List<String>,Integer> patterns = 
+         transactions.flatMapToPair(new PairFlatMapFunction<
+                                                             String,        // T
+                                                             List<String>,  // K
+                                                             Integer        // V
+                                                           >() {
          public Iterable<Tuple2<List<String>,Integer>> call(String transaction) {
             List<String> list = toList(transaction);
             List<List<String>> combinations = Combination.findSortedCombinations(list);
@@ -195,14 +195,4 @@ public class FindAssociationRules {
       System.exit(0);
    }
 }
-
-
-
-
-
-
-
-
-
-
 
