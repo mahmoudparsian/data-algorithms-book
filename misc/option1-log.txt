@@ -22,7 +22,7 @@ init:
     [mkdir] Created dir: /Users/mahmoud/data-algorithms-book/reports/html
 
 copy_jar:
-     [echo] copying spark-assembly-1.0.2-hadoop2.5.0.jar...
+     [echo] copying spark-assembly-1.1.1-hadoop2.5.0.jar...
      [copy] Copying 1 resource to /Users/mahmoud/data-algorithms-book/lib
 
 build_jar:
@@ -60,7 +60,7 @@ init:
     [mkdir] Created dir: /Users/mahmoud/data-algorithms-book/reports/html
 
 copy_jar:
-     [echo] copying spark-assembly-1.0.2-hadoop2.5.0.jar...
+     [echo] copying spark-assembly-1.1.1-hadoop2.5.0.jar...
 
 build_jar:
      [echo] javac
