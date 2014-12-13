@@ -1,4 +1,4 @@
-package org.dataalgorithms.chap24;
+package org.dataalgorithms.chap24.spark;
 
 // STEP-0: import required classes and interfaces
 import java.util.Map;

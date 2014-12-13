@@ -1,4 +1,4 @@
-package org.dataalgorithms.chap24;
+package org.dataalgorithms.chap24.mapreduce;
 
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.io.WritableComparator;

@@ -1,4 +1,4 @@
-package org.dataalgorithms.chap24;
+package org.dataalgorithms.chap24.mapreduce;
 
 import java.io.IOException;
 import java.util.ArrayList;

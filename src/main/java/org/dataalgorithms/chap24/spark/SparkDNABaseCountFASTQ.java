@@ -1,4 +1,4 @@
-package org.dataalgorithms.chap24;
+package org.dataalgorithms.chap24.spark;
 
 // STEP-0: import required classes and interfaces
 import scala.Tuple2;
@@ -17,6 +17,8 @@ import org.apache.spark.api.java.function.FlatMapFunction;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.conf.Configuration;
+
+import org.dataalgorithms.chap24.mapreduce.FastqInputFormat;
 
 /**
  * This program reads FASTQ input files and computes DNA base counts.
