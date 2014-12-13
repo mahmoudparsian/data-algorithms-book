@@ -59,11 +59,11 @@ public class SparkUtil {
     public static JavaSparkContext createJavaSparkContext(String applicationName)  
       throws Exception { 
       SparkConf conf = new SparkConf().setAppName(applicationName);
-      JavaSparkContext ctx = new JavaSparkContext(sparkConf);
+      JavaSparkContext ctx = new JavaSparkContext(conf);
       return ctx;
    }
    
    public static String version() {
-      return "1.1.0";
+      return "1.1.1";
    }   
 }
