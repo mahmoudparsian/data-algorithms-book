@@ -7,7 +7,7 @@ This repository will host all source code and scripts for
 [Data Algorithms Book](http://shop.oreilly.com/product/0636920033950.do).
 This book provides a set of distributed MapReduce algrithms, which are implemented using
 * Java/MapReduce Hadoop 2.5.0
-* Java/Spark 1.1.0
+* Java/Spark 1.1.1
 
 Work in Progress...
 ===================
@@ -36,7 +36,7 @@ Software | Version
 ---------|--------
 Java     | JDK7
 Hadoop   | 2.5.0
-Spark    | 1.1.0
+Spark    | 1.1.1
 Ant      | 1.9.4
 
 
@@ -84,7 +84,6 @@ How To Run Java/Spark/Hadoop Programs
 
 How To Run Python Programs
 ==========================
-
 To run python programs just call them with `spark-submit` together with the arguments to the program:
 
  
