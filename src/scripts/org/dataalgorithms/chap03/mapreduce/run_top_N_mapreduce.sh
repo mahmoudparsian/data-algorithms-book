@@ -1,4 +1,19 @@
 #!/bin/bash
+
+#
+# Description: 
+#
+#    This script finds Top-N (for given N > 0) in two MapReduce phases:
+#
+#         phase 1: aggregate keys: generate unique keys and aggregate values
+#                  If your input have (K,V1), (K,V2), and (K, V3), then
+#                  this phase will generate (K, V) where V = V1+V2+V3.
+#
+#         phase 2: find top-N for unique keys
+#
+# @author Mahmoud Parsian
+#
+
 export JAVA_HOME=/usr/java/jdk7
 export HADOOP_HOME=/usr/local/hadoop-2.5.0
 export HADOOP_CONF_DIR=$HADOOP_HOME/etc/hadoop
