@@ -55,6 +55,7 @@ dist          | The ant build's output directory
 LICENSE       | License for using this repository
 misc          | misc. files for this repository
 setenv        | example of how to set your environment variables before building
+data          | sample data files for basic testing purposes
 
 Structure of src Directory
 ==========================
