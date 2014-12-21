@@ -10,8 +10,8 @@
 #
 
 export JAVA_HOME=/usr/java/jdk7
-export SPARK_HOME=/usr/local/spark-1.1.1
-export SPARK_JAR=$SPARK_HOME/assembly/target/scala-2.10/spark-assembly-1.1.1-hadoop2.5.0.jar
+export SPARK_HOME=/usr/local/spark-1.2.0
+export SPARK_JAR=$SPARK_HOME/assembly/target/scala-2.10/spark-assembly-1.2.0-hadoop2.6.0.jar
 export BOOK_HOME=/home/data-algorithms-book
 export APP_JAR=$BOOK_HOME/dist/data_algorithms_book.jar
 export SPARK_MASTER=spark://myserver100:7077

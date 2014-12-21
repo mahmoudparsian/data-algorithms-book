@@ -4,8 +4,8 @@
 # Assuming that your Spark master is running on server "myserver100"
 # This script is a kind of template ...
 #   --------------------------------------------------------------------------------
-#   1. You have installed the data-algorithms-book  in /home/mp/data-algorithms-book (DAB)
-#   2. Spark 1.1.0 is installed at /usr/local/spark-1.1.0
+#   1. You have installed the data-algorithms-book  in /home/mp/data-algorithms-book (BOOK_HOME)
+#   2. Spark 1.2.0 is installed at /usr/local/spark-1.2.0
 #   3. And you have built the source code and generated $DAB/dist/data_algorithms_book.jar
 #   4. And you have two input parameters identified as P1 and P2
 #   5. You need to modify spark-submit parameters accordingly
@@ -13,14 +13,14 @@
 #
 export JAVA_HOME=/usr/java/jdk7
 # java is defined at $JAVA_HOME/bin/java
-export DAB=/home/mp/data-algorithms-book
-export SPARK_HOME=/usr/local/spark-1.1.0
+export BOOK_HOME=/home/mp/data-algorithms-book
+export SPARK_HOME=/usr/local/spark-1.2.0
 export SPARK_MASTER=spark://myserver100:7077
-export SPARK_JAR=$DAB/lib/spark-assembly-1.1.0-hadoop2.5.0.jar
-export APP_JAR=$DAB/dist/data_algorithms_book.jar
+export SPARK_JAR=$BOOK_HOME/lib/spark-assembly-1.2.0-hadoop2.6.0.jar
+export APP_JAR=$BOOK_HOME/dist/data_algorithms_book.jar
 #
 # build all other dependent jars in OTHER_JARS
-JARS=`find $DAB/lib -name '*.jar'`
+JARS=`find $BOOK_HOME/lib -name '*.jar'`
 OTHER_JARS=""
 for J in $JARS ; do 
    OTHER_JARS=$J,$OTHER_JARS

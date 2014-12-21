@@ -15,7 +15,7 @@
 #
 
 export JAVA_HOME=/usr/java/jdk7
-export HADOOP_HOME=/usr/local/hadoop-2.5.0
+export HADOOP_HOME=/usr/local/hadoop-2.6.0
 export HADOOP_CONF_DIR=$HADOOP_HOME/etc/hadoop
 export BOOK_HOME=/home/data-algorithms-book
 export APP_JAR=$BOOK_HOME/dist/data_algorithms_book.jar

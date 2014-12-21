@@ -20,20 +20,35 @@
    </path>
 
    <!-- =========================================================================  -->
-   <!-- Note that since the size of  spark-assembly-1.1.1-hadoop2.5.0.jar is over  -->
+   <!-- Note that since the size of  spark-assembly-1.2.0-hadoop2.6.0.jar is over  -->
    <!-- 100MBs, I could not upload this jar to the lib directory. I needed to add  -->
    <!-- the "copy_jar", so that it can copy it from my web site.                   -->
    <!-- Once this task is done (the jar is copied to your lib), subsequent builds  -->
    <!-- will not dowload the jar dile.                                             -->
    <!-- =========================================================================  -->
+
+   <!--
    <target name="copy_jar"  depends="init">
-      <echo message="copying spark-assembly-1.1.1-hadoop2.5.0.jar..."/>    
+      <echo message="copying spark-assembly-1.2.0-hadoop2.6.0.jar..."/>    
       <copy todir="lib" flatten="true">
-          <url url="http://www.mapreduce4hackers.com/dataalgorithmsbook/lib/spark-assembly-1.1.1-hadoop2.5.0.jar"/>
+          <url url="http://www.mapreduce4hackers.com/dataalgorithmsbook/lib/spark-assembly-1.2.0-hadoop2.6.0.jar"/>
       </copy>  
    </target>
+   -->
+   
+	<target name="check-spark-jar">
+    	<available file="./lib/spark-assembly-1.2.0-hadoop2.6.0.jar" property="spark-jar.present"/>
+	</target>
+
+	<target name="do-copy-jar" depends="check-spark-jar" unless="spark-jar.present">
+      <echo message="copying spark-assembly-1.2.0-hadoop2.6.0.jar..."/>    
+      <copy todir="lib" flatten="true">
+          <url url="http://www.mapreduce4hackers.com/dataalgorithmsbook/lib/spark-assembly-1.2.0-hadoop2.6.0.jar"/>
+      </copy>  
+	</target>    
+   
     
-   <target name="build_jar"  depends="copy_jar">
+   <target name="build_jar"  depends="init,do-copy-jar">
         <echo message="javac"/>    
         <echo message="compiling src..."/>              
         <javac includeantruntime="false"

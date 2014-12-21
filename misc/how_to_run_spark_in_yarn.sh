@@ -3,27 +3,27 @@
 # Here, I am assuming that you want to run your spark program in YARN
 # This script is a kind of template ...
 #   --------------------------------------------------------------------------------
-#   1. You have installed the data-algorithms-book  in /home/mp/data-algorithms-book (DAB)
-#   2. Hadoop is installed at /usr/local/hadoop-2.5.0 (HADOOP_HOME)
+#   1. You have installed the data-algorithms-book  in /home/mp/data-algorithms-book (BOOK_HOME)
+#   2. Hadoop is installed at /usr/local/hadoop-2.6.0 (HADOOP_HOME)
 #   3. Hadoop's conf directory is $HADOOP_HOME/etc/hadoop
-#   4. Spark 1.1.1 is installed at /usr/local/spark-1.1.1
-#   5. And you have built the source code and generated $DAB/dist/data_algorithms_book.jar
+#   4. Spark 1.2.0 is installed at /usr/local/spark-1.2.0
+#   5. And you have built the source code and generated $BOOK_HOME/dist/data_algorithms_book.jar
 #   6. And you have two input parameters identified as P1 and P2
 #   7. You need to modify spark-submit parameters accordingly
 #   --------------------------------------------------------------------------------
 #
 export JAVA_HOME=/usr/java/jdk7
 # java is defined at $JAVA_HOME/bin/java
-export DAB=/home/mp/data-algorithms-book
-export SPARK_HOME=/usr/local/spark-1.1.1
-export THE_SPARK_JAR=$DAB/lib/spark-assembly-1.1.1-hadoop2.5.0.jar
-export APP_JAR=$DAB/dist/data_algorithms_book.jar
+export BOOK_HOME=/home/mp/data-algorithms-book
+export SPARK_HOME=/usr/local/spark-1.2.0
+export THE_SPARK_JAR=$BOOK_HOME/lib/spark-assembly-1.2.0-hadoop2.6.0.jar
+export APP_JAR=$BOOK_HOME/dist/data_algorithms_book.jar
 #
-export HADOOP_HOME=/usr/local/hadoop-2.5.0
+export HADOOP_HOME=/usr/local/hadoop-2.6.0
 export HADOOP_CONF_DIR=$HADOOP_HOME/etc/hadoop
 #
 # build all other dependent jars in OTHER_JARS
-JARS=`find $DAB/lib -name '*.jar'`
+JARS=`find $BOOK_HOME/lib -name '*.jar'`
 OTHER_JARS=""
 for J in $JARS ; do 
    OTHER_JARS=$J,$OTHER_JARS
