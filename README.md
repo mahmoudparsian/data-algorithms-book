@@ -66,6 +66,8 @@ Also, each chapter has two sub folders:
 ```
 org.dataalgorithms.chapNN.spark      (for Spark programs)
 org.dataalgorithms.chapNN.mapreduce  (for Mapreduce/Hadoop programs)
+
+where NN = 00, 01, ..., 31
 ```
 
 How To Build using Apache's Ant
