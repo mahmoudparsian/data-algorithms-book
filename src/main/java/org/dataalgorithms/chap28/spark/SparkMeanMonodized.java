@@ -1,4 +1,4 @@
-package org.dataalgorithms.chap28;
+package org.dataalgorithms.chap28.spark;
 
 // STEP-0: import required classes and interfaces
 import scala.Tuple2;

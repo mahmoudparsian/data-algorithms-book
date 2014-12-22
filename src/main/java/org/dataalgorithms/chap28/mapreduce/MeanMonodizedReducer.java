@@ -1,4 +1,4 @@
-package org.dataalgorithms.chap28;
+package org.dataalgorithms.chap28.mapreduce;
 
 import java.io.IOException;
 import org.apache.hadoop.io.DoubleWritable;

@@ -1,4 +1,4 @@
-package org.dataalgorithms.chap28;
+package org.dataalgorithms.chap28.mapreduce;
 
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.Text;
