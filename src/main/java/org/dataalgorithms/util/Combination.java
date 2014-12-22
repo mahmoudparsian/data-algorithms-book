@@ -28,7 +28,6 @@ public class Combination {
         for (int i = 0; i <= elements.size(); i++) {
             result.addAll(findSortedCombinations(elements, i));
         }
-
         return result;
     }
     
@@ -67,8 +66,9 @@ public class Combination {
                 }
                 
                 list.add(element);
-				//sort items not to duplicate the items
-				// ex: (a, b, c) and (a, c, b) might become different items to be counted if not sorted                
+                //sort items not to duplicate the items
+                //   example: (a, b, c) and (a, c, b) might become  
+                //   different items to be counted if not sorted   
                 Collections.sort(list);
                 
                 if (result.contains(list)) {
