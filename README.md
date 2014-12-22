@@ -1,5 +1,7 @@
 [Data Algorithms Book](http://shop.oreilly.com/product/0636920033950.do)
 ======================
+Data Algorithms
+Recipes for Scaling up with Hadoop and Spark
 
 [![Data Algorithms Book](./misc/da_small.gif)](http://shop.oreilly.com/product/0636920033950.do)
 
