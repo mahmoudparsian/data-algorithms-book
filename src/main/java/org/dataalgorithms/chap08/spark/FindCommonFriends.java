@@ -1,4 +1,4 @@
-package org.dataalgorithms.chap08;
+package org.dataalgorithms.chap08.spark;
 
 import org.dataalgorithms.util.SparkUtil;
 
@@ -30,24 +30,24 @@ public class FindCommonFriends {
 
   public static void main(String[] args) throws Exception {
   
-    if (args.length < 2) {
-	   // Spark master URL:
-	   //	  format:   spark://<spark-master-host-name>:7077
-	   //	  example:  spark://myserver00:7077
-       System.err.println("Usage: FindCommonFriends <spark-master-URL> <file>");
+    if (args.length < 1) {
+       // Spark master URL:
+       // format:   spark://<spark-master-host-name>:7077
+       // example:  spark://myserver00:7077
+       System.err.println("Usage: FindCommonFriends <input-file>");
        System.exit(1);
     }
     
-    String sparkMasterURL = args[0];
-    System.out.println("sparkMasterURL="+sparkMasterURL);
+    //String sparkMasterURL = args[0];
+    //System.out.println("sparkMasterURL="+sparkMasterURL);
     
-    String hdfsInputFileName = args[1];
+    String hdfsInputFileName = args[0];
     System.out.println("hdfsInputFileName="+hdfsInputFileName);
 
-    JavaSparkContext ctx = SparkUtil.createJavaSparkContext(
-					sparkMasterURL, 
-					"FindCommonFriends");
-					
+    // create context object
+    JavaSparkContext ctx = SparkUtil.createJavaSparkContext("FindCommonFriends");
+
+    // create the first RDD from input file
     JavaRDD<String> records = ctx.textFile(hdfsInputFileName, 1);
 
     // debug0 
@@ -69,7 +69,7 @@ public class FindCommonFriends {
          String[] friendsTokenized = friendsAsString.split(" ");
          if (friendsTokenized.length == 1) {
             Tuple2<Long,Long> key = buildSortedTuple(person, Long.parseLong(friendsTokenized[0]));
-	    return Arrays.asList(new Tuple2<Tuple2<Long,Long>,Iterable<Long>>(key, new ArrayList<Long>()));
+            return Arrays.asList(new Tuple2<Tuple2<Long,Long>,Iterable<Long>>(key, new ArrayList<Long>()));
          }
          List<Long> friends = new ArrayList<Long>();
          for (String f : friendsTokenized) {
@@ -93,53 +93,52 @@ public class FindCommonFriends {
     }
     
     JavaPairRDD<Tuple2<Long, Long>, Iterable<Iterable<Long>>> grouped = pairs.groupByKey();  
-	
+
     // debug2
     List<Tuple2<Tuple2<Long, Long> ,Iterable<Iterable<Long>>>> debug2 = grouped.collect();
     for (Tuple2<Tuple2<Long,Long>, Iterable<Iterable<Long>>> t2 : debug2) {
       System.out.println("debug2 key="+t2._1+"\t value="+t2._2);
     }
-	
+
     // Find intersection of all List<List<Long>>
     // mapValues[U](f: (V) => U): JavaPairRDD[K, U]
     // Pass each value in the key-value pair RDD through a map function without changing the keys; 
     // this also retains the original RDD's partitioning.
     JavaPairRDD<Tuple2<Long, Long>, Iterable<Long>> commonFriends = 
         grouped.mapValues(new Function< Iterable<Iterable<Long>>, // input
-                                        Iterable<Long>           // output
+                                        Iterable<Long>            // output
                                       >() {  
       public Iterable<Long> call(Iterable<Iterable<Long>> s) {
          Map<Long, Integer> countCommon = new HashMap<Long, Integer>();
          int size = 0; 
-	 for (Iterable<Long> iter : s) {
+         for (Iterable<Long> iter : s) {
             size++;
             List<Long> list = iterableToList(iter);
             if ((list == null) || (list.isEmpty())) {
-		continue;
-	    }
+               continue;
+            }
             for (Long f : list) {
-			   Integer count = countCommon.get(f);
-			   if (count == null) {
-				   countCommon.put(f, 1);
-			   }
-			   else {
-				  countCommon.put(f, ++count);
-			   }
+               Integer count = countCommon.get(f);
+               if (count == null) {
+                  countCommon.put(f, 1);
+               }
+               else {
+                  countCommon.put(f, ++count);
+               }
             }
          }
          
          // if countCommon.Entry<f, count> ==  countCommon.Entry<f, s.size()>
          // then that is a common friend
          List<Long> finalCommonFriends = new ArrayList<Long>();
-	 for (Map.Entry<Long, Integer> entry : countCommon.entrySet()){
+         for (Map.Entry<Long, Integer> entry : countCommon.entrySet()){
             if (entry.getValue() == size) {
-    		finalCommonFriends.add(entry.getKey());
-    	    }
-	 }               
+               finalCommonFriends.add(entry.getKey());
+            }
+         } 
          return finalCommonFriends;
       }
     });
-	
    
     // debug3
     List<Tuple2<Tuple2<Long, Long>, Iterable<Long>>> debug3 = commonFriends.collect();
@@ -166,4 +165,5 @@ public class FindCommonFriends {
     }
     return list;
   }
+  
 }

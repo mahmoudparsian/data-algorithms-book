@@ -1,4 +1,4 @@
-package org.dataalgorithms.chap08;
+package org.dataalgorithms.chap08.mapreduce;
 
 import java.util.Map;
 import java.util.HashMap;
