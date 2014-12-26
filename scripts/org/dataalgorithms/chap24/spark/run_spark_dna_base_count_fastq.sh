@@ -16,6 +16,7 @@ export BOOK_HOME=/home/data-algorithms-book
 export APP_JAR=$BOOK_HOME/dist/data_algorithms_book.jar
 #
 # build all other dependent jars in OTHER_JARS
+# jars must be separated by "," (instead of ":")
 JARS=`find $BOOK_HOME/lib -name '*.jar'`
 OTHER_JARS=""
 for J in $JARS ; do 
