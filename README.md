@@ -15,7 +15,7 @@ Work in Progress...
 ===================
 Please note that this is a work in progress...
 
-![Data Algorithms Book Work In Progress] 
+![Data Algorithms Book Work In Progress](./misc/work_in_progress2.jpeg)
 
 
 URL To Data Algorithms Book
