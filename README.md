@@ -15,7 +15,7 @@ Work in Progress...
 ===================
 Please note that this is a work in progress...
 
-![Data Algorithms Book Work In Progress](./misc/work_in_progress2.jpeg)
+![Data Algorithms Book Work In Progress] 
 
 
 URL To Data Algorithms Book
@@ -27,8 +27,8 @@ URL To Data Algorithms Book
 
 Source Code
 ===========
-* All source code, libraries, and build scripts are posted here
-* Shell scripts will be posted for running Spark and Mapreduce/Hadoop programs (soon!)
+* All [source code](./src), libraries, and build scripts are posted here
+* [Shell scripts](./scripts) are posted for running Spark and Mapreduce/Hadoop programs (in progress...)
 
 
 Software Used
