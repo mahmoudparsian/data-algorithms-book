@@ -56,44 +56,6 @@ public class AllVersusAllCorrelation implements java.io.Serializable {
       }   
    }
    
-   static class MutableDouble implements java.io.Serializable {
-      private double value = 0.0;
-      private double count = 0.0;
-      
-      public MutableDouble(double d) {
-         value = d;
-         count = 1.0;
-      }
-      
-      public MutableDouble(Double d) {
-         if (d == null) {
-            value = 0.0;
-         }
-         else {
-            value = d;
-         }
-         count = 1.0;
-      }
-  
-      public void increment(Double d) { 
-  		 if (d == null) {
-  		   // value does not change
-  		 }
-  		 else {
-  		   value += d;
-  		 }
-  		 count++; 
-      }
-      
-      public void increment(double d) { 
-  		 count++;
-  	     value += d;
-      } 
-    
-      public double avg() { 
-   		 return value/count; 
-      }
-   }   
 
    static Map<String, MutableDouble> toMap(List<Tuple2<String,Double>> list) {
       Map<String, MutableDouble> map = new HashMap<String, MutableDouble>();
@@ -108,6 +70,7 @@ public class AllVersusAllCorrelation implements java.io.Serializable {
       }
       return map;
    }
+   
    static Map<String, MutableDouble> toMap(Iterable<Tuple2<String,Double>> list) {
       Map<String, MutableDouble> map = new HashMap<String, MutableDouble>();
       for (Tuple2<String,Double> entry : list) {
