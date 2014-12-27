@@ -95,7 +95,7 @@ To run python programs just call them with `spark-submit` together with the argu
  
 Questions/Comments
 ==================
-* [LinkedIn Profile](http://www.linkedin.com/in/mahmoudparsian)
+* [View Mahmoud Parsian's profile on LinkedIn](http://www.linkedin.com/in/mahmoudparsian)
 * Please send me an email: mahmoud.parsian@yahoo.com
 
 Thank you!
