@@ -51,13 +51,13 @@ README.md     | The file you are reading now
 README_lib.md | Must read before you build with Ant
 src           | Source files for MapReduce/Hadoop/Spark
 scripts       | Shell scripts to run MapReduce/Hadoop and Spark pograms
-lib           | Required jar files
+lib           | Required jar files for compiling source code
 build.xml     | The ant build script
-dist          | The ant build's output directory
-LICENSE       | License for using this repository
+dist          | The ant build's output directory (creates a single JAR file)
+LICENSE       | License for using this repository (Apache License, Version 2.0)
 misc          | misc. files for this repository
 setenv        | example of how to set your environment variables before building
-data          | sample data files for basic testing purposes
+data          | sample data files (such as FASTQ and FASTA) for basic testing purposes
 
 Structure of src Directory
 ==========================
@@ -90,10 +90,9 @@ How To Run Java/Spark/Hadoop Programs
 
 How To Run Python Programs
 ==========================
-To run python programs just call them with `spark-submit` together with the arguments to the program:
+To run python programs just call them with `spark-submit` together with the arguments to the program.
 
  
-
 Questions/Comments
 ==================
 Please send me an email: mahmoud.parsian@yahoo.com
