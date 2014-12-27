@@ -171,7 +171,6 @@ public class AllVersusAllCorrelation implements java.io.Serializable {
          System.err.println("Usage: AllVersusAllCorrelation  r2  /biomarkers/biomarkers.txt");
          System.exit(1);
       }
-      //final String yarnResourceManagerHostName = args[0]; 
       final String reference = args[0]; // {"r1", "r2", "r3", "r4"}
       final String filename = args[1];
 
