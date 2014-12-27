@@ -4,10 +4,10 @@
 #set Java as jdk7
 
 # macbook:
-# export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.7.0_60.jdk/Contents/Home
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.7.0_60.jdk/Contents/Home
 
 # linux:
-export JAVA_HOME=/usr/java/jdk7
+# export JAVA_HOME=/usr/java/jdk7
 
 echo "JAVA_HOME=$JAVA_HOME"
 #

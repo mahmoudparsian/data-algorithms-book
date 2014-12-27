@@ -86,40 +86,40 @@ public class AllVersusAllCorrelation implements java.io.Serializable {
    }  
     
    static List<String> toListOfString(Path hdfsFile) throws Exception {
-		FSDataInputStream fis = null;
-		BufferedReader br = null;
-		FileSystem fs = FileSystem.get(new Configuration());		
-		List<String> list = new ArrayList<String>();
-		try {
-			fis = fs.open(hdfsFile);
-			br = new BufferedReader(new InputStreamReader(fis));
-    		String line = null;
-    		while ((line = br.readLine()) != null) {
-    			String value = line.trim();
-				list.add(value);
-    		}
-    	}
-    	finally {
-    		InputOutputUtil.close(br);
-    	}
-    	return list;
+      FSDataInputStream fis = null;
+      BufferedReader br = null;
+      FileSystem fs = FileSystem.get(new Configuration());      
+      List<String> list = new ArrayList<String>();
+      try {
+         fis = fs.open(hdfsFile);
+         br = new BufferedReader(new InputStreamReader(fis));
+          String line = null;
+          while ((line = br.readLine()) != null) {
+             String value = line.trim();
+            list.add(value);
+          }
+       }
+       finally {
+          InputOutputUtil.close(br);
+       }
+       return list;
     } 
- 	 
+     
     static JavaRDD<String> readBiosets(JavaSparkContext ctx,
- 			                           List<String> biosets) {
-		int size = biosets.size();
-		int counter = 0;
-		StringBuilder paths = new StringBuilder();
-		for (String biosetFile : biosets) {
-			counter++;
-			paths.append(biosetFile);
-			if (counter < size) {
-			   paths.append(",");
-			}
-		}
-		JavaRDD<String> rdd = ctx.textFile(paths.toString());	
-		return rdd;
-	}   
+                                     List<String> biosets) {
+      int size = biosets.size();
+      int counter = 0;
+      StringBuilder paths = new StringBuilder();
+      for (String biosetFile : biosets) {
+         counter++;
+         paths.append(biosetFile);
+         if (counter < size) {
+            paths.append(",");
+         }
+      }
+      JavaRDD<String> rdd = ctx.textFile(paths.toString());   
+      return rdd;
+   }   
    
    /**
     * record example in bioset: 37761,2,TCGA-MW-A4EC,1.28728316963258
@@ -157,12 +157,12 @@ public class AllVersusAllCorrelation implements java.io.Serializable {
         public Boolean call(String record) {
           String ref = REF.value();
           String[] tokens = record.split(",");
-      	  if (ref.equals(tokens[1]))  {
-      	 	 return true; // do return these records
-      	  }
-      	  else {
-      	 	 return false; // do not retrun these records
-      	  }
+          if (ref.equals(tokens[1]))  {
+             return true; // do return these records
+          }
+          else {
+             return false; // do not retrun these records
+          }
         }
       });
       filtered.saveAsTextFile("/output/2");
@@ -197,9 +197,9 @@ public class AllVersusAllCorrelation implements java.io.Serializable {
      
            
       
-	//<U> JavaPairRDD<T,U> cartesian(JavaRDDLike<U,?> other)
-	// Return the Cartesian product of this RDD and another one,
-	// that is, the RDD of all pairs of elements (a, b) where a is in this and b is in other.
+    //<U> JavaPairRDD<T,U> cartesian(JavaRDDLike<U,?> other)
+    // Return the Cartesian product of this RDD and another one,
+    // that is, the RDD of all pairs of elements (a, b) where a is in this and b is in other.
     JavaPairRDD< Tuple2<String, Iterable<Tuple2<String,Double>>>,
                  Tuple2<String, Iterable<Tuple2<String,Double>>>
                > cart = grouped.cartesian(grouped);
@@ -229,12 +229,12 @@ public class AllVersusAllCorrelation implements java.io.Serializable {
                                    Tuple2<String, Iterable<Tuple2<String,Double>>>> pair) {
           // pair._1 = Tuple2<String, Iterable<Tuple2<String,Double>>>
           // pair._2 = Tuple2<String, Iterable<Tuple2<String,Double>>>
-      	  if (smaller(pair._1._1,  pair._2._1))  {
-      	 	 return true; // do return these records
-      	  }
-      	  else {
-      	 	 return false; // do not retrun these records
-      	  }
+          if (smaller(pair._1._1,  pair._2._1))  {
+             return true; // do return these records
+          }
+          else {
+             return false; // do not retrun these records
+          }
         }
       });
       filtered2.saveAsTextFile("/output/7");    
@@ -282,23 +282,23 @@ public class AllVersusAllCorrelation implements java.io.Serializable {
         // K = pair of genes
         Tuple2<String,String> K = new Tuple2<String,String>(g1._1,g2._1);
         if (x.size() < 3) {
-        	return new Tuple2<Tuple2<String,String>,Tuple2<Double,Double>>
-        	    (
-        	     K, new Tuple2<Double,Double>(Double.NaN, Double.NaN)
+            return new Tuple2<Tuple2<String,String>,Tuple2<Double,Double>>
+                (
+                  K, new Tuple2<Double,Double>(Double.NaN, Double.NaN)
                 );
         
         }
         else {
-        	// Pearson
-        	double correlation = Pearson.getCorrelation(x, y);  
-        	double pvalue = Pearson.getPvalue(correlation, x.size() );
+            // Pearson
+            double correlation = Pearson.getCorrelation(x, y);  
+            double pvalue = Pearson.getPvalue(correlation, x.size() );
         
-        	// Spearman
-        	//double correlation = Spearman.getCorrelation(x, y);  
-        	//double pvalue = Spearman.getPvalue(correlation, (double) x.size() );
-        	return new Tuple2<Tuple2<String,String>,Tuple2<Double,Double>>
-        	    (
-        	     K, 
+            // Spearman
+            //double correlation = Spearman.getCorrelation(x, y);  
+            //double pvalue = Spearman.getPvalue(correlation, (double) x.size() );
+            return new Tuple2<Tuple2<String,String>,Tuple2<Double,Double>>
+                (
+                 K, 
                  new Tuple2<Double,Double>(correlation, pvalue)
                 );
         }
