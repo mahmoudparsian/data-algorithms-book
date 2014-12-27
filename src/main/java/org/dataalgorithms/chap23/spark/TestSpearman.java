@@ -1,4 +1,4 @@
-package org.dataalgorithms.chap23;
+package org.dataalgorithms.chap23.spark;
 
 import java.util.Arrays;
 import java.util.List;

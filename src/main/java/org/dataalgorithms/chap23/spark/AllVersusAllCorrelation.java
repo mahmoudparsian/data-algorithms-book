@@ -1,4 +1,4 @@
-package org.dataalgorithms.chap23;
+package org.dataalgorithms.chap23.spark;
 
 // STEP-0: import required classes and interfaces
 import org.dataalgorithms.util.SparkUtil;
@@ -166,17 +166,17 @@ public class AllVersusAllCorrelation implements java.io.Serializable {
     */
    public static void main(String[] args) throws Exception {
       // STEP-1: handle input parameters
-      if (args.length < 3) {
-         System.err.println("Usage: AllVersusAllCorrelation <yarn-resourceManager-host-name> <reference> <all-biomarkers-filename>");
-         System.err.println("Usage: AllVersusAllCorrelation myserver100 r2  /biomarkers/biomarkers.txt");
+      if (args.length < 2) {
+         System.err.println("Usage: AllVersusAllCorrelation  <reference> <all-biomarkers-filename>");
+         System.err.println("Usage: AllVersusAllCorrelation  r2  /biomarkers/biomarkers.txt");
          System.exit(1);
       }
-      final String yarnResourceManagerHostName = args[0]; 
-      final String reference = args[1]; // {"r1", "r2", "r3", "r4"}
-      final String filename = args[2];
+      //final String yarnResourceManagerHostName = args[0]; 
+      final String reference = args[0]; // {"r1", "r2", "r3", "r4"}
+      final String filename = args[1];
 
       // STEP-2: create a Spark context object
-      JavaSparkContext ctx = SparkUtil.createJavaSparkContext(yarnResourceManagerHostName);
+      JavaSparkContext ctx = SparkUtil.createJavaSparkContext("AllVersusAllCorrelation");
 
       List<String> list = toListOfString(new Path(filename));
             
@@ -343,7 +343,9 @@ public class AllVersusAllCorrelation implements java.io.Serializable {
       }
     });
     finalresult.saveAsTextFile("/output/corr");          
-     
+    
+    // done
+    ctx.close();
     System.exit(0);
   }
 
