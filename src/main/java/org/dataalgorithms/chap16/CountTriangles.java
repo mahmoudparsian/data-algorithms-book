@@ -30,7 +30,7 @@ public class CountTriangles {
     String inputPath = args[0];
 
     // create context object and the first RDD from input-path
-    JavaSparkContext ctx = SparkUtil.createJavaSparkContext("CountTriangles");
+    JavaSparkContext ctx = SparkUtil.createJavaSparkContext("count-triangles");
     JavaRDD<String> lines = ctx.textFile(inputPath, 1);
 
     // PairFlatMapFunction<T, K, V>	
