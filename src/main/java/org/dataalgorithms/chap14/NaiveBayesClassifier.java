@@ -48,17 +48,15 @@ public class NaiveBayesClassifier implements java.io.Serializable {
    public static void main(String[] args) throws Exception {
    
       // STEP-1: handle input parameters
-      if (args.length != 4) {
-         System.err.println("Usage: NaiveBayesClassifier <input-data-filename> <NB-PT-path> <NB-CLASS-path> <resource-manager-host>");
+      if (args.length != 2) {
+         System.err.println("Usage: NaiveBayesClassifier <input-data-filename> <NB-PT-path> ");
          System.exit(1);
       }
       final String inputDataFilename = args[0];
       final String nbProbTablePath = args[1];
-      final String nbClassesPath = args[2];
-      final String resourceManagerHost = args[3];
 
       // STEP-2: create a Spark context object
-      JavaSparkContext ctx = SparkUtil.createJavaSparkContext(resourceManagerHost);
+      JavaSparkContext ctx = SparkUtil.createJavaSparkContext("naive-bayes-classifier");
 
       // STEP-3: read new data to be classified
       JavaRDD<String> newdata = ctx.textFile(inputDataFilename, 1);  

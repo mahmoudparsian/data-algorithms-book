@@ -37,8 +37,10 @@ import org.apache.hadoop.io.DoubleWritable;
  */
 public class BuildNaiveBayesClassifier implements java.io.Serializable {
 
-   static List<Tuple2<PairOfStrings, DoubleWritable>> toWritableList(Map<Tuple2<String,String>, Double> PT) {
-      List<Tuple2<PairOfStrings, DoubleWritable>> list = new ArrayList<Tuple2<PairOfStrings, DoubleWritable>>();
+   static List<Tuple2<PairOfStrings, DoubleWritable>> toWritableList(Map<Tuple2<String,String>, 
+                                                                     Double> PT) {
+      List<Tuple2<PairOfStrings, DoubleWritable>> list = 
+          new ArrayList<Tuple2<PairOfStrings, DoubleWritable>>();
       for (Map.Entry<Tuple2<String,String>, Double> entry : PT.entrySet()) { 
          list.add(new Tuple2<PairOfStrings, DoubleWritable>(
             new PairOfStrings(entry.getKey()._1,  entry.getKey()._2),
@@ -56,15 +58,14 @@ public class BuildNaiveBayesClassifier implements java.io.Serializable {
    public static void main(String[] args) throws Exception {
    
       // STEP-1: handle input parameters
-      if (args.length < 2) {
-         System.err.println("Usage: BuildNaiveBayesClassifier <training-data-filename> <resource-manager-host>");
+      if (args.length < 1) {
+         System.err.println("Usage: BuildNaiveBayesClassifier <training-data-filename>");
          System.exit(1);
       }
       final String trainingDataFilename = args[0];
-      final String resourceManagerHost = args[1];
       
       // STEP-2: create a Spark context object
-      JavaSparkContext ctx = SparkUtil.createJavaSparkContext(resourceManagerHost);
+      JavaSparkContext ctx = SparkUtil.createJavaSparkContext("build-NBC");
 
       // STEP-3: read training data
       JavaRDD<String> training = ctx.textFile(trainingDataFilename, 1);   
@@ -83,7 +84,8 @@ public class BuildNaiveBayesClassifier implements java.io.Serializable {
           Integer                       // V = 1
         >() {
          public Iterable<Tuple2<Tuple2<String,String>,Integer>> call(String rec) {
-            List<Tuple2<Tuple2<String,String>,Integer>> result = new ArrayList<Tuple2<Tuple2<String,String>,Integer>>();
+            List<Tuple2<Tuple2<String,String>,Integer>> result = 
+               new ArrayList<Tuple2<Tuple2<String,String>,Integer>>();
             String[] tokens = rec.split(",");
             // tokens[0] = A1
             // tokens[1] = A2
@@ -106,7 +108,8 @@ public class BuildNaiveBayesClassifier implements java.io.Serializable {
       
       
       // STEP-4: implement reduce() function to all elelments of training data 
-      JavaPairRDD<Tuple2<String,String>, Integer> counts = pairs.reduceByKey(new Function2<Integer, Integer, Integer>() {
+      JavaPairRDD<Tuple2<String,String>, Integer> counts = 
+         pairs.reduceByKey(new Function2<Integer, Integer, Integer>() {
          public Integer call(Integer i1, Integer i2) {
             return i1 + i2;
          }

@@ -23,34 +23,33 @@ import java.util.Collections;
  */
 public class CountTriangles {
   public static void main(String[] args) throws Exception {
-    if (args.length < 2) {
-	   // Spark master URL:
-	   //	  format:   spark://<spark-master-host-name>:7077
-	   //	  example:  spark://myserver00:7077
-       System.err.println("Usage: CountTriangles <spark-master-URL> <file>");
+    if (args.length < 1) {
+       System.err.println("Usage: CountTriangles <input-path>");
        System.exit(1);
     }
+    String inputPath = args[0];
 
-    JavaSparkContext ctx = SparkUtil.createJavaSparkContext(
-					args[0], 
-					"CountTriangles");
-					
-    JavaRDD<String> lines = ctx.textFile(args[1], 1);
+    // create context object and the first RDD from input-path
+    JavaSparkContext ctx = SparkUtil.createJavaSparkContext("CountTriangles");
+    JavaRDD<String> lines = ctx.textFile(inputPath, 1);
 
     // PairFlatMapFunction<T, K, V>	
     // T => Iterable<Tuple2<K, V>>
     JavaPairRDD<Long,Long> edges = lines.flatMapToPair(new PairFlatMapFunction<String, Long, Long>() {
       public Iterable<Tuple2<Long,Long>> call(String s) {
-      	String[] nodes = s.split(" ");
-      	long start = Long.parseLong(nodes[0]);
-       	long end = Long.parseLong(nodes[1]);
-       	// Note that edges must be reciprocal, that is every
-		// {source, destination} edge must have a corresponding {destination, source}.
-        return Arrays.asList(new Tuple2<Long, Long>(start, end), new Tuple2<Long, Long>(end, start));
+         String[] nodes = s.split(" ");
+         long start = Long.parseLong(nodes[0]);
+         long end = Long.parseLong(nodes[1]);
+         // Note that edges must be reciprocal, that 
+         // is every {source, destination} edge must have 
+         // a corresponding {destination, source}.
+        return Arrays.asList(new Tuple2<Long, Long>(start, end), 
+                             new Tuple2<Long, Long>(end, start));
       }
     });
     
-	JavaPairRDD<Long, Iterable<Long>> triads = edges.groupByKey();    
+    // form triads
+    JavaPairRDD<Long, Iterable<Long>> triads = edges.groupByKey();    
     
     // debug1
     List<Tuple2<Long, Iterable<Long>>> debug1 = triads.collect();
@@ -60,44 +59,45 @@ public class CountTriangles {
     }
 
     JavaPairRDD<Tuple2<Long,Long>, Long> possibleTriads = 
-          triads.flatMapToPair(new PairFlatMapFunction<  Tuple2<Long, Iterable<Long>>, // input
-                                                   Tuple2<Long,Long>,                  // key (output)
-                                                   Long                                // value (output)
-                                                >() {
-		  public Iterable<Tuple2<Tuple2<Long,Long>, Long>> call(Tuple2<Long, Iterable<Long>> s) {
-		
-			// s._1 = Long (as a key)
-			// s._2 = Iterable<Long> (as a values)
-			Iterable<Long> values = s._2;
-			// we assume that no node has an ID of zero
-			List<Tuple2<Tuple2<Long,Long>, Long>> result = new ArrayList<Tuple2<Tuple2<Long,Long>, Long>>();
+          triads.flatMapToPair(new PairFlatMapFunction<  
+                                                        Tuple2<Long, Iterable<Long>>, // input
+                                                        Tuple2<Long,Long>,            // key (output)
+                                                         Long                         // value (output)
+                                                      >() {
+        public Iterable<Tuple2<Tuple2<Long,Long>, Long>> call(Tuple2<Long, Iterable<Long>> s) {
+      
+           // s._1 = Long (as a key)
+           // s._2 = Iterable<Long> (as a values)
+           Iterable<Long> values = s._2;
+           // we assume that no node has an ID of zero
+           List<Tuple2<Tuple2<Long,Long>, Long>> result = new ArrayList<Tuple2<Tuple2<Long,Long>, Long>>();
 
-			// Generate possible triads.
-			for (Long value : values) {
-				Tuple2<Long,Long> k2 = new Tuple2<Long,Long>(s._1, value);
-				Tuple2<Tuple2<Long,Long>, Long> k2v2 = new Tuple2<Tuple2<Long,Long>, Long>(k2, 0l);
-				result.add(k2v2);
-			}
+           // Generate possible triads.
+           for (Long value : values) {
+              Tuple2<Long,Long> k2 = new Tuple2<Long,Long>(s._1, value);
+              Tuple2<Tuple2<Long,Long>, Long> k2v2 = new Tuple2<Tuple2<Long,Long>, Long>(k2, 0l);
+              result.add(k2v2);
+           }
 
-			// RDD's values are immutable, so we have to copy the values
-			// copy values to valuesCopy
-			List<Long> valuesCopy = new ArrayList<Long>();
-			for (Long item : values) {
-			     valuesCopy.add(item);
-			}
-			Collections.sort(valuesCopy);
+           // RDD's values are immutable, so we have to copy the values
+           // copy values to valuesCopy
+           List<Long> valuesCopy = new ArrayList<Long>();
+           for (Long item : values) {
+              valuesCopy.add(item);
+           }
+           Collections.sort(valuesCopy);
 
-			// Generate possible triads.
-			for (int i=0; i< valuesCopy.size() -1; ++i) {
-				for (int j=i+1; j< valuesCopy.size(); ++j) {
-					Tuple2<Long,Long> k2 = new Tuple2<Long,Long>(valuesCopy.get(i), valuesCopy.get(j));
-					Tuple2<Tuple2<Long,Long>, Long> k2v2 = new Tuple2<Tuple2<Long,Long>, Long>(k2, s._1);
-					result.add(k2v2);
-				}
-			}
-	  
-			return result;
-		  }
+           // Generate possible triads.
+           for (int i=0; i< valuesCopy.size() -1; ++i) {
+              for (int j=i+1; j< valuesCopy.size(); ++j) {
+                 Tuple2<Long,Long> k2 = new Tuple2<Long,Long>(valuesCopy.get(i), valuesCopy.get(j));
+                 Tuple2<Tuple2<Long,Long>, Long> k2v2 = new Tuple2<Tuple2<Long,Long>, Long>(k2, s._1);
+                 result.add(k2v2);
+              }
+           }
+     
+           return result;
+        }
     });
     
     List<Tuple2<Tuple2<Long,Long>, Long>> debug2 = possibleTriads.collect();
@@ -107,62 +107,63 @@ public class CountTriangles {
     }
     
 
-	JavaPairRDD<Tuple2<Long,Long>, Iterable<Long>> triadsGrouped = possibleTriads.groupByKey();         
+    JavaPairRDD<Tuple2<Long,Long>, Iterable<Long>> triadsGrouped = possibleTriads.groupByKey();         
     List<Tuple2<Tuple2<Long,Long>, Iterable<Long>>> debug3 = triadsGrouped.collect();
     for (Tuple2<Tuple2<Long,Long>, Iterable<Long>> t2 : debug3) {
       System.out.println("debug3 t2._1="+t2._1);
       System.out.println("debug3 t2._2="+t2._2);
     }
 
-
-
     JavaRDD<Tuple3<Long,Long,Long>> trianglesWithDuplicates = 
-          triadsGrouped.flatMap(new FlatMapFunction<  Tuple2<Tuple2<Long,Long>, Iterable<Long>>,  // input
-                                                      Tuple3<Long,Long,Long>                      // output
+          triadsGrouped.flatMap(new FlatMapFunction< 
+                                                     Tuple2<Tuple2<Long,Long>, Iterable<Long>>,  // input
+                                                     Tuple3<Long,Long,Long>                      // output
                                                    >() {
-		  public Iterable<Tuple3<Long,Long,Long>> call(Tuple2<Tuple2<Long,Long>, Iterable<Long>> s) {
-		
-			// s._1 = Tuple2<Long,Long> (as a key) = "<nodeA><,><nodeB>"
-			// s._2 = Iterable<Long> (as a values) = {0, n1, n2, n3, ...} or {n1, n2, n3, ...}
-			// note that 0 is a fake node, which does not exist
-			Tuple2<Long,Long> key = s._1;
-			Iterable<Long> values = s._2;
-			// we assume that no node has an ID of zero
+        public Iterable<Tuple3<Long,Long,Long>> call(Tuple2<Tuple2<Long,Long>, Iterable<Long>> s) {
+      
+           // s._1 = Tuple2<Long,Long> (as a key) = "<nodeA><,><nodeB>"
+           // s._2 = Iterable<Long> (as a values) = {0, n1, n2, n3, ...} or {n1, n2, n3, ...}
+           // note that 0 is a fake node, which does not exist
+           Tuple2<Long,Long> key = s._1;
+           Iterable<Long> values = s._2;
+           // we assume that no node has an ID of zero
 
-			List<Long> list = new ArrayList<Long>();
-			boolean haveSeenSpecialNodeZero = false;
-			for (Long node : values) {
-				if (node == 0) {
-					haveSeenSpecialNodeZero = true;
-				}			
-				else {
-					list.add(node);
-				}			
-			}
-		
-			List<Tuple3<Long,Long,Long>> result = new ArrayList<Tuple3<Long,Long,Long>>();
-			if (haveSeenSpecialNodeZero) {
-				if (list.isEmpty()) {
-					// no triangles found
-					// return null;
-					return result;
-				}
-				// emit triangles
-				for (long node : list) {			
-					long[] aTraingle = {key._1, key._2, node};
-					Arrays.sort(aTraingle);
-					Tuple3<Long,Long,Long> t3 = new Tuple3<Long,Long,Long>(aTraingle[0], aTraingle[1], aTraingle[2]);
-					result.add(t3);
-				}
-			}
-			else {
-				// no triangles found
-				// return null;
-				return result;
-			}
-	  
-			return result;
-		  }
+           List<Long> list = new ArrayList<Long>();
+           boolean haveSeenSpecialNodeZero = false;
+           for (Long node : values) {
+              if (node == 0) {
+                 haveSeenSpecialNodeZero = true;
+              }         
+              else {
+                 list.add(node);
+              }         
+           }
+      
+           List<Tuple3<Long,Long,Long>> result = new ArrayList<Tuple3<Long,Long,Long>>();
+           if (haveSeenSpecialNodeZero) {
+              if (list.isEmpty()) {
+                // no triangles found
+                 // return null;
+                 return result;
+              }
+              // emit triangles
+              for (long node : list) {         
+                 long[] aTraingle = {key._1, key._2, node};
+                 Arrays.sort(aTraingle);
+                 Tuple3<Long,Long,Long> t3 = new Tuple3<Long,Long,Long>(aTraingle[0], 
+                                                                        aTraingle[1], 
+                                                                        aTraingle[2]);
+                 result.add(t3);
+              }
+           }
+           else {
+              // no triangles found
+              // return null;
+              return result;
+           }
+     
+           return result;
+        }
     });
     
     System.out.println("=== Triangles with Duplicates ===");
@@ -184,6 +185,8 @@ public class CountTriangles {
     
     uniqueTriangles.saveAsTextFile("/triangles/output");
 
+    // done 
+    ctx.close();
     System.exit(0);
   }
 }
