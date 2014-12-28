@@ -1,4 +1,4 @@
-package org.dataalgorithms.chap16;
+package org.dataalgorithms.chap16.spark;
 
 import org.dataalgorithms.util.SparkUtil;
 
