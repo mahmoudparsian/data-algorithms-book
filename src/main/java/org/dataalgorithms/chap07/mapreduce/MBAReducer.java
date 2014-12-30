@@ -1,4 +1,4 @@
-package org.dataalgorithms.chap07;
+package org.dataalgorithms.chap07.mapreduce;
 
 import java.io.IOException;
 import java.util.Iterator;
