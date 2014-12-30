@@ -63,7 +63,7 @@ public class FindAssociationRules {
       // STEP-2: create a Spark context object
       JavaSparkContext ctx = new JavaSparkContext();
        
-      // STEP-3: read all transactions from HDFS and create the first RDD                   
+      // STEP-3: read all transactions from HDFS and create the first RDD 
       JavaRDD<String> transactions = ctx.textFile(transactionsFileName, 1);
       transactions.saveAsTextFile("/rules/output/1");
 
@@ -192,6 +192,8 @@ public class FindAssociationRules {
       });   
       assocRules.saveAsTextFile("/rules/output/6");
 
+      // done
+      ctx.close();      
       System.exit(0);
    }
 }

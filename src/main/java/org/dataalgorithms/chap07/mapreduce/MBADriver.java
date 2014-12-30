@@ -37,74 +37,73 @@ import org.apache.log4j.Logger;
  *
  */
 public class MBADriver extends Configured implements Tool {
-	public static final Logger THE_LOGGER = Logger.getLogger(MBADriver.class);
+   public static final Logger THE_LOGGER = Logger.getLogger(MBADriver.class);
 
-	// main to start from the command
-	public static void main(String args[]) throws Exception {
-		if(args.length != 3){
-			printUsage();
-			System.exit(1);
-		}
+   // main to start from the command
+   public static void main(String args[]) throws Exception {
+      if(args.length != 3){
+         printUsage();
+         System.exit(1);
+      }
 
-		int exitStatus = ToolRunner.run(new MBADriver(), args);
-		THE_LOGGER.info("exitStatus="+exitStatus);
-		System.exit(exitStatus);
-	}		
-	
-	private static int printUsage(){
-		System.out.println("USAGE: [input-path] [output-path] [number-of-pairs]");
-		ToolRunner.printGenericCommandUsage(System.out);
-		return -1;
-	}
+      int exitStatus = ToolRunner.run(new MBADriver(), args);
+      THE_LOGGER.info("exitStatus="+exitStatus);
+      System.exit(exitStatus);
+   }      
+   
+   private static int printUsage(){
+      System.out.println("USAGE: [input-path] [output-path] [number-of-pairs]");
+      ToolRunner.printGenericCommandUsage(System.out);
+      return -1;
+   }
 
 
-	public int run(String args[]) throws Exception {
-		String inputPath = args[0];
-		String outputPath = args[1];
-		int numberOfPairs = Integer.parseInt(args[2]);
-		
-		THE_LOGGER.info("inputPath: " + inputPath);
-		THE_LOGGER.info("outputPath: " + outputPath);
-		THE_LOGGER.info("numberOfPairs: " + numberOfPairs);
-		
-		// job configuration
-        Job job = new Job(getConf());
-        job.setJobName("MBADriver");
-        job.setJarByClass(MBADriver.class);
-        job.getConfiguration().setInt("number.of.pairs", numberOfPairs);	
+   public int run(String args[]) throws Exception {
+      String inputPath = args[0];
+      String outputPath = args[1];
+      int numberOfPairs = Integer.parseInt(args[2]);
+      
+      THE_LOGGER.info("inputPath: " + inputPath);
+      THE_LOGGER.info("outputPath: " + outputPath);
+      THE_LOGGER.info("numberOfPairs: " + numberOfPairs);
+      
+      // job configuration
+      Job job = new Job(getConf());
+      job.setJobName("MBADriver");
+      job.setJarByClass(MBADriver.class);
+      job.getConfiguration().setInt("number.of.pairs", numberOfPairs);   
 
-		//input/output path
-		FileInputFormat.setInputPaths(job, new Path(inputPath));
-		FileOutputFormat.setOutputPath(job, new Path(outputPath));		
+      //input/output path
+      FileInputFormat.setInputPaths(job, new Path(inputPath));
+      FileOutputFormat.setOutputPath(job, new Path(outputPath));      
 
-		//Mapper K, V output
-		job.setMapOutputKeyClass(Text.class);
-		job.setMapOutputValueClass(IntWritable.class);	
-		//output format
-		job.setOutputFormatClass(TextOutputFormat.class);
-		
-		//Reducer K, V output
-		job.setOutputKeyClass(Text.class);
-		job.setOutputValueClass(IntWritable.class);
-		
-		// set mapper/reducer
-		job.setMapperClass(MBAMapper.class);
-		job.setCombinerClass(MBAReducer.class);
-		job.setReducerClass(MBAReducer.class);
-		
-		//delete the output path if exists to avoid "existing dir/file" error
-		Path outputDir = new Path(outputPath);
-		FileSystem.get(getConf()).delete(outputDir, true);
-		
-		long startTime = System.currentTimeMillis();
-		boolean status = job.waitForCompletion(true);
-		THE_LOGGER.info("job status="+status);
-		long endTime = System.currentTimeMillis();
-		long elapsedTime =  endTime - startTime;
-		THE_LOGGER.info("Elapsed time: " + elapsedTime + " milliseconds");
-	
-		return status ? 0 : 1;		
-	}
-	
+      //Mapper K, V output
+      job.setMapOutputKeyClass(Text.class);
+      job.setMapOutputValueClass(IntWritable.class);   
+      //output format
+      job.setOutputFormatClass(TextOutputFormat.class);
+      
+      //Reducer K, V output
+      job.setOutputKeyClass(Text.class);
+      job.setOutputValueClass(IntWritable.class);
+      
+      // set mapper/reducer
+      job.setMapperClass(MBAMapper.class);
+      job.setCombinerClass(MBAReducer.class);
+      job.setReducerClass(MBAReducer.class);
+      
+      //delete the output path if exists to avoid "existing dir/file" error
+      Path outputDir = new Path(outputPath);
+      FileSystem.get(getConf()).delete(outputDir, true);
+      
+      long startTime = System.currentTimeMillis();
+      boolean status = job.waitForCompletion(true);
+      THE_LOGGER.info("job status="+status);
+      long endTime = System.currentTimeMillis();
+      long elapsedTime =  endTime - startTime;
+      THE_LOGGER.info("Elapsed time: " + elapsedTime + " milliseconds");
+   
+      return status ? 0 : 1;      
+   }
 
 }

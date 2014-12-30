@@ -1,8 +1,6 @@
 package org.dataalgorithms.chap07.mapreduce;
 
 import java.io.IOException;
-import java.util.Iterator;
-
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.mapreduce.Reducer;
@@ -28,14 +26,14 @@ import org.apache.hadoop.mapreduce.Reducer;
  *
  */
 public class MBAReducer extends Reducer<Text, IntWritable, Text, IntWritable>{
-			
-	public void reduce(Text key, Iterable<IntWritable> values, Context context) 
-		throws IOException, InterruptedException {
-		int sum = 0; // total items paired
-		for (IntWritable value : values) {
-			sum += value.get();
-		}
-		context.write(key, new IntWritable(sum));
-	}
+         
+   public void reduce(Text key, Iterable<IntWritable> values, Context context) 
+      throws IOException, InterruptedException {
+      int sum = 0; // total items paired
+      for (IntWritable value : values) {
+         sum += value.get();
+      }
+      context.write(key, new IntWritable(sum));
+   }
 }
 
