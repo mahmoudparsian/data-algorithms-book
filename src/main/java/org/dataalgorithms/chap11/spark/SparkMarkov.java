@@ -286,6 +286,9 @@ public class SparkMarkov implements Serializable {
           }
        });
        markovModelFormatted.saveAsTextFile("/output/6.3");
+       
+       // done
+       ctx.close();
        System.exit(0);
    }
 
