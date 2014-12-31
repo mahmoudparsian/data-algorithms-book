@@ -1,10 +1,10 @@
 /**
- * This package (org.dataalgorithms.chap11.statemodel) contains source code
+ * This package (org.dataalgorithms.chap11.projection.spark) contains source code
  * for chapter 11 of the Data Algorithms book published by O'Reilly.
  *
  * @author Mahmoud Parsian
  *
  */
-package org.dataalgorithms.chap11.statemodel;
+package org.dataalgorithms.chap11.projection.spark;
 
 //rest of the file is empty

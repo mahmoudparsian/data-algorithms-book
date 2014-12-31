@@ -1,4 +1,4 @@
-package org.dataalgorithms.chap11;
+package org.dataalgorithms.chap11.spark;
 
 // STEP-0: import required classes and interfaces
 import java.util.List;
