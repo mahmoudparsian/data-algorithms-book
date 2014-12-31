@@ -1,4 +1,4 @@
-package org.dataalgorithms.chap09;
+package org.dataalgorithms.chap09.spark;
 
 import org.dataalgorithms.util.SparkUtil;
 
@@ -28,23 +28,15 @@ import java.util.HashMap;
 public class SparkFriendRecommendation {
 
   public static void main(String[] args) throws Exception {
-    if (args.length < 2) {
-       //
-       // format of spark master URL: 
-       //       spark://<spark-master-host-name>:7077
-       //
-       System.err.println("Usage: SparkFriendRecommendation <spark-master-URL> <file>");
+    if (args.length < 1) {
+       System.err.println("Usage: SparkFriendRecommendation <input-path>");
        System.exit(1);
-    }
+    }  
+    final String friendsInputPath = args[0];
     
-    final String sparkMasterURL = args[0];
-    final String friendsInputFile = args[1];
-    
-    JavaSparkContext ctx = SparkUtil.createJavaSparkContext(
-					sparkMasterURL,
-					"SparkFriendRecommendation");
-
-    JavaRDD<String> records = ctx.textFile(friendsInputFile, 1);
+    // create the first RDD from input
+    JavaSparkContext ctx = SparkUtil.createJavaSparkContext("SparkFriendRecommendation");
+    JavaRDD<String> records = ctx.textFile(friendsInputPath, 1);
 
     // debug0
     List<String> debug1 = records.collect();
@@ -156,6 +148,8 @@ public class SparkFriendRecommendation {
       System.out.println("debug4 key="+t2._1+ "\t value="+t2._2);
     }
 
+    // done
+    ctx.close();
     System.exit(0);
   }
   
