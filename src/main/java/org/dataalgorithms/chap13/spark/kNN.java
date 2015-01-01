@@ -1,4 +1,4 @@
-package org.dataalgorithms.chap13;
+package org.dataalgorithms.chap13.spark;
 
 
 // STEP-0: Import required classes and interfaces
