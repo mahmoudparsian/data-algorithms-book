@@ -1,4 +1,4 @@
-package org.dataalgorithms.chap14;
+package org.dataalgorithms.chap14.spark;
 
 import org.dataalgorithms.util.SparkUtil;
 
@@ -167,7 +167,9 @@ public class BuildNaiveBayesClassifier implements java.io.Serializable {
       JavaRDD<String> classificationsRDD = ctx.parallelize(CLASSIFICATIONS);
       classificationsRDD.saveAsTextFile("/naivebayes/classes"); // name of path
 
-    System.exit(0);
+      // done
+      ctx.close();    
+     System.exit(0);
   }
 
 }

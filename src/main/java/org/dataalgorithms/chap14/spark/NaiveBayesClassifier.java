@@ -1,4 +1,4 @@
-package org.dataalgorithms.chap14;
+package org.dataalgorithms.chap14.spark;
 
 import org.dataalgorithms.util.SparkUtil;
 
@@ -156,7 +156,10 @@ public class NaiveBayesClassifier implements java.io.Serializable {
          }
       }); 
          
-      classified.saveAsTextFile("/output/classified");      
+      classified.saveAsTextFile("/output/classified");
+      
+      // done
+      ctx.close();     
       System.exit(0);
    }
 
