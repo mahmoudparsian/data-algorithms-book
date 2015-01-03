@@ -1,4 +1,4 @@
-package org.dataalgorithms.chap22;
+package org.dataalgorithms.chap22.spark;
 
 // STEP-0: import required classes and interfaces
 import org.dataalgorithms.util.MathUtil;
@@ -148,8 +148,8 @@ public class SparkTtest {
              // now we do need shared Map data structure to iterate over its items
              Map<String, Double> timetable = broadcastTimeTable.value();
              // the following two lists are needed for ttest(exist, notexist)
-             List<Double> exist = new ArrayList<Double>();                                             
-             List<Double> notexist = new ArrayList<Double>();                               
+             List<Double> exist = new ArrayList<Double>();  
+             List<Double> notexist = new ArrayList<Double>();  
              for (Map.Entry<String, Double> entry : timetable.entrySet()) {
                  String biosetID = entry.getKey();
                  Double time = entry.getValue();
@@ -168,6 +168,9 @@ public class SparkTtest {
       });
 
       ttest.saveAsTextFile("/ttest/output/4");   
+      
+      // done
+      ctx.close();
       System.exit(0);
    }
    
