@@ -1,4 +1,4 @@
-package org.dataalgorithms.chap26;
+package org.dataalgorithms.chap26.spark;
 
 //STEP-0: import required classes and interfaces
 import scala.Tuple2;
@@ -138,6 +138,9 @@ public class SparkGeneAggregationByIndividual {
     for (Tuple2<String, Integer> tuple : output) {
       System.out.println("final output => "+ tuple._1 + ": " + tuple._2);
     }
+    
+    // done
+    ctx.close();
     System.exit(0);
   }
   

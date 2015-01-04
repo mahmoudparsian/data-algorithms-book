@@ -1,4 +1,4 @@
-package org.dataalgorithms.chap26;
+package org.dataalgorithms.chap26.spark;
 
 import org.dataalgorithms.util.PairOfDoubleInteger;
 
@@ -219,6 +219,8 @@ public class SparkGeneAggregationByAverage {
       System.out.println("final output => "+ tuple._1 + ": " + tuple._2);
     }
     
+    // done
+    ctx.close();
     System.exit(0);
   }
 }
