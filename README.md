@@ -97,7 +97,7 @@ Questions/Comments
 ==================
 * [View Mahmoud Parsian's profile on LinkedIn](http://www.linkedin.com/in/mahmoudparsian)
 * Please send me an email: mahmoud.parsian@yahoo.com
-* [Twitter:](http://twitter.com/mahmoudparsian) 
+* [Twitter: @mahmoudparsian](http://twitter.com/mahmoudparsian) 
 
 Thank you!
 ````
