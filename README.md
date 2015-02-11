@@ -4,6 +4,9 @@ Data Algorithms: Recipes for Scaling up with Hadoop and Spark
 
 [![Data Algorithms Book](./misc/da_small.gif)](http://shop.oreilly.com/product/0636920033950.do)
 
+https://twitter.com/intent/follow?original_referer=http%3A%2F%2Fmahmoudparsian%2F&region=follow_link&screen_name=mahmoudparsian&tw_p=followbutton
+ 
+
 This repository will host all source code and scripts for
 [Data Algorithms Book](http://shop.oreilly.com/product/0636920033950.do).
 This book provides a set of distributed MapReduce algrithms, which are implemented using
