@@ -19,11 +19,10 @@ import org.apache.commons.lang.StringUtils;
  * @author Mahmoud Parsian
  *
  */
-
 public class WordCountMapper
     extends Mapper<LongWritable, Text, Text, IntWritable> {
 
-    private static int DEFAULT_IGNORED_LENGTH = 3; // default
+    private static final int DEFAULT_IGNORED_LENGTH = 3; // default
     private int N = DEFAULT_IGNORED_LENGTH; 
     private static final IntWritable one = new IntWritable(1);
     private Text reducerKey = new Text();
