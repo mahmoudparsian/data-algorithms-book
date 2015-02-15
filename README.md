@@ -2,12 +2,16 @@
 ======================
 Data Algorithms: Recipes for Scaling up with Hadoop and Spark
 
+[![Data Algorithms Book](./misc/da_small.gif)](http://shop.oreilly.com/product/0636920033950.do)
+ 
 [Autor Book Signing](http://strataconf.com/big-data-conference-ca-2015/public/content/author-signings)
 ====================
 Author book signings for ("Data Algorithms") will be held in the O'Reilly booth on Thursday, Feb. 19, 2015.
 Complimentary copies of books will be provided for the first 25 attendees. 
 
-[![Data Algorithms Book](./misc/da_small.gif)](http://shop.oreilly.com/product/0636920033950.do)
+[Bonus Chapters](https://github.com/mahmoudparsian/data-algorithms-book/tree/master/src/main/java/org/dataalgorithms/bonus)
+================
+I have started adding bonus chapters.
 
 This repository will host all source code and scripts for
 [Data Algorithms Book](http://shop.oreilly.com/product/0636920033950.do).
