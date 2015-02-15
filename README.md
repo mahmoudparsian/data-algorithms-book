@@ -13,6 +13,8 @@ Complimentary copies of books will be provided for the first 25 attendees.
 ================
 I have started adding bonus chapters.
 
+Repository
+==========
 This repository will host all source code and scripts for
 [Data Algorithms Book](http://shop.oreilly.com/product/0636920033950.do).
 This book provides a set of distributed MapReduce algrithms, which are implemented using
