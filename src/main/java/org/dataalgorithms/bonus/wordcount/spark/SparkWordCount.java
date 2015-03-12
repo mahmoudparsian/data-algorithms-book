@@ -67,8 +67,10 @@ public class SparkWordCount {
           }
        });
 
-       //          K       V                                                input   K       V
-       JavaPairRDD<String, Integer> ones = words.mapToPair(new PairFunction<String, String, Integer>() {
+        //           K       V    
+       JavaPairRDD<String, Integer> ones = 
+                            //                   input    K       V
+               words.mapToPair(new PairFunction<String, String, Integer>() {
          //            K       V             input
          public Tuple2<String, Integer> call(String s) {
            //                K       V
@@ -77,7 +79,8 @@ public class SparkWordCount {
        });
 
        // find the total count for each unique word
-       JavaPairRDD<String, Integer> counts = ones.reduceByKey(new Function2<Integer, Integer, Integer>() {
+       JavaPairRDD<String, Integer> counts = 
+            ones.reduceByKey(new Function2<Integer, Integer, Integer>() {
           public Integer call(Integer i1, Integer i2) {
              return i1 + i2;
           }
