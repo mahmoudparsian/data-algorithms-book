@@ -18,3 +18,13 @@ echo "ANT_HOME=$ANT_HOME"
 # set PATH
 export PATH=$JAVA_HOME/bin:$ANT_HOME/bin:$PATH
 echo "PATH=$PATH"
+#
+BOOK_HOME=/Users/mparsian/zmp/github/data-algorithms-book
+jars=`find $BOOK_HOME/lib -name '*.jar'`
+for j in $jars ; do
+	CLASSPATH=$CLASSPATH:$j
+done
+#
+CLASSPATH=$CLASSPATH:$BOOK_HOME/dist/data_algorithms_book.jar
+#
+export CLASSPATH=$CLASSPATH
