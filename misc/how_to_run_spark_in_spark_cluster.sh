@@ -5,7 +5,7 @@
 # This script is a kind of template ...
 #   --------------------------------------------------------------------------------
 #   1. You have installed the data-algorithms-book  in /home/mp/data-algorithms-book (BOOK_HOME)
-#   2. Spark 1.2.0 is installed at /usr/local/spark-1.2.0
+#   2. Spark 1.3.0 is installed at /usr/local/spark-1.3.0
 #   3. And you have built the source code and generated $DAB/dist/data_algorithms_book.jar
 #   4. And you have two input parameters identified as P1 and P2
 #   5. You need to modify spark-submit parameters accordingly
@@ -14,9 +14,9 @@
 export JAVA_HOME=/usr/java/jdk7
 # java is defined at $JAVA_HOME/bin/java
 export BOOK_HOME=/home/mp/data-algorithms-book
-export SPARK_HOME=/usr/local/spark-1.2.0
+export SPARK_HOME=/usr/local/spark-1.3.0
 export SPARK_MASTER=spark://myserver100:7077
-export SPARK_JAR=$BOOK_HOME/lib/spark-assembly-1.2.0-hadoop2.6.0.jar
+export SPARK_JAR=$BOOK_HOME/lib/spark-assembly-1.3.0-hadoop2.6.0.jar
 export APP_JAR=$BOOK_HOME/dist/data_algorithms_book.jar
 #
 # build all other dependent jars in OTHER_JARS
