@@ -19,7 +19,7 @@ This repository will host all source code and scripts for
 [Data Algorithms Book](http://shop.oreilly.com/product/0636920033950.do).
 This book provides a set of distributed MapReduce algrithms, which are implemented using
 * Java (JDK7)
-* Spark 1.2.0
+* Spark 1.3.0
 * MapReduce/Hadoop 2.6.0
 
 Work in Progress...
@@ -49,7 +49,7 @@ Software | Version
 ---------|--------
 Java     | JDK7
 Hadoop   | 2.6.0
-Spark    | 1.2.0
+Spark    | 1.3.0
 Ant      | 1.9.4
 
 
