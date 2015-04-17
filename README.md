@@ -2,7 +2,9 @@
 ======================
 Data Algorithms: Recipes for Scaling up with Hadoop and Spark
 
-[![Data Algorithms Book](./misc/da_small.gif)](http://shop.oreilly.com/product/0636920033950.do)  [![Data Algorithms Book](./misc/da_small2.gif)](http://shop.oreilly.com/product/0636920033950.do) 
+[![Data Algorithms Book](./misc/da_small.gif)](http://shop.oreilly.com/product/0636920033950.do)  
+
+[![Data Algorithms Book](./misc/da_small2.gif)](http://shop.oreilly.com/product/0636920033950.do) 
  
 [Autor Book Signing](http://strataconf.com/big-data-conference-ca-2015/public/content/author-signings)
 ====================
