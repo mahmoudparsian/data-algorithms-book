@@ -24,3 +24,8 @@ for a set of given  documents.
 
 We will ignore words if their length is less than N (we read N as a parameter).
 
+
+````
+best regards
+Mahmoud Parsian
+````
