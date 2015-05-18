@@ -24,6 +24,10 @@ for a set of given  documents.
 
 We will ignore words if their length is less than N (we read N as a parameter).
 
+Input Files for Testing
+=======================
+Data Set: http://www.gutenberg.org/dirs/etext02/mword10.zip
+
 
 ````
 best regards
