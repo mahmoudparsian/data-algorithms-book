@@ -31,10 +31,13 @@ public class SparkAnagram {
          System.exit(1);
       }
       
+      // if a word.length < N, that word will be ignored
       final int N = Integer.parseInt(args[0]);
+      System.out.println("args[0]: N="+N);
+      
+      // identify I/O paths
       String inputPath = args[1];
       String outputPath = args[2];
-      System.out.println("args[0]: N="+N);
       System.out.println("args[1]: <input-path>="+inputPath);
       System.out.println("args[2]: <output-path>="+outputPath);
 
