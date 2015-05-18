@@ -78,11 +78,11 @@ public class SparkAnagram {
                     continue;
                  }
             
-		         char[] wordChars = word.toCharArray();
-		         Arrays.sort(wordChars);
-		         String sortedWord = new String(wordChars);
-		         results.add(new Tuple2<String,String>(sortedWord, word));
-		     }
+                 char[] wordChars = word.toCharArray();
+                 Arrays.sort(wordChars);
+                 String sortedWord = new String(wordChars);
+                 results.add(new Tuple2<String,String>(sortedWord, word));
+            }
             return results;
          }
       });

@@ -28,9 +28,9 @@ import java.util.Arrays;
 public class AnagramMapper
     extends Mapper<LongWritable, Text, Text, Text> {
 
-	// reuse the place holders for output key/value
-	private Text keyAsSortedText = new Text();
-	private Text valueAsOrginalText = new Text();
+   // reuse the place holders for output key/value
+   private Text keyAsSortedText = new Text();
+   private Text valueAsOrginalText = new Text();
 
     private static final int DEFAULT_IGNORED_LENGTH = 3; // default
     private int N = DEFAULT_IGNORED_LENGTH; 
@@ -41,7 +41,7 @@ public class AnagramMapper
        this.N = context.getConfiguration().getInt("word.count.ignored.length", 
                                                   DEFAULT_IGNORED_LENGTH);
     }
-		
+      
     // called once for each key/value pair in the input split. 
     // most applications should override this, but the default 
     // is the identity function.
@@ -59,25 +59,25 @@ public class AnagramMapper
        }
         
        for (String word : words) {
-            if (word.length() < this.N) {
-               // ignore strings with less than size N
-               continue;
-            }
-            if (word.matches(".*[,.;]$")) {
-                // remove the special char from the end
-                word = word.substring(0, word.length() -1); 
-            }
-            if (word.length() < this.N) {
-               // ignore strings with less than size N
-               continue;
-            }
+          if (word.length() < this.N) {
+             // ignore strings with less than size N
+             continue;
+          }
+          if (word.matches(".*[,.;]$")) {
+             // remove the special char from the end
+             word = word.substring(0, word.length() -1); 
+          }
+          if (word.length() < this.N) {
+             // ignore strings with less than size N
+             continue;
+          }
             
-		    char[] wordChars = word.toCharArray();
-		    Arrays.sort(wordChars);
-		    String sortedWord = new String(wordChars);
-		    keyAsSortedText.set(sortedWord);
-		    valueAsOrginalText.set(word);
-            context.write(keyAsSortedText, valueAsOrginalText);
+          char[] wordChars = word.toCharArray();
+          Arrays.sort(wordChars);
+          String sortedWord = new String(wordChars);
+          keyAsSortedText.set(sortedWord);
+          valueAsOrginalText.set(word);
+          context.write(keyAsSortedText, valueAsOrginalText);
        }
     }
 }

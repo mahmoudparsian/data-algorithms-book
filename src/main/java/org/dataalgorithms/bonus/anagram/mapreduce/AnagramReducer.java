@@ -23,17 +23,16 @@ public class AnagramReducer
     // implementation is an identity function.
     public void reduce(Text key, Iterable<Text> values, Context context)
        throws IOException, InterruptedException {
-		int numberOfAnagrams = 0;
-		StringBuilder output = new StringBuilder();
-		for (Text value : values) {
-			String anagram = value.toString();
-			output.append(anagram);
-			output.append(",");
-			numberOfAnagrams++;
-		}
-		if(numberOfAnagrams > 1) {
-       		context.write(key, new Text(output.toString()));
-		}       
+       int numberOfAnagrams = 0;
+       StringBuilder output = new StringBuilder();
+       for (Text value : values) {
+          String anagram = value.toString();
+          output.append(anagram);
+          output.append(",");
+          numberOfAnagrams++;
+       }
+       if(numberOfAnagrams > 1) {
+          context.write(key, new Text(output.toString()));
+       }       
     }
-    
 }
