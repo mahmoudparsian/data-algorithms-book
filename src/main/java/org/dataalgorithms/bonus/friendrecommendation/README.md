@@ -1,13 +1,6 @@
 Friend Recommendation
 =====================
-The purpose of these MapReduce and Spark programs are to find 
-"friends recommnedation" (to offer "people you may know" service).  
-We write a [MapReduce program in Hadoop] and a [Spark program] that 
-implements a simple “People You May Know” social network friendship 
-recommendation algorithm. The main idea is that if two people have 
-a lot of mutual friends, then the system should recommend that they 
-connect with each other. Our assumption is that friendship is 
-bidirectional: if A is a friend of B, then B is a friend of A.
+The purpose of these MapReduce and Spark programs are to find "friends recommnedation" (to offer "people you may know" service). We write a [MapReduce program in Hadoop] and a [Spark program] that implements a simple “People You May Know” social network friendship recommendation algorithm. The main idea is that if two people have a lot of mutual friends, then the system should recommend that they connect with each other. Our assumption is that friendship is bi-directional: if A is a friend of B, then B is a friend of A.
 
 Input Format:
 =============
