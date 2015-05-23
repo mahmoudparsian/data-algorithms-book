@@ -17,13 +17,13 @@ Complimentary copies of books will be provided for the first 25 attendees.
 ================
 I have started adding bonus chapters. Already have added the following bonus chapters:
 
-Bonus chapter        | Description
----------------------|---------------------------------------------------------------
-anagram              | Anagram detection in Spark and MapReduce/Hadoop
-cartesian            | How to perform "cartesian" operation in Spark
-friendrecommendation | Friends Recommnedation algorithms in Spark and MapReduce/Hadoop 
-logquery             | Basic log query implementation  in Spark and MapReduce/Hadoop  
-wordcount            | Hello World! of Spark and MapReduce/Hadoop   
+Bonus chapter                                                                                                                                          | Description
+-------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------
+[anagram](https://github.com/mahmoudparsian/data-algorithms-book/tree/master/src/main/java/org/dataalgorithms/bonus/anagram)                           | Anagram detection in Spark and MapReduce/Hadoop
+[cartesian](https://github.com/mahmoudparsian/data-algorithms-book/tree/master/src/main/java/org/dataalgorithms/bonus/cartesian)                       | How to perform "cartesian" operation in Spark
+[friendrecommendation](https://github.com/mahmoudparsian/data-algorithms-book/tree/master/src/main/java/org/dataalgorithms/bonus/friendrecommendation) | Friends Recommnedation algorithms in Spark and MapReduce/Hadoop 
+[logquery](https://github.com/mahmoudparsian/data-algorithms-book/tree/master/src/main/java/org/dataalgorithms/bonus/logquery)                         | Basic log query implementation  in Spark and MapReduce/Hadoop  
+[wordcount](https://github.com/mahmoudparsian/data-algorithms-book/tree/master/src/main/java/org/dataalgorithms/bonus/wordcount)                       | Hello World! of Spark and MapReduce/Hadoop   
 
 
 Repository
