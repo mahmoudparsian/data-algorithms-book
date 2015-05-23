@@ -15,7 +15,16 @@ Complimentary copies of books will be provided for the first 25 attendees.
 
 [Bonus Chapters](https://github.com/mahmoudparsian/data-algorithms-book/tree/master/src/main/java/org/dataalgorithms/bonus)
 ================
-I have started adding bonus chapters.
+I have started adding bonus chapters. Already have added the following bonus chapters:
+
+Bonus chapter        | Description
+---------------------|---------------------------------------------------------------
+anagram              | Anagram detection in Spark and MapReduce/Hadoop
+cartesian            | How to perform "cartesian" operation in Spark
+friendrecommendation | Friends Recommnedation algorithms in Spark and MapReduce/Hadoop 
+logquery             | Basic log query implementation  in Spark and MapReduce/Hadoop  
+wordcount            | Hello World! of Spark and MapReduce/Hadoop   
+
 
 Repository
 ==========
