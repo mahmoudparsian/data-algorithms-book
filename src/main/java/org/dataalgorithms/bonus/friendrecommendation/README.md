@@ -10,7 +10,7 @@ Input Format:
 
 where ````<friend1>, <friend2>, ...```` are direct friends of ````<person>````
 
-Note that <person>, <friend1>, <friend2>, ... are userID's of java.lang.Long data type 
+Note that ````<person>, <friend1>, <friend2>, ...```` are userID's of ````java.lang.Long```` data type 
 
 Output Format:
 ==============
