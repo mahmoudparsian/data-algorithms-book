@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.io.IOException;
 
-import org.apache.log4j.Logger;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.mapreduce.Mapper;

@@ -4,9 +4,7 @@ package org.dataalgorithms.bonus.friendrecommendation.spark;
 // STEP-0: import required classes and interfaces
 import java.util.List;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.Collections;
-import java.util.Arrays;
 import java.util.TreeMap;
 
 import scala.Tuple2;

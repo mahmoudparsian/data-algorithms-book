@@ -1,7 +1,6 @@
 package org.dataalgorithms.bonus.friendrecommendation.mapreduce;
 
 import java.io.IOException;
-import org.apache.log4j.Logger;
 import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.mapreduce.Mapper;
 import org.apache.hadoop.mapreduce.Mapper.Context;

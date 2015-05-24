@@ -2,7 +2,6 @@ package org.dataalgorithms.chap05.mapreduce;
 
 import static org.junit.Assert.*;
 import static org.hamcrest.Matchers.*;
-
 import org.junit.Test;
 
 /**

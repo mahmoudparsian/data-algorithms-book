@@ -36,3 +36,5 @@
 .idea
 *.sublime-*
 .nb-gradle
+/nbproject/private
+/dist/

@@ -42,7 +42,7 @@ public class Phase2Reducer
         // step-2: now select the top numberOfRecommendations users 
         // to recommend as potential friends
         List<Long> recommendations = getTopFriends(sortedMap, numberOfRecommendations);
-        if (recommendations.size() == 0) {
+        if (recommendations.isEmpty()) {
            return;
         }
 

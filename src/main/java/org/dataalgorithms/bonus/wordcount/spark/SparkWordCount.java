@@ -7,7 +7,6 @@ import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.api.java.function.FlatMapFunction;
 import org.apache.spark.api.java.function.Function2;
 import org.apache.spark.api.java.function.PairFunction;
-import java.util.Arrays;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Collections;
