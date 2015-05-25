@@ -16,9 +16,9 @@ Complimentary copies of books will be provided for the first 25 attendees.
 [Bonus Chapters](https://github.com/mahmoudparsian/data-algorithms-book/tree/master/src/main/java/org/dataalgorithms/bonus)
 ================
 The story of bonus chapters: originally, I had about 60+ chapters for the book (which would 
-been over 1000+ pages -- too much!!!). To keep it short and focused, I put 31 chapters in the 
-book and then put the remaining chapters (as bonus chapters) in here.  I have started adding 
-bonus chapters. Already have added the following bonus chapters:
+have been over 1000+ pages -- too much!!!). To keep it short, sweet, and focused, I put 31 
+chapters in the book and then put the remaining chapters (as bonus chapters) in here.  I have 
+started adding bonus chapters. Already have added the following bonus chapters:
 
 Bonus chapter                                                                                                                                          | Description
 -------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------
