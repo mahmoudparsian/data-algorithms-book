@@ -3,7 +3,6 @@ package org.dataalgorithms.chap01.mapreduce;
 
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.io.LongWritable;
-import org.apache.hadoop.io.NullWritable;
 import org.apache.hadoop.mapreduce.Mapper;
 
 import java.io.IOException;

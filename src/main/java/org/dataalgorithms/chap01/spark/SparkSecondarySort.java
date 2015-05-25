@@ -4,7 +4,6 @@ package org.dataalgorithms.chap01.spark;
 // STEP-0: import required Java/Spark classes.
 import org.dataalgorithms.util.SparkUtil;
 import scala.Tuple2;
-import scala.Tuple3;
 
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaPairRDD;
@@ -14,9 +13,7 @@ import org.apache.spark.api.java.function.PairFunction;
 
 import java.util.List;
 import java.util.ArrayList;
-import java.util.Map;
 import java.util.Collections;
-import java.util.Comparator;
 
 /** 
  * SparkSecondarySort class implemets the secondary sort design pattern 

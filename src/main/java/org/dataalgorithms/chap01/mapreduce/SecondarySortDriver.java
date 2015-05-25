@@ -1,7 +1,6 @@
 package org.dataalgorithms.chap01.mapreduce;
 
 import org.apache.log4j.Logger;
-import java.io.IOException;
 
 import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
