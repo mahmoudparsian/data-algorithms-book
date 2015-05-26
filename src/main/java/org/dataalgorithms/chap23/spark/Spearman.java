@@ -1,8 +1,6 @@
 package org.dataalgorithms.chap23.spark;
 
-import java.util.Arrays;
 import java.util.List;
-import java.util.ArrayList;
 import org.apache.commons.math3.distribution.TDistribution;
 import org.apache.commons.math3.stat.correlation.SpearmansCorrelation;
 
