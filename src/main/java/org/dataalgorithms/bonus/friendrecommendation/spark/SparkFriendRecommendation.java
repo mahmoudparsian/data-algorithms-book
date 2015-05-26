@@ -51,8 +51,8 @@ public class SparkFriendRecommendation {
    public static void main(String[] args) throws Exception {
 
       // STEP-1: handle input parameters
-      if (args.length != 3) {
-         System.err.println("Usage: <maxNumberOfRecommendations> <input-path> <output-path> ");
+      if (args.length < 3) {
+         System.err.println("Usage: <maxNumberOfRecommendations> <input-path> <output-path> [yarn-cluster]");
          System.exit(1);
       }
 
@@ -67,7 +67,16 @@ public class SparkFriendRecommendation {
       System.out.println("args[2]: <output-path>="+outputPath);
 
       // STEP-2: create an instance of JavaSparkContext
-      JavaSparkContext ctx = new JavaSparkContext();
+      JavaSparkContext ctx = null;
+      if (args.length == 3) {
+         ctx = new JavaSparkContext();
+      }
+      else if (args.length == 4) {
+         // args[3] = "yarn-cluster"
+         // this is needed if you want to launch this from a Java-client 
+         // rather than a shell script (.../bin/spark-submit)
+         ctx = new JavaSparkContext("yarn-cluster", "SparkFriendRecommendation");
+      }
 
       // STEP-3: create an RDD for input
       // input record format:
