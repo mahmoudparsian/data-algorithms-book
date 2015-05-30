@@ -1,21 +1,14 @@
 Submit a Spark job to YARN from Java Code
 =========================================
-In this post I will show you how to submit a 
-Spark job from Java code. Typically, we submit 
-Spark jobs to "Spark Cluster" and Hadoop/YARN  
-by using ````$SPARK_HOME/bin/spark-submit```` 
-shell script.  Submitting Spark job from a shell 
-script limits programmers when they want to submit 
-Spark jobs from Java code (such as Java servlets 
-or other Java code such as REST servers).
+In this post I will show you how to submit a Spark job from Java code. Typically, we submit 
+Spark jobs to "Spark Cluster" and Hadoop/YARN  by using ````$SPARK_HOME/bin/spark-submit```` 
+shell script.  Submitting Spark job from a shell script limits programmers when they want to submit 
+Spark jobs from Java code (such as Java servlets or other Java code such as REST servers).
 
 Use YARN's Client Class
 =======================
-Below is a complete Java code, which submits a 
-Spark job to YARN from Java code (no shell scripting 
-is required). The main class used for submitting a 
-Spark job to YARN is the 
-```org.apache.spark.deploy.yarn.Client```` class.
+Below is a complete Java code, which submits a Spark job to YARN from Java code (no shell scripting 
+is required). The main class used for submitting a Spark job to YARN is the ```org.apache.spark.deploy.yarn.Client```` class.
 
 
 Complete Java Client Program
