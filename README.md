@@ -115,6 +115,11 @@ How To Run Spark/Hadoop Programs
 * [How To Run Java/Spark Programs in YARN](./misc/how_to_run_spark_in_yarn.sh)
 * [How To Run Java/Spark Programs in Spark Cluster](./misc/how_to_run_spark_in_spark_cluster.sh)
 
+
+[Submit a Spark job to YARN from Java Code](./misc/how-to-submit-spark-job-to-yarn-from-java-code.md)
+===========================================
+
+
 How To Run Python Programs
 ==========================
 To run python programs just call them with `spark-submit` together with the arguments to the program.
