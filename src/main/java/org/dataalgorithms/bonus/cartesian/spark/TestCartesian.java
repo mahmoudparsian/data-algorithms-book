@@ -18,7 +18,8 @@ public class TestCartesian {
    static JavaSparkContext createJavaSparkContext() throws Exception {
       SparkConf conf = new SparkConf();
       conf.set("spark.serializer", "org.apache.spark.serializer.KryoSerializer");
-      JavaSparkContext ctx = new JavaSparkContext("yarn-cluster", "mytestprogram", conf);
+      //JavaSparkContext ctx = new JavaSparkContext("yarn-cluster", "mytestprogram", conf); // yarn-specific
+      JavaSparkContext ctx = new JavaSparkContext(conf);
       return ctx;
    }
 
