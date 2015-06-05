@@ -7,7 +7,11 @@ Early Release Version                                                           
 ---------------------------------------------------------------------------------------------------|------------------------------
 [![Data Algorithms Book](./misc/da_small.gif)](http://shop.oreilly.com/product/0636920033950.do)   | [![Data Algorithms Book](./misc/da_book3.jpeg)](http://shop.oreilly.com/product/0636920033950.do)
  
- 
+Autor Book Signing @Spark Summit 2015
+=====================================
+O'Reilly author book signings for ("Data Algorithms") will be held in 
+the O'Reilly booth (#SparkSummit2015) on Tuesday, June 16, 2015 at 2:30pm.
+
 [Autor Book Signing](http://strataconf.com/big-data-conference-ca-2015/public/content/author-signings)
 ====================
 Author book signings for ("Data Algorithms") will be held in the O'Reilly booth on Thursday, Feb. 19, 2015.
