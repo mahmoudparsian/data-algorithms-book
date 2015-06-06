@@ -9,8 +9,10 @@ Early Release Version                                                           
  
 Autor Book Signing @Spark Summit 2015
 =====================================
-O'Reilly author book signings for ("Data Algorithms") will be held in 
-the O'Reilly booth [#SparkSummit2015](https://twitter.com/hashtag/sparksummit2015) 
+O'Reilly author book signings for 
+[Data Algorithms](http://shop.oreilly.com/product/0636920033950.do) 
+will be held in the O'Reilly booth 
+[#SparkSummit2015](https://twitter.com/hashtag/sparksummit2015) 
 on Tuesday, June 16, 2015 at 2:30pm.
 
 [Autor Book Signing](http://strataconf.com/big-data-conference-ca-2015/public/content/author-signings)
