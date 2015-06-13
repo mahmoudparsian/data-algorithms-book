@@ -15,8 +15,8 @@ Output Format:
 <key>  <average-per-key>
 ````
 
-Sample Run
-==========
+Shell Script
+============
 ````
 cat ./run_perkeyaverage_spark.sh
 #!/bin/bash
@@ -30,8 +30,8 @@ PerKeyAverage=org.dataalgorithms.bonus.perkeyaverage.spark.PerKeyAverage
 $SPARK_HOME/bin/spark-submit  --class $PerKeyAverage --master $SPARK_MASTER $APP_JAR
 ````
 
-Ouput
-=====
+Sample Run and Ouput
+====================
 ````
 ./run_perkeyaverage_spark.sh
 pandas:10.0
