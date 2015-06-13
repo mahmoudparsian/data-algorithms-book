@@ -8,9 +8,11 @@ import java.util.Map.Entry;
 import scala.Tuple2;
 
 import org.apache.spark.api.java.JavaPairRDD;
+import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.api.java.function.Function;
 import org.apache.spark.api.java.function.Function2;
+import org.apache.spark.api.java.function.PairFunction;
 
 /**
  * This class finds "per key average" for all keys.
@@ -19,6 +21,23 @@ import org.apache.spark.api.java.function.Function2;
  */
 
 public final class PerKeyAverage {
+    
+    static final List<Tuple2<String, Double>> getSampleInput() {
+        List<Tuple2<String, Double>> input = new ArrayList<Tuple2<String, Double>>();
+        // key: "zebra"
+        input.add(new Tuple2("zebra", 1.0));
+        input.add(new Tuple2("zebra", 2.0));
+        input.add(new Tuple2("zebra", 9.0));
+        // key: "pandas"
+        input.add(new Tuple2("pandas", 3.0));
+        input.add(new Tuple2("pandas", 17.0));
+        // key: "duck"
+        input.add(new Tuple2("duck", 2.0));
+        input.add(new Tuple2("duck", 8.0));
+        input.add(new Tuple2("duck", 4.0));
+        input.add(new Tuple2("duck", 6.0));
+        return input;
+    }
 
     public static class AvgCount implements java.io.Serializable {
         double total;
@@ -38,18 +57,26 @@ public final class PerKeyAverage {
 
         JavaSparkContext context = new JavaSparkContext();
 
-        List<Tuple2<String, Double>> input = new ArrayList<Tuple2<String, Double>>();
-        input.add(new Tuple2("coffee", 1.0));
-        input.add(new Tuple2("coffee", 2.0));
-        input.add(new Tuple2("coffee", 9.0));
-        input.add(new Tuple2("pandas", 3.0));
-        input.add(new Tuple2("pandas", 17.0));
-        input.add(new Tuple2("duck", 2.0));
-        input.add(new Tuple2("duck", 8.0));
-        input.add(new Tuple2("duck", 4.0));
-        input.add(new Tuple2("duck", 6.0));        
-        JavaPairRDD<String, Double> rdd = context.parallelizePairs(input);
+        // if you do not provide input, we will use a sample static input
+        JavaPairRDD<String, Double> rdd = null;
+        if (args.length > 0) {
+            // use input provided 
+            String inputPath = args[0];
+            JavaRDD<String> recs = context.textFile(inputPath, 1);
+            rdd = recs.mapToPair(new PairFunction<String,String,Double>() {
+                @Override
+                public Tuple2<String,Double> call(String s) { 
+                    String[] tokens = s.split(":");
+                    return new Tuple2<String,Double>(tokens[0], Double.parseDouble(tokens[1]));
+                }   
+            });
+        }
+        else {
+            // use a sample static input
+            rdd = context.parallelizePairs(getSampleInput());
+        }
         
+        // How to use combineByKey():
         // to use combineByKey(), you need to define 3 basic functions f1, f2, f3:
         // and then you invoke it as: combineByKey(f1, f2, f3)
         

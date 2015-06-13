@@ -5,6 +5,7 @@ for all keys.
 
 Input Format:
 =============
+Each record has the following format:
 ````
 <key-as-string><:><value-as-double>
 ````
@@ -35,7 +36,7 @@ Sample Run and Ouput
 ````
 ./run_perkeyaverage_spark.sh
 pandas:10.0
-coffee:4.0
+zebra:4.0
 duck:5.0
 ````
 
