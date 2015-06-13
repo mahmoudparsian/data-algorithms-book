@@ -81,7 +81,6 @@ public final class PerKeyAverage {
             }
         };
         
-        AvgCount initial = new AvgCount(0, 0);
         // now that we have defined 3 functions, we can use combineByKey()
         JavaPairRDD<String, AvgCount> avgCounts = rdd.combineByKey(createAcc, addAndCount, combine);
         Map<String, AvgCount> countMap = avgCounts.collectAsMap();
@@ -90,6 +89,6 @@ public final class PerKeyAverage {
         }
         
         // done
-        
+        context.close();
     }
 }
