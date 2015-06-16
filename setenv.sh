@@ -15,11 +15,16 @@ echo "JAVA_HOME=$JAVA_HOME"
 export ANT_HOME=/Users/mparsian/zmp/zs/apache-ant-1.9.4
 echo "ANT_HOME=$ANT_HOME"
 #
+export HADOOP_HOME=/Users/mparsian/zmp/zs/hadoop-2.6.0
+export HADOOP_CONF_DIR=$HADOOP_HOME/etc/hadoop
+
 # set PATH
-export PATH=$JAVA_HOME/bin:$ANT_HOME/bin:$PATH
+export PATH=$JAVA_HOME/bin:$ANT_HOME/bin:$HADOOP_HOME/bin:$PATH
 echo "PATH=$PATH"
 #
 BOOK_HOME=/Users/mparsian/zmp/github/data-algorithms-book
+CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
+CLASSPATH=$CLASSPATH:$HADOOP_CONF_DIR
 jars=`find $BOOK_HOME/lib -name '*.jar'`
 for j in $jars ; do
 	CLASSPATH=$CLASSPATH:$j
@@ -28,3 +33,4 @@ done
 CLASSPATH=$CLASSPATH:$BOOK_HOME/dist/data_algorithms_book.jar
 #
 export CLASSPATH=$CLASSPATH
+export HADOOP_CLASSPATH=$CLASSPATH
