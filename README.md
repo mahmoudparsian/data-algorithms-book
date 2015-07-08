@@ -7,6 +7,12 @@ Early Release Version                                                           
 ---------------------------------------------------------------------------------------------------|-------------------------------
 [![Data Algorithms Book](./misc/da_small.gif)](http://shop.oreilly.com/product/0636920033950.do)   | [![Data Algorithms Book](./misc/da_book3.jpeg)](http://shop.oreilly.com/product/0636920033950.do)
  
+Going to Production
+===================
+I am so excited to report that the "Data Algorithms" will be going to production this month!
+This mean that a HARD COPY will be available soon!
+  
+
 Author Book Signing @Spark Summit 2015
 =====================================
 O'Reilly author book signings for 
