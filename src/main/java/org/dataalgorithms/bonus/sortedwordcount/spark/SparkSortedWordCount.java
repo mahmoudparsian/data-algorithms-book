@@ -25,15 +25,16 @@ import org.apache.spark.api.java.function.PairFunction;
 public class SparkSortedWordCount {
 
     public static void main(String[] args) throws Exception {
-       if (args.length != 3) {
-          System.err.println("Usage: SparkSortedWordCount <N> <input> <output>");
+       if (args.length != 4) {
+          System.err.println("Usage: SparkSortedWordCount <N> <input> <output> <orderBy>");
           System.exit(1);
        }
 
        // handle input parameters
-       final int N = Integer.parseInt(args[0]);
+       final int N = Integer.parseInt(args[0]); // 2, 3, 4, ...
        final String inputPath = args[1];
        final String outputPath = args[2];
+       final String orderBy = args[3]; // "ascending" OR "descending"
 
        // create a context object, which is used 
        // as a factory for creating new RDDs
@@ -102,7 +103,7 @@ public class SparkSortedWordCount {
        //  where F1 > F2 > ... > Fn
        
        // first: swap K with V so that V will be the key and K will be the value
-       // note that there is no sort by value: that why we have to swap K with V
+       // note that there is no sort by value: that is why we have to swap K with V
        JavaPairRDD<Integer,String> frequencies = counts.mapToPair(
             new PairFunction<
                              Tuple2<String, Integer>,      // T: input
@@ -117,7 +118,7 @@ public class SparkSortedWordCount {
         
         // next, sort frequencies by key 
         // JavaPairRDD<K,V> sortByKey(boolean ascending)
-        JavaPairRDD<Integer,String> sortedByFreq = frequencies.sortByKey(true);
+        JavaPairRDD<Integer,String> sortedByFreq = sort(frequencies, orderBy);
         
         
        // save the sorted final output 
@@ -126,6 +127,17 @@ public class SparkSortedWordCount {
        // close the context and we are done
        ctx.close();
        System.exit(0);
+    }
+    
+    static JavaPairRDD<Integer,String> sort(JavaPairRDD<Integer,String> frequencies, String orderBy) 
+        throws Exception {
+        if (orderBy.equals("ascending")) {
+            return frequencies.sortByKey(true);
+        }
+        else {
+            // "descending" order
+            return frequencies.sortByKey(false);
+        }
     }
     
 }
