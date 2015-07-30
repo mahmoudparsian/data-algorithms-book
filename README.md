@@ -3,6 +3,10 @@
 Data Algorithms: Recipes for Scaling up with Hadoop and Spark
 
 
+[Added a New Bonus Chapter: Rank Product](https://github.com/mahmoudparsian/data-algorithms-book/tree/master/src/main/java/org/dataalgorithms/bonus/rankproduct)
+=========================================
+ 
+
 Production Version is Available NOW!
 ====================================
 [![Data Algorithms Book](./misc/da_book3.jpeg)](http://shop.oreilly.com/product/0636920033950.do)
