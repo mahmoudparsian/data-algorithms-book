@@ -66,7 +66,7 @@ public class SparkRankProductUsingCombineByKey {
             this.count = count;
         }
         public double rank() {
-            return Math.pow((double) product, (double) count); 
+            return Math.pow((double) product, 1.0/ (double) count); 
         }
     }        
         
