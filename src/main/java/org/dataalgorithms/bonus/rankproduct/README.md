@@ -1,6 +1,6 @@
 Rank Product
 ============
-The [Rank Product](./RankProduct.pdf) is defined and two scalable algorithms provided:
+The [Rank Product](./RankProduct.pdf) is defined and two scalable Spark algorithms provided:
 * ````org.dataalgorithms.bonus.rankproduct.spark.SparkRankProductUsingGroupByKey````
 * ````org.dataalgorithms.bonus.rankproduct.spark.SparkRankProductUsingCombineByKey````
 
