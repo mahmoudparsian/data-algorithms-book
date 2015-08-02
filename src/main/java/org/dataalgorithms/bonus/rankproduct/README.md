@@ -4,6 +4,8 @@ The [Rank Product](./RankProduct.pdf) is defined and two scalable algorithms pro
 * ````org.dataalgorithms.bonus.rankproduct.spark.SparkRankProductUsingGroupByKey````
 * ````org.dataalgorithms.bonus.rankproduct.spark.SparkRankProductUsingCombineByKey````
 
+Note that the solution using ````combineByKey()```` is more efficient than the solution using ````groupByKey()````.
+
 Suggestions
 ===========
 Please share your comments/suggestions: mahmoud.parsian@yahoo.com
