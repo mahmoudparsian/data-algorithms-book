@@ -3,6 +3,11 @@
 Data Algorithms: Recipes for Scaling up with Hadoop and Spark
 
 
+Webinar on Rank Product
+=======================
+I will be presenting a webinar on [Rank Product](http://www.oreilly.com/pub/e/3507) @10am PST, on Tuesday, August 25, 2015.
+
+
 [Added a New Bonus Chapter: Rank Product](https://github.com/mahmoudparsian/data-algorithms-book/tree/master/src/main/java/org/dataalgorithms/bonus/rankproduct)
 =========================================
  

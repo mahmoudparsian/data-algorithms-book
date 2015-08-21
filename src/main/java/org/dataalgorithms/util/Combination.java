@@ -1,6 +1,7 @@
 package org.dataalgorithms.util;
 
 import java.util.List;
+import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -20,6 +21,7 @@ public class Combination {
      *
      *    { [], [a], [b], [c], [a, b], [a, c], [b, c], [a, b, c] }
      *
+     * @param <T>
      * @param elements a collection of type T elements
      * @return unique combinations of elements
      */
@@ -38,6 +40,7 @@ public class Combination {
      *
      *     { [a, b], [a, c], [b, c] }
      *
+     * @param <T>
      * @param elements a collection of type T elements
      * @param n size of combinations
      * @return unique combinations of elements of size = n
@@ -80,6 +83,17 @@ public class Combination {
         }
         
         return result;
+    }
+    
+    /**
+     * Basic Test of findSortedCombinations()
+     * 
+     * @param args 
+     */
+    public static void main(String[] args) {
+        List<String> elements = Arrays.asList("a", "b", "c", "d", "e");
+        List<List<String>> combinations = findSortedCombinations(elements, 2);
+        System.out.println(combinations);
     }
 
 }

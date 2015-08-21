@@ -3,7 +3,6 @@ package org.dataalgorithms.chap07.spark;
 
 // STEP-0: import required classes and interfaces
 import org.dataalgorithms.util.Combination;
-import org.dataalgorithms.util.SparkUtil;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -13,10 +12,8 @@ import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaPairRDD;
 import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.api.java.function.PairFlatMapFunction;
-import org.apache.spark.api.java.function.FlatMapFunction;
 import org.apache.spark.api.java.function.Function;
 import org.apache.spark.api.java.function.Function2;
-import org.apache.spark.SparkConf;
 
 /**
  * 
@@ -76,6 +73,7 @@ public class FindAssociationRules {
                                                              List<String>,  // K
                                                              Integer        // V
                                                            >() {
+         @Override
          public Iterable<Tuple2<List<String>,Integer>> call(String transaction) {
             List<String> list = toList(transaction);
             List<List<String>> combinations = Combination.findSortedCombinations(list);
@@ -92,6 +90,7 @@ public class FindAssociationRules {
     
       // STEP-5: combine/reduce frequent patterns
       JavaPairRDD<List<String>, Integer> combined = patterns.reduceByKey(new Function2<Integer, Integer, Integer>() {
+         @Override
          public Integer call(Integer i1, Integer i2) {
             return i1 + i2;
          }
@@ -119,6 +118,7 @@ public class FindAssociationRules {
           List<String>,                    // K
           Tuple2<List<String>,Integer>     // V
         >() {
+       @Override
        public Iterable<Tuple2<List<String>,Tuple2<List<String>,Integer>>> 
           call(Tuple2<List<String>, Integer> pattern) {
             List<Tuple2<List<String>,Tuple2<List<String>,Integer>>> result = 
@@ -155,6 +155,7 @@ public class FindAssociationRules {
           List<Tuple3<List<String>,List<String>,Double>>                   // R: ( ac => b, 1/3): T3(List(a,c), List(b),  0.33)
                                                                            //    ( ad => c, 1/3): T3(List(a,d), List(c),  0.33)
          >() {
+        @Override
         public List<Tuple3<List<String>,List<String>,Double>> call(Tuple2<List<String>,Iterable<Tuple2<List<String>,Integer>>> in) {
             List<Tuple3<List<String>,List<String>,Double>> result = 
                new ArrayList<Tuple3<List<String>,List<String>,Double>>();
