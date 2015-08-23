@@ -29,18 +29,18 @@ public class SecondarySortDriver  extends Configured implements Tool {
 		job.setJarByClass(SecondarySortDriver.class);
 		job.setJobName("SecondarySortDriver");
 		
-    	// args[0] = input directory
-    	// args[1] = output directory
+    		// args[0] = input directory
+    		// args[1] = output directory
 		FileInputFormat.setInputPaths(job, new Path(args[0]));
 		FileOutputFormat.setOutputPath(job, new Path(args[1]));
 
 		job.setOutputKeyClass(DateTemperaturePair.class);
 		job.setOutputValueClass(Text.class);
 		
-        job.setMapperClass(SecondarySortMapper.class);
-        job.setReducerClass(SecondarySortReducer.class);		
-        job.setPartitionerClass(DateTemperaturePartitioner.class);
-        job.setGroupingComparatorClass(DateTemperatureGroupingComparator.class);
+        	job.setMapperClass(SecondarySortMapper.class);
+        	job.setReducerClass(SecondarySortReducer.class);		
+        	job.setPartitionerClass(DateTemperaturePartitioner.class);
+        	job.setGroupingComparatorClass(DateTemperatureGroupingComparator.class);
 
 		boolean status = job.waitForCompletion(true);
 		theLogger.info("run(): status="+status);
