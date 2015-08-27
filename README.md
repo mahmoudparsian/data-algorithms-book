@@ -52,7 +52,7 @@ started adding bonus chapters. Already have added the following bonus chapters (
 
 Bonus chapter                                                                                                                                           | Description
 --------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------
-[Rank Product](https://github.com/mahmoudparsian/data-algorithms-book/tree/master/src/main/java/org/dataalgorithms/bonus/rankproduct)                   | Anagram detection in Spark and MapReduce/Hadoop
+[Rank Product](https://github.com/mahmoudparsian/data-algorithms-book/tree/master/src/main/java/org/dataalgorithms/bonus/rankproduct)                   | Rank Product in Spark using combineByKey() and groupByKey()
 [Anagram](https://github.com/mahmoudparsian/data-algorithms-book/tree/master/src/main/java/org/dataalgorithms/bonus/anagram)                            | Anagram detection in Spark and MapReduce/Hadoop
 [Cartesian](https://github.com/mahmoudparsian/data-algorithms-book/tree/master/src/main/java/org/dataalgorithms/bonus/cartesian)                        | How to perform "cartesian" operation in Spark
 [Friend Recommendation](https://github.com/mahmoudparsian/data-algorithms-book/tree/master/src/main/java/org/dataalgorithms/bonus/friendrecommendation) | Friends Recommnedation algorithms in Spark and MapReduce/Hadoop 
