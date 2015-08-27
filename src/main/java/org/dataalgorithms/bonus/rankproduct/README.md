@@ -1,6 +1,6 @@
 Rank Product
 ============
-The [Rank Product](./RankProduct.pdf) is defined and two scalable Spark algorithms provided:
+The [Rank Product](./RankProduct_chapter.pdf) is defined and two scalable Spark algorithms provided:
 * ````org.dataalgorithms.bonus.rankproduct.spark.SparkRankProductUsingGroupByKey````
 * ````org.dataalgorithms.bonus.rankproduct.spark.SparkRankProductUsingCombineByKey````
 
@@ -8,7 +8,7 @@ Note that the solution using ````combineByKey()```` is more efficient than the s
 
 Webinar Slides
 ==============
-[Slides](./rank_product_webinar_2015_08_25.pdf) for [Apache Spark Solution for Rank Product](http://www.oreilly.com/pub/e/3507)
+[Rank Product Slides](./RankProduct_slides.pdf) for [Apache Spark Solution for Rank Product](http://www.oreilly.com/pub/e/3507)
 
 Suggestions
 ===========
