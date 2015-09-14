@@ -63,7 +63,7 @@ init:
 check-spark-jar:
 
 do-copy-jar:
-     [echo] copying spark-assembly-1.4.0-hadoop2.6.0.jar...
+     [echo] copying spark-assembly-1.5.0-hadoop2.6.0.jar...
      [copy] Copying 1 resource to /home/mp/data-algorithms-book/lib
 
 

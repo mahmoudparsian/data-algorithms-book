@@ -23,7 +23,7 @@ cat ./run_perkeyaverage_spark.sh
 #!/bin/bash
 export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.7.0_60.jdk/Contents/Home
 export BOOK_HOME=/Users/mparsian/zmp/github/data-algorithms-book
-export SPARK_HOME=/Users/mparsian/spark-1.4.0
+export SPARK_HOME=/Users/mparsian/spark-1.5.0
 export SPARK_MASTER=spark://localhost:7077
 export APP_JAR=$BOOK_HOME/dist/data_algorithms_book.jar
 #

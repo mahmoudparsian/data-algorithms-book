@@ -66,7 +66,7 @@ This repository will host all source code and scripts for
 [Data Algorithms Book](http://shop.oreilly.com/product/0636920033950.do).
 This book provides a set of distributed MapReduce algrithms, which are implemented using
 * Java (JDK7)
-* Spark 1.4.0
+* Spark 1.5.0
 * MapReduce/Hadoop 2.6.0
 
 Work in Progress...
@@ -96,7 +96,7 @@ Software | Version
 ---------|--------
 Java     | JDK7
 Hadoop   | 2.6.0
-Spark    | 1.4.0
+Spark    | 1.5.0
 Ant      | 1.9.4
 
 
@@ -117,17 +117,24 @@ misc          | misc. files for this repository
 setenv        | example of how to set your environment variables before building
 data          | sample data files (such as FASTQ and FASTA) for basic testing purposes
 
-Structure of src Directory
-==========================
+Source Code Directory Structure
+===============================
 ![src directory](./misc/source_tree.png)
 
-Also, each chapter has two sub folders:
-```
+* Book chapters
+Each book chapter has two sub folders:
+````
 org.dataalgorithms.chapNN.spark      (for Spark programs)
 org.dataalgorithms.chapNN.mapreduce  (for Mapreduce/Hadoop programs)
 
 where NN = 00, 01, ..., 31
-```
+````
+* Bonus Chapters
+Each bonus chapter has the following package structure:
+````
+org.dataalgorithms.bonus.<chapter-name>.spark      (for Spark programs)
+org.dataalgorithms.bonus.<chapter-name>.mapreduce  (for Mapreduce/Hadoop programs)
+````
 
 How To Build using Apache's Ant
 ===============================

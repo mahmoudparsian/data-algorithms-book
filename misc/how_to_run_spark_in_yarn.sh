@@ -6,7 +6,7 @@
 #   1. You have installed the data-algorithms-book  in /home/mp/data-algorithms-book (BOOK_HOME)
 #   2. Hadoop is installed at /usr/local/hadoop-2.6.0 (HADOOP_HOME)
 #   3. Hadoop's conf directory is $HADOOP_HOME/etc/hadoop
-#   4. Spark 1.4.0 is installed at /usr/local/spark-1.4.0
+#   4. Spark 1.5.0 is installed at /usr/local/spark-1.5.0
 #   5. And you have built the source code and generated $BOOK_HOME/dist/data_algorithms_book.jar
 #   6. And you have two input parameters identified as P1 and P2
 #   7. You need to modify spark-submit parameters accordingly
@@ -15,8 +15,8 @@
 export JAVA_HOME=/usr/java/jdk7
 # java is defined at $JAVA_HOME/bin/java
 export BOOK_HOME=/home/mp/data-algorithms-book
-export SPARK_HOME=/usr/local/spark-1.4.0
-export THE_SPARK_JAR=$BOOK_HOME/lib/spark-assembly-1.4.0-hadoop2.6.0.jar
+export SPARK_HOME=/usr/local/spark-1.5.0
+export THE_SPARK_JAR=$BOOK_HOME/lib/spark-assembly-1.5.0-hadoop2.6.0.jar
 export APP_JAR=$BOOK_HOME/dist/data_algorithms_book.jar
 #
 export HADOOP_HOME=/usr/local/hadoop-2.6.0

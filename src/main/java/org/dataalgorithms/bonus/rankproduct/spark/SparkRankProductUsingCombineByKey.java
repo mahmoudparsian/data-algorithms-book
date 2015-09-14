@@ -122,7 +122,7 @@ public class SparkRankProductUsingCombineByKey {
         // as a factory for creating new RDDs
         JavaSparkContext context = Util.createJavaSparkContext(useYARN);
                        
-        // Spark 1.4.0 requires an array for creating union of many RDDs
+        // Spark requires an array for creating union of many RDDs
         int index = 0;
         JavaPairRDD<String, Double>[] means = new JavaPairRDD[inputPathMultipleStudies.size()];
         for (String inputPathSingleStudy : inputPathMultipleStudies) {
