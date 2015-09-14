@@ -121,16 +121,14 @@ Source Code Directory Structure
 ===============================
 ![src directory](./misc/source_tree.png)
 
-* Book chapters
-Each book chapter has two sub folders:
+* Book chapters: each book chapter has two sub folders:
 ````
 org.dataalgorithms.chapNN.spark      (for Spark programs)
 org.dataalgorithms.chapNN.mapreduce  (for Mapreduce/Hadoop programs)
 
 where NN = 00, 01, ..., 31
 ````
-* Bonus Chapters
-Each bonus chapter has the following package structure:
+* Bonus Chapters: each bonus chapter has the following package structure:
 ````
 org.dataalgorithms.bonus.<chapter-name>.spark      (for Spark programs)
 org.dataalgorithms.bonus.<chapter-name>.mapreduce  (for Mapreduce/Hadoop programs)
