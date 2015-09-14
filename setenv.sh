@@ -1,7 +1,14 @@
-# This is an example to set 3 environment variables
-# You should update your script accrodingly
+# This is an example to set 3 environment variables 
+# for compiling/running MapReduce and Spark programs
+
+# IMPORTANT NOTE: You should update your script 
+# accordingly, where ever you see "mparsian", 
+# please change it to your installed directories.
+
+
 #
 #set Java as jdk7
+#
 
 # macbook:
 export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.7.0_60.jdk/Contents/Home
@@ -11,9 +18,16 @@ export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.7.0_60.jdk/Contents/Home
 
 echo "JAVA_HOME=$JAVA_HOME"
 #
+
+#
 # set ant 
+#
 export ANT_HOME=/Users/mparsian/zmp/zs/apache-ant-1.9.4
 echo "ANT_HOME=$ANT_HOME"
+#
+
+#
+# set your hadoop environment
 #
 export HADOOP_HOME=/Users/mparsian/zmp/zs/hadoop-2.6.0
 export HADOOP_CONF_DIR=$HADOOP_HOME/etc/hadoop
