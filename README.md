@@ -3,8 +3,8 @@
 Data Algorithms: Recipes for Scaling up with Hadoop and Spark
 
 
-Webinars Related to Data Algorithms(./misc/webinars.md)
-===================================
+[Webinars Related to Data Algorithms](./misc/webinars.md)
+=====================================
 
 
 [Added a New Bonus Chapter: Rank Product](https://github.com/mahmoudparsian/data-algorithms-book/tree/master/src/main/java/org/dataalgorithms/bonus/rankproduct)
