@@ -4,8 +4,8 @@
 * Data Algorithms: Recipes for Scaling up with Hadoop and Spark
 * This GitHub repository will host all source code and scripts for [Data Algorithms Book](http://shop.oreilly.com/product/0636920033950.do).
 
-[Webinars Related to Data Algorithms](./misc/webinars.md)
-=====================================
+[Webinars on to Data Algorithms](./misc/webinars.md)
+================================
 
 
 [Added a New Bonus Chapter: Rank Product](https://github.com/mahmoudparsian/data-algorithms-book/tree/master/src/main/java/org/dataalgorithms/bonus/rankproduct)
