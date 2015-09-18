@@ -6,8 +6,8 @@
 * Publisher: O'Reilly Media
  
 
-[Webinars on to Data Algorithms](./misc/webinars.md)
-================================
+[Webinars on Data Algorithms](./misc/webinars.md)
+=============================
 
 
 [Added a New Bonus Chapter: Rank Product](https://github.com/mahmoudparsian/data-algorithms-book/tree/master/src/main/java/org/dataalgorithms/bonus/rankproduct)
