@@ -1,8 +1,10 @@
 [Data Algorithms Book](http://shop.oreilly.com/product/0636920033950.do)
 ======================
 * Author: Mahmoud Parsian (mahmoud.parsian@yahoo.com)
-* Data Algorithms: Recipes for Scaling up with Hadoop and Spark
+* Title: [Data Algorithms: Recipes for Scaling up with Hadoop and Spark](http://shop.oreilly.com/product/0636920033950.do) 
 * This GitHub repository will host all source code and scripts for [Data Algorithms Book](http://shop.oreilly.com/product/0636920033950.do).
+* Publisher: O'Reilly Media
+ 
 
 [Webinars on to Data Algorithms](./misc/webinars.md)
 ================================
@@ -28,14 +30,6 @@ Work in Progress...
 Please note that this is a work in progress...
 
 ![Data Algorithms Book Work In Progress](./misc/work_in_progress2.jpeg)
-
-
-URL To Data Algorithms Book
-===========================
-* Title: [Data Algorithms](http://shop.oreilly.com/product/0636920033950.do)
-* Author: Mahmoud Parsian
-* Publisher: O'Reilly Media
-
 
 [Source Code and Software](./misc/source-code.md)
 ==========================
