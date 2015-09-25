@@ -14,7 +14,7 @@ The "Attribute Value Frequency (AVF) algorithm is simple and faster approach to
 detect outliers in categorical dataset which minimizes the number of scans over 
 the data. It does not create more space and more search for combinations of attribute 
 values or item sets. An outlier point Xi is de-fined based on the AVF Score" 
-(source: [Analysis of outlier detection in categorical dataset](http://pnrsolution.org/Datacenter/Vol3/Issue2/85.pdf)
+(source: [Analysis of outlier detection in categorical dataset](http://pnrsolution.org/Datacenter/Vol3/Issue2/85.pdf))
 
 For additional reference: 
  * Title: Scalable and Efficient Outlier Detection in Large Distributed Data Sets with Mixed-Type Attributes
