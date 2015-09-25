@@ -20,7 +20,7 @@ For additional references:
  * [Scalable and Efficient Outlier Detection in Large Distributed Data Sets with Mixed-Type Attributes]
    (http://etd.fcla.edu/CF/CFE0002734/Koufakou_Anna_200908_PhD.pdf)
  
- * [Analysis of outlier detection in categorical dataset]
+ * [Analysis of Outlier Detection in Categorical Dataset]
    (http://pnrsolution.org/Datacenter/Vol3/Issue2/85.pdf)
  
 Spark Algorithm for Outlier Detection
