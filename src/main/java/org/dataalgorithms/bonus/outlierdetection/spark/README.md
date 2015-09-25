@@ -1,0 +1,91 @@
+Outlier Detection for Categorical Datasets
+==========================================
+The Spark program (````OutlierDetection````) is an implementation
+of a fast and simple outlier detection method for categorical datasets,
+called Attribute Value Frequency (AVF). The Spark implementation is
+based on the following paper:
+* Title: Fast Parallel Outlier Detection for Categorical Datasets using MapReduce
+* URL: http://www.eecs.ucf.edu/georgiopoulos/sites/default/files/247.pdf
+
+
+For additional reference: 
+ * Title: Scalable and Efficient Outlier Detection in Large Distributed Data Sets with Mixed-Type Attributes
+ * URL: http://etd.fcla.edu/CF/CFE0002734/Koufakou_Anna_200908_PhD.pdf
+ 
+Spark Algorithm for Outlier Detection
+=====================================
+
+Step    | Description
+--------+------------------------------------------------------------------------
+Step-1: | Handle input parameters
+Step-2: | Create a spark context and then read input and create the first RDD
+Step-3: | Perform the map() for each RDD element
+Step-4: | Find frequencies of all categirical data (keep categorical-data as String)
+Step-5: | Build an associative array to be used for finding AVF Score
+Step-6: | Compute AVF Score using the built associative array
+Step-7: | Take the lowest K AVF scores
+Step-8: | Done & close the spark context
+ 
+Input
+===== 
+ * Sample input URL: https://archive.ics.uci.edu/ml/machine-learning-databases/breast-cancer-wisconsin/breast-cancer-wisconsin.data
+ * Sample input Data:
+ ````
+ ...
+ 1000025,5,1,1,1,2,1,3,1,1,2
+ 1002945,5,4,4,5,7,10,3,2,1,2
+ 1015425,3,1,1,1,2,2,3,1,1,2
+ 1016277,6,8,8,1,3,4,3,7,1,2
+ 1017023,4,1,1,3,2,1,3,1,1,2
+ 1017122,8,10,10,8,7,10,9,7,1,4
+ ...
+````
+ 
+Input Format
+============
+````
+<record-id><,><data1><,><data2><,><data3><,>...
+````
+
+Shell Script to Run ````OutlierDetection````
+=============================================
+````
+$ cat run_spark_outlier_detection_yarn.sh 
+# define the installation dir for hadoop
+export HADOOP_HOME=/Users/mparsian/zmp/zs/hadoop-2.5.0
+export HADOOP_CONF_DIR=$HADOOP_HOME/etc/hadoop
+export HADOOP_HOME_WARN_SUPPRESS=true
+
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.7.0_60.jdk/Contents/Home
+export BOOK_HOME=/Users/mparsian/zmp/github/data-algorithms-book
+export SPARK_HOME=/Users/mparsian/spark-1.5.0
+#export SPARK_MASTER=spark://localhost:7077
+export SPARK_JAR=$BOOK_HOME/lib/spark-assembly-1.5.0-hadoop2.6.0.jar
+export APP_JAR=$BOOK_HOME/dist/data_algorithms_book.jar
+# defines some environment for hadoop
+source $HADOOP_CONF_DIR/hadoop-env.sh
+#
+# build all other dependent jars in OTHER_JARS
+JARS=`find $BOOK_HOME/lib -name '*.jar'  ! -name '*spark-assembly-1.5.0-hadoop2.6.0.jar' `
+OTHER_JARS=""
+for J in $JARS ; do 
+   OTHER_JARS=$J,$OTHER_JARS
+done
+#
+
+# define input for Hadoop/HDFS
+K=10
+INPUT=/outlierdetection/input
+#
+driver=org.dataalgorithms.bonus.outlierdetection.spark.OutlierDetection
+$SPARK_HOME/bin/spark-submit --class $driver \
+	--master yarn-cluster \
+	--jars $OTHER_JARS \
+    --conf "spark.yarn.jar=$SPARK_JAR" \
+	$APP_JAR $K $INPUT
+````
+
+
+Comments and Suggestions
+========================
+Please email your comments/suggestions to improve the solution: mahmoud.parsian@yahoo.com
