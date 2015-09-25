@@ -1,5 +1,7 @@
 Outlier Detection for Categorical Datasets
 ==========================================
+In Math., an "outlier" is a number in a set of data that is 
+either way smaller or way bigger than most of the data.
 The main task of "outlier detection" is to find small set of 
 data are exceptional compared with the rest of large dataset.
 
