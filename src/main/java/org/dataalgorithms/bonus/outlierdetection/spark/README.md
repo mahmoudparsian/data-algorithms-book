@@ -14,6 +14,7 @@ For additional reference:
  
 Spark Algorithm for Outlier Detection
 =====================================
+[org.dataalgorithms.bonus.outlierdetection.spark.OutlierDetection](./OutlierDetection.java)
 
 Step    | Description
 --------|------------------------------------------------------------------------
