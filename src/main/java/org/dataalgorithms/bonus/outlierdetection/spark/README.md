@@ -16,7 +16,7 @@ Spark Algorithm for Outlier Detection
 =====================================
 
 Step    | Description
---------+------------------------------------------------------------------------
+--------|------------------------------------------------------------------------
 Step-1: | Handle input parameters
 Step-2: | Create a spark context and then read input and create the first RDD
 Step-3: | Perform the map() for each RDD element
@@ -30,7 +30,8 @@ Input
 ===== 
  * Sample input URL: https://archive.ics.uci.edu/ml/machine-learning-databases/breast-cancer-wisconsin/breast-cancer-wisconsin.data
  * Sample input Data:
- ````
+ 
+````
  ...
  1000025,5,1,1,1,2,1,3,1,1,2
  1002945,5,4,4,5,7,10,3,2,1,2
