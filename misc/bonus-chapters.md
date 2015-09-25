@@ -13,3 +13,4 @@ Bonus chapter                                                                   
 [Friend Recommendation](https://github.com/mahmoudparsian/data-algorithms-book/tree/master/src/main/java/org/dataalgorithms/bonus/friendrecommendation) | Friends Recommnedation algorithms in Spark and MapReduce/Hadoop 
 [Log Query](https://github.com/mahmoudparsian/data-algorithms-book/tree/master/src/main/java/org/dataalgorithms/bonus/logquery)                         | Basic log query implementation  in Spark and MapReduce/Hadoop  
 [Word Count](https://github.com/mahmoudparsian/data-algorithms-book/tree/master/src/main/java/org/dataalgorithms/bonus/wordcount)                       | Hello World! of Spark and MapReduce/Hadoop   
+[Outlier Detection](https://github.com/mahmoudparsian/data-algorithms-book/tree/master/src/main/java/org/dataalgorithms/bonus/outlierdetection/spark)   | Outlier Detection for Categorical Datasets
