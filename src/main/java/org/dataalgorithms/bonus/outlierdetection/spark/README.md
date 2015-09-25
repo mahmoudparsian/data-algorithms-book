@@ -16,9 +16,12 @@ the data. It does not create more space and more search for combinations of attr
 values or item sets. An outlier point Xi is de-fined based on the AVF Score" 
 (source: [Analysis of outlier detection in categorical dataset](http://pnrsolution.org/Datacenter/Vol3/Issue2/85.pdf)).
 
-For additional reference: 
+For additional references: 
  * Title: Scalable and Efficient Outlier Detection in Large Distributed Data Sets with Mixed-Type Attributes
  * URL: http://etd.fcla.edu/CF/CFE0002734/Koufakou_Anna_200908_PhD.pdf
+ 
+ * Title: Analysis of outlier detection in categorical dataset
+ * URL: http://pnrsolution.org/Datacenter/Vol3/Issue2/85.pdf
  
 Spark Algorithm for Outlier Detection
 =====================================
@@ -32,7 +35,7 @@ Step-3: | Perform the map() for each RDD element
 Step-4: | Find frequencies of all categirical data (keep categorical-data as String)
 Step-5: | Build an associative array to be used for finding AVF Score
 Step-6: | Compute AVF Score using the built associative array
-Step-7: | Take the lowest K AVF scores
+Step-7: | Take the lowest K AVF scores (return K detected outliers with minimum AVF Score)
 Step-8: | Done & close the spark context
  
 Input
