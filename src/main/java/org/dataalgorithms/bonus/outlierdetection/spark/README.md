@@ -1,5 +1,8 @@
 Outlier Detection for Categorical Datasets
 ==========================================
+The main task of "outlier detection" is to find small set of 
+data are exceptional compared with the rest of large dataset.
+
 The Spark program (````OutlierDetection````) is an implementation
 of a fast and simple outlier detection method for categorical datasets,
 called Attribute Value Frequency (AVF). The Spark implementation is
@@ -7,6 +10,11 @@ based on the following paper:
 * Title: Fast Parallel Outlier Detection for Categorical Datasets using MapReduce
 * URL: http://www.eecs.ucf.edu/georgiopoulos/sites/default/files/247.pdf
 
+The "Attribute Value Frequency (AVF) algorithm is simple and faster approach to 
+detect outliers in categorical dataset which minimizes the number of scans over 
+the data. It does not create more space and more search for combinations of attribute 
+values or item sets. An outlier point Xi is de-fined based on the AVF Score" 
+(source: [Analysis of outlier detection in categorical dataset](http://pnrsolution.org/Datacenter/Vol3/Issue2/85.pdf)
 
 For additional reference: 
  * Title: Scalable and Efficient Outlier Detection in Large Distributed Data Sets with Mixed-Type Attributes
