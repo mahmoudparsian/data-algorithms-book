@@ -4,6 +4,7 @@
 * Title: [Data Algorithms: Recipes for Scaling up with Hadoop and Spark](http://shop.oreilly.com/product/0636920033950.do) 
 * This GitHub repository will host all source code and scripts for [Data Algorithms Book](http://shop.oreilly.com/product/0636920033950.do).
 * Publisher: O'Reilly Media
+* Published date: July 2015
  
 
 [Webinars on Data Algorithms](./misc/webinars.md)
