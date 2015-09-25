@@ -17,11 +17,11 @@ values or item sets. An outlier point Xi is de-fined based on the AVF Score"
 (source: [Analysis of outlier detection in categorical dataset](http://pnrsolution.org/Datacenter/Vol3/Issue2/85.pdf)).
 
 For additional references: 
- * Title: Scalable and Efficient Outlier Detection in Large Distributed Data Sets with Mixed-Type Attributes
- 	** URL: http://etd.fcla.edu/CF/CFE0002734/Koufakou_Anna_200908_PhD.pdf
+ * [Scalable and Efficient Outlier Detection in Large Distributed Data Sets with Mixed-Type Attributes]
+   (http://etd.fcla.edu/CF/CFE0002734/Koufakou_Anna_200908_PhD.pdf)
  
- * Title: Analysis of outlier detection in categorical dataset
- 	** URL: http://pnrsolution.org/Datacenter/Vol3/Issue2/85.pdf
+ * [Analysis of outlier detection in categorical dataset]
+   (http://pnrsolution.org/Datacenter/Vol3/Issue2/85.pdf)
  
 Spark Algorithm for Outlier Detection
 =====================================
