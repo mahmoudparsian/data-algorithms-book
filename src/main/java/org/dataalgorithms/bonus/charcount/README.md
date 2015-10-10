@@ -1,6 +1,5 @@
-Introduction to MapReduce
-=========================
 [Introduction to MapReduce](./Introduction-to-MapReduce.pdf)
+===========================
 
 
 Spark Examples
