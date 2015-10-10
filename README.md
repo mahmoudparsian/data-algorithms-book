@@ -11,14 +11,14 @@
 =============================
 
 
-[New Bonus Chapter: Introduction to MapReduce](https://github.com/mahmoudparsian/data-algorithms-book/tree/master/src/main/java/org/dataalgorithms/bonus/charcount)
-==============================================
+[Bonus Chapter: Introduction to MapReduce](https://github.com/mahmoudparsian/data-algorithms-book/tree/master/src/main/java/org/dataalgorithms/bonus/charcount)
+==========================================
 
 
-[New Bonus Chapter: Outlier Detection](https://github.com/mahmoudparsian/data-algorithms-book/tree/master/src/main/java/org/dataalgorithms/bonus/outlierdetection/spark)
+[Bonus Chapter: Outlier Detection](https://github.com/mahmoudparsian/data-algorithms-book/tree/master/src/main/java/org/dataalgorithms/bonus/outlierdetection/spark)
 =====================================
 
-[New Bonus Chapter: Rank Product](https://github.com/mahmoudparsian/data-algorithms-book/tree/master/src/main/java/org/dataalgorithms/bonus/rankproduct)
+[Bonus Chapter: Rank Product](https://github.com/mahmoudparsian/data-algorithms-book/tree/master/src/main/java/org/dataalgorithms/bonus/rankproduct)
 =========================================
  
 
