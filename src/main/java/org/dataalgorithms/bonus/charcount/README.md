@@ -1,9 +1,8 @@
 [Introduction to MapReduce](./Introduction-to-MapReduce.pdf)
 ===========================
-This is an introductory and companion chapter for the 
-[Data Algorithms book](http://shop.oreilly.com/product/0636920033950.do) on 
-MapReduce programming model. Examples are provided
-in Spark and Hadoop.
+This is an [introductory and companion chapter](./Introduction-to-MapReduce.pdf) 
+for the [Data Algorithms book](http://shop.oreilly.com/product/0636920033950.do) 
+on MapReduce programming model. Examples are provided in Spark and Hadoop.
 
 Spark Examples
 ==============
