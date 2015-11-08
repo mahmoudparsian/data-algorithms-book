@@ -23,7 +23,7 @@ public class CharCount {
 
     public static void main(String[] args) throws Exception {
        if (args.length != 2) {
-          System.err.println("Usage: SparkCharCount <input> <output>");
+          System.err.println("Usage: CharCount <input> <output>");
           System.exit(1);
        }
 
