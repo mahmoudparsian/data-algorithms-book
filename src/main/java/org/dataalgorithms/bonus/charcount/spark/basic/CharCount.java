@@ -20,8 +20,19 @@ import org.apache.spark.api.java.function.PairFlatMapFunction;
  *
  */
 public class CharCount {
+    
+    static void printArguments(String[] args) {
+        if ((args == null) || (args.length == 0)) {
+            System.out.println("no arguments passed...");
+            return;
+        }
+        for (int i=0; i < args.length; i++){
+            System.out.println("i="+i+"\t"+args[i]);
+        }
+    }
 
     public static void main(String[] args) throws Exception {
+       printArguments(args);
        if (args.length != 2) {
           System.err.println("Usage: CharCount <input> <output>");
           System.exit(1);
