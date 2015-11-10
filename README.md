@@ -6,6 +6,9 @@
 * Publisher: O'Reilly Media
 * Published date: July 2015
  
+[Guest Speaker @NC State University](./misc/Mahmoud_Parsian_Guest_Speaker.pdf)
+====================================
+
 
 [Webinars on Data Algorithms](./misc/webinars.md)
 =============================
