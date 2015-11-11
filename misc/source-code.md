@@ -4,7 +4,7 @@ This repository will host all source code and scripts for
 [Data Algorithms Book](http://shop.oreilly.com/product/0636920033950.do).
 This book provides a set of distributed MapReduce algrithms, which are implemented using
 * Java (JDK7)
-* Spark 1.5.0
+* Spark 1.5.2
 * MapReduce/Hadoop 2.6.0
 
 Source Code
@@ -20,7 +20,7 @@ Software | Version
 ---------|--------
 Java     | JDK7
 Hadoop   | 2.6.0
-Spark    | 1.5.0
+Spark    | 1.5.2
 Ant      | 1.9.4
 
 
@@ -56,4 +56,10 @@ where NN = 00, 01, ..., 31
 ````
 org.dataalgorithms.bonus.<chapter-name>.spark      (for Spark programs)
 org.dataalgorithms.bonus.<chapter-name>.mapreduce  (for Mapreduce/Hadoop programs)
+````
+
+Machine Learning Algorithms
+===========================
+````
+org.dataalgorithms.machinelearning.<package-name> 
 ````
