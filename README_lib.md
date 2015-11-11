@@ -23,7 +23,7 @@ Option-2: Download
 ==================
 You may download that jar file from the following URL and then copy it to the `lib` directory:
 
-* [spark-assembly-1.5.0-hadoop2.6.0.jar](http://www.mapreduce4hackers.com/dataalgorithmsbook/lib/spark-assembly-1.5.2-hadoop2.6.0.jar)
+* [spark-assembly-1.5.2-hadoop2.6.0.jar](http://www.mapreduce4hackers.com/dataalgorithmsbook/lib/spark-assembly-1.5.2-hadoop2.6.0.jar)
 * Size of this jar is: 146,836,821  bytes
 * This jar is built using Spark 1.5.2 against Hadoop 2.6.0 with JDK7
     
@@ -38,7 +38,7 @@ You may build this jar file from the Spark 1.5.2 version: this is how:
 * Open it it up by
 
             cd <your-install-dir>
-            tar zvfx spark-1.5.0.tgz
+            tar zvfx spark-1.5.2.tgz
             cd spark-1.5.2
             sbt/sbt -Phadoop-2.6 -Dhadoop.version=2.6.0 -Pyarn assembly
 

@@ -64,9 +64,9 @@ export HADOOP_HOME_WARN_SUPPRESS=true
 export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.7.0_60.jdk/Contents/Home
 # java is defined at $JAVA_HOME/bin/java
 export BOOK_HOME=/Users/mparsian/zmp/github/data-algorithms-book
-export SPARK_HOME=/Users/mparsian/spark-1.5.0
+export SPARK_HOME=/Users/mparsian/spark-1.5.2
 export SPARK_MASTER=spark://localhost:7077
-export SPARK_JAR=$BOOK_HOME/lib/spark-assembly-1.5.0-hadoop2.6.0.jar
+export SPARK_JAR=$BOOK_HOME/lib/spark-assembly-1.5.2-hadoop2.6.0.jar
 export APP_JAR=$BOOK_HOME/dist/data_algorithms_book.jar
 # defines some environment for hadoop
 source $HADOOP_CONF_DIR/hadoop-env.sh
