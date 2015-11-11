@@ -27,8 +27,9 @@ echo "ANT_HOME=$ANT_HOME"
 #
 
 #
-# set your hadoop environment
+# set your spark and hadoop environments
 #
+export SPARK_HOME=/usr/local/spark-1.5.2
 export HADOOP_HOME=/Users/mparsian/zmp/zs/hadoop-2.6.0
 export HADOOP_CONF_DIR=$HADOOP_HOME/etc/hadoop
 
