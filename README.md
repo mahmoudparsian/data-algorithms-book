@@ -9,6 +9,8 @@
 [Guest Speaker @NC State University](./misc/Mahmoud_Parsian_Guest_Speaker.pdf)
 ====================================
 
+[Beyond MapReduce: Spark @NC State University](http://mapreduce4hackers.com/docs/north_carolina_state_univ_spark_2015_11_23.pptx)
+==============================================
 
 [Webinars on Data Algorithms](./misc/webinars.md)
 =============================
