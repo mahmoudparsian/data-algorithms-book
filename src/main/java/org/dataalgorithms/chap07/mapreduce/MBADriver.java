@@ -1,7 +1,6 @@
 package org.dataalgorithms.chap07.mapreduce;
 
 import org.apache.hadoop.conf.Configured;
-import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.util.Tool;
@@ -12,12 +11,12 @@ import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 import org.apache.hadoop.mapreduce.lib.output.TextOutputFormat;
-import org.apache.hadoop.mapreduce.lib.output.SequenceFileOutputFormat;
 
 import org.apache.log4j.Logger;
+import org.dataalgorithms.util.HadoopUtil;
 
 /**
- * This is the driver calss to submit the MBA job.
+ * This is the driver class to submit the MBA job.
  *
  * Market Basket Analysis Algorithm: find the association rule for the list of items. 
  * in a basket; That is, there are transaction data in a store
@@ -58,6 +57,7 @@ public class MBADriver extends Configured implements Tool {
    }
 
 
+   @Override
    public int run(String args[]) throws Exception {
       String inputPath = args[0];
       String outputPath = args[1];
@@ -70,8 +70,12 @@ public class MBADriver extends Configured implements Tool {
       // job configuration
       Job job = new Job(getConf());
       job.setJobName("MBADriver");
-      job.setJarByClass(MBADriver.class);
       job.getConfiguration().setInt("number.of.pairs", numberOfPairs);   
+      		
+      // job.setJarByClass(MBADriver.class);
+      // add jars to distributed cache
+      HadoopUtil.addJarsToDistributedCache(job, "/lib/");
+
 
       //input/output path
       FileInputFormat.setInputPaths(job, new Path(inputPath));
