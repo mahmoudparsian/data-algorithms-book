@@ -22,22 +22,21 @@ import edu.umd.cloud9.io.pair.PairOfLongs;
  *
  * Driver program, which submits 3 MapReduce jobs: job1, job2, and job3.
  *
- *  Takes two arguments, the edges file and output file. 
- *   
+ * Takes two arguments, the edges file and output file.
+ *
  * Input File must be of the form:
- *    
- *    <node1><space><node2>
- *    where
- *         node1: long 
- *         node2: long 
+ *
+ * <node1><space><node2>
+ * where node1: long node2: long
  *
  * @author Mahmoud Parsian
  *
- */ 
+ */
 public class TriangleCounterDriver extends Configured implements Tool {
 
+    @Override
     public int run(String[] args) throws Exception {
-    
+
         //  key hadoop generated, ignored here
         //  value = <node1><space><node2>
         Job job1 = new Job(getConf());
@@ -57,7 +56,7 @@ public class TriangleCounterDriver extends Configured implements Tool {
         // key = PairOfLongs
         // value = Long
         Job job2 = new Job(getConf());
-        job2.setJobName("triangles");		
+        job2.setJobName("triangles");
         job2.setMapOutputKeyClass(PairOfLongs.class);
         job2.setMapOutputValueClass(LongWritable.class);
         job2.setOutputKeyClass(Text.class);
@@ -65,29 +64,32 @@ public class TriangleCounterDriver extends Configured implements Tool {
         job2.setJarByClass(TriangleCounterDriver.class);
         job2.setMapperClass(TriadsMapper.class);
         job2.setReducerClass(TriadsReducer.class);
-		job2.setInputFormatClass(SequenceFileInputFormat.class);
+        job2.setInputFormatClass(SequenceFileInputFormat.class);
         job2.setOutputFormatClass(TextOutputFormat.class);
         FileInputFormat.setInputPaths(job2, new Path("/triangles/tmp1"));
         FileOutputFormat.setOutputPath(job2, new Path("/triangles/tmp2"));
-
 
         Job job3 = new Job(getConf());
         job3.setJobName("count");
         job3.setMapOutputKeyClass(Text.class);
         job3.setMapOutputValueClass(Text.class);
         job3.setOutputKeyClass(Text.class);
-        job3.setOutputValueClass(Text.class);    
-        job3.setJarByClass(TriangleCounterDriver.class);        
+        job3.setOutputValueClass(Text.class);
+        job3.setJarByClass(TriangleCounterDriver.class);
         job3.setMapperClass(UniqueTriadsMapper.class);
         job3.setReducerClass(UniqueTriadsReducer.class);
-		job3.setInputFormatClass(KeyValueTextInputFormat.class);
+        job3.setInputFormatClass(KeyValueTextInputFormat.class);
         job3.setOutputFormatClass(TextOutputFormat.class);
         FileInputFormat.setInputPaths(job3, new Path("/triangles/tmp2"));
         FileOutputFormat.setOutputPath(job3, new Path(args[1]));
 
         int status = job1.waitForCompletion(true) ? 0 : 1;
-        if (status == 0) status = job2.waitForCompletion(true) ? 0 : 1;
-        if (status == 0) status = job3.waitForCompletion(true) ? 0 : 1;
+        if (status == 0) {
+            status = job2.waitForCompletion(true) ? 0 : 1;
+        }
+        if (status == 0) {
+            status = job3.waitForCompletion(true) ? 0 : 1;
+        }
         return status;
     }
 

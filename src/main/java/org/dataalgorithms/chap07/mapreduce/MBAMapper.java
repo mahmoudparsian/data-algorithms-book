@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.Text;
-import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.mapreduce.Mapper;
 
 import org.apache.log4j.Logger;
@@ -49,11 +48,13 @@ public class MBAMapper extends Mapper<LongWritable, Text, Text, IntWritable> {
 
    int numberOfPairs; // will be read by setup(), set by driver
    
+   @Override
    protected void setup(Context context) throws IOException, InterruptedException {
       this.numberOfPairs = context.getConfiguration().getInt("number.of.pairs", DEFAULT_NUMBER_OF_PAIRS);
       THE_LOGGER.info("setup() numberOfPairs = " + numberOfPairs);
     }
 
+   @Override
    public void map(LongWritable key, Text value, Context context) 
       throws IOException, InterruptedException {
 
