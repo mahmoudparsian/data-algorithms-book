@@ -5,6 +5,9 @@
 * This GitHub repository will host all source code and scripts for [Data Algorithms Book](http://shop.oreilly.com/product/0636920033950.do).
 * Publisher: O'Reilly Media
 * Published date: July 2015
+
+[Upgraded to Spark-1.6.0](http://spark.apache.org/news/spark-1-6-0-released.html)
+=========================
  
 [Guest Speaker @NC State University](./misc/Mahmoud_Parsian_Guest_Speaker.pdf)
 ====================================

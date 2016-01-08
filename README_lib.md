@@ -11,7 +11,7 @@ The first time you build by
 
         ant
     
-The `spark-assembly-1.5.2-hadoop2.6.0.jar` will be copied/downloaded from the following URL directory:
+The `spark-assembly-1.6.0-hadoop2.6.0.jar` will be copied/downloaded from the following URL directory:
 
         http://www.mapreduce4hackers.com/dataalgorithmsbook/lib/
     
@@ -23,7 +23,7 @@ Option-2: Download
 ==================
 You may download that jar file from the following URL and then copy it to the `lib` directory:
 
-* [spark-assembly-1.5.2-hadoop2.6.0.jar](http://www.mapreduce4hackers.com/dataalgorithmsbook/lib/spark-assembly-1.5.2-hadoop2.6.0.jar)
+* [spark-assembly-1.6.0-hadoop2.6.0.jar](http://www.mapreduce4hackers.com/dataalgorithmsbook/lib/spark-assembly-1.6.0-hadoop2.6.0.jar)
 * Size of this jar is: 146,836,821  bytes
 * This jar is built using Spark 1.5.2 against Hadoop 2.6.0 with JDK7
     
@@ -45,9 +45,9 @@ You may build this jar file from the Spark 1.5.2 version: this is how:
 
 * Once your build is successful, then you will have your desired jar file as:
     
-            <your-install-dir>/spark-1.5.2/assembly/target/scala-2.10/spark-assembly-1.5.2-hadoop2.6.0.jar
+            <your-install-dir>/spark-1.5.2/assembly/target/scala-2.10/spark-assembly-1.6.0-hadoop2.6.0.jar
 
-* Finally, copy `spark-assembly-1.5.2-hadoop2.6.0.jar` to the 
+* Finally, copy `spark-assembly-1.6.0-hadoop2.6.0.jar` to the 
 `<your-installed-directory>/data-algorithms-book/lib/` directory.
 
 
