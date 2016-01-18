@@ -24,7 +24,7 @@ Option-2: Download
 You may download that jar file from the following URL and then copy it to the `lib` directory:
 
 * [spark-assembly-1.6.0-hadoop2.6.0.jar](http://www.mapreduce4hackers.com/dataalgorithmsbook/lib/spark-assembly-1.6.0-hadoop2.6.0.jar)
-* Size of this jar is: 146,836,821  bytes
+* Size of this jar is: 188,086,444 bytes
 * This jar is built using Spark 1.6.0 against Hadoop 2.6.0 with JDK7
     
 
