@@ -164,3 +164,8 @@ For details on Linear Regression, you should read
 http://www.datasciencecentral.com/profiles/blogs/predicting-car-prices-part-1-linear-regression
 
 * Training Data Set: https://github.com/datailluminations/PredictingToyotaPricesBlog/blob/master/ToyotaCorolla.csv
+
+
+
+
+[![Data Algorithms Book](https://raw.githubusercontent.com/mahmoudparsian/data-algorithms-book/master/misc/data_algorithms_image.jpg)](http://shop.oreilly.com/product/0636920033950.do)
