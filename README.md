@@ -7,8 +7,8 @@
 * Published date: July 2015
 
 
-[Machine Learning Algorithms](./src/main/java/org/dataalgorithms/machinelearning)
-=============================
+[Machine Learning Algorithms using Spark](./src/main/java/org/dataalgorithms/machinelearning)
+=========================================
 
 [Upgraded to Spark-1.6.0](http://spark.apache.org/news/spark-1-6-0-released.html)
 =========================
