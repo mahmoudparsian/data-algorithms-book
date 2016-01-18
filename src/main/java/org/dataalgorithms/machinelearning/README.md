@@ -160,6 +160,7 @@ For details on Linear Regression, you should read
 * [Linear Regression Analysis, second edition](https://sociology.byu.edu/Hoffmann/SiteAssets/Hoffmann%20_%20Linear%20Regression%20Analysis_%20second%20edition.pdf)
 * [Simple Linear Regression](http://www.stat.cmu.edu/~hseltman/309/Book/chapter9.pdf)
 
-Predicting Car Prices Part 1: Linear Regression
+* Blog: Predicting Car Prices : Linear Regression
 http://www.datasciencecentral.com/profiles/blogs/predicting-car-prices-part-1-linear-regression
-Training Data Set: https://github.com/datailluminations/PredictingToyotaPricesBlog/blob/master/ToyotaCorolla.csv
+
+* Training Data Set: https://github.com/datailluminations/PredictingToyotaPricesBlog/blob/master/ToyotaCorolla.csv
