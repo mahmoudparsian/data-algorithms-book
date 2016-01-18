@@ -1,0 +1,45 @@
+bag
+  array: 0.0
+bag
+  array: 1.0
+|bag
+  array: -0.4297844137628646
+bag
+  array: -1.05167913524589
+|bag
+  array
+    bag
+      array: -4.610784499226044
+    bag
+      array: -1.1043902516595896
+    bag
+      array: -1.5824677025139717
+    bag
+      array: -2.825815711340514
+    bag
+      array: -1.5735904358644586
+    bag
+      array: -2.3933546556530203
+    bag
+      array: -6.644652588823429
+    bag
+      array: -2.364545316018182
+bag
+  array
+    bag
+      array: -4.438629060647884
+    bag
+      array: -1.0709897832385131
+    bag
+      array: -1.7613409397142412
+    bag
+      array: -2.9229546320489366
+    bag
+      array: -1.4130404432873167
+    bag
+      array: -2.4620819421306805
+    bag
+      array: -6.611773492139444
+    bag
+      array: -2.4087682254187612
+|multinomial
