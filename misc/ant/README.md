@@ -5,4 +5,4 @@ How To Build using Apache's Ant
 * [Sample Build by Ant for Linux](./sample_ant_build_linux.txt)
 
 
-[![Data Algorithms Book](../misc/data_algorithms_image.jpg)](http://shop.oreilly.com/product/0636920033950.do)
+[![Data Algorithms Book](https://raw.githubusercontent.com/mahmoudparsian/data-algorithms-book/master/misc/data_algorithms_image.jpg)](http://shop.oreilly.com/product/0636920033950.do)
