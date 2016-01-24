@@ -7,6 +7,20 @@
 * Published date: July 2015
 
 
+[Source Code and Software](./misc/source-code.md)
+==========================
+
+
+How To Build using Apache's Ant
+===============================
+* [How To Build by Ant](./misc/how_to_build_with_ant.md)
+* [Sample Build by Ant for MacBook](./misc/sample_build_mac.txt)
+* [Sample Build by Ant for Linux](./misc/sample_build_linux.txt)
+
+How To Build using Apache's Maven
+=================================
+* [How To Build by Maven](./misc/how_to_build_with_maven.md)
+
 [Machine Learning Algorithms using Spark](./src/main/java/org/dataalgorithms/machinelearning)
 =========================================
 
@@ -54,16 +68,6 @@ Work in Progress...
 Please note that this is a work in progress...
 ![Data Algorithms Book Work In Progress](./misc/work_in_progress2.jpeg)
 --> 
-
-[Source Code and Software](./misc/source-code.md)
-==========================
-
-
-How To Build using Apache's Ant
-===============================
-* [How To Build by Ant](./misc/how_to_build_with_ant.md)
-* [Sample Build by Ant for MacBook](./misc/sample_build_mac.txt)
-* [Sample Build by Ant for Linux](./misc/sample_build_linux.txt)
 
 
 How To Run Spark/Hadoop Programs
