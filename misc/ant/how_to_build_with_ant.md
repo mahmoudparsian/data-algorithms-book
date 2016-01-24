@@ -1,9 +1,12 @@
 How To Build with Apache Ant
 ============================
-Before you build, you should read [README_lib.md](https://github.com/mahmoudparsian/data-algorithms-book/blob/master/README_lib.md)
+Before you build, you should 
+read [README_lib.md](https://github.com/mahmoudparsian/data-algorithms-book/blob/master/misc/README_lib.md)
 
-Here I am assuming that your install directory is ````<install-dir-data-algorithms-book>/```` 
-and you are executing build instructions from this directory.
+Here I am assuming that your install directory 
+is ````<install-dir-data-algorithms-book>/```` 
+and you are executing build instructions from 
+this directory.
 
 [Apache's ant 1.9.4](http://ant.apache.org/) is used for building the project.
 

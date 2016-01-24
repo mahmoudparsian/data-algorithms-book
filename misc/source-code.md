@@ -30,7 +30,6 @@ Structure of Repository
 Name          | Description
 --------------|--------------------------------------------------------------------
 README.md     | The file you are reading now
-README_lib.md | Must read before you build with Ant
 src           | Source files for MapReduce/Hadoop/Spark
 scripts       | Shell scripts to run MapReduce/Hadoop and Spark pograms
 lib           | Required jar files for compiling source code
