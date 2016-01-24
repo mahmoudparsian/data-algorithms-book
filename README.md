@@ -13,9 +13,8 @@
 [How To Build using Apache's Ant](./misc/ant/README.md)
 ===============================
 
-How To Build using Apache's Maven
-=================================
-* [How To Build by Maven](./misc/how_to_build_with_maven.md)
+[How To Build using Apache's Maven](./misc/maven/README.md)
+===================================
 
 [Machine Learning Algorithms using Spark](./src/main/java/org/dataalgorithms/machinelearning)
 =========================================
