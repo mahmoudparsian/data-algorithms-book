@@ -1,8 +1,18 @@
 How To Build with Apache's Maven
 ================================
+
+Installing Maven
+----------------
 To build with Maven, you should install [Apache's Maven](https://maven.apache.org).
+Here are the steps for installing Maven:
+
+* [Installing Apache Maven](https://maven.apache.org/install.html)
+
+* [Maven Install on Mac OS X](http://stackoverflow.com/questions/8826881/maven-install-on-mac-os-x)
 
 
+Check Installation of Maven
+---------------------------
 To test that if you have successfully installed Maven, 
 you may do the following checks:
 
