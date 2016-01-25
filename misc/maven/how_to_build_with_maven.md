@@ -1,7 +1,10 @@
 How To Build with Apache's Maven
 ================================
 To build with Maven, you should install [Apache's Maven](https://maven.apache.org).
-To test that if you have successfully installed Maven, you may do the following checks:
+
+
+To test that if you have successfully installed Maven, 
+you may do the following checks:
 
 ````
 # mvn -version
@@ -22,10 +25,13 @@ Building with Apache's Maven
 
   **mvn clean**
 
-* To build: the build will create 
-````<install-dir-data-algorithms-book>/target/data-algorithms-1.0.0.jar```` file.
+* To build:
 
   **mvn package**
+
+
+The successful build will create ````<install-dir-data-algorithms-book>/target/data-algorithms-1.0.0.jar```` 
+file.
 
 
 Sample Maven Build Log
@@ -131,10 +137,10 @@ Tests run: 1, Failures: 0, Errors: 0, Skipped: 0
 
 # ls -l target
 total 1232
-drwxr-xr-x  3 mparsian  897801646     102 Jan 24 10:44 classes
--rw-r--r--  1 mparsian  897801646  627936 Jan 24 10:44 data-algorithms-1.0.0.jar
-drwxr-xr-x  3 mparsian  897801646     102 Jan 24 10:44 maven-archiver
-drwxr-xr-x  3 mparsian  897801646     102 Jan 24 10:44 maven-status
-drwxr-xr-x  4 mparsian  897801646     136 Jan 24 10:44 surefire-reports
-drwxr-xr-x  3 mparsian  897801646     102 Jan 24 10:44 test-classes
+drwxr-xr-x  ...     102 Jan 24 10:44 classes
+-rw-r--r--  ...  627936 Jan 24 10:44 data-algorithms-1.0.0.jar
+drwxr-xr-x  ...     102 Jan 24 10:44 maven-archiver
+drwxr-xr-x  ...     102 Jan 24 10:44 maven-status
+drwxr-xr-x  ...     136 Jan 24 10:44 surefire-reports
+drwxr-xr-x  ...     102 Jan 24 10:44 test-classes
 ````
