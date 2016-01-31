@@ -9,6 +9,7 @@ as REST servers).
 
 Spark Version
 =============
+
 ```spark-1.6.0```
 
 Use YARN's Client Class
