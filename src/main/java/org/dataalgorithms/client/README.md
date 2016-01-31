@@ -7,6 +7,9 @@ Spark job from a shell script limits programmers when they want to submit
 Spark jobs from Java code (such as Java servlets or other Java code such 
 as REST servers).
 
+Spark Version
+=============
+```spark-1.6.0```
 
 Use YARN's Client Class
 =======================
