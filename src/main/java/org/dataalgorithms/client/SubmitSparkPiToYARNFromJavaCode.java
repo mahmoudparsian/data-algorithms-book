@@ -1,7 +1,5 @@
 package org.dataalgorithms.client;
 
-import java.util.List;
-import java.util.Arrays;
 import org.apache.spark.SparkConf;
 import org.apache.spark.deploy.yarn.Client;
 import org.apache.spark.deploy.yarn.ClientArguments;
@@ -44,23 +42,26 @@ import org.apache.log4j.Logger;
 *  @author Mahmoud Parsian (mahmoud.parsian@yahoo.com)
 * 
 */
-
 public class SubmitSparkPiToYARNFromJavaCode {
-    
+
     static final Logger THE_LOGGER = Logger.getLogger(SubmitSparkPiToYARNFromJavaCode.class);
-    
+
     public static void main(String[] args) throws Exception {
-        long startTime = System.currentTimeMillis(); 
+        long startTime = System.currentTimeMillis();
+        //
         String slices = args[0];  // this is passed to SparkPi program 
-        pi(slices); // ... the code being measured ...    
-        long elapsedTime = System.currentTimeMillis() - startTime;   
-        THE_LOGGER.info("elapsedTime (millis)="+elapsedTime);
-    }        
-    
-    static void pi(String slices) throws Exception { 
-    	String SPARK_HOME = System.getProperty("SPARK_HOME"); 
-		THE_LOGGER.info("SPARK_HOME=" + SPARK_HOME); 
-		//       
+        //
+        String SPARK_HOME = System.getProperty("SPARK_HOME");
+        THE_LOGGER.info("SPARK_HOME=" + SPARK_HOME);
+        //
+        pi(SPARK_HOME, slices); // ... the code being measured ... 
+        //
+        long elapsedTime = System.currentTimeMillis() - startTime;
+        THE_LOGGER.info("elapsedTime (millis)=" + elapsedTime);
+    }
+
+    static void pi(String SPARK_HOME, String slices) throws Exception {
+        //       
         String[] args = new String[]{
             "--name",
             "test-SparkPi",
@@ -73,11 +74,9 @@ public class SubmitSparkPiToYARNFromJavaCode {
             //
             "--class",
             "org.apache.spark.examples.SparkPi",
-            
             // argument 1 to my Spark program
             "--arg",
-            slices,            
-            
+            slices,
             // argument 2 to my Spark program (helper argument to create a proper JavaSparkContext object)
             "--arg",
             "yarn-cluster"
@@ -91,7 +90,7 @@ public class SubmitSparkPiToYARNFromJavaCode {
         ClientArguments clientArgs = new ClientArguments(args, sparkConf);
         Client client = new Client(clientArgs, config, sparkConf);
         //
-        client.run(); 
+        client.run();
         // done!
     }
 }
