@@ -33,6 +33,12 @@ import org.apache.log4j.Logger;
   --py-files PY_FILES      Comma-separated list of .zip, .egg, or .py files to place on the PYTHONPATH for Python apps.
   --files files            Comma separated list of files to be distributed with the job.
   --archives archives      Comma separated list of archives to be distributed with the job.
+  
+  
+  How to call this program example:
+  
+     export SPARK_HOME="/Users/mparsian/spark-1.6.0"
+     java -DSPARK_HOME="$SPARK_HOME" org.dataalgorithms.client.SubmitSparkPiToYARNFromJavaCode 10
 
 * 
 *  @author Mahmoud Parsian (mahmoud.parsian@yahoo.com)
@@ -43,14 +49,17 @@ public class SubmitSparkPiToYARNFromJavaCode {
     
     static final Logger THE_LOGGER = Logger.getLogger(SubmitSparkPiToYARNFromJavaCode.class);
     
-    public static void main(String[] arguments) throws Exception {
-        long startTime = System.currentTimeMillis();    
-        test(arguments); // ... the code being measured ...    
+    public static void main(String[] args) throws Exception {
+        long startTime = System.currentTimeMillis(); 
+        String slices = args[0];  // this is passed to SparkPi program 
+        pi(slices); // ... the code being measured ...    
         long elapsedTime = System.currentTimeMillis() - startTime;   
         THE_LOGGER.info("elapsedTime (millis)="+elapsedTime);
     }        
     
-    static void test(String[] arguments) throws Exception {           
+    static void pi(String slices) throws Exception { 
+    	String SPARK_HOME = System.getProperty("SPARK_HOME"); 
+		THE_LOGGER.info("SPARK_HOME=" + SPARK_HOME);        
         String[] args = new String[]{
             "--name",
             "test-SparkPi",
@@ -59,14 +68,14 @@ public class SubmitSparkPiToYARNFromJavaCode {
             "1000M",
             //
             "--jar",
-            "/Users/mparsian/spark-1.6.0/examples/target/scala-2.10/spark-examples-1.6.0-hadoop2.5.0.jar",
+            SPARK_HOME + "/examples/target/scala-2.10/spark-examples-1.6.0-hadoop2.5.0.jar",
             //
             "--class",
             "org.apache.spark.examples.SparkPi",
             
             // argument 1 to my Spark program
             "--arg",
-            "3",            
+            slices,            
             
             // argument 2 to my Spark program (helper argument to create a proper JavaSparkContext object)
             "--arg",
