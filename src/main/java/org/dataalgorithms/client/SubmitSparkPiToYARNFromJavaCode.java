@@ -59,7 +59,8 @@ public class SubmitSparkPiToYARNFromJavaCode {
     
     static void pi(String slices) throws Exception { 
     	String SPARK_HOME = System.getProperty("SPARK_HOME"); 
-		THE_LOGGER.info("SPARK_HOME=" + SPARK_HOME);        
+		THE_LOGGER.info("SPARK_HOME=" + SPARK_HOME); 
+		//       
         String[] args = new String[]{
             "--name",
             "test-SparkPi",
