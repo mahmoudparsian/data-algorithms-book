@@ -6,9 +6,8 @@
 * Publisher: O'Reilly Media
 * Published date: July 2015
 
-
-[Source Code and Software](./misc/source-code.md)
-==========================
+[Please VOTE for my Paper: Spark Solution for Cancer Outlier Profile Analysis]http://hadoopsummit.uservoice.com/forums/344955-data-science-analytics-and-spark/suggestions/11664381-spark-solution-for-cancer-outlier-profile-analysis)
+==============================================================================
 
 [How To Build using Apache's Ant](./misc/ant/README.md)
 ===============================
