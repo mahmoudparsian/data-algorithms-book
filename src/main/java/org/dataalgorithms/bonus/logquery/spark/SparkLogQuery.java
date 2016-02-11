@@ -98,7 +98,7 @@ public class SparkLogQuery {
                                      >() {
         public Boolean call(Tuple2<Tuple3<String, String, String>, LogStatistics> s) { 
             Tuple3<String, String, String> t3 = s._1;
-            return (t3._1() != null); // exclude Tuple3(null,null,null)
+            return t3._1() != null; // exclude Tuple3(null,null,null)
         }
     });
 

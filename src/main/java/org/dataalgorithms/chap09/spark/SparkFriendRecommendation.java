@@ -117,7 +117,7 @@ public class SparkFriendRecommendation {
         for (Tuple2<Long, Long> t2 : values) {
             final Long toUser = t2._1;
             final Long mutualFriend = t2._2;
-            final boolean alreadyFriend = (mutualFriend == -1);
+            final boolean alreadyFriend = mutualFriend == -1;
 
             if (mutualFriends.containsKey(toUser)) {
                 if (alreadyFriend) {
