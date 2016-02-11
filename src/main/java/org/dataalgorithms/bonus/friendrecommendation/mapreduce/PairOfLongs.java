@@ -95,6 +95,10 @@ public class PairOfLongs implements WritableComparable<PairOfLongs> {
     *         otherwise
     */
    public boolean equals(Object obj) {
+     if (obj == null)
+        return false;
+     if (this.getClass() != obj.getClass())
+        return false;  
      PairOfLongs pair = (PairOfLongs) obj;
      return left == pair.getLeft() && right == pair.getRight();
    }
