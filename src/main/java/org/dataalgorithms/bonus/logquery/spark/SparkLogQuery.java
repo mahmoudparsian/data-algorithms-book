@@ -70,7 +70,7 @@ public class SparkLogQuery {
     JavaSparkContext sc = new JavaSparkContext(sparkConf);
 
     // create the logs RDD as JavaRDD<String>
-    JavaRDD<String> logs = null;
+    JavaRDD<String> logs;
     if (args.length == 1) {
        logs  = sc.textFile(args[0]);
     }

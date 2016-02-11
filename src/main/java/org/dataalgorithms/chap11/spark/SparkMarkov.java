@@ -103,7 +103,7 @@ public class SparkMarkov implements Serializable {
          int amount = current._2;
          int amountDiff = amount - priorAmount;
 
-         String dd = null;
+         String dd;
          if (daysDiff < 30){
             dd = "S";
          }
@@ -114,7 +114,7 @@ public class SparkMarkov implements Serializable {
            dd = "L";
          }
          
-         String ad = null;
+         String ad;
          if (priorAmount < 0.9 * amount) {
             ad = "L";
          }

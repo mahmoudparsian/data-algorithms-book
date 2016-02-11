@@ -78,7 +78,7 @@ public class FastaRecordReader extends RecordReader<LongWritable, Text> {
     if (value == null) {
       value = new Text();
     }
-    int newSize = 0;
+    int newSize;
 
 	StringBuilder text = new StringBuilder();
 	int recordLength = 0;

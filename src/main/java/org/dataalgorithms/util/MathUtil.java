@@ -24,7 +24,7 @@ public class MathUtil {
 			return Double.NaN;
 		}
 	
-		double score = Double.NaN;
+		double score;
 		try {
 			if (arrA.length == 1) {
 				score = ttest.tTest(arrA[0], arrB);

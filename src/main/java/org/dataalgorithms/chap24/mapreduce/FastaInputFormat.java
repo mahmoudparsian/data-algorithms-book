@@ -75,7 +75,7 @@ public class FastaInputFormat extends FileInputFormat<LongWritable, Text> {
       Text line = new Text();
       long begin = 0;
       long length = 0;
-      int num = -1;
+      int num;
 	  long recordLength = 0;
 	  int recordsRead = 0;
 	  while ((num = lr.readLine(line)) > 0) {

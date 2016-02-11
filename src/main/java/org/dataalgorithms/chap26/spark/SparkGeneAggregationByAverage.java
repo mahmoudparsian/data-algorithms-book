@@ -42,7 +42,7 @@ public class SparkGeneAggregationByAverage {
    private static List<String> toList(String biosets) throws Exception {
       List<String> biosetFiles = new ArrayList<String>();
       BufferedReader in = new BufferedReader(new FileReader(biosets));
-      String line = null;
+      String line;
       while ((line = in.readLine()) != null) {
          String aBiosetFile = line.trim();
          biosetFiles.add(aBiosetFile);

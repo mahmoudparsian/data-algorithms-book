@@ -58,7 +58,7 @@ public final class PerKeyAverage {
         JavaSparkContext context = new JavaSparkContext();
 
         // if you do not provide input, we will use a sample static input
-        JavaPairRDD<String, Double> rdd = null;
+        JavaPairRDD<String, Double> rdd;
         if (args.length > 0) {
             // use input provided 
             String inputPath = args[0];
