@@ -22,7 +22,10 @@ import java.util.Collections;
  *
  */
 public class CountTriangles {
-  public static void main(String[] args) throws Exception {
+    private CountTriangles() {
+    }
+
+    public static void main(String[] args) throws Exception {
     if (args.length < 1) {
        System.err.println("Usage: CountTriangles <input-path>");
        System.exit(1);

@@ -20,6 +20,9 @@ import org.dataalgorithms.util.HadoopUtil;
  */
 public class SecondarySortDriver {
 
+	private SecondarySortDriver() {
+	}
+
 	public static void main(String[] args) throws Exception {
 
 	    Configuration conf = new Configuration();

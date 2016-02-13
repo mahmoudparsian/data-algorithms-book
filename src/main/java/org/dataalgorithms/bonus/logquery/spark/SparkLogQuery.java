@@ -36,7 +36,10 @@ public class SparkLogQuery {
     "10.20.30.42,u400,700,query2"
     );
 
-  // tokens = [<ip-address><user-id><number-of-bytes><query>]
+    private SparkLogQuery() {
+    }
+
+    // tokens = [<ip-address><user-id><number-of-bytes><query>]
   public static Tuple3<String, String, String> createKey(String[] tokens) {
      String userID = tokens[1];
      if (userID.equals("-")) {

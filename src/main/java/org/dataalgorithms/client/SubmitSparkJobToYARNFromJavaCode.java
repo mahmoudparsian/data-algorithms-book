@@ -66,7 +66,10 @@ public class SubmitSparkJobToYARNFromJavaCode {
         "log4j-1.2.17.jar",
         "spring-context-3.0.7.RELEASE.jar"
     );
-    
+
+    private SubmitSparkJobToYARNFromJavaCode() {
+    }
+
     private static String buildJars(String prefixJarDir) {
         StringBuilder builder = new StringBuilder();
         int counter = 0;

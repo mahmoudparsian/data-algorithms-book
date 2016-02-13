@@ -24,8 +24,11 @@ import org.apache.spark.api.java.function.Function2;
  *
  */ 
 public class FindAssociationRules {
-  
-   static List<String> toList(String transaction) {
+
+    private FindAssociationRules() {
+    }
+
+    static List<String> toList(String transaction) {
       String[] items = transaction.trim().split(",");
       List<String> list = new ArrayList<String>();
       for (String item : items) {

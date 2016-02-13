@@ -30,6 +30,9 @@ import java.io.BufferedReader;
  */
 public class SparkTtest {
 
+   private SparkTtest() {
+   }
+
    static Map<String, Double> createTimeTable(String filename) throws Exception {
       Map<String, Double> map = new HashMap<String, Double>();
       BufferedReader in = null;

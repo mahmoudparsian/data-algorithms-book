@@ -25,6 +25,9 @@ public class SmallFilesConsolidator {
     // this directory is configurable
     private static String MERGED_HDFS_ROOT_DIR = "/tmp/";
 
+    private SmallFilesConsolidator() {
+    }
+
     public static int getNumberOfBuckets(int totalFiles, 
                                          int numberOfMapSlotsAvailable,
                                          int maxFilesPerBucket) {

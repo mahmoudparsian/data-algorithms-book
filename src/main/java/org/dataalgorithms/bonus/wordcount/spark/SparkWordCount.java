@@ -22,7 +22,10 @@ import java.util.Collections;
  */
 public class SparkWordCount {
 
-    public static void main(String[] args) throws Exception {
+   private SparkWordCount() {
+   }
+
+   public static void main(String[] args) throws Exception {
        if (args.length != 3) {
           System.err.println("Usage: SparkWordCount <N> <input> <output>");
           System.exit(1);

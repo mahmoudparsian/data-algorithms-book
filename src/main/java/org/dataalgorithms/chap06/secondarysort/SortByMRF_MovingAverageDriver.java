@@ -23,8 +23,11 @@ import org.dataalgorithms.chap06.TimeSeriesData;
  *
  */  
 public class SortByMRF_MovingAverageDriver {
- 
-    public static void main(String[] args) throws Exception {
+
+   private SortByMRF_MovingAverageDriver() {
+   }
+
+   public static void main(String[] args) throws Exception {
         Configuration conf = new Configuration();
 		JobConf jobconf = new JobConf(conf, SortByMRF_MovingAverageDriver.class);
 		jobconf.setJobName("SortByMRF_MovingAverageDriver");

@@ -28,8 +28,11 @@ import org.dataalgorithms.util.HadoopUtil;
  *
  */
 public class MeanDriver {
- 
-    public static void main(String[] args) throws Exception {
+
+   private MeanDriver() {
+   }
+
+   public static void main(String[] args) throws Exception {
        Configuration conf = new Configuration();
        String[] otherArgs = new GenericOptionsParser(conf, args).getRemainingArgs();
        if (otherArgs.length != 2) {

@@ -20,6 +20,9 @@ public class SubmitSparkJobToClusterFromJavaCode {
     
     static final Logger THE_LOGGER = Logger.getLogger(SubmitSparkJobToClusterFromJavaCode.class);
 
+    private SubmitSparkJobToClusterFromJavaCode() {
+    }
+
     public static void main(String[] arguments) throws Exception {
         long startTime = System.currentTimeMillis();    
         test(arguments); // ... the code being measured ...    

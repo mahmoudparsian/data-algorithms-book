@@ -32,7 +32,10 @@ import java.util.Collections;
  */ 
 public class SparkLeftOuterJoin {
 
-  public static void main(String[] args) throws Exception {
+    private SparkLeftOuterJoin() {
+    }
+
+    public static void main(String[] args) throws Exception {
     if (args.length < 2) {
        System.err.println("Usage: SparkLeftOuterJoin <users> <transactions>");
        System.exit(1);

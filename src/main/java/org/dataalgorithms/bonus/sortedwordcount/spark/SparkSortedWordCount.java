@@ -24,6 +24,9 @@ import org.apache.spark.api.java.function.PairFunction;
  */
 public class SparkSortedWordCount {
 
+    private SparkSortedWordCount() {
+    }
+
     public static void main(String[] args) throws Exception {
        if (args.length != 4) {
           System.err.println("Usage: SparkSortedWordCount <N> <input> <output> <orderBy>");

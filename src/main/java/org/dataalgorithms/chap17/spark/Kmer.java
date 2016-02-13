@@ -27,8 +27,11 @@ import org.apache.spark.broadcast.Broadcast;
  *
  */
 public class Kmer {
-  
-   public static void main(String[] args) throws Exception {
+
+    private Kmer() {
+    }
+
+    public static void main(String[] args) throws Exception {
       // STEP-1: handle input parameters
       if (args.length < 3) {
          System.err.println("Usage: Kmer <fastq-file> <K> <N>");

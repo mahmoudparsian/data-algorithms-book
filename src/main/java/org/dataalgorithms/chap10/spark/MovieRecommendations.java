@@ -31,7 +31,10 @@ import java.util.Iterator;
  *
  */
 public class MovieRecommendations {
-  public static void main(String[] args) throws Exception {
+    private MovieRecommendations() {
+    }
+
+    public static void main(String[] args) throws Exception {
 
     //STEP-1: handle input parameters
     if (args.length < 1) {

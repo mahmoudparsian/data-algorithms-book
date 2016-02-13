@@ -28,7 +28,10 @@ import java.util.HashMap;
  */
 public class FindCommonFriends {
 
-  public static void main(String[] args) throws Exception {
+    private FindCommonFriends() {
+    }
+
+    public static void main(String[] args) throws Exception {
   
     if (args.length < 1) {
        // Spark master URL:

@@ -23,6 +23,9 @@ import org.apache.spark.api.java.function.PairFlatMapFunction;
  */
 public class CharCountLocalAggregation {
 
+    private CharCountLocalAggregation() {
+    }
+
     public static void main(String[] args) throws Exception {
        if (args.length != 2) {
           System.err.println("Usage: SparkCharCount <input> <output>");

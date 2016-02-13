@@ -13,6 +13,9 @@ public class TestSimpleMovingAverage {
 
     private static final Logger THE_LOGGER = Logger.getLogger(TestSimpleMovingAverage.class);
 
+    private TestSimpleMovingAverage() {
+    }
+
     public static void main(String[] args) {
         // The invocation of the BasicConfigurator.configure method 
         // creates a rather simple log4j setup. This method is hardwired 

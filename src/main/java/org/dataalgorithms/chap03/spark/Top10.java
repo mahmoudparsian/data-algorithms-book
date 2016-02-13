@@ -46,7 +46,10 @@ import java.util.Collections;
  */
 public class Top10 {
 
-   public static void main(String[] args) throws Exception {
+    private Top10() {
+    }
+
+    public static void main(String[] args) throws Exception {
   
       // STEP-1: handle input parameters
       if (args.length < 1) {

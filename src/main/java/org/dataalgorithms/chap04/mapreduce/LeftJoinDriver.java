@@ -22,8 +22,11 @@ import java.io.IOException;
  *
  */
 public class LeftJoinDriver {
-  
-  public static void main( String[] args ) throws Exception {
+
+  private LeftJoinDriver() {
+  }
+
+  public static void main(String[] args ) throws Exception {
       Path transactions = new Path(args[0]);  // input
       Path users = new Path(args[1]);         // input
       Path output = new Path(args[2]);        // output

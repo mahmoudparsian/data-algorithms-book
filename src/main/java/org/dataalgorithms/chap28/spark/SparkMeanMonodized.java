@@ -38,7 +38,10 @@ import org.apache.spark.api.java.function.PairFunction;
  */
 public class SparkMeanMonodized  {
 
-   public static void main(String[] args) throws Exception {
+    private SparkMeanMonodized() {
+    }
+
+    public static void main(String[] args) throws Exception {
       // STEP-1: handle input parameters
       if (args.length != 1) {
          System.err.println("Usage: SparkMeanMonodized <input-path>");

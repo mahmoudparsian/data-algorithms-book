@@ -32,7 +32,10 @@ import org.dataalgorithms.chap24.mapreduce.FastqInputFormat;
  */
 public class SparkDNABaseCountFASTQ {
 
-   public static void main(String[] args) throws Exception {
+    private SparkDNABaseCountFASTQ() {
+    }
+
+    public static void main(String[] args) throws Exception {
       // STEP-1: handle input parameters
       if (args.length != 1) {
          System.err.println("Usage: SparkDNABaseCountFASTQ <input-path>");

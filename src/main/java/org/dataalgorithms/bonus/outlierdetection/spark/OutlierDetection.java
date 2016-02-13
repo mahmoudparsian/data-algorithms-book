@@ -46,8 +46,11 @@ import org.apache.commons.lang.StringUtils;
 public class OutlierDetection {
 
     private static final Logger THE_LOGGER = Logger.getLogger(OutlierDetection.class);
-      
-    
+
+    private OutlierDetection() {
+    }
+
+
     static class TupleComparatorAscending 
        implements Comparator<Tuple2<String,Double>>, Serializable {
        final static TupleComparatorAscending INSTANCE = new TupleComparatorAscending();

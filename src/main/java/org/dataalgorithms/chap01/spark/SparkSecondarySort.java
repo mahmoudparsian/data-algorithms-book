@@ -50,7 +50,10 @@ import java.util.Collections;
  *
  */
 public class SparkSecondarySort {
-  public static void main(String[] args) throws Exception {
+    private SparkSecondarySort() {
+    }
+
+    public static void main(String[] args) throws Exception {
   
     // STEP-1: read input parameters and validate them
     if (args.length < 1) {

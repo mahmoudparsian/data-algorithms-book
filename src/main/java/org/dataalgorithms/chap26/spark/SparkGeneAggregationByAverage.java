@@ -28,8 +28,11 @@ import java.util.ArrayList;
 public class SparkGeneAggregationByAverage {
 
    static final Tuple2<String, String> Tuple2Null = new Tuple2<String, String>("n", "n");
-   
-   /**
+
+    private SparkGeneAggregationByAverage() {
+    }
+
+    /**
     * Convert all bioset files into a List<biosetFileName>
     *
     * @param biosets is a filename, which holds all bioset files as HDFS entries

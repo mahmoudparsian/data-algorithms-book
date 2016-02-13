@@ -52,7 +52,10 @@ import java.util.Collections;
  */
 public class Top10NonUnique {
 
-   public static void main(String[] args) throws Exception {
+    private Top10NonUnique() {
+    }
+
+    public static void main(String[] args) throws Exception {
       // STEP-1: handle input parameters
       if (args.length < 2) {
          System.err.println("Usage: Top10 <input-path> <topN>");
