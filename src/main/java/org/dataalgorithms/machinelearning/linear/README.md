@@ -27,16 +27,13 @@ We will use a simple example (predicting car prices) to demonstrate
   
 * R Solution: use ````lm````
 
-* Spark Solution using stochastic gradient descent method: 
-  ````org.apache.spark.mllib.regression.LinearRegressionWithSGD````.
-  The Spark solution is presented in ````org.dataalgorithms.machinelearning.linear.SGD```` 
-  package.
+* Spark Solution using stochastic gradient descent method:  ````org.apache.spark.mllib.regression.LinearRegressionWithSGD````.
+  The Spark solution is presented in ````org.dataalgorithms.machinelearning.linear.SGD````  package.
   
 
 Example Description: Predicting Car Prices
 ==========================================
-This example is based on the blog [Predicting Car Prices Part 1: Linear 
-Regression by Peter Chen](http://www.datasciencecentral.com/profiles/blogs/predicting-car-prices-part-1-linear-regression).
+This example is based on the blog [Predicting Car Prices Part 1: Linear Regression by Peter Chen](http://www.datasciencecentral.com/profiles/blogs/predicting-car-prices-part-1-linear-regression).
 The purpose of this exercise is to predict Toyota Corolla car prices 
 by using regression model (by 3 different solutions: POJO, R, and Spark). 
 
@@ -44,7 +41,8 @@ by using regression model (by 3 different solutions: POJO, R, and Spark).
 Training Data
 =============
 To build a ````LinearRegressionModel````, we need a training data set.
-The [training data](https://raw.githubusercontent.com/datailluminations/PredictingToyotaPricesBlog/master/ToyotaCorolla.csv) is available from the GitHub.
+The [training data](https://raw.githubusercontent.com/datailluminations/PredictingToyotaPricesBlog/master/ToyotaCorolla.csv) is 
+available from the GitHub.
 
 The training data set is for Toyota Corolla cars and each record has
 the following format:
