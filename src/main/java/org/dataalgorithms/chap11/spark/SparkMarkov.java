@@ -11,7 +11,6 @@ import scala.Tuple2;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaPairRDD;
 import org.apache.spark.api.java.JavaSparkContext;
-import org.apache.spark.api.java.function.FlatMapFunction;
 import org.apache.spark.api.java.function.PairFunction;
 import org.apache.spark.api.java.function.Function2;
 import org.apache.spark.api.java.function.Function;
@@ -163,6 +162,7 @@ public class SparkMarkov implements Serializable {
                           String,               // K
                           Tuple2<Long,Integer>  // V
                           >() {
+         @Override
          public Tuple2<String,Tuple2<Long,Integer>> call(String rec) {
              String[] tokens = StringUtils.split(rec, ",");
              if (tokens.length != 4) {
@@ -209,6 +209,7 @@ public class SparkMarkov implements Serializable {
                        Iterable<Tuple2<Long,Integer>>,  // input
                        List<String>                     // output ("state sequence")
                       >() {
+          @Override
           public List<String> call(Iterable<Tuple2<Long,Integer>> dateAndAmount) {
              List<Tuple2<Long,Integer>> list = toList(dateAndAmount);
              Collections.sort(list, TupleComparatorAscending.INSTANCE);
@@ -246,6 +247,7 @@ public class SparkMarkov implements Serializable {
                                  Tuple2<String,String>,         // K
                                  Integer                        // V
                                 >() {
+         @Override
          public Iterable<Tuple2<Tuple2<String,String>, Integer>> call(Tuple2<String, List<String>> s) {
             List<String> states = s._2;
             if ( (states == null) || (states.size() < 2) ) {
@@ -268,6 +270,7 @@ public class SparkMarkov implements Serializable {
        // combine/reduce frequent (fromState, toState)
        JavaPairRDD<Tuple2<String,String>, Integer> markovModel = 
            model.reduceByKey(new Function2<Integer, Integer, Integer>() {
+           @Override
            public Integer call(Integer i1, Integer i2) {
               return i1 + i2;
            }
@@ -294,6 +297,7 @@ public class SparkMarkov implements Serializable {
 
    static class TupleComparatorAscending implements Comparator<Tuple2<Long, Integer>>, Serializable {
        final static TupleComparatorAscending INSTANCE = new TupleComparatorAscending();
+       @Override
        public int compare(Tuple2<Long, Integer> t1, Tuple2<Long, Integer> t2) {
           // return -t1._1.compareTo(t2._1);     // sorts RDD elements descending
           return t1._1.compareTo(t2._1);         // sorts RDD elements ascending

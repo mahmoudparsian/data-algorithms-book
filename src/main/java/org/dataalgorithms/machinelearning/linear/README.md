@@ -15,7 +15,7 @@ assuming the relationship between the independent and
 dependent variables follow a (almost) straight line.
 
 We will use a simple example (predicting car prices) to demonstrate 
-3 diffrent solutions:
+3 different solutions:
 
 * Pure POJO Solution: implement ordinary least squares (OLS) to estimate the 
   parameters of a multiple linear regression model. This solution is a traditional 
@@ -110,12 +110,14 @@ CNG      | 1         | 0
 Diesel   | 0         | 1
 Petrol   | 0         | 0
 
+
 Therefore, the transformed training data set for Toyota Corolla cars 
 will have the following format:
 
 ````
 <Price><,><Age><,><KM><,><FuelType1><,><FuelType2><,><HP><,><MetColor><,><Automatic><,><CC><,><Doors><,><Weight>
 ````
+
 Data Transformation Script
 ==========================
 An AWK script is used to generate the transformed data:
@@ -124,8 +126,8 @@ An AWK script is used to generate the transformed data:
 awk -f ./scripts/transform.awk ./resources/ToyotaCorolla.csv > ./resources/ToyotaCorolla_Transformed.csv
 ````
 
-To feed the the data to Spark's Linear Regresssion, we removed the headline from the 
-````ToyotaCorolla_Transformed.csv````.
+To feed the the data to Spark's Linear Regression, we removed the headline from the  ````ToyotaCorolla_Transformed.csv````.
+
 
 The training data without headline is labeled as: ````ToyotaCorolla_Transformed_without_head.csv````
 
@@ -282,10 +284,11 @@ The correct prices are:
 
 Spark Solution: Output from ModelEvaluation
 ===========================================
+````
 args[0]=/car/training
 args[1]=/car/model
 Training Mean Squared Error = 5.686839313236483E7
-
+````
 
 R Solution
 ==========
