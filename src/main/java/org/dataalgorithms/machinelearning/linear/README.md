@@ -376,7 +376,7 @@ Plotting out linear model:
 > dev.off()
 ````
 
-![Plotting the Linear Model](file:/Users/mparsian/zmp/github/data-algorithms-book/src/main/java/org/dataalgorithms/machinelearning/linear/resources/rplot.jpg)
+![Plotting the Linear Model](https://raw.githubusercontent.com/mahmoudparsian/data-algorithms-book/master/misc/rplot.jpg)
 
 R Solution: Predict Price of a Car
 ----------------------------------
