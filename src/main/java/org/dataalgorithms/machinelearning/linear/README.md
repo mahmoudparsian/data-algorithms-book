@@ -138,8 +138,7 @@ Spark Solution: Predicting Car Prices
 This example is based on the blog [Predicting Car Prices Part 1: Linear 
 Regression by Peter Chen](http://www.datasciencecentral.com/profiles/blogs/predicting-car-prices-part-1-linear-regression).
 The purpose of this exercise is to predict Toyota Corolla car prices 
-by using Spark's MLlib linear regression model, 
-````org.apache.spark.mllib.regression.LinearRegressionModel```` 
+by using Spark's MLlib linear regression model, ````org.apache.spark.mllib.regression.LinearRegressionModel```` 
 (regression model trained using ````org.apache.spark.mllib.regression.LinearRegressionWithSGD````
 -- train a linear regression model with no regularization using Stochastic Gradient Descent).
 
