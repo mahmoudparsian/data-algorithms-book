@@ -477,5 +477,4 @@ best regards,
 Mahmoud Parsian
 ````
 
-[![Data Algorithms Book](./misc/data_algorithms_image.jpg)](http://shop.oreilly.com/product/0636920033950.do)
-
+[![Data Algorithms Book](https://raw.githubusercontent.com/mahmoudparsian/data-algorithms-book/master/misc/data_algorithms_image.jpg)](http://shop.oreilly.com/product/0636920033950.do)
