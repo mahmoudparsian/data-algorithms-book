@@ -14,6 +14,16 @@ where
 * a is the intercept (the value of y when x = 0)
 
 
+The following figure shows a dataset of many ````(x,y)```` points, 
+plotted so that ````Y````, the variable we would like to be able to 
+predict -- the vertical axis --, and a single independent variable 
+````X```` -- the horizontal axis.  The goal of the linear regression 
+analysis is to find the linear function that provides the best 
+prediction of ````Y````; 
+
+[Linear Regression in Picture](https://raw.githubusercontent.com/mahmoudparsian/data-algorithms-book/master/misc/linear_regression_line.png)
+
+
 Machine Learning vs. Traditional Programming
 ============================================
 
