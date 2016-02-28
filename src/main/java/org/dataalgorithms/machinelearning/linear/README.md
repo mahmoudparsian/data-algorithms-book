@@ -19,7 +19,7 @@ plotted so that ````Y````, the variable we would like to be able to
 predict -- the vertical axis --, and a single independent variable 
 ````X```` -- the horizontal axis.  The goal of the linear regression 
 analysis is to find the linear function that provides the best 
-prediction of ````Y````; 
+prediction of ````Y````. (source:  [About Aspatial Linear Regression](https://www.biomedware.com/files/documentation/spacestat/Statistics/Multivariate_Modeling/Regression/About_Aspatial_Linear_Regression.htm))
 
 ![Linear Regression in Picture](https://raw.githubusercontent.com/mahmoudparsian/data-algorithms-book/master/misc/linear_regression_line.png)
 
