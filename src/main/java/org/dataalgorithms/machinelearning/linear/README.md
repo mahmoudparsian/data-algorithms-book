@@ -464,3 +464,18 @@ predicted price=21555.658909725575
 queryRecord=23,71138,0,1,69,0,0,1900,3,1105
 predicted price=13981.174150814048
 ````
+
+Questions/Comments
+==================
+* [View Mahmoud Parsian's profile on LinkedIn](http://www.linkedin.com/in/mahmoudparsian)
+* Please send me an email: mahmoud.parsian@yahoo.com
+* [Twitter: @mahmoudparsian](http://twitter.com/mahmoudparsian) 
+
+Thank you!
+````
+best regards,
+Mahmoud Parsian
+````
+
+[![Data Algorithms Book](./misc/data_algorithms_image.jpg)](http://shop.oreilly.com/product/0636920033950.do)
+
