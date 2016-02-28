@@ -21,7 +21,7 @@ predict -- the vertical axis --, and a single independent variable
 analysis is to find the linear function that provides the best 
 prediction of ````Y````; 
 
-[Linear Regression in Picture](https://raw.githubusercontent.com/mahmoudparsian/data-algorithms-book/master/misc/linear_regression_line.png)
+![Linear Regression in Picture](https://raw.githubusercontent.com/mahmoudparsian/data-algorithms-book/master/misc/linear_regression_line.png)
 
 
 Machine Learning vs. Traditional Programming
