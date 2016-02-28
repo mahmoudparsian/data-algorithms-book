@@ -1,5 +1,17 @@
 Linear Regression
 =================
+Linear regression analysis is the study of linear relationships between variables.  
+
+In simplest forms, a linear regression line has an equation of the form 
+````
+    Y = a + bX
+````
+where 
+
+* X is the explanatory variable
+* Y is the dependent variable
+* b is the slope of the line
+* a is the intercept (the value of y when x = 0)
 
 
 Machine Learning vs. Traditional Programming
