@@ -1,3 +1,13 @@
+Linear Regression
+=================
+
+
+Machine Learning vs. Traditional Programming
+============================================
+
+![Machine Learning in Pictures](https://raw.githubusercontent.com/mahmoudparsian/data-algorithms-book/master/misc/machine_learning.jpg)
+
+
 Machine Learning Algorithms using Spark: Linear Regression
 ==========================================================
 The purpose of this package (solutions expressed in Java 
