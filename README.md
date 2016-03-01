@@ -6,8 +6,6 @@
 * Publisher: O'Reilly Media
 * Published date: July 2015
 
-[Spark Solution for Cancer Outlier Profile Analysis](http://hadoopsummit.uservoice.com/forums/344955-data-science-analytics-and-spark/suggestions/11664381-spark-solution-for-cancer-outlier-profile-analysis)
-====================================================
 
 [How To Build using Apache's Ant](./misc/ant/README.md)
 ===============================
@@ -15,11 +13,14 @@
 [How To Build using Apache's Maven](./misc/maven/README.md)
 ===================================
 
+[Upgraded to Spark-1.6.0](http://spark.apache.org/news/spark-1-6-0-released.html)
+=========================
+
 [Machine Learning Algorithms using Spark](./src/main/java/org/dataalgorithms/machinelearning)
 =========================================
 
-[Upgraded to Spark-1.6.0](http://spark.apache.org/news/spark-1-6-0-released.html)
-=========================
+[Spark Solution for Cancer Outlier Profile Analysis](http://hadoopsummit.uservoice.com/forums/344955-data-science-analytics-and-spark/suggestions/11664381-spark-solution-for-cancer-outlier-profile-analysis)
+====================================================
  
 [Guest Speaker @NC State University](./misc/Mahmoud_Parsian_Guest_Speaker.pdf)
 ====================================
