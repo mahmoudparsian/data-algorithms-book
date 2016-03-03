@@ -6,6 +6,8 @@
 * Publisher: O'Reilly Media
 * Published date: July 2015
 
+[COPA using Spark #ApacheBigData, May 10, 2016](http://apachebigdata2016.sched.org/event/6M0Y/cancer-outlier-profile-analysis-using-spark-mahmoud-parsian-illumina-inc?iframe=no&w=i:100;&sidebar=yes&bg=no)
+===============================================
 
 [How To Build using Apache's Ant](./misc/ant/README.md)
 ===============================
