@@ -3,8 +3,13 @@
 * Author: Mahmoud Parsian (mahmoud.parsian@yahoo.com)
 * Title: [Data Algorithms: Recipes for Scaling up with Hadoop and Spark](http://shop.oreilly.com/product/0636920033950.do) 
 * This GitHub repository will host all source code and scripts for [Data Algorithms Book](http://shop.oreilly.com/product/0636920033950.do).
-* Publisher: O'Reilly Media
+* Publisher: [O'Reilly Media](http://shop.oreilly.com/product/0636920033950.do)
 * Published date: July 2015
+
+[Production Version is Available NOW!](http://shop.oreilly.com/product/0636920033950.do)
+======================================
+[![Data Algorithms Book](./misc/da_book3.jpeg)](http://shop.oreilly.com/product/0636920033950.do)
+
 
 O'Reilly Author Book Signing at Strata+Hadoop World San Jose: scheduled on Thursday, March 31 at 10:30am. I will be siging my Data Algorithms book and the first 25 will get a FREE copy of the book.
 -------
@@ -46,11 +51,6 @@ O'Reilly Author Book Signing at Strata+Hadoop World San Jose: scheduled on Thurs
 
 [Bonus Chapter: Rank Product](https://github.com/mahmoudparsian/data-algorithms-book/tree/master/src/main/java/org/dataalgorithms/bonus/rankproduct)
 =========================================
- 
-
-[Production Version is Available NOW!](http://shop.oreilly.com/product/0636920033950.do)
-======================================
-[![Data Algorithms Book](./misc/da_book3.jpeg)](http://shop.oreilly.com/product/0636920033950.do)
  
   
 [Author Book Signing](./misc/book-signing.md)
