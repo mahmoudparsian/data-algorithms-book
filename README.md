@@ -14,8 +14,11 @@
 O'Reilly Author Book Signing at Strata+Hadoop World San Jose: scheduled on Thursday, March 31 at 10:30am. I will be siging my Data Algorithms book and the first 25 will get a FREE copy of the book.
 -------
 
-[COPA using Spark #ApacheBigData, May 10, 2016](http://apachebigdata2016.sched.org/event/6M0Y/cancer-outlier-profile-analysis-using-spark-mahmoud-parsian-illumina-inc?iframe=no&w=i:100;&sidebar=yes&bg=no)
+[COPA using Spark #ApacheBigData, May 10, 2016 (Abstract)](http://sched.co/6M0Y)
 ===============================================
+[COPA using Spark #ApacheBigData, May 10, 2016 (Slides)](http://mapreduce4hackers.com/copa_spark_2016.pdf)
+===============================================
+
 
 [How To Build using Apache's Ant](./misc/ant/README.md)
 ===============================
