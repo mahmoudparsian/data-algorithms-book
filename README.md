@@ -15,9 +15,9 @@ O'Reilly Author Book Signing at Strata+Hadoop World San Jose: scheduled on Thurs
 -------
 
 [COPA using Spark #ApacheBigData, May 10, 2016 (Abstract)](http://sched.co/6M0Y)
-===============================================
+----------------------------------------------------------
 [COPA using Spark #ApacheBigData, May 10, 2016 (Slides)](http://mapreduce4hackers.com/copa_spark_2016.pdf)
-===============================================
+----------------------------------------------------------
 
 
 [How To Build using Apache's Ant](./misc/ant/README.md)
