@@ -21,7 +21,7 @@
 [How To Build using Apache's Maven](./misc/maven/README.md)
 ===================================
 
-[Upgraded to Spark-1.6.0](http://spark.apache.org/news/spark-1-6-0-released.html)
+[Upgraded to Spark-1.6.1](http://spark.apache.org/news/spark-1-6-1-released.html)
 =========================
 
 [Machine Learning Algorithms using Spark](./src/main/java/org/dataalgorithms/machinelearning)
