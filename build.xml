@@ -20,7 +20,7 @@
    </path>
 
    <!-- ===================================================================  -->
-   <!-- Note that since the size of  spark-assembly-1.6.0-hadoop2.5.0.jar    -->
+   <!-- Note that since the size of  spark-assembly-1.6.1-hadoop2.6.0.jar    -->
    <!-- is over 100MBs, I could not upload this jar to the lib directory.    -->
    <!-- I needed to add the "copy_jar" target, so that it can copy it from   -->
    <!-- my web site.  Once this task is done (the jar is copied to your      -->
@@ -29,21 +29,21 @@
 
    <!-- -->
    <target name="copy_jar"  depends="init">
-      <echo message="copying spark-assembly-1.6.0-hadoop2.5.0.jar..."/>    
+      <echo message="copying spark-assembly-1.6.1-hadoop2.6.0.jar..."/>    
       <copy todir="lib" flatten="true">
-          <url url="http://www.mapreduce4hackers.com/dataalgorithmsbook/lib/spark-assembly-1.6.0-hadoop2.5.0.jar"/>
+          <url url="http://www.mapreduce4hackers.com/dataalgorithmsbook/lib/spark-assembly-1.6.1-hadoop2.6.0.jar"/>
       </copy>  
    </target>
    <!-- -->
    
 	<target name="check-spark-jar">
-    	<available file="./lib/spark-assembly-1.6.0-hadoop2.5.0.jar" property="spark-jar.present"/>
+    	<available file="./lib/spark-assembly-1.6.1-hadoop2.6.0.jar" property="spark-jar.present"/>
 	</target>
 
 	<target name="do-copy-jar" depends="check-spark-jar" unless="spark-jar.present">
-      <echo message="copying spark-assembly-1.6.0-hadoop2.5.0.jar..."/>    
+      <echo message="copying spark-assembly-1.6.1-hadoop2.6.0.jar..."/>    
       <copy todir="lib" flatten="true">
-          <url url="http://www.mapreduce4hackers.com/dataalgorithmsbook/lib/spark-assembly-1.6.0-hadoop2.5.0.jar"/>
+          <url url="http://www.mapreduce4hackers.com/dataalgorithmsbook/lib/spark-assembly-1.6.1-hadoop2.6.0.jar"/>
       </copy>  
 	</target>    
    
@@ -55,8 +55,8 @@
                srcdir="src" 
                destdir="build"
                classpathref="required_libs"
-               source="1.7" 
-               target="1.7" 
+               source="1.8" 
+               target="1.8" 
                debug="true" 
                fork="true" 
                memorymaximumsize="512m"
@@ -87,8 +87,8 @@
       <javac includeantruntime="false"
              srcdir="test" 
              destdir="build"
-             source="1.7" 
-             target="1.7" 
+             source="1.8" 
+             target="1.8" 
              debug="true" 
              fork="true" 
              memorymaximumsize="512m"

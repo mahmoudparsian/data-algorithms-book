@@ -10,14 +10,14 @@
 
 
 #-----------------
-# set Java as jdk7
+# set Java as jdk8
 #-----------------
 
 # macbook:
-export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.7.0_60.jdk/Contents/Home
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_72.jdk/Contents/Home
 
 # linux:
-# export JAVA_HOME=/usr/java/jdk7
+# export JAVA_HOME=/usr/java/jdk8
 
 echo "JAVA_HOME=$JAVA_HOME"
 #
@@ -32,7 +32,7 @@ echo "ANT_HOME=$ANT_HOME"
 #---------------------------------------
 # set your spark and hadoop environments
 #---------------------------------------
-export SPARK_HOME=/Users/mparsian/spark-1.6.0
+export SPARK_HOME=/Users/mparsian/spark-1.6.1-bin-hadoop2.6
 export HADOOP_HOME=/Users/mparsian/zmp/zs/hadoop-2.6.3
 export HADOOP_CONF_DIR=$HADOOP_HOME/etc/hadoop
 export YARN_CONF_DIR=$HADOOP_HOME/etc/hadoop
