@@ -180,10 +180,10 @@ public class PairOfLongs implements WritableComparable<PairOfLongs> {
          if (thisLeftValue == thatLeftValue) {
            long thisRightValue = readLong(b1, s1 + 8);
            long thatRightValue = readLong(b2, s2 + 8);
-           return (thisRightValue < thatRightValue ? -1 : (thisRightValue == thatRightValue ? 0 : 1));
+           return thisRightValue < thatRightValue ? -1 : (thisRightValue == thatRightValue ? 0 : 1);
          }
 
-         return (thisLeftValue < thatLeftValue ? -1 : (thisLeftValue == thatLeftValue ? 0 : 1));
+         return thisLeftValue < thatLeftValue ? -1 : (thisLeftValue == thatLeftValue ? 0 : 1);
       }
    }
 

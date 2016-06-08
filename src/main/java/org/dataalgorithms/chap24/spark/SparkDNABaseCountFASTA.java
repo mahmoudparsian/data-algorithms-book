@@ -81,7 +81,7 @@ public class SparkDNABaseCountFASTA  {
                 allBaseCounts.put(base, entry.getValue());
             }
             else {
-                allBaseCounts.put(base, (count + entry.getValue()));
+                allBaseCounts.put(base, count + entry.getValue());
             }
          }
       }
