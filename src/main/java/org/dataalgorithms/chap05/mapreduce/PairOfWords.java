@@ -146,6 +146,10 @@ public class PairOfWords implements WritableComparable<PairOfWords> {
 	 * @return <code>true</code> if <code>obj</code> is equal to this object, <code>false</code> otherwise
 	 */
 	public boolean equals(Object obj) {
+		if (obj == null)
+			return false;
+		if (this.getClass() != obj.getClass())
+			return false;
 		PairOfWords pair = (PairOfWords) obj;
 		return leftElement.equals(pair.getLeftElement())
 				&& rightElement.equals(pair.getRightElement());
