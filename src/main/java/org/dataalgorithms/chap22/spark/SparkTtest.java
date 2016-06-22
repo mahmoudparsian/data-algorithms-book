@@ -35,7 +35,7 @@ public class SparkTtest {
       BufferedReader in = null;
       try {
          in = new BufferedReader(new FileReader(filename));
-         String line = null;
+         String line;
          while ((line = in.readLine()) != null) {
             String value = line.trim();
             String[] tokens = value.split("\t");
@@ -60,7 +60,7 @@ public class SparkTtest {
       BufferedReader in = null;
       try {
          in = new BufferedReader(new FileReader(biosetFiles));
-         String singleBiosetFile = null;
+         String singleBiosetFile;
          while ((singleBiosetFile = in.readLine()) != null) {
             singleBiosetFile = singleBiosetFile.trim();
             unionPath.append(singleBiosetFile);

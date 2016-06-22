@@ -88,14 +88,14 @@ public class AllVersusAllCorrelation implements java.io.Serializable {
    }  
     
    static List<String> toListOfString(Path hdfsFile) throws Exception {
-      FSDataInputStream fis = null;
+      FSDataInputStream fis;
       BufferedReader br = null;
       FileSystem fs = FileSystem.get(new Configuration());      
       List<String> list = new ArrayList<String>();
       try {
          fis = fs.open(hdfsFile);
          br = new BufferedReader(new InputStreamReader(fis));
-          String line = null;
+          String line;
           while ((line = br.readLine()) != null) {
              String value = line.trim();
             list.add(value);
