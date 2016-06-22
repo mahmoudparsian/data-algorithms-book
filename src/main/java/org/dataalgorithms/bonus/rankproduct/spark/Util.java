@@ -14,7 +14,10 @@ import org.apache.spark.api.java.JavaSparkContext;
 public class Util {
 
     private static final Logger THE_LOGGER = Logger.getLogger(Util.class);
-    
+
+    private Util() {
+    }
+
     static JavaSparkContext createJavaSparkContext(boolean useYARN) {
         JavaSparkContext context;
         if (useYARN) {

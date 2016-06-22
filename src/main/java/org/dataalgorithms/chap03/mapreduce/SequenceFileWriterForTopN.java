@@ -22,6 +22,9 @@ import java.util.Random;
  */
 public class SequenceFileWriterForTopN {
 
+    private SequenceFileWriterForTopN() {
+    }
+
     public static void main(String[] args) throws IOException {
         if (args.length != 2) {
             throw new IOException("usage: java org.dataalgorithms.chap03.mapreduce.SequenceFileWriterForTopN <hdfs-path> <number-of-entries>");

@@ -31,7 +31,10 @@ import java.util.Iterator;
  *
  */
 public class MovieRecommendationsWithJoin {
-  public static void main(String[] args) throws Exception {
+    private MovieRecommendationsWithJoin() {
+    }
+
+    public static void main(String[] args) throws Exception {
 
     //STEP-1: handle input parameters
     if (args.length < 1) {

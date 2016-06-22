@@ -12,8 +12,11 @@ import java.util.Arrays;
  *
  */
 public class TestPearson {
-  
-   public static void main(String[] args) {
+
+    private TestPearson() {
+    }
+
+    public static void main(String[] args) {
       test0(args);
       test1(args);
       test2(args);

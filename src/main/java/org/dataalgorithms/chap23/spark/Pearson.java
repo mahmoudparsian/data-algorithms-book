@@ -16,7 +16,10 @@ import org.apache.commons.math3.stat.correlation.PearsonsCorrelation;
 public class Pearson {
 
    final static PearsonsCorrelation PC = new PearsonsCorrelation();
-  
+
+   private Pearson() {
+   }
+
    public static double getCorrelation(List<Double> X, List<Double> Y) {
       double[] xArray = toDoubleArray(X);
       double[] yArray = toDoubleArray(Y);

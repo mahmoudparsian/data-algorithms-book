@@ -22,8 +22,11 @@ import org.dataalgorithms.chap06.TimeSeriesData;
  *
  */
 public class SortInMemory_MovingAverageDriver {
- 
-    public static void main(String[] args) throws Exception {
+
+   private SortInMemory_MovingAverageDriver() {
+   }
+
+   public static void main(String[] args) throws Exception {
        Configuration conf = new Configuration();
        String[] otherArgs = new GenericOptionsParser(conf, args).getRemainingArgs();
        if (otherArgs.length != 3) {

@@ -21,7 +21,10 @@ import java.io.IOException;
  */
 public class LocationCountDriver {
 
-   public static void main( String[] args ) throws Exception {
+  private LocationCountDriver() {
+  }
+
+  public static void main(String[] args ) throws Exception {
       Path input = new Path(args[0]);
       Path output = new Path(args[1]);
       Configuration conf = new Configuration();

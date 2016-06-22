@@ -21,7 +21,10 @@ import org.apache.spark.api.java.function.PairFunction;
  */
 
 public final class PerKeyAverage {
-    
+
+    private PerKeyAverage() {
+    }
+
     static final List<Tuple2<String, Double>> getSampleInput() {
         List<Tuple2<String, Double>> input = new ArrayList<Tuple2<String, Double>>();
         // key: "zebra"

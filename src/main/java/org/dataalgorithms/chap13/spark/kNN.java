@@ -26,8 +26,11 @@ import com.google.common.base.Splitter;
  *
  */
 public class kNN {
-   
-   /**
+
+    private kNN() {
+    }
+
+    /**
     * @param str a comma (or semicolon) separated list of double values
     * str is like "1.1,2.2,3.3" or "1.1;2.2;3.3"
     *

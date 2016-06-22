@@ -7,7 +7,10 @@ package org.dataalgorithms.chap17.mapreduce;
  *
  */
 public class KmerUtil   {
-	
+
+	private KmerUtil() {
+	}
+
 	public static String getKmer(String str, int start, int k) {
     	if (start+k > str.length()) {
     		return null;

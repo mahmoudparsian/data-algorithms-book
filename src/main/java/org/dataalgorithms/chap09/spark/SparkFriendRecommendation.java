@@ -27,7 +27,10 @@ import java.util.HashMap;
  */
 public class SparkFriendRecommendation {
 
-  public static void main(String[] args) throws Exception {
+    private SparkFriendRecommendation() {
+    }
+
+    public static void main(String[] args) throws Exception {
     if (args.length < 1) {
        System.err.println("Usage: SparkFriendRecommendation <input-path>");
        System.exit(1);

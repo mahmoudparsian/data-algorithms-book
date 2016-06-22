@@ -22,7 +22,10 @@ import org.apache.spark.api.java.function.FlatMapFunction;
  */
 public class SparkDNABaseCountFASTA  {
 
-   public static void main(String[] args) throws Exception {
+    private SparkDNABaseCountFASTA() {
+    }
+
+    public static void main(String[] args) throws Exception {
       // STEP-1: handle input parameters
       if (args.length != 1) {
          System.err.println("Usage: SparkDNABaseCountFASTA <input-path>");

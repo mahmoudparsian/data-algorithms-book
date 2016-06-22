@@ -25,9 +25,12 @@ import org.dataalgorithms.util.HadoopUtil;
  */
 public class SortInMemoryProjectionDriver {
 	private static final Logger theLogger = 
-	   Logger.getLogger(SortInMemoryProjectionDriver.class); 
-	   
-    public static void main(String[] args) throws Exception {
+	   Logger.getLogger(SortInMemoryProjectionDriver.class);
+
+   private SortInMemoryProjectionDriver() {
+   }
+
+   public static void main(String[] args) throws Exception {
 		long startTime = System.currentTimeMillis();	
     
        Configuration conf = new Configuration();

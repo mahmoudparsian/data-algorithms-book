@@ -36,7 +36,10 @@ import org.apache.commons.lang.StringUtils;
  */
 public class SparkFriendRecommendation {
 
-   /**
+    private SparkFriendRecommendation() {
+    }
+
+    /**
     * Build a pair of Longs(x,y) where x <= y
     */
    private static Tuple2<Long,Long> buildSortedPairOfLongs(long a, long b) {

@@ -38,6 +38,9 @@ public class SparkRankProductUsingCombineByKey {
 
     private static final Logger THE_LOGGER = Logger.getLogger(SparkRankProductUsingCombineByKey.class);
 
+    private SparkRankProductUsingCombineByKey() {
+    }
+
     /**
      * AverageCount is used by combineByKey() to hold 
      * the total values and their count.

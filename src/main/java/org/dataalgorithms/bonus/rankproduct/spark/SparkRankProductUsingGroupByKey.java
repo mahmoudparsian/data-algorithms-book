@@ -33,7 +33,10 @@ import org.apache.commons.lang.StringUtils;
 public class SparkRankProductUsingGroupByKey {
 
     private static final Logger THE_LOGGER = Logger.getLogger(SparkRankProductUsingGroupByKey.class);
-        
+
+    private SparkRankProductUsingGroupByKey() {
+    }
+
     static void debug(String[] args)  {
         for (int i=0; i < args.length; i++){
             THE_LOGGER.info("***debug*** args["+i+"]="+args[i]);

@@ -22,7 +22,10 @@ import java.util.Arrays;
  */
 public class SparkAnagram {
 
-   public static void main(String[] args) throws Exception {
+    private SparkAnagram() {
+    }
+
+    public static void main(String[] args) throws Exception {
   
       // STEP-1: handle input parameters
       if (args.length != 3) {

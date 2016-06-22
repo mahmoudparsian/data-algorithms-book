@@ -12,6 +12,9 @@ import org.apache.spark.SparkConf;
  */
 public class SubmitSparkJobToYARNFromJavaCode {
 
+   private SubmitSparkJobToYARNFromJavaCode() {
+   }
+
    public static void main(String[] arguments) throws Exception {
 
        // prepare arguments to be passed to 

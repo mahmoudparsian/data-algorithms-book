@@ -27,8 +27,11 @@ import org.dataalgorithms.util.HadoopUtil;
 public class SecondarySortProjectionDriver {
 
 	private static final Logger theLogger = 
-	   Logger.getLogger(SecondarySortProjectionDriver.class); 
- 
+	   Logger.getLogger(SecondarySortProjectionDriver.class);
+
+    private SecondarySortProjectionDriver() {
+    }
+
     public static void main(String[] args) throws Exception {
 		long startTime = System.currentTimeMillis();	
         Configuration conf = new Configuration();

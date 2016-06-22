@@ -10,7 +10,10 @@ import java.util.List;
  *
  */
 public class TestSpearman {
-		
+
+	private TestSpearman() {
+	}
+
 	public static void main(String[] args) {
 	    test0(args);
 	    test1(args);
