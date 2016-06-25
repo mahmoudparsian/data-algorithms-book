@@ -1,17 +1,21 @@
 package org.dataalgorithms.bonus.anagram.spark;
 
 // STEP-0: import required classes and interfaces
-import scala.Tuple2;
-import org.apache.spark.api.java.JavaRDD;
-import org.apache.spark.api.java.JavaPairRDD;
-import org.apache.spark.api.java.JavaSparkContext;
-import org.apache.spark.api.java.function.PairFlatMapFunction;
-import org.apache.commons.lang.StringUtils;
-
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Arrays;
+//
+import scala.Tuple2;
+//
+import org.apache.spark.api.java.JavaRDD;
+import org.apache.spark.api.java.JavaPairRDD;
+import org.apache.spark.api.java.JavaSparkContext;
+import org.apache.spark.api.java.function.PairFlatMapFunction;
+//
+import org.apache.commons.lang.StringUtils;
+
+
 
 /**
  * Find anagrams for a given set of documents.
