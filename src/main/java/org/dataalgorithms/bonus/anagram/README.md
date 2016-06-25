@@ -24,15 +24,14 @@ for a set of given  documents.
 
 We will ignore words if their length is less than N (we read N as a parameter).
 
-Program-1: Basic Anagram Finder: using groupByKey() : SparkAnagram
-==================================================================
-
-Program-2: Anagram Finder & Frequency: using combineByKey() : SparkAnagramUsingCombineByKey
-===========================================================================================
+## Program-1: Basic Anagram Finder: using groupByKey() : SparkAnagram
 
 
-Program-3: Anagram Finder & Frequency: using groupByKey() : SparkAnagramUsingCombineByKey
-===========================================================================================
+## Program-2: Anagram Finder & Frequency: using combineByKey() : SparkAnagramUsingCombineByKey
+
+
+## Program-3: Anagram Finder & Frequency: using groupByKey() : SparkAnagramUsingCombineByKey
+
 
 
 Input Files for Testing
@@ -71,17 +70,9 @@ echo "JAVA_HOME=$JAVA_HOME"
 #
 export BOOK_HOME=/Users/mparsian/zmp/github/data-algorithms-book
 export SPARK_HOME=/Users/mparsian/spark-1.6.1-bin-hadoop2.6
-#export SPARK_MASTER=spark://localhost:7077
-export SPARK_MASTER=spark://Mahmouds-MacBook.local:7077
+export SPARK_MASTER=spark://localhost:7077
 export SPARK_JAR=$BOOK_HOME/lib/spark-assembly-1.6.0-hadoop2.6.0.jar
 export APP_JAR=$BOOK_HOME/dist/data_algorithms_book.jar
-#
-# build all other dependent jars in OTHER_JARS
-JARS=`find $BOOK_HOME/lib -name '*.jar'`
-OTHER_JARS=""
-for J in $JARS ; do 
-   OTHER_JARS=$J,$OTHER_JARS
-done
 #
 # define input parameters
 N=2
@@ -89,7 +80,10 @@ INPUT="file://$BOOK_HOME/sample_anagram.txt"
 OUTPUT="file://$BOOK_HOME/output"
 #
 prog=org.dataalgorithms.bonus.anagram.spark.SparkAnagramCountUsingCombineByKey
-$SPARK_HOME/bin/spark-submit  --class $prog --master $SPARK_MASTER $APP_JAR $N $INPUT $OUTPUT
+$SPARK_HOME/bin/spark-submit  \
+    --class $prog \
+    --master $SPARK_MASTER \
+    $APP_JAR $N $INPUT $OUTPUT
 ````
 
 Sample Script to run SparkAnagramUsingGroupByKey
@@ -102,25 +96,19 @@ echo "JAVA_HOME=$JAVA_HOME"
 #
 export BOOK_HOME=/Users/mparsian/zmp/github/data-algorithms-book
 export SPARK_HOME=/Users/mparsian/spark-1.6.1-bin-hadoop2.6
-#export SPARK_MASTER=spark://localhost:7077
-export SPARK_MASTER=spark://Mahmouds-MacBook.local:7077
+export SPARK_MASTER=spark://localhost:7077
 export SPARK_JAR=$BOOK_HOME/lib/spark-assembly-1.6.0-hadoop2.6.0.jar
 export APP_JAR=$BOOK_HOME/dist/data_algorithms_book.jar
-#
-# build all other dependent jars in OTHER_JARS
-JARS=`find $BOOK_HOME/lib -name '*.jar'`
-OTHER_JARS=""
-for J in $JARS ; do 
-   OTHER_JARS=$J,$OTHER_JARS
-done
-#
 # define input parameters
 N=2
 INPUT="file://$BOOK_HOME/sample_anagram.txt"
 OUTPUT="file://$BOOK_HOME/output"
 #
 prog=org.dataalgorithms.bonus.anagram.spark.SparkAnagramUsingGroupByKey
-$SPARK_HOME/bin/spark-submit  --class $prog --master $SPARK_MASTER $APP_JAR $N $INPUT $OUTPUT
+$SPARK_HOME/bin/spark-submit  \
+    --class $prog \
+    --master $SPARK_MASTER \
+    $APP_JAR $N $INPUT $OUTPUT
 ````
 
 
