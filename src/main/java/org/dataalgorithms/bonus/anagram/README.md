@@ -41,9 +41,12 @@ arise from picking the wrong one. for details see the following:
 * [How-to: Tune Your Apache Spark Jobs (Part 1) by Sandy Ryza](http://blog.cloudera.com/blog/2015/03/how-to-tune-your-apache-spark-jobs-part-1/)
 * [How-to: Tune Your Apache Spark Jobs (Part 2) by Sandy Ryza](http://blog.cloudera.com/blog/2015/03/how-to-tune-your-apache-spark-jobs-part-2/)
 
-* Avoid using ````groupByKey()```` when performing an associative reductive operation. 
+* Avoid using ````groupByKey()```` when performing an associative reductive 
+operation (such as addition, multiplication, ...). In these situations, 
+````reduceByKey()```` is a better option than ````groupByKey()````.
 
-* Avoid ````reduceByKey()```` When the input and output value types are different. 
+* Avoid ````reduceByKey()```` When the input and output value types are different.
+You may use ````combineByKey()````. 
 
 * Avoid the ````flatMap-join-groupBy```` pattern. When two datasets are already grouped 
 by key and you want to join them and keep them grouped, you can just use cogroup. 
