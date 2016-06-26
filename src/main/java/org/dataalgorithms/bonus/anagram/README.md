@@ -22,8 +22,9 @@ Source:
 
 Example
 ======= 
-* the word "mary" can be rearranged into "army"
-* the word "secure" is an anagram of "rescue"
+* The word "mary" can be rearranged into "army"
+* The word "secure" is an anagram of "rescue"
+* The word "elvis" can be rearranged into "lives"
 
 Programs
 ========
@@ -32,19 +33,12 @@ for a set of given  documents.
 
 We will ignore words if their length is less than N (we read N as a parameter).
 
-| Program             |          |
-|---------------------|----------|
-|  Program-1          |          |
-|  Program-2          |          |
-|  Program-3          |          |
+| Program                                   | Description                                      |
+|-------------------------------------------|--------------------------------------------------|
+|  Program-1: SparkAnagram                  |  Basic Anagram Finder: using groupByKey()        |
+|  Program-2: SparkAnagramUsingCombineByKey | Anagram Finder & Frequency: using combineByKey() |
+|  Program-2: SparkAnagramUsingGroupByKey   | Anagram Finder & Frequency: using groupByKey()   |
 
-## Program-1: Basic Anagram Finder: using groupByKey() : SparkAnagram
-
-
-## Program-2: Anagram Finder & Frequency: using combineByKey() : SparkAnagramUsingCombineByKey
-
-
-## Program-3: Anagram Finder & Frequency: using groupByKey() : SparkAnagramUsingCombineByKey
 
 Common Spark Performance Pitfalls
 =================================
