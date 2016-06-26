@@ -50,7 +50,7 @@ import org.apache.commons.lang.StringUtils;
  * @author Mahmoud Parsian
  *
  */
-public class SparkAnagramCountUsingCombineByKey {
+public class AnagramCountUsingCombineByKey {
 
     public static void main(String[] args) throws Exception {
 

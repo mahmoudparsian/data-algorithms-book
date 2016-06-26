@@ -33,11 +33,11 @@ for a set of given  documents.
 
 We will ignore words if their length is less than N (we read N as a parameter).
 
-| Program                                           | Description                                              |
-|---------------------------------------------------|----------------------------------------------------------|
-|  Program-1: ````SparkAnagram````                  |  Basic Anagram Finder: using ````groupByKey()````        |
-|  Program-2: ````SparkAnagramUsingCombineByKey```` | Anagram Finder & Frequency: using ````combineByKey()```` |
-|  Program-2: ````SparkAnagramUsingGroupByKey````   | Anagram Finder & Frequency: using ````groupByKey()````   |
+| Spark Program                                | Description                                              |
+|----------------------------------------------|----------------------------------------------------------|
+|  Program-1: ````Anagram````                  |  Basic Anagram Finder: using ````groupByKey()````        |
+|  Program-2: ````AnagramUsingCombineByKey```` | Anagram Finder & Frequency: using ````combineByKey()```` |
+|  Program-2: ````AnagramUsingGroupByKey````   | Anagram Finder & Frequency: using ````groupByKey()````   |
 
 
 Common Spark Performance Pitfalls
@@ -93,7 +93,7 @@ Each output record has the following format:
 (amry,{army=2, mary=3})
 ````
 
-Sample Script to run SparkAnagramUsingCombineByKey
+Sample Script to run AnagramCountUsingCombineByKey
 ==================================================
 ````
 cat run_anagram_using_combineByKey.sh 
@@ -112,14 +112,14 @@ N=2
 INPUT="file://$BOOK_HOME/sample_anagram.txt"
 OUTPUT="file://$BOOK_HOME/output"
 #
-prog=org.dataalgorithms.bonus.anagram.spark.SparkAnagramCountUsingCombineByKey
+prog=org.dataalgorithms.bonus.anagram.spark.AnagramCountUsingCombineByKey
 $SPARK_HOME/bin/spark-submit  \
     --class $prog \
     --master $SPARK_MASTER \
     $APP_JAR $N $INPUT $OUTPUT
 ````
 
-Sample Script to run SparkAnagramUsingGroupByKey
+Sample Script to run AnagramCountUsingGroupByKey
 ==================================================
 ````
 cat run_anagram_using_combineByKey.sh 
@@ -137,7 +137,7 @@ N=2
 INPUT="file://$BOOK_HOME/sample_anagram.txt"
 OUTPUT="file://$BOOK_HOME/output"
 #
-prog=org.dataalgorithms.bonus.anagram.spark.SparkAnagramUsingGroupByKey
+prog=org.dataalgorithms.bonus.anagram.spark.AnagramUsingGroupByKey
 $SPARK_HOME/bin/spark-submit  \
     --class $prog \
     --master $SPARK_MASTER \

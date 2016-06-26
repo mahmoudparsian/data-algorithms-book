@@ -48,7 +48,7 @@ import org.apache.commons.lang.StringUtils;
  * @author Mahmoud Parsian
  *
  */
-public class SparkAnagramCountUsingGroupByKey {
+public class AnagramCountUsingGroupByKey {
 
     public static void main(String[] args) throws Exception {
 

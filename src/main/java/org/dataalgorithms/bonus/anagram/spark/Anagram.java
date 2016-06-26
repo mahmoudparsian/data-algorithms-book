@@ -24,7 +24,7 @@ import org.apache.commons.lang.StringUtils;
  * @author Mahmoud Parsian
  *
  */
-public class SparkAnagram {
+public class Anagram {
 
    public static void main(String[] args) throws Exception {
   
