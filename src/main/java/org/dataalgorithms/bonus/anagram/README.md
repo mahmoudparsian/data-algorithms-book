@@ -15,13 +15,9 @@ are anagrams
 
 * Here we work on anagrams, which are only single words. 
 
-Source:  
-=======
-* http://en.wikipedia.org/wiki/Anagram
-* http://www.merriam-webster.com/dictionary/anagram
 
-Example
-======= 
+Examples
+======== 
 * The word "mary" can be rearranged into "army"
 * The word "secure" is an anagram of "rescue"
 * The word "elvis" can be rearranged into "lives"
@@ -35,9 +31,9 @@ We will ignore words if their length is less than N (we read N as a parameter).
 
 | Spark Program                                | Description                                              |
 |----------------------------------------------|----------------------------------------------------------|
-|  Program-1: ````Anagram````                  |  Basic Anagram Finder: using ````groupByKey()````        |
-|  Program-2: ````AnagramUsingCombineByKey```` | Anagram Finder & Frequency: using ````combineByKey()```` |
-|  Program-2: ````AnagramUsingGroupByKey````   | Anagram Finder & Frequency: using ````groupByKey()````   |
+|  Program-1: ````Anagram````                  |  Basic Anagram Finder: using Spark's ````groupByKey()````        |
+|  Program-2: ````AnagramUsingCombineByKey```` | Anagram Finder & Frequency: using Spark's ````combineByKey()```` |
+|  Program-2: ````AnagramUsingGroupByKey````   | Anagram Finder & Frequency: using Spark's ````groupByKey()````   |
 
 
 Common Spark Performance Pitfalls
@@ -143,6 +139,11 @@ $SPARK_HOME/bin/spark-submit  \
     --master $SPARK_MASTER \
     $APP_JAR $N $INPUT $OUTPUT
 ````
+
+References  
+==========
+* http://en.wikipedia.org/wiki/Anagram
+* http://www.merriam-webster.com/dictionary/anagram
 
 
 [![Data Algorithms Book](https://github.com/mahmoudparsian/data-algorithms-book/blob/master/misc/data_algorithms_image.jpg)](http://shop.oreilly.com/product/0636920033950.do) 
