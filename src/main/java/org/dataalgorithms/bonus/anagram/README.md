@@ -33,11 +33,11 @@ for a set of given  documents.
 
 We will ignore words if their length is less than N (we read N as a parameter).
 
-| Program                                   | Description                                      |
-|-------------------------------------------|--------------------------------------------------|
-|  Program-1: SparkAnagram                  |  Basic Anagram Finder: using groupByKey()        |
-|  Program-2: SparkAnagramUsingCombineByKey | Anagram Finder & Frequency: using combineByKey() |
-|  Program-2: SparkAnagramUsingGroupByKey   | Anagram Finder & Frequency: using groupByKey()   |
+| Program                                           | Description                                              |
+|---------------------------------------------------|----------------------------------------------------------|
+|  Program-1: ````SparkAnagram````                  |  Basic Anagram Finder: using ````groupByKey()````        |
+|  Program-2: ````SparkAnagramUsingCombineByKey```` | Anagram Finder & Frequency: using ````combineByKey()```` |
+|  Program-2: ````SparkAnagramUsingGroupByKey````   | Anagram Finder & Frequency: using ````groupByKey()````   |
 
 
 Common Spark Performance Pitfalls
