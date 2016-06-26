@@ -1,11 +1,19 @@
 What is an Anagram?
 ===================
-Anagram is a word or phrase made by transposing the letters of another 
-word or phrase.  An anagram is a type of word play, the result of rearranging 
-the letters of a word or phrase to produce a new word or phrase, using all 
-the original letters exactly once; for example, the word "anagram" can be 
-rearranged into "nagaram". Someone who creates anagrams may be called an 
-"anagrammatist".
+* Anagram is a word or phrase made by transposing the letters 
+of another word or phrase.  
+
+* An anagram is a type of word play, the result of rearranging 
+the letters of a word or phrase to produce a new word or phrase, 
+using all the original letters exactly once
+
+* For example, the word "anagram" can be rearranged into "nagaram". 
+"Elvis" can be rearranged into "lives", therefore "Elvis" and "lives"
+are anagrams
+
+* Someone who creates anagrams may be called an "anagrammatist"
+
+* Here we work on anagrams, which are only single words. 
 
 Source:  
 =======
@@ -70,6 +78,12 @@ Mary and Elvis are in a army Listen Silent detroit
 
 Sample Output
 =============
+Each output record has the following format:
+````
+<sorted-word><anagrams-and-associated-frequencies>
+````
+
+
 ````
 # cat output/part-00000 
 (adeht,{death=1, hated=1})
