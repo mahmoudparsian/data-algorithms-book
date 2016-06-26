@@ -33,7 +33,7 @@ We will ignore words if their length is less than N (we read N as a parameter).
 |----------------------------------------------|----------------------------------------------------------|
 |  Program-1: ````Anagram````                  |  Basic Anagram Finder: using Spark's ````groupByKey()````        |
 |  Program-2: ````AnagramUsingCombineByKey```` | Anagram Finder & Frequency: using Spark's ````combineByKey()```` |
-|  Program-2: ````AnagramUsingGroupByKey````   | Anagram Finder & Frequency: using Spark's ````groupByKey()````   |
+|  Program-3: ````AnagramUsingGroupByKey````   | Anagram Finder & Frequency: using Spark's ````groupByKey()````   |
 
 
 Common Spark Performance Pitfalls
