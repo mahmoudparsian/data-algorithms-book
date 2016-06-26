@@ -81,7 +81,7 @@ Each output record has the following format:
 
 
 ````
-# cat output/part-00000 
+$ cat output/part-00000 
 (adeht,{death=1, hated=1})
 (eilnst,{silent=3, listen=2})
 (eilsv,{lives=1, elvis=3})
@@ -91,6 +91,8 @@ Each output record has the following format:
 
 Sample Script to run AnagramCountUsingCombineByKey
 ==================================================
+Before running this script, you need to build the ````data_algorithms_book.jar```` file.
+
 ````
 cat run_anagram_using_combineByKey.sh 
 #!/bin/bash
@@ -117,8 +119,10 @@ $SPARK_HOME/bin/spark-submit  \
 
 Sample Script to run AnagramCountUsingGroupByKey
 ==================================================
+Before running this script, you need to build the ````data_algorithms_book.jar```` file.
+
 ````
-cat run_anagram_using_combineByKey.sh 
+$ cat run_anagram_using_combineByKey.sh 
 #!/bin/bash
 export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_72.jdk/Contents/Home/
 echo "JAVA_HOME=$JAVA_HOME"
