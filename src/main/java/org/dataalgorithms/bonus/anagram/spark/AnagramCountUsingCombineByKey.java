@@ -1,9 +1,6 @@
 package org.dataalgorithms.bonus.anagram.spark;
 
 // STEP-0: import required classes and interfaces
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -15,9 +12,6 @@ import org.apache.spark.api.java.JavaPairRDD;
 import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.api.java.function.Function;
 import org.apache.spark.api.java.function.Function2;
-import org.apache.spark.api.java.function.PairFlatMapFunction;
-//
-import org.apache.commons.lang.StringUtils;
 
 
 /**
@@ -81,46 +75,20 @@ public class AnagramCountUsingCombineByKey {
         // STEP-4: create (K, V) pairs from input
         // K = sorted(word)
         // V = word
-        JavaPairRDD<String, String> rdd = lines.flatMapToPair(
-                new PairFlatMapFunction<String, String, String>() {
-            @Override
-            public Iterable<Tuple2<String, String>> call(String line) {
-                if ((line == null) || (line.length() < N)) {
-                    return Collections.EMPTY_LIST;
-                }
+        JavaPairRDD<String, String> rdd = Util.mapToKeyValue(lines, N);
 
-                String[] words = StringUtils.split(line);
-                if (words == null) {
-                    return Collections.EMPTY_LIST;
-                }
 
-                List<Tuple2<String, String>> results = new ArrayList<Tuple2<String, String>>();
-                for (String word : words) {
-                    if (word.length() < N) {
-                        // ignore strings with less than size N
-                        continue;
-                    }
-                    if (word.matches(".*[,.;]$")) {
-                        // remove the special char from the end
-                        word = word.substring(0, word.length() - 1);
-                    }
-                    if (word.length() < N) {
-                        // ignore strings with less than size N
-                        continue;
-                    }
-
-                    String lowercaseWord = word.toLowerCase();
-                    String sortedWord = sort(lowercaseWord);
-                    results.add(new Tuple2<String, String>(sortedWord, lowercaseWord));
-                }
-                return results;
-            }
-        });
-
-        // How to use combineByKey():
-        // to use combineByKey(), you need to define 3 basic functions f1, f2, f3:
+        // How to use combineByKey(): to use combineByKey(), you 
+        // need to define 3 basic functions f1, f2, f3:
         // and then you invoke it as: combineByKey(f1, f2, f3)
-        // function 1: create a combiner data structure 
+        //    function 1: create a combiner data structure 
+        //    function 2: merge a value into a combined data structure
+        //    function 3: merge two combiner data structures
+        
+        
+        // function 1: create a combiner data structure         
+        // Here, the combiner data structure is a Map<String,Integer>,
+        // which keeps track of anagrams and its associated frequencies
         Function<String, Map<String, Integer>> createCombiner
                 = new Function<String, Map<String, Integer>>() {
             @Override
@@ -132,7 +100,8 @@ public class AnagramCountUsingCombineByKey {
         };
 
         // function 2: merge a value into a combined data structure
-        Function2<Map<String, Integer>, String, Map<String, Integer>> mergeValue = new Function2<Map<String, Integer>, String, Map<String, Integer>>() {
+        Function2<Map<String, Integer>, String, Map<String, Integer>> mergeValue = 
+                new Function2<Map<String, Integer>, String, Map<String, Integer>>() {
             @Override
             public Map<String, Integer> call(Map<String, Integer> map, String x) {
                 Integer frequency = map.get(x);
