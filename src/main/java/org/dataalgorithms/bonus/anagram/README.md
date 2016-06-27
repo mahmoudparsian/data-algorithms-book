@@ -29,11 +29,18 @@ for a set of given  documents.
 
 We will ignore words if their length is less than N (we read N as a parameter).
 
+Spark Programs
+--------------
+
 | Spark Programs                               | Description                                                      |
 |----------------------------------------------|------------------------------------------------------------------|
 |  Program-1: ````AnagramFinder````            |  Basic Anagram Finder: using Spark's ````groupByKey()````        |
 |  Program-2: ````AnagramUsingCombineByKey```` | Anagram Finder & Frequency: using Spark's ````combineByKey()```` |
 |  Program-3: ````AnagramUsingGroupByKey````   | Anagram Finder & Frequency: using Spark's ````groupByKey()````   |
+
+
+MapReduce/Hadoop Program
+------------------------
 
 | MapReduce/Hadoop Program                     | Description                                                      |
 |----------------------------------------------|------------------------------------------------------------------|
