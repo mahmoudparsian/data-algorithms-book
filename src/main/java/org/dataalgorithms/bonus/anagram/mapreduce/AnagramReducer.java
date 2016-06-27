@@ -1,5 +1,7 @@
 package org.dataalgorithms.bonus.anagram.mapreduce;
 
+import java.util.Set;
+import java.util.HashSet;
 import java.io.IOException;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Reducer;
@@ -15,24 +17,27 @@ import org.apache.hadoop.mapreduce.Reducer.Context;
  *
  */
 
-public class AnagramReducer 
-    extends Reducer<Text, Text, Text, Text> {
-   
+public class AnagramReducer
+        extends Reducer<Text, Text, Text, Text> {
+
     // This method is called once for each key. Most applications will 
     // define their reduce class by overriding this method. The default 
     // implementation is an identity function.
+    @Override
     public void reduce(Text key, Iterable<Text> values, Context context)
-       throws IOException, InterruptedException {
-       int numberOfAnagrams = 0;
-       StringBuilder output = new StringBuilder();
-       for (Text value : values) {
-          String anagram = value.toString();
-          output.append(anagram);
-          output.append(",");
-          numberOfAnagrams++;
-       }
-       if(numberOfAnagrams > 1) {
-          context.write(key, new Text(output.toString()));
-       }       
+            throws IOException, InterruptedException {
+        //
+        Set<String> set = new HashSet<>();
+        for (Text value : values) {
+            String word = value.toString();
+            set.add(word);
+        }
+        //
+        // if there are more than one word for a sorted word, 
+        // then these are the anagrams
+        //
+        if (set.size() > 1) {
+            context.write(key, new Text(set.toString()));
+        }
     }
 }
