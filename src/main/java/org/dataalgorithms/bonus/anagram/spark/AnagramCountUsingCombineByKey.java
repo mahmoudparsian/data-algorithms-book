@@ -1,9 +1,8 @@
 package org.dataalgorithms.bonus.anagram.spark;
 
 // STEP-0: import required classes and interfaces
-import java.util.Arrays;
-import java.util.HashMap;
 import java.util.Map;
+import java.util.HashMap;
 //
 import scala.Tuple2;
 //
@@ -107,7 +106,8 @@ public class AnagramCountUsingCombineByKey {
                 Integer frequency = map.get(x);
                 if (frequency == null) {
                     map.put(x, 1);
-                } else {
+                } 
+                else {
                     map.put(x, frequency + 1);
                 }
                 return map;
@@ -121,7 +121,8 @@ public class AnagramCountUsingCombineByKey {
             public Map<String, Integer> call(Map<String, Integer> map1, Map<String, Integer> map2) {
                 if (map1.size() < map2.size()) {
                     return merge(map1, map2);
-                } else {
+                } 
+                else {
                     return merge(map1, map2);
                 }
             }
@@ -172,29 +173,14 @@ public class AnagramCountUsingCombineByKey {
         System.exit(0);
     }
 
-    static String sort8(String word) {
-        String sorted = word.chars()
-                .sorted()
-                .collect(StringBuilder::new,
-                        StringBuilder::appendCodePoint,
-                        StringBuilder::append)
-                .toString();
-        return sorted;
-    }
-
-    static String sort(String word) {
-        char[] chars = word.toCharArray();
-        Arrays.sort(chars);
-        String sortedWord = String.valueOf(chars);
-        return sortedWord;
-    }
 
     static Map<String, Integer> merge(Map<String, Integer> smaller, Map<String, Integer> larger) {
         for (String key : smaller.keySet()) {
             Integer frequency = larger.get(key);
             if (frequency == null) {
                 larger.put(key, frequency);
-            } else {
+            } 
+            else {
                 larger.put(key, frequency + smaller.get(key));
             }
         }

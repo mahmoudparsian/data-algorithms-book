@@ -1,9 +1,8 @@
 package org.dataalgorithms.bonus.anagram.spark;
 
 // STEP-0: import required classes and interfaces
-import java.util.Arrays;
-import java.util.HashMap;
 import java.util.Map;
+import java.util.HashMap;
 //
 import scala.Tuple2;
 //
@@ -141,23 +140,6 @@ public class AnagramCountUsingGroupByKey {
         // STEP-8: done
         ctx.close();
         System.exit(0);
-    }
-
-    static String sort8(String word) {
-        String sorted = word.chars()
-                .sorted()
-                .collect(StringBuilder::new,
-                        StringBuilder::appendCodePoint,
-                        StringBuilder::append)
-                .toString();
-        return sorted;
-    }
-
-    static String sort(String word) {
-        char[] chars = word.toCharArray();
-        Arrays.sort(chars);
-        String sortedWord = String.valueOf(chars);
-        return sortedWord;
     }
 
 }

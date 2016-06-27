@@ -38,12 +38,12 @@ public class Util {
                 if ((line == null) || (line.length() < N)) {
                     return Collections.EMPTY_LIST;
                 }
-
+                //
                 String[] words = StringUtils.split(line.toLowerCase());
                 if (words == null) {
                     return Collections.EMPTY_LIST;
                 }
-
+                //
                 List<Tuple2<String, String>> results = new ArrayList<>();
                 for (String word : words) {
                     if (word.length() < N) {
@@ -58,10 +58,8 @@ public class Util {
                         // ignore strings with less than size N
                         continue;
                     }
-
-                    char[] wordChars = word.toCharArray();
-                    Arrays.sort(wordChars);
-                    String sortedWord = new String(wordChars);
+                    //
+                    String sortedWord = sort(word);
                     results.add(new Tuple2<String, String>(sortedWord, word));
                 }
                 return results;
@@ -70,4 +68,21 @@ public class Util {
         //
         return rdd;
     }
+    
+    static String sort8(final String word) {
+        String sorted = word.chars()
+                .sorted()
+                .collect(StringBuilder::new,
+                         StringBuilder::appendCodePoint,
+                         StringBuilder::append)
+                .toString();
+        return sorted;
+    }
+
+    static String sort(final String word) {
+        char[] chars = word.toCharArray();
+        Arrays.sort(chars);
+        String sortedWord = String.valueOf(chars);
+        return sortedWord;
+    }    
 }

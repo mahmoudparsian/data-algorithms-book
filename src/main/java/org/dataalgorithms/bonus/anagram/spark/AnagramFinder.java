@@ -1,7 +1,6 @@
 package org.dataalgorithms.bonus.anagram.spark;
 
 // STEP-0: import required classes and interfaces
-//
 import java.util.Set;
 import java.util.HashSet;
 //
