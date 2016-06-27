@@ -72,8 +72,9 @@ public class AnagramCountUsingCombineByKey {
         JavaRDD<String> lines = ctx.textFile(inputPath, 1);
 
         // STEP-4: create (K, V) pairs from input
-        // K = sorted(word)
-        // V = word
+        // where 
+        //      K = sorted(word)
+        //      V = word
         JavaPairRDD<String, String> rdd = Util.mapToKeyValue(lines, N);
 
 
