@@ -29,8 +29,13 @@ for a set of given  documents.
 
 We will ignore words if their length is less than N (we read N as a parameter).
 
+
+
 Spark Programs
 --------------
+These programs are in the ````org.dataalgorithms.bonus.anagram.spark```` package.
+These programs do not use lambda expressions.
+
 
 | Spark Programs                               | Description                                                      |
 |----------------------------------------------|------------------------------------------------------------------|
@@ -39,8 +44,24 @@ Spark Programs
 |  Program-3: ````AnagramUsingGroupByKey````   | Anagram Finder & Frequency: using Spark's ````groupByKey()````   |
 
 
+
+Spark Programs with Lambda Expressions
+--------------------------------------
+These programs are in the ````org.dataalgorithms.bonus.anagram.sparkwithlambda```` package.
+With the addition of lambda expressions in Java 8, I have updated Spark’s API to transparently 
+support these expressions.
+
+| Spark Programs                               | Description                                                      |
+|----------------------------------------------|------------------------------------------------------------------|
+|  Program-1: ````AnagramFinder````            |  Basic Anagram Finder: using Spark's ````groupByKey()````        |
+|  Program-2: ````AnagramUsingCombineByKey```` | Anagram Finder & Frequency: using Spark's ````combineByKey()```` |
+|  Program-3: ````AnagramUsingGroupByKey````   | Anagram Finder & Frequency: using Spark's ````groupByKey()````   |
+
+
+
 MapReduce/Hadoop Program
 ------------------------
+These programs are in the ````org.dataalgorithms.bonus.anagram.mapreduce```` package.
 
 | MapReduce/Hadoop Program                     | Description                                                      |
 |----------------------------------------------|------------------------------------------------------------------|

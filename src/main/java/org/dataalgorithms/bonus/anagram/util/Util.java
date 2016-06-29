@@ -102,7 +102,9 @@ public class Util {
      * @param larger a Map
      * @return merged elements
      */
-    public static Map<String, Integer> merge(Map<String, Integer> smaller, Map<String, Integer> larger) {
+    public static Map<String, Integer> merge(
+            final Map<String, Integer> smaller, 
+            final Map<String, Integer> larger) {
         //
         for (String key : smaller.keySet()) {
             Integer frequency = larger.get(key);
