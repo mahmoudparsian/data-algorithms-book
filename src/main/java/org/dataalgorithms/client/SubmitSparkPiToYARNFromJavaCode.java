@@ -3,7 +3,9 @@ package org.dataalgorithms.client;
 import org.apache.spark.SparkConf;
 import org.apache.spark.deploy.yarn.Client;
 import org.apache.spark.deploy.yarn.ClientArguments;
+//
 import org.apache.hadoop.conf.Configuration;
+//
 import org.apache.log4j.Logger;
 
 /**
@@ -35,7 +37,7 @@ import org.apache.log4j.Logger;
   
   How to call this program example:
   
-     export SPARK_HOME="/Users/mparsian/spark-1.6.0"
+     export SPARK_HOME="/Users/mparsian/spark-1.6.1-bin-hadoop2.6"
      java -DSPARK_HOME="$SPARK_HOME" org.dataalgorithms.client.SubmitSparkPiToYARNFromJavaCode 10
 
 * 
@@ -70,7 +72,8 @@ public class SubmitSparkPiToYARNFromJavaCode {
             "1000M",
             //
             "--jar",
-            SPARK_HOME + "/examples/target/scala-2.10/spark-examples-1.6.0-hadoop2.5.0.jar",
+            //SPARK_HOME + "/examples/target/scala-2.10/spark-examples-1.6.0-hadoop2.5.0.jar",
+            SPARK_HOME + "/lib/spark-examples-1.6.1-hadoop2.6.0.jar",            
             //
             "--class",
             "org.apache.spark.examples.SparkPi",
@@ -87,7 +90,7 @@ public class SubmitSparkPiToYARNFromJavaCode {
         System.setProperty("SPARK_YARN_MODE", "true");
         //
         SparkConf sparkConf = new SparkConf();
-        ClientArguments clientArgs = new ClientArguments(args, sparkConf);
+        ClientArguments clientArgs = new ClientArguments(args, sparkConf); // worked
         Client client = new Client(clientArgs, config, sparkConf);
         //
         client.run();

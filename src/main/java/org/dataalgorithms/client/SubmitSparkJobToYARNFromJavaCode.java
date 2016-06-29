@@ -2,10 +2,13 @@ package org.dataalgorithms.client;
 
 import java.util.List;
 import java.util.Arrays;
+//
 import org.apache.spark.SparkConf;
 import org.apache.spark.deploy.yarn.Client;
 import org.apache.spark.deploy.yarn.ClientArguments;
+//
 import org.apache.hadoop.conf.Configuration;
+//
 import org.apache.log4j.Logger;
 
 /**
@@ -43,6 +46,10 @@ public class SubmitSparkJobToYARNFromJavaCode {
     
     static final Logger THE_LOGGER = Logger.getLogger(SubmitSparkJobToYARNFromJavaCode.class);
     
+    /**
+     *  or you may read these jars from a lib directory
+     * 
+     */
     static List<String> JARS = Arrays.asList(
         "JeraAntTasks.jar",
         "cloud9-1.3.2.jar",

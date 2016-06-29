@@ -11,7 +11,7 @@ Spark Version
 =============
 
 ````
-spark-1.6.0
+spark-1.6.1
 ````
 
 Use YARN's Client Class
