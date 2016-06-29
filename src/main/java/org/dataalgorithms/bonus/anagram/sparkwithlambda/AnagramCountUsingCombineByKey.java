@@ -1,4 +1,4 @@
-package org.dataalgorithms.bonus.anagram.spark;
+package org.dataalgorithms.bonus.anagram.sparkwithlambda;
 
 // STEP-0: import required classes and interfaces
 import java.util.Map;
@@ -10,9 +10,10 @@ import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaPairRDD;
 import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.api.java.function.Function;
-import org.apache.spark.api.java.function.PairFlatMapFunction;
+import org.apache.spark.api.java.function.Function2;
 //
 import org.dataalgorithms.bonus.anagram.util.Util;
+
 
 /**
  * Find anagram counts for a given set of documents.
@@ -32,7 +33,7 @@ import org.dataalgorithms.bonus.anagram.util.Util;
  *     (eilsv  -> {lives=1, elvis=3})
  *     (aeerst -> {eaters=1, easter=2})
  *     (amry   -> {army=2, mary=3})
-  * 
+ * 
  * Since "in", "and", "are", "detroit" don't have an associated anagrams, 
  * they will be filtered out (dropped out):
  * 
@@ -44,7 +45,7 @@ import org.dataalgorithms.bonus.anagram.util.Util;
  * @author Mahmoud Parsian
  *
  */
-public class AnagramCountUsingGroupByKey {
+public class AnagramCountUsingCombineByKey {
 
     public static void main(String[] args) throws Exception {
 
@@ -76,43 +77,58 @@ public class AnagramCountUsingGroupByKey {
         // where 
         //      K = sorted(word)
         //      V = word
-        JavaPairRDD<String, String> rdd = lines.flatMapToPair(
-                new PairFlatMapFunction<String, String, String>() {
-            @Override
-            public Iterable<Tuple2<String, String>> call(String line) {  
-                return Util.mapToKeyValueList(line, N);
-            } 
-         });
+        JavaPairRDD<String, String> rdd = lines.flatMapToPair((String line) -> Util.mapToKeyValueList(line, N));
+
+
+        // How to use combineByKey(): to use combineByKey(), you 
+        // need to define 3 basic functions f1, f2, f3:
+        // and then you invoke it as: combineByKey(f1, f2, f3)
+        //    function 1: create a combiner data structure 
+        //    function 2: merge a value into a combined data structure
+        //    function 3: merge two combiner data structures
         
+        
+        // function 1: create a combiner data structure         
+        // Here, the combiner data structure is a Map<String,Integer>,
+        // which keeps track of anagrams and its associated frequencies
+        Function<String, Map<String, Integer>> createCombiner
+                = (String x) -> {
+                    Map<String, Integer> map = new HashMap<>();
+                    map.put(x, 1);
+                    return map;
+        };
+
+        // function 2: merge a value into a combined data structure
+        Function2<Map<String, Integer>, String, Map<String, Integer>> mergeValue = 
+                (Map<String, Integer> map, String x) -> {
+                    Integer frequency = map.get(x);
+                    if (frequency == null) {
+                        map.put(x, 1);
+                    }
+                    else {
+                        map.put(x, frequency + 1);
+                    }
+                    return map;
+        };
+
+        // function 3: merge two combiner data structures
+        Function2<Map<String, Integer>, Map<String, Integer>, Map<String, Integer>> mergeCombiners =
+                (Map<String, Integer> map1, Map<String, Integer> map2) -> {
+                    if (map1.size() < map2.size()) {
+                        return Util.merge(map1, map2);
+                    }
+                    else {
+                        return Util.merge(map1, map2);
+                    }
+        };
+
         // STEP-5: create anagrams
         // JavaPairRDD<String, Iterable<String>> anagrams = rdd.groupByKey();
-        JavaPairRDD<String, Iterable<String>> anagramsList = rdd.groupByKey();
+        JavaPairRDD<String, Map<String, Integer>> anagrams = rdd.combineByKey(
+                createCombiner,
+                mergeValue,
+                mergeCombiners);
 
-        // use mapValues() to find frequency of anagrams
-        //mapValues[U](f: (V) => U): JavaPairRDD[K, U]
-        // Pass each value in the key-value pair RDD through a map function without 
-        // changing the keys; this also retains the original RDD's partitioning.
-        JavaPairRDD<String, Map<String, Integer>> anagrams
-                = anagramsList.mapValues(
-                        new Function< 
-                                     Iterable<String>,    // input
-                                     Map<String, Integer> // output
-                                    >() {
-                    @Override
-                    public Map<String, Integer> call(Iterable<String> values) {
-                        Map<String, Integer> map = new HashMap<>();
-                        for (String k : values) {
-                            Integer frequency = map.get(k);
-                            if (frequency == null) {
-                                map.put(k, 1);
-                            } else {
-                                map.put(k, 1 + frequency);
-                            }
-                        }
-                        return map;
-                    }
-                });
-        
         //STEP-6: filter out the redundant RDD elements  
         //        
         // now we should filter (k,v) pairs from anagrams RDD:
@@ -129,21 +145,18 @@ public class AnagramCountUsingGroupByKey {
         // Return a new RDD containing only the elements that satisfy a predicate;
         // If a counter (i.e., V) is 0, then exclude them 
         JavaPairRDD<String,Map<String, Integer>> filteredAnagrams = 
-            anagrams.filter(new Function<Tuple2<String,Map<String, Integer>>,Boolean>() {
-            @Override
-            public Boolean call(Tuple2<String, Map<String, Integer>> entry) {
-                 Map<String, Integer> map = entry._2;
-                 if (map.size() > 1) {
+            anagrams.filter((Tuple2<String, Map<String, Integer>> entry) -> {
+                Map<String, Integer> map = entry._2;
+                if (map.size() > 1) {
                     return true; // include
-                 }
-                 else {
+                }
+                else {
                     return false; // exclude
-                 }
+                }
             }
-        });
+        );        
         
         
-
         // STEP-7: save output
         filteredAnagrams.saveAsTextFile(outputPath);
 

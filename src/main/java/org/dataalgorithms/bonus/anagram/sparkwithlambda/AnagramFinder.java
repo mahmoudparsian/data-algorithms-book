@@ -1,4 +1,4 @@
-package org.dataalgorithms.bonus.anagram.spark;
+package org.dataalgorithms.bonus.anagram.sparkwithlambda;
 
 // STEP-0: import required classes and interfaces
 import java.util.Set;
@@ -9,13 +9,12 @@ import scala.Tuple2;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaPairRDD;
 import org.apache.spark.api.java.JavaSparkContext;
-import org.apache.spark.api.java.function.Function;
-import org.apache.spark.api.java.function.PairFlatMapFunction;
 //
 import org.dataalgorithms.bonus.anagram.util.Util;
 
 /**
  * Find anagrams for a given set of documents.
+ * Use JDK8's Lambda
  *
  *
  * @author Mahmoud Parsian
@@ -51,41 +50,30 @@ public class AnagramFinder {
 
         // STEP-4: create (K, V) pairs from input
         // K = sorted(word)
-        // V = word        
-        JavaPairRDD<String, String> rdd = lines.flatMapToPair(
-                new PairFlatMapFunction<String, String, String>() {
-            @Override
-            public Iterable<Tuple2<String, String>> call(String line) {  
-                return Util.mapToKeyValueList(line, N);
-            } 
-         });
-
+        // V = word
+        JavaPairRDD<String, String> rdd = lines.flatMapToPair((String line) -> Util.mapToKeyValueList(line, N));
+        
         // STEP-5: create anagrams
         JavaPairRDD<String, Iterable<String>> anagrams = rdd.groupByKey();
-        
-        
+
+
         // use mapValues() to find frequency of anagrams
         //mapValues[U](f: (V) => U): JavaPairRDD[K, U]
-        // Pass each value in the key-value pair RDD through a map function without 
+        // Pass each value in the key-value pair RDD through a map function without
         // changing the keys; this also retains the original RDD's partitioning.
         JavaPairRDD<String, Set<String>> anagramsAsSet
-                = anagrams.mapValues(
-                        new Function< 
-                                     Iterable<String>,    // input
-                                     Set<String>          // output
-                                    >() {
-                    @Override
-                    public Set<String> call(Iterable<String> values) {
-                        Set<String> set = new HashSet<>();
-                        for (String v : values) {
-                            set.add(v);
-                        }
-                        return set;
+                = anagrams.mapValues((Iterable<String> values) -> {
+                    Set<String> set = new HashSet<>();
+                    for (String v : values) {
+                        set.add(v);
                     }
-                });
-        
-        //STEP-6: filter out the redundant RDD elements  
-        //        
+                    return set;
+                }
+        );
+
+
+        //STEP-6: filter out the redundant RDD elements
+        //
         // now we should filter (k,v) pairs from anagrams RDD:
         // For example our anagrams will have the following RDD entry:
         // (k="eilsv", v={"elvis", "lives"})
@@ -93,19 +81,18 @@ public class AnagramFinder {
         //
         // public JavaPairRDD<K,V> filter(Function<Tuple2<K,V>,Boolean> f)
         // Return a new RDD containing only the elements that satisfy a predicate;
-        // If a counter (i.e., V) is 0, then exclude them 
+        // If a counter (i.e., V) is 0, then exclude them
         JavaPairRDD<String, Set<String>> filteredAnagrams
-                = anagramsAsSet.filter(new Function<Tuple2<String, Set<String>>, Boolean>() {
-                    @Override
-                    public Boolean call(Tuple2<String, Set<String>> entry) {
-                        Set<String> set = entry._2;
-                        if (set.size() > 1) {
-                            return true; // include
-                        } else {
-                            return false; // exclude
-                        }
+                = anagramsAsSet.filter((Tuple2<String, Set<String>> entry) -> {
+                    Set<String> set = entry._2;
+                    if (set.size() > 1) {
+                        return true; // include
+                    } 
+                    else {
+                        return false; // exclude
                     }
-                });
+                }
+        );
 
         // STEP-6: save output
         filteredAnagrams.saveAsTextFile(outputPath);

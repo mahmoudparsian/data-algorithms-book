@@ -1,4 +1,4 @@
-package org.dataalgorithms.bonus.anagram.spark;
+package org.dataalgorithms.bonus.anagram.sparkwithlambda;
 
 // STEP-0: import required classes and interfaces
 import java.util.Map;
@@ -9,8 +9,6 @@ import scala.Tuple2;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaPairRDD;
 import org.apache.spark.api.java.JavaSparkContext;
-import org.apache.spark.api.java.function.Function;
-import org.apache.spark.api.java.function.PairFlatMapFunction;
 //
 import org.dataalgorithms.bonus.anagram.util.Util;
 
@@ -76,14 +74,8 @@ public class AnagramCountUsingGroupByKey {
         // where 
         //      K = sorted(word)
         //      V = word
-        JavaPairRDD<String, String> rdd = lines.flatMapToPair(
-                new PairFlatMapFunction<String, String, String>() {
-            @Override
-            public Iterable<Tuple2<String, String>> call(String line) {  
-                return Util.mapToKeyValueList(line, N);
-            } 
-         });
-        
+        JavaPairRDD<String, String> rdd = lines.flatMapToPair((String line) -> Util.mapToKeyValueList(line, N));
+
         // STEP-5: create anagrams
         // JavaPairRDD<String, Iterable<String>> anagrams = rdd.groupByKey();
         JavaPairRDD<String, Iterable<String>> anagramsList = rdd.groupByKey();
@@ -93,25 +85,19 @@ public class AnagramCountUsingGroupByKey {
         // Pass each value in the key-value pair RDD through a map function without 
         // changing the keys; this also retains the original RDD's partitioning.
         JavaPairRDD<String, Map<String, Integer>> anagrams
-                = anagramsList.mapValues(
-                        new Function< 
-                                     Iterable<String>,    // input
-                                     Map<String, Integer> // output
-                                    >() {
-                    @Override
-                    public Map<String, Integer> call(Iterable<String> values) {
-                        Map<String, Integer> map = new HashMap<>();
-                        for (String k : values) {
-                            Integer frequency = map.get(k);
-                            if (frequency == null) {
-                                map.put(k, 1);
-                            } else {
-                                map.put(k, 1 + frequency);
-                            }
+                = anagramsList.mapValues((Iterable<String> values) -> {
+                    Map<String, Integer> map = new HashMap<>();
+                    for (String k : values) {
+                        Integer frequency = map.get(k);
+                        if (frequency == null) {
+                            map.put(k, 1);
+                        } else {
+                            map.put(k, 1 + frequency);
                         }
-                        return map;
                     }
-                });
+                    return map;
+                } 
+        );
         
         //STEP-6: filter out the redundant RDD elements  
         //        
@@ -129,18 +115,16 @@ public class AnagramCountUsingGroupByKey {
         // Return a new RDD containing only the elements that satisfy a predicate;
         // If a counter (i.e., V) is 0, then exclude them 
         JavaPairRDD<String,Map<String, Integer>> filteredAnagrams = 
-            anagrams.filter(new Function<Tuple2<String,Map<String, Integer>>,Boolean>() {
-            @Override
-            public Boolean call(Tuple2<String, Map<String, Integer>> entry) {
-                 Map<String, Integer> map = entry._2;
-                 if (map.size() > 1) {
+            anagrams.filter((Tuple2<String, Map<String, Integer>> entry) -> {
+                Map<String, Integer> map = entry._2;
+                if (map.size() > 1) {
                     return true; // include
-                 }
-                 else {
+                }
+                else {
                     return false; // exclude
-                 }
+                }
             }
-        });
+        );
         
         
 

@@ -11,6 +11,9 @@ import org.apache.spark.api.java.JavaPairRDD;
 import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.api.java.function.Function;
 import org.apache.spark.api.java.function.Function2;
+import org.apache.spark.api.java.function.PairFlatMapFunction;
+//
+import org.dataalgorithms.bonus.anagram.util.Util;
 
 
 /**
@@ -75,8 +78,13 @@ public class AnagramCountUsingCombineByKey {
         // where 
         //      K = sorted(word)
         //      V = word
-        JavaPairRDD<String, String> rdd = Util.mapToKeyValue(lines, N);
-
+        JavaPairRDD<String, String> rdd = lines.flatMapToPair(
+                new PairFlatMapFunction<String, String, String>() {
+            @Override
+            public Iterable<Tuple2<String, String>> call(String line) {  
+                return Util.mapToKeyValueList(line, N);
+            } 
+         });
 
         // How to use combineByKey(): to use combineByKey(), you 
         // need to define 3 basic functions f1, f2, f3:
@@ -121,10 +129,10 @@ public class AnagramCountUsingCombineByKey {
             @Override
             public Map<String, Integer> call(Map<String, Integer> map1, Map<String, Integer> map2) {
                 if (map1.size() < map2.size()) {
-                    return merge(map1, map2);
+                    return Util.merge(map1, map2);
                 } 
                 else {
-                    return merge(map1, map2);
+                    return Util.merge(map1, map2);
                 }
             }
         };
@@ -174,17 +182,4 @@ public class AnagramCountUsingCombineByKey {
         System.exit(0);
     }
 
-
-    static Map<String, Integer> merge(Map<String, Integer> smaller, Map<String, Integer> larger) {
-        for (String key : smaller.keySet()) {
-            Integer frequency = larger.get(key);
-            if (frequency == null) {
-                larger.put(key, frequency);
-            } 
-            else {
-                larger.put(key, frequency + smaller.get(key));
-            }
-        }
-        return larger;
-    }
 }
