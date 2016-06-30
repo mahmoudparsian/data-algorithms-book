@@ -24,9 +24,9 @@ import java.io.IOException;
 public class DateTemperaturePair 
     implements Writable, WritableComparable<DateTemperaturePair> {
 
-    private Text yearMonth = new Text(); 
-    private Text day = new Text();
-    private IntWritable temperature = new IntWritable();
+    private final Text yearMonth = new Text(); 
+    private final Text day = new Text();
+    private final IntWritable temperature = new IntWritable();
 
 
     public DateTemperaturePair() {
