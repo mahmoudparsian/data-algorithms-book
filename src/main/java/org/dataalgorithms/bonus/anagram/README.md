@@ -29,15 +29,24 @@ for a set of given  documents.
 
 We will ignore words if their length is less than N (we read N as a parameter).
 
+Packages
+--------
+
+| Package Name                                              | Description                                    |
+|-----------------------------------------------------------|------------------------------------------------|
+| ````org.dataalgorithms.bonus.anagram.spark````            |  Spark Programs without Lambda Expressions     |
+| ````org.dataalgorithms.bonus.anagram.sparkwithlambda````  |  Spark Programs with Lambda Expressions        |
+| ````org.dataalgorithms.bonus.anagram.util````             |  Groups common methods                         |
+| ````org.dataalgorithms.bonus.anagram.mapreduce````        |  MapReduce/Hadoop Programs                                       |
 
 
-Spark Programs
---------------
+Spark Programs without Lambda Expressions
+-----------------------------------------
 * These programs are in the ````org.dataalgorithms.bonus.anagram.spark```` package.
 * These programs do not use lambda expressions.
 
 
-| Spark Programs                               | Description                                                      |
+| Spark Programs without Lambda Expressions    | Description                                                      |
 |----------------------------------------------|------------------------------------------------------------------|
 |  Program-1: ````AnagramFinder````            |  Basic Anagram Finder: using Spark's ````groupByKey()````        |
 |  Program-2: ````AnagramUsingCombineByKey```` | Anagram Finder & Frequency: using Spark's ````combineByKey()```` |
@@ -51,7 +60,7 @@ Spark Programs with Lambda Expressions
 * With the addition of lambda expressions in Java 8, I have updated Spark’s API to transparently 
 support these expressions.
 
-| Spark Programs                               | Description                                                      |
+| Spark Programs with Lambda Expressions       | Description                                                      |
 |----------------------------------------------|------------------------------------------------------------------|
 |  Program-1: ````AnagramFinder````            |  Basic Anagram Finder: using Spark's ````groupByKey()````        |
 |  Program-2: ````AnagramUsingCombineByKey```` | Anagram Finder & Frequency: using Spark's ````combineByKey()```` |
