@@ -2,7 +2,6 @@ package org.dataalgorithms.chap04.mapreduce;
 
 import org.apache.hadoop.io.RawComparator;
 import edu.umd.cloud9.io.pair.PairOfStrings;
-import edu.umd.cloud9.io.pair.PairOfStrings.Comparator;
 import org.apache.hadoop.io.DataInputBuffer;
 
 
@@ -19,10 +18,12 @@ public class SecondarySortGroupComparator
     /**
      *  Group only by userID
      */
+    @Override
     public int compare(PairOfStrings first, PairOfStrings second) {
        return first.getLeftElement().compareTo(second.getLeftElement());
     }
     
+    @Override
     public int compare(byte[] b1, int s1, int l1, byte[] b2, int s2, int l2 ) {
     	DataInputBuffer buffer = new DataInputBuffer();
     	PairOfStrings a = new PairOfStrings();
