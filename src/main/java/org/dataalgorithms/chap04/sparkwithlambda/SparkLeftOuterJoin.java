@@ -1,4 +1,4 @@
-package org.dataalgorithms.chap04.spark;
+package org.dataalgorithms.chap04.sparkwithlambda;
 
 // STEP-0: import required classes and interfaces
 import java.util.Set;
@@ -11,9 +11,7 @@ import scala.Tuple2;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaPairRDD;
 import org.apache.spark.api.java.JavaSparkContext;
-import org.apache.spark.api.java.function.Function;
-import org.apache.spark.api.java.function.PairFlatMapFunction;
-import org.apache.spark.api.java.function.PairFunction;
+
 
 
 /**
@@ -50,33 +48,24 @@ public class SparkLeftOuterJoin {
     // PairFunction<T, K, V>	
     // T => Tuple2<K, V>
     JavaPairRDD<String,Tuple2<String,String>> usersRDD = 
-          users.mapToPair(new PairFunction<
-                                           String,                // T 
-                                           String,                // K
-                                           Tuple2<String,String>  // V
-                                          >() {
-      @Override
-      public Tuple2<String,Tuple2<String,String>> call(String s) {
-      	String[] userRecord = s.split("\t");
-      	Tuple2<String,String> location = new Tuple2<String,String>("L", userRecord[1]);
-        return new Tuple2<String,Tuple2<String,String>>(userRecord[0], location);
-      }
-    });
+          users.mapToPair((String s) -> {
+              String[] userRecord = s.split("\t");
+              Tuple2<String,String> location = new Tuple2<String,String>("L", userRecord[1]);
+              return new Tuple2<String,Tuple2<String,String>>(userRecord[0], location);
+          } 
+    );
     
     JavaRDD<String> transactions = ctx.textFile(transactionsInputFile, 1);
 
 	// PairFunction<T, K, V>	
 	// T => Tuple2<K, V>
     JavaPairRDD<String,Tuple2<String,String>> transactionsRDD = 
-          //                                T       K       V
-          transactions.mapToPair(new PairFunction<String, String, Tuple2<String,String>>() {
-      @Override
-      public Tuple2<String,Tuple2<String,String>> call(String s) {
-      	String[] transactionRecord = s.split("\t");
-      	Tuple2<String,String> product = new Tuple2<String,String>("P", transactionRecord[1]);
-        return new Tuple2<String,Tuple2<String,String>>(transactionRecord[2], product);
-      }
-    });
+          transactions.mapToPair((String s) -> {
+              String[] transactionRecord = s.split("\t");
+              Tuple2<String,String> product = new Tuple2<String,String>("P", transactionRecord[1]);
+              return new Tuple2<String,Tuple2<String,String>>(transactionRecord[2], product);
+          }
+    );
     
     // here we perform a union() on usersRDD and transactionsRDD
     JavaPairRDD<String,Tuple2<String,String>> allRDD = transactionsRDD.union(usersRDD);
@@ -89,34 +78,31 @@ public class SparkLeftOuterJoin {
     // PairFlatMapFunction<T, K, V>	
     // T => Iterable<Tuple2<K, V>>
     JavaPairRDD<String,String> productLocationsRDD = 
-         //                                               T                                                K       V 
-         groupedRDD.flatMapToPair(new PairFlatMapFunction<Tuple2<String, Iterable<Tuple2<String,String>>>, String, String>() {
-      @Override
-      public Iterable<Tuple2<String,String>> call(Tuple2<String, Iterable<Tuple2<String,String>>> s) {
-      	// String userID = s._1;  // NOT Needed
-      	Iterable<Tuple2<String,String>> pairs = s._2;
-       	String location = "UNKNOWN";
-       	List<String> products = new ArrayList<String>();
-       	for (Tuple2<String,String> t2 : pairs) {
-       		if (t2._1.equals("L")) {
-       			location = t2._2;
-       		}
-       		else {
-       			// t2._1.equals("P")
-       			products.add(t2._2);
-       		}
-       	}
-       	
-       	// now emit (K, V) pairs
-       	List<Tuple2<String,String>> kvList = new ArrayList<Tuple2<String,String>>();
-       	for (String product : products) {
-       		kvList.add(new Tuple2<String, String>(product, location));
-       	}
-       	// Note that edges must be reciprocal, that is every
-		// {source, destination} edge must have a corresponding {destination, source}.
-        return kvList;
-      }
-    });
+         groupedRDD.flatMapToPair((Tuple2<String, Iterable<Tuple2<String,String>>> s) -> {
+             // String userID = s._1;  // NOT Needed
+             Iterable<Tuple2<String,String>> pairs = s._2;
+             String location = "UNKNOWN";
+             List<String> products = new ArrayList<String>();
+             for (Tuple2<String,String> t2 : pairs) {
+                 if (t2._1.equals("L")) {
+                     location = t2._2;
+                 }
+                 else {
+                     // t2._1.equals("P")
+                     products.add(t2._2);
+                 }
+             }
+             
+             // now emit (K, V) pairs
+             List<Tuple2<String,String>> kvList = new ArrayList<Tuple2<String,String>>();
+             for (String product : products) {
+                 kvList.add(new Tuple2<String, String>(product, location));
+             }
+             // Note that edges must be reciprocal, that is every
+             // {source, destination} edge must have a corresponding {destination, source}.
+             return kvList;
+        }
+    );
     
     // Find all locations for a product
 	JavaPairRDD<String, Iterable<String>> productByLocations = productLocationsRDD.groupByKey();    
@@ -133,18 +119,14 @@ public class SparkLeftOuterJoin {
     
     
     JavaPairRDD<String, Tuple2<Set<String>, Integer>> productByUniqueLocations = 
-          productByLocations.mapValues(new Function< Iterable<String>,                   // input
-                                                     Tuple2<Set<String>, Integer>        // output
-                                                   >() {
-      @Override
-      public Tuple2<Set<String>, Integer> call(Iterable<String> s) {
-      	Set<String> uniqueLocations = new HashSet<String>();
-        for (String location : s) {
-        	uniqueLocations.add(location);
-        }
-        return new Tuple2<Set<String>, Integer>(uniqueLocations, uniqueLocations.size());
-      }
-    });    
+          productByLocations.mapValues((Iterable<String> s) -> {
+              Set<String> uniqueLocations = new HashSet<String>();
+              for (String location : s) {
+                  uniqueLocations.add(location);
+              }
+              return new Tuple2<Set<String>, Integer>(uniqueLocations, uniqueLocations.size());
+          } 
+    );    
     
      // debug4
     System.out.println("=== Unique Locations and Counts ===");
