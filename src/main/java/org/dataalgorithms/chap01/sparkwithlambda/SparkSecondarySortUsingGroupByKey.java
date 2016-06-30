@@ -1,25 +1,23 @@
-package org.dataalgorithms.chap01.spark;
+package org.dataalgorithms.chap01.sparkwithlambda;
 
 
 // STEP-0: import required Java/Spark classes.
 import scala.Tuple2;
-
+//
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaPairRDD;
 import org.apache.spark.api.java.JavaSparkContext;
-import org.apache.spark.api.java.function.Function;
-import org.apache.spark.api.java.function.PairFunction;
-
+//
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Collections;
 //
 import org.dataalgorithms.util.SparkUtil;
 import org.dataalgorithms.chap01.util.SparkTupleComparator;
-        
+
 /** 
- * SparkSecondarySort class implements the secondary sort design pattern 
- * by sorting reducer values in memory/RAM.
+ * SparkSecondarySortUsingGroupByKey class implements the secondary sort design pattern 
+ by sorting reducer values in memory/RAM.
  *
  *
  * Input:
@@ -51,18 +49,19 @@ import org.dataalgorithms.chap01.util.SparkTupleComparator;
  * @author Mahmoud Parsian
  *
  */
-public class SparkSecondarySort {
+public class SparkSecondarySortUsingGroupByKey {
   public static void main(String[] args) throws Exception {
   
-    // STEP-1: read input parameters and validate them
-    if (args.length < 2) {
-        System.err.println("Usage: SparkSecondarySort <input> <output>");
-        System.exit(1);
-    }
-    String inputPath = args[0];
-    System.out.println("inputPath=" + inputPath);
-    String outputPath = args[1];
-    System.out.println("outputPath=" + outputPath);
+        // STEP-1: read input parameters and validate them
+        if (args.length < 2) {
+            System.err.println("Usage: SparkSecondarySort <input> <output>");
+            System.exit(1);
+        }
+        String inputPath = args[0];
+        System.out.println("inputPath=" + inputPath);
+        String outputPath = args[1];
+        System.out.println("outputPath=" + outputPath);
+
 
     // STEP-2: Connect to the Sark master by creating JavaSparkContext object
     final JavaSparkContext ctx = SparkUtil.createJavaSparkContext();
@@ -78,15 +77,12 @@ public class SparkSecondarySort {
     // PairFunction<T, K, V>	T => Tuple2(K, V) where K=String and V=Tuple2<Integer, Integer>
     //                                                                                 input   K       V
     System.out.println("===  DEBUG STEP-4 ===");
-    JavaPairRDD<String, Tuple2<Integer, Integer>> pairs = lines.mapToPair(new PairFunction<String, String, Tuple2<Integer, Integer>>() {
-      @Override
-      public Tuple2<String, Tuple2<Integer, Integer>> call(String s) {
-	    String[] tokens = s.split(","); // x,2,5
+    JavaPairRDD<String, Tuple2<Integer, Integer>> pairs = lines.mapToPair((String s) -> {
+        String[] tokens = s.split(","); // x,2,5
         System.out.println(tokens[0] + "," + tokens[1] + "," + tokens[2]);
         Tuple2<Integer, Integer> timevalue = new Tuple2<Integer, Integer>(Integer.parseInt(tokens[1]), Integer.parseInt(tokens[2]));
         return new Tuple2<String, Tuple2<Integer, Integer>>(tokens[0], timevalue);
-      }
-    });
+        });
 
     // STEP-5: validate STEP-4, we collect all values from JavaPairRDD<> and print it.    
     List<Tuple2<String, Tuple2<Integer, Integer>>> output = pairs.collect();
@@ -115,16 +111,12 @@ public class SparkSecondarySort {
 	// mapValues[U](f: (V) ⇒ U): JavaPairRDD[K, U]
 	// Pass each value in the key-value pair RDD through a map function without changing the keys; 
 	// this also retains the original RDD's partitioning.
-    JavaPairRDD<String, Iterable<Tuple2<Integer, Integer>>> sorted = groups.mapValues(new Function<Iterable<Tuple2<Integer, Integer>>,      // input
-                                                                                                   Iterable<Tuple2<Integer, Integer>>       // output
-                                                                                                  >() {  
-      @Override
-      public Iterable<Tuple2<Integer, Integer>> call(Iterable<Tuple2<Integer, Integer>> s) {
+    JavaPairRDD<String, Iterable<Tuple2<Integer, Integer>>> sorted = groups.mapValues((Iterable<Tuple2<Integer, Integer>> s) -> {
         List<Tuple2<Integer, Integer>> newList = new ArrayList<Tuple2<Integer, Integer>>(iterableToList(s));      
         Collections.sort(newList, SparkTupleComparator.INSTANCE);
         return newList;
-      }
-    });
+        } 
+    );
     
     
     // STEP-9: validate STEP-8, we collect all values from JavaPairRDD<> and print it.    
