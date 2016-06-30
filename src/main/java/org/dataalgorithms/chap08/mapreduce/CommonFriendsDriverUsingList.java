@@ -12,7 +12,6 @@ import org.apache.hadoop.util.Tool;
 import org.apache.hadoop.util.ToolRunner;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.Text;
-import org.apache.hadoop.io.IntWritable;
 import edu.umd.cloud9.io.array.ArrayListOfLongsWritable;
 
 import org.dataalgorithms.util.HadoopUtil;

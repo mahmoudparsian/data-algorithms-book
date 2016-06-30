@@ -1,11 +1,9 @@
 package org.dataalgorithms.chap08.mapreduce;
 
 import java.io.IOException;
-import org.apache.log4j.Logger;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.mapreduce.Mapper;
-import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.mapreduce.Mapper.Context;
 import org.apache.commons.lang.StringUtils;
 import edu.umd.cloud9.io.array.ArrayListOfLongsWritable;
@@ -17,58 +15,57 @@ import edu.umd.cloud9.io.array.ArrayListOfLongsWritable;
  *    Let (<person> (<friend_1> <friend_2> ... <friend_N>)) = parse(line);
  *    reducerValue =  (<friend_1> <friend_2> ... <friend_N>);
  *    foreach friend in (<friend_1> <friend_2> ... <friend_N>)  {
- *        reducerKey = buildSortedKey(person, friend);
- *        emit(reducerKey, reducerValue);
- *    }
- *  }
+        REDUCER_KEY = buildSortedKey(person, friend);
+        emit(REDUCER_KEY, reducerValue);
+    }
+  }
 *
 * @author Mahmoud Parsian 
 *
 */
 public class CommonFriendsMapperUsingList
-    extends Mapper<LongWritable, Text, Text, ArrayListOfLongsWritable> {
-    
-    private static Text reducerKey = new Text();
+        extends Mapper<LongWritable, Text, Text, ArrayListOfLongsWritable> {
+
+    private static final Text REDUCER_KEY = new Text();
 
     static ArrayListOfLongsWritable getFriends(String[] tokens) {
         if (tokens.length == 2) {
             return new ArrayListOfLongsWritable();
         }
-        
+
         ArrayListOfLongsWritable list = new ArrayListOfLongsWritable();
-        for (int i=1; i < tokens.length; i++) {
+        for (int i = 1; i < tokens.length; i++) {
             list.add(Long.parseLong(tokens[i]));
         }
         return list;
     }
-    
+
     static String buildSortedKey(String person, String friend) {
         long p = Long.parseLong(person);
         long f = Long.parseLong(friend);
         if (p < f) {
             return person + "," + friend;
-        }
-        else {
+        } else {
             return friend + "," + person;
         }
     }
-            
-    
+
+    @Override
     public void map(LongWritable key, Text value, Context context)
-        throws IOException, InterruptedException {
+            throws IOException, InterruptedException {
         // parse input, delimiter is a single space
-          String[] tokens = StringUtils.split(value.toString(), " ");
+        String[] tokens = StringUtils.split(value.toString(), " ");
 
         // create reducer value
-          ArrayListOfLongsWritable friends = getFriends(tokens);
-          
+        ArrayListOfLongsWritable friends = getFriends(tokens);
+
         String person = tokens[0];
-        for (int i=1; i < tokens.length; i++) {
+        for (int i = 1; i < tokens.length; i++) {
             String friend = tokens[i];
             String reducerKeyAsString = buildSortedKey(person, friend);
-            reducerKey.set(reducerKeyAsString);
-            context.write(reducerKey, friends);
+            REDUCER_KEY.set(reducerKeyAsString);
+            context.write(REDUCER_KEY, friends);
         }
     }
-    
+
 }
