@@ -24,6 +24,7 @@ public  class LogStatistics implements Serializable {
                                this.numberOfBytes + other.numberOfBytes);
    }
 
+   @Override
    public String toString() {
       return String.format("count=%s\t numberOfbytes=%s\n", this.count, this.numberOfBytes);
    }

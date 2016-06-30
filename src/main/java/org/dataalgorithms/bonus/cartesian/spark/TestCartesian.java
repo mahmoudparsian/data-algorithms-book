@@ -1,11 +1,14 @@
 package org.dataalgorithms.bonus.cartesian.spark;
 
-import scala.Tuple2;
-import org.apache.spark.api.java.JavaPairRDD;
-import org.apache.spark.api.java.JavaSparkContext;
-import org.apache.spark.SparkConf;
 import java.util.List;
 import java.util.ArrayList;
+//
+import scala.Tuple2;
+//
+import org.apache.spark.SparkConf;
+import org.apache.spark.api.java.JavaPairRDD;
+import org.apache.spark.api.java.JavaSparkContext;
+
 
 /**
  * Basic Spark program to demonstrate rdd.cartesian(rdd) in Java.
@@ -28,12 +31,14 @@ public class TestCartesian {
   
       // create a spark context object
       JavaSparkContext ctx = createJavaSparkContext();
-
+      
+      // create a List<Tuple2<String,String>>
       List<Tuple2<String,String>> listR = new ArrayList<Tuple2<String,String>>();
       listR.add(new Tuple2<String,String>("a1", "a2"));
       listR.add(new Tuple2<String,String>("b1", "b2"));
       listR.add(new Tuple2<String,String>("c1", "c2"));
 
+      // create a List<Tuple2<String,String>>
       List<Tuple2<String,String>> listS = new ArrayList<Tuple2<String,String>>();
       listS.add(new Tuple2<String,String>("d1", "d2"));
       listS.add(new Tuple2<String,String>("e1", "e2"));

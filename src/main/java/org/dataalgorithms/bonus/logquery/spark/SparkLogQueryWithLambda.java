@@ -11,9 +11,6 @@ import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaPairRDD;
 import org.apache.spark.api.java.JavaSparkContext;
-import org.apache.spark.api.java.function.Function;
-import org.apache.spark.api.java.function.Function2;
-import org.apache.spark.api.java.function.PairFunction;
 
 /**
  * Spark Log Query
@@ -22,7 +19,7 @@ import org.apache.spark.api.java.function.PairFunction;
  *
  * @author Mahmoud Parsian
  */
-public class SparkLogQuery {
+public class SparkLogQueryWithLambda {
 
   /**
    * here we assume that we have normalized web server log files
@@ -38,7 +35,6 @@ public class SparkLogQuery {
     "10.20.30.47,-,600,query1", 	// "-" signifies undefined user
     "10.20.30.42,u400,700,query2"
   );
-
 
   public static void main(String[] args) {
 
@@ -57,36 +53,23 @@ public class SparkLogQuery {
 
     // extract all essential log data
     JavaPairRDD<Tuple3<String, String, String>, LogStatistics> extracted = 
-       logs.mapToPair(new PairFunction<String, Tuple3<String, String, String>, LogStatistics>() {
-      @Override
-      public Tuple2<Tuple3<String, String, String>, LogStatistics> call(String logRecord) {
-         String[] tokens = logRecord.split(",");
-         Tuple3<String, String, String> key = Util.createKey(tokens);
-         LogStatistics value = Util.createLogStatistics(tokens);
-         return new Tuple2<Tuple3<String, String, String>, LogStatistics>(key, value);
-      }
+       logs.mapToPair((String logRecord) -> {
+           String[] tokens = logRecord.split(",");
+           Tuple3<String, String, String> key = Util.createKey(tokens);
+           LogStatistics value = Util.createLogStatistics(tokens);
+           return new Tuple2<Tuple3<String, String, String>, LogStatistics>(key, value);
     });
     
     // filter the ones where userID is undefined
     JavaPairRDD<Tuple3<String, String, String>, LogStatistics>  filtered = 
-        extracted.filter(new Function<
-                                      Tuple2<Tuple3<String, String, String>, LogStatistics>, 
-                                      Boolean
-                                     >() {
-        public Boolean call(Tuple2<Tuple3<String, String, String>, LogStatistics> s) { 
+        extracted.filter((Tuple2<Tuple3<String, String, String>, LogStatistics> s) -> { 
             Tuple3<String, String, String> t3 = s._1;
             return (t3._1() != null); // exclude Tuple3(null,null,null)
-        }
     });
 
     // reduce by key
     JavaPairRDD<Tuple3<String, String, String>, LogStatistics> counts = 
-       filtered.reduceByKey(new Function2<LogStatistics, LogStatistics, LogStatistics>() {
-       @Override
-       public LogStatistics call(LogStatistics stats, LogStatistics stats2) {
-         return stats.merge(stats2);
-       }
-    });
+       filtered.reduceByKey((LogStatistics stats, LogStatistics stats2) -> stats.merge(stats2));
 
     // emit final output
     List<Tuple2<Tuple3<String, String, String>, LogStatistics>> output = counts.collect();
