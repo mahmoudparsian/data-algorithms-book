@@ -17,6 +17,7 @@ public class Tuple3<T1,T2,T3 > implements Comparable<Tuple3<T1,T2,T3>>, Serializ
   public static <A, B, C> Tuple3<A, B, C> T3(A a, B b, C c) {
     return new Tuple3<A, B, C>(a, b, c);
   }
+  
   public Tuple3(T1 first,
                 T2 second,
                 T3 third) {
@@ -24,12 +25,15 @@ public class Tuple3<T1,T2,T3 > implements Comparable<Tuple3<T1,T2,T3>>, Serializ
     this._2 = second;
     this._3 = third;
   }
+  
   public T1  first() {
     return _1;
   }
+  
   public T2  second() {
     return _2;
   }
+  
   public T3 third() {
     return _3;
   }

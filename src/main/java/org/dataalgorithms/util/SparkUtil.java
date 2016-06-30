@@ -64,6 +64,6 @@ public class SparkUtil {
    }
    
    public static String version() {
-      return "1.1.1";
+      return "1.6.1";
    }   
 }

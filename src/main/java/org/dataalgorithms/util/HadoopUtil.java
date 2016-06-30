@@ -1,18 +1,18 @@
 package org.dataalgorithms.util;
 
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.io.IOException;
+//
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.FileStatus;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.filecache.DistributedCache;
-import java.io.InputStream;  
-import java.io.OutputStream;  
 
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.io.IOException;
+
 
 /**
  * This calss provides convenient methods for accessing  
