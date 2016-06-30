@@ -6,14 +6,10 @@ import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.mapreduce.lib.input.MultipleInputs;
 import org.apache.hadoop.mapreduce.lib.input.TextInputFormat;
-import org.apache.hadoop.mapreduce.lib.output.TextOutputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 import org.apache.hadoop.mapreduce.lib.output.SequenceFileOutputFormat;
-
+//
 import edu.umd.cloud9.io.pair.PairOfStrings;
-import edu.umd.cloud9.io.pair.PairOfStrings.Comparator;
-
-import java.io.IOException;
 
 /** 
  * LeftJoinDriver is driver class for submitting "Left Join" job to Hadoop.
