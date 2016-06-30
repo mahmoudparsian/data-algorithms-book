@@ -10,6 +10,8 @@
 ======================================
 [![Data Algorithms Book](./misc/da_book3.jpeg)](http://shop.oreilly.com/product/0636920033950.do)
 
+Started Adding LAMBDA Expressions to Spark Programs...
+======================================================
 
 ### [COPA using Spark #ApacheBigData, May 10, 2016 (Abstract)](http://sched.co/6M0Y)
 ### [COPA using Spark #ApacheBigData, May 10, 2016 (Slides)](http://mapreduce4hackers.com/copa_spark_2016.pdf)
