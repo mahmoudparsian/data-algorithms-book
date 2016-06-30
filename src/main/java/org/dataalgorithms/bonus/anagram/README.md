@@ -1,3 +1,7 @@
+![Mou icon](http://25.io/mou/Mou_128.png)
+![Mou icon](http://25.io/mou/Mou_128.png)
+![Anagram](./anagram.png)
+
 What is an Anagram?
 ===================
 * Anagram is a word or phrase made by transposing the letters 
