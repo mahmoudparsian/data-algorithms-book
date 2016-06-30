@@ -8,7 +8,7 @@ import org.apache.hadoop.mapreduce.Mapper.Context;
 import edu.umd.cloud9.io.pair.PairOfLongInt;
 
 /**
- * This is a mapper class for a monodic MapReduce algorithm.
+ * This is a mapper class for a monoidic MapReduce algorithm.
  *
  * PairOfLongInt = Tuple2<Long, Integer>
  * PairOfLongInt.getLeftElement() returns Long
@@ -18,17 +18,18 @@ import edu.umd.cloud9.io.pair.PairOfLongInt;
  * @author Mahmoud Parsian
  *
  */
-public class MeanMonodizedMapper 
+public class MeanMonoidizedMapper 
    extends Mapper<Text, LongWritable, Text, PairOfLongInt> {
  
-   // pairOfSumAndCount = (partial sum as long, count as int)
-   private final static PairOfLongInt pairOfSumAndCount = new PairOfLongInt();
+   // PAIR_OF_SUM_AND_COUNT = (partial sum as long, count as int)
+   private final static PairOfLongInt PAIR_OF_SUM_AND_COUNT = new PairOfLongInt();
  
+   @Override
    public void map(Text key, LongWritable value, Context context)
        throws IOException, InterruptedException {
        // create a monoid
-       pairOfSumAndCount.set(value.get(), 1);
-       context.write(key, pairOfSumAndCount);
+       PAIR_OF_SUM_AND_COUNT.set(value.get(), 1);
+       context.write(key, PAIR_OF_SUM_AND_COUNT);
    }
 }
  

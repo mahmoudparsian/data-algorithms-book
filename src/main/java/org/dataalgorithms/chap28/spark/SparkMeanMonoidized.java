@@ -36,7 +36,7 @@ import org.apache.spark.api.java.function.PairFunction;
  * @author Mahmoud Parsian
  *
  */
-public class SparkMeanMonodized  {
+public class SparkMeanMonoidized  {
 
    public static void main(String[] args) throws Exception {
       // STEP-1: handle input parameters
@@ -57,6 +57,7 @@ public class SparkMeanMonodized  {
       // map input(T) into (K,V) pair, which is monodic
       JavaPairRDD<String,Tuple2<Long,Integer>> monoid = 
          records.mapToPair(new PairFunction<String,String,Tuple2<Long,Integer>>() {
+         @Override
          public Tuple2<String,Tuple2<Long,Integer>> call(String s) {
             String[] tokens = s.split("\t"); //  <key><TAB><value>
             String K = tokens[0];
@@ -70,6 +71,7 @@ public class SparkMeanMonodized  {
       // Combiners may be used without losing the semantics of "mean"
       JavaPairRDD<String, Tuple2<Long,Integer>> reduced = monoid.reduceByKey(
          new Function2<Tuple2<Long,Integer>, Tuple2<Long,Integer>, Tuple2<Long,Integer>>() {
+         @Override
          public Tuple2<Long,Integer> call(Tuple2<Long,Integer> v1, Tuple2<Long,Integer> v2) {
             return new Tuple2<Long,Integer>(v1._1+ v2._1, v1._2+ v2._2);
          }
@@ -87,6 +89,7 @@ public class SparkMeanMonodized  {
                        Tuple2<Long,Integer>,  // input
                        Double                 // output
                       >() {  
+         @Override
          public Double call(Tuple2<Long, Integer> s) {
            return ( (double) s._1 / (double) s._2 );
          }

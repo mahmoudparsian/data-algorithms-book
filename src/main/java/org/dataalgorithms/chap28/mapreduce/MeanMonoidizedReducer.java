@@ -1,34 +1,33 @@
 package org.dataalgorithms.chap28.mapreduce;
 
 import java.io.IOException;
+import org.apache.hadoop.io.DoubleWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Reducer;
 import org.apache.hadoop.mapreduce.Reducer.Context;
 import edu.umd.cloud9.io.pair.PairOfLongInt;
-
+ 
 /**
- * This is a combiner class for a monodic MapReduce algorithm.
+ * This is a mapper class for a monodic MapReduce algorithm.
  *
  * PairOfLongInt = Tuple2<Long, Integer>
  * PairOfLongInt.getLeftElement() returns Long
  * PairOfLongInt.getRightElement() returns Integer
  *
- *
  * @author Mahmoud Parsian
  *
  */
-public class MeanMonodizedCombiner
-   extends Reducer<Text,PairOfLongInt,Text,PairOfLongInt> {
- 
+public class MeanMonoidizedReducer
+   extends Reducer<Text, PairOfLongInt, Text, DoubleWritable> {
+
    public void reduce(Text key, Iterable<PairOfLongInt> values, Context context)
       throws IOException, InterruptedException {
-      long partialSum = 0;
-      int partialCount = 0;
+      long sum = 0;
+      int count = 0;
       for (PairOfLongInt pair : values) {
-         partialSum += pair.getLeftElement(); // partial sum as long
-         partialCount += pair.getRightElement(); // partial count as int
+         sum += pair.getLeftElement(); 
+         count += pair.getRightElement(); 
       }
-      context.write(key, new PairOfLongInt(partialSum, partialCount));
+      context.write(key, new DoubleWritable(sum / count));
    }
 }
- 

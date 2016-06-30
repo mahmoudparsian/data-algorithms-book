@@ -46,9 +46,9 @@ public class MeanDriver {
        HadoopUtil.addJarsToDistributedCache(job, "/lib/");
        
        // set mapper/combiner/reducer
-       job.setMapperClass(MeanMonodizedMapper.class);
-       job.setCombinerClass(MeanMonodizedCombiner.class);
-       job.setReducerClass(MeanMonodizedReducer.class);
+       job.setMapperClass(MeanMonoidizedMapper.class);
+       job.setCombinerClass(MeanMonoidizedCombiner.class);
+       job.setReducerClass(MeanMonoidizedReducer.class);
        
        // define mappers output key-value
        job.setMapOutputKeyClass(Text.class);
