@@ -1,4 +1,4 @@
-package org.dataalgorithms.chap03.spark;
+package org.dataalgorithms.chap03.sparkwithlambda;
 
 // STEP-0: import required classes and interfaces
 import org.dataalgorithms.util.SparkUtil;
@@ -7,8 +7,6 @@ import scala.Tuple2;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaPairRDD;
 import org.apache.spark.api.java.JavaSparkContext;
-import org.apache.spark.api.java.function.FlatMapFunction;
-import org.apache.spark.api.java.function.PairFunction;
 
 import java.util.List;
 import java.util.Map;
@@ -50,11 +48,13 @@ public class Top10 {
   
       // STEP-1: handle input parameters
       if (args.length < 1) {
-         System.err.println("Usage: Top10 <input-file>");
+         System.err.println("Usage: Top10 <input> <output> ");
          System.exit(1);
       }
       String inputPath = args[0];
       System.out.println("args[0]: <input-path>="+inputPath);
+      //String outputPath = args[1];
+      //System.out.println("args[1]: <output-path>="+outputPath);
 
       // STEP-2: create an instance of JavaSparkContext
       JavaSparkContext ctx = SparkUtil.createJavaSparkContext();
@@ -69,13 +69,9 @@ public class Top10 {
       // Note: the assumption is that all K's are unique
       // PairFunction<T, K, V>
       // T => Tuple2<K, V>
-      //                                                                    input   K       V
-      JavaPairRDD<String,Integer> pairs = lines.mapToPair(new PairFunction<String, String, Integer>() {
-         @Override
-         public Tuple2<String,Integer> call(String s) {
-            String[] tokens = s.split(","); // cat7,234
-            return new Tuple2<String,Integer>(tokens[0], Integer.parseInt(tokens[1]));
-         }
+      JavaPairRDD<String,Integer> pairs = lines.mapToPair((String s) -> {
+          String[] tokens = s.split(","); // cat7,234
+          return new Tuple2<String,Integer>(tokens[0], Integer.parseInt(tokens[1]));
       });
 
       List<Tuple2<String,Integer>> debug1 = pairs.collect();
@@ -85,21 +81,18 @@ public class Top10 {
 
     
       // STEP-5: create a local top-10
-      JavaRDD<SortedMap<Integer, String>> partitions = pairs.mapPartitions(
-         new FlatMapFunction<Iterator<Tuple2<String,Integer>>, SortedMap<Integer, String>>() {
-         @Override
-         public Iterable<SortedMap<Integer, String>> call(Iterator<Tuple2<String,Integer>> iter) {
-             SortedMap<Integer, String> top10 = new TreeMap<Integer, String>();
-             while (iter.hasNext()) {
-                Tuple2<String,Integer> tuple = iter.next();
-                top10.put(tuple._2, tuple._1);
-                // keep only top N 
-                if (top10.size() > 10) {
-                   top10.remove(top10.firstKey());
-                }  
-             }
-             return Collections.singletonList(top10);
-         }
+      JavaRDD<SortedMap<Integer, String>> partitions = 
+              pairs.mapPartitions((Iterator<Tuple2<String,Integer>> iter) -> {
+          SortedMap<Integer, String> top10 = new TreeMap<Integer, String>();
+          while (iter.hasNext()) {
+              Tuple2<String,Integer> tuple = iter.next();
+              top10.put(tuple._2, tuple._1);
+              // keep only top N
+              if (top10.size() > 10) {
+                  top10.remove(top10.firstKey());
+              }
+          }
+          return Collections.singletonList(top10);
       });
 
       // STEP-6: find a final top-10
@@ -123,6 +116,9 @@ public class Top10 {
       for (Map.Entry<Integer, String> entry : finaltop10.entrySet()) {
          System.out.println(entry.getKey() + "--" + entry.getValue());
       }
+      
+      // save final output
+      // using outputPath
 
       System.exit(0);
    }

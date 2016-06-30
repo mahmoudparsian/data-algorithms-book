@@ -1,4 +1,4 @@
-package org.dataalgorithms.chap03.spark;
+package org.dataalgorithms.chap03.sparkwithlambda;
 
 // STEP-0: import required classes and interfaces
 import org.dataalgorithms.util.SparkUtil;
@@ -83,41 +83,30 @@ public class Top10NonUnique {
       // STEP-6: map input(T) into (K,V) pair
       // PairFunction<T, K, V>   
       // T => Tuple2<K, V>
-      JavaPairRDD<String,Integer> kv = rdd.mapToPair(new PairFunction<String,String,Integer>() {
-         @Override
-         public Tuple2<String,Integer> call(String s) {
-            String[] tokens = s.split(","); // url,789
-            return new Tuple2<String,Integer>(tokens[0], Integer.parseInt(tokens[1]));
-         }
+      JavaPairRDD<String,Integer> kv = rdd.mapToPair((String s) -> {
+          String[] tokens = s.split(","); // url,789
+          return new Tuple2<String,Integer>(tokens[0], Integer.parseInt(tokens[1]));
       });
       kv.saveAsTextFile("/output/2");
 
       // STEP-7: reduce frequent K's
-      JavaPairRDD<String, Integer> uniqueKeys = kv.reduceByKey(new Function2<Integer, Integer, Integer>() {
-         @Override
-         public Integer call(Integer i1, Integer i2) {
-            return i1 + i2;
-         }
-      });
+      JavaPairRDD<String, Integer> uniqueKeys = kv.reduceByKey((Integer i1, Integer i2) -> i1 + i2);
       uniqueKeys.saveAsTextFile("/output/3");
     
       // STEP-8: create a local top-N
-      JavaRDD<SortedMap<Integer, String>> partitions = uniqueKeys.mapPartitions(
-          new FlatMapFunction<Iterator<Tuple2<String,Integer>>, SortedMap<Integer, String>>() {
-          @Override
-          public Iterable<SortedMap<Integer, String>> call(Iterator<Tuple2<String,Integer>> iter) {
-             final int N = topN.value();
-             SortedMap<Integer, String> localTopN = new TreeMap<Integer, String>();
-             while (iter.hasNext()) {
-                Tuple2<String,Integer> tuple = iter.next();
-                localTopN.put(tuple._2, tuple._1);
-                // keep only top N 
-                if (localTopN.size() > N) {
-                   localTopN.remove(localTopN.firstKey());
-                } 
-             }
-             return Collections.singletonList(localTopN);
+      JavaRDD<SortedMap<Integer, String>> partitions = 
+              uniqueKeys.mapPartitions((Iterator<Tuple2<String,Integer>> iter) -> {
+          final int N1 = topN.value();
+          SortedMap<Integer, String> localTopN = new TreeMap<Integer, String>();
+          while (iter.hasNext()) {
+              Tuple2<String,Integer> tuple = iter.next();
+              localTopN.put(tuple._2, tuple._1);
+              // keep only top N
+              if (localTopN.size() > N1) {
+                  localTopN.remove(localTopN.firstKey());
+              }
           }
+          return Collections.singletonList(localTopN);
       });
       partitions.saveAsTextFile("/output/4");
 

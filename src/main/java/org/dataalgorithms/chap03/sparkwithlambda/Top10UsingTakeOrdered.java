@@ -1,4 +1,4 @@
-package org.dataalgorithms.chap03.spark;
+package org.dataalgorithms.chap03.sparkwithlambda;
 
 // STEP-0: import required classes and interfaces
 import org.dataalgorithms.util.SparkUtil;
@@ -7,8 +7,6 @@ import scala.Tuple2;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaPairRDD;
 import org.apache.spark.api.java.JavaSparkContext;
-import org.apache.spark.api.java.function.PairFunction;
-import org.apache.spark.api.java.function.Function2;
 
 import java.util.List;
 import java.util.Comparator;
@@ -73,22 +71,14 @@ public class Top10UsingTakeOrdered implements Serializable {
       // STEP-5: map input(T) into (K,V) pair
       // PairFunction<T, K, V>
       // T => Tuple2<K, V>
-      JavaPairRDD<String,Integer> kv = rdd.mapToPair(new PairFunction<String,String,Integer>() {
-         @Override
-         public Tuple2<String,Integer> call(String s) {
-            String[] tokens = s.split(","); // url,789
-            return new Tuple2<String,Integer>(tokens[0], Integer.parseInt(tokens[1]));
-         }
+      JavaPairRDD<String,Integer> kv = rdd.mapToPair((String s) -> {
+          String[] tokens = s.split(","); // url,789
+          return new Tuple2<String,Integer>(tokens[0], Integer.parseInt(tokens[1]));
       });
       kv.saveAsTextFile("/output/2");
 
       // STEP-6: reduce frequent K's
-      JavaPairRDD<String, Integer> uniqueKeys = kv.reduceByKey(new Function2<Integer, Integer, Integer>() {
-         @Override
-         public Integer call(Integer i1, Integer i2) {
-            return i1 + i2;
-         }
-      });
+      JavaPairRDD<String, Integer> uniqueKeys = kv.reduceByKey((Integer i1, Integer i2) -> i1 + i2);
       uniqueKeys.saveAsTextFile("/output/3");
 
       // STEP-7: find final top-N by calling takeOrdered()
