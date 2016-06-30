@@ -10,12 +10,8 @@
 ======================================
 [![Data Algorithms Book](./misc/da_book3.jpeg)](http://shop.oreilly.com/product/0636920033950.do)
 
-Started Adding Java 8's LAMBDA Expressions to Spark Programs...
-===============================================================
-* [Chapter 01 ... done.](./src/main/java/org/dataalgorithms/chap01/)
-* [Chapter 02 ... in progress...](./src/main/java/org/dataalgorithms/chap02/)
-* [Chapter 03 ... done.](./src/main/java/org/dataalgorithms/chap03/)
-
+[Adding Java 8's LAMBDA Expressions to Spark Programs...](./misc/jdk8_and_lambda.md)
+=========================================================
 
 ### [COPA using Spark #ApacheBigData, May 10, 2016 (Abstract)](http://sched.co/6M0Y)
 ### [COPA using Spark #ApacheBigData, May 10, 2016 (Slides)](http://mapreduce4hackers.com/copa_spark_2016.pdf)
