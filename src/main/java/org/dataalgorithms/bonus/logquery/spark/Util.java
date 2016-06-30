@@ -12,6 +12,10 @@ import scala.Tuple3;
 public class Util {
 
   // tokens = [<ip-address><user-id><number-of-bytes><query>]
+  // tokens[0] = <ip-address>
+  // tokens[1] = <user-id>
+  // tokens[2] = <number-of-bytes>
+  // tokens[3] = <query>
   public static Tuple3<String, String, String> createKey(String[] tokens) {
      String userID = tokens[1];
      if (userID.equals("-")) {
@@ -27,6 +31,10 @@ public class Util {
   }
 
   // tokens = [<ip-address><user-id><number-of-bytes><query>]
+  // tokens[0] = <ip-address>
+  // tokens[1] = <user-id>
+  // tokens[2] = <number-of-bytes>
+  // tokens[3] = <query>
   public static LogStatistics createLogStatistics(String[] tokens) {
      String numberOfBytesAsString = tokens[2];
      if (numberOfBytesAsString.equals("-")) {
