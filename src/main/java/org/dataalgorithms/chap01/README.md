@@ -1,3 +1,6 @@
+![Secondary Sorting](./secondary_sorting.png)
+
+
 Chapter 01
 ==========
 The purpose of this chapter is to have a sorted values 
