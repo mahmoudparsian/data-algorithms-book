@@ -9,10 +9,8 @@ O'Reilly Webinars
 
 Spark Presentation @North-Carolina State University
 ---------------------------------------------------
+* [Guest Speaker @NC State University](./Mahmoud_Parsian_Guest_Speaker.pdf)
 * [Beyond MapReduce: Spark @NC State University](http://mapreduce4hackers.com/docs/north_carolina_state_univ_spark_2015_11_23.pptx)
-
-[Guest Speaker @NC State University](./Mahmoud_Parsian_Guest_Speaker.pdf)
-------------------------------------
 
 
 Apache Big Data, Vancouver, Canada, May 2016

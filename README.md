@@ -11,8 +11,8 @@
 
 [![Data Algorithms Book](./misc/da_book3.jpeg)](http://shop.oreilly.com/product/0636920033950.do)
 
-[Adding Java 8's LAMBDA Expressions to Spark Programs...](./misc/jdk8_and_lambda.md)
-=========================================================
+[Adding Java 8's LAMBDA Expressions to Spark...](./misc/jdk8_and_lambda.md)
+================================================
 
 [How To Build using Apache's Ant](./misc/ant/README.md)
 ===============================
@@ -26,7 +26,7 @@
 [Machine Learning Algorithms using Spark](./src/main/java/org/dataalgorithms/machinelearning)
 =========================================
 
-[Spark Solution for Cancer Outlier Profile Analysis](http://hadoopsummit.uservoice.com/forums/344955-data-science-analytics-and-spark/suggestions/11664381-spark-solution-for-cancer-outlier-profile-analysis)
+[Spark for Cancer Outlier Profile Analysis](http://hadoopsummit.uservoice.com/forums/344955-data-science-analytics-and-spark/suggestions/11664381-spark-solution-for-cancer-outlier-profile-analysis)
 ====================================================
  
 [Webinars and Presentions on Data Algorithms](./misc/webinars.md)
