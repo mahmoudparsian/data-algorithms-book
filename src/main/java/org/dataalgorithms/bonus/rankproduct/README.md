@@ -24,9 +24,10 @@ public <C> JavaPairRDD<K,C> combineByKey(Function<V,C> createCombiner,
 and then create a new instance of ````C````
 
 
-Webinar Slides
-==============
-[Rank Product Slides](./RankProduct_slides.pdf) for [Apache Spark Solution for Rank Product](http://www.oreilly.com/pub/e/3507)
+O'Reilly Webinar Slides
+=======================
+* [Rank Product Slides](./RankProduct_slides.pdf) 
+* [Apache Spark Solution for Rank Product](http://www.oreilly.com/pub/e/3507)
 
 Suggestions
 ===========
