@@ -1,21 +1,32 @@
-package org.dataalgorithms.bonus.rankproduct.spark;
+package org.dataalgorithms.bonus.rankproduct.util;
 
-import org.apache.log4j.Logger;
 import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaSparkContext;
 
 
 /**
  * Create JavaSparkContext and other objects.
+ * 
+ * Spark-1.6.1
+ * spark.kryoserializer.buffer.max	64m (Default)	
+ * Maximum allowable size of Kryo serialization buffer. 
+ * This must be larger than any object you attempt to serialize. 
+ * Increase this if you get a "buffer limit exceeded" exception inside Kryo.
+ * 
+ * 
+  * Spark-1.6.1
+* spark.kryoserializer.buffer	64k (Default)	
+ * Initial size of Kryo's serialization buffer. 
+ * Note that there will be one buffer per core on each worker. 
+ * This buffer will grow up to spark.kryoserializer.buffer.max if needed.
  *
  * @author Mahmoud Parsian
  *
  */
 public class Util {
 
-    private static final Logger THE_LOGGER = Logger.getLogger(Util.class);
     
-    static JavaSparkContext createJavaSparkContext(boolean useYARN) {
+    public static JavaSparkContext createJavaSparkContext(boolean useYARN) {
         JavaSparkContext context;
         if (useYARN) {
             context = new JavaSparkContext("yarn-cluster", "Rank Product");
@@ -31,7 +42,7 @@ public class Util {
         SparkConf sparkConf = context.getConf();
                 
         // Now it's 32 Mb of buffer by default instead of 0.064 Mb
-        sparkConf.set("spark.kryoserializer.buffer.mb","32");
+        sparkConf.set("spark.kryoserializer.buffer","32m");
         
         // http://www.trongkhoanguyen.com/2015/04/understand-shuffle-component-in-spark.html
         //spark.shuffle.file.buffer	32k	Size of the in-memory buffer for each 

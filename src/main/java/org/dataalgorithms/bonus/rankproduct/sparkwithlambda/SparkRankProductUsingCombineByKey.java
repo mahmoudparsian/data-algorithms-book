@@ -1,4 +1,4 @@
-package org.dataalgorithms.bonus.rankproduct.spark;
+package org.dataalgorithms.bonus.rankproduct.sparkwithlambda;
 
 import java.util.Map;
 import java.util.Map.Entry;
@@ -24,6 +24,7 @@ import org.apache.log4j.Logger;
 import org.apache.commons.lang.StringUtils;
 //
 import org.dataalgorithms.bonus.rankproduct.util.Util;
+
 
 
 /**
@@ -181,33 +182,22 @@ public class SparkRankProductUsingCombineByKey {
         // we need 3 function to be able to use combinebyKey()
         //
         // function 1
-        Function<Long, RankProduct> createCombiner = new Function<Long, RankProduct>() {
-          @Override
-          public RankProduct call(Long x) {
-            return new RankProduct(x, 1);
-          }
-        };
+        Function<Long, RankProduct> createCombiner = (Long x) -> new RankProduct(x, 1);
         
         // function 2
         Function2<RankProduct, Long, RankProduct> addAndCount =
-          new Function2<RankProduct, Long, RankProduct>() {
-          @Override
-          public RankProduct call(RankProduct a, Long x) {
-            a.product *= x;
-            a.count += 1;
-            return a;
-          }
+          (RankProduct a, Long x) -> {
+              a.product *= x;
+              a.count += 1;
+              return a;
         };
         
         // function 3
         Function2<RankProduct, RankProduct, RankProduct> mergeCombiners =
-          new Function2<RankProduct, RankProduct, RankProduct>() {
-          @Override
-          public RankProduct call(RankProduct a, RankProduct b) {
-            a.product *= b.product;
-            a.count += b.count;
-            return a;
-          }
+          (RankProduct a, RankProduct b) -> {
+              a.product *= b.product;
+              a.count += b.count;
+              return a;
         };
         
         // next find unique keys, with their associated copa scores
@@ -215,17 +205,12 @@ public class SparkRankProductUsingCombineByKey {
               unionRDD.combineByKey(createCombiner, addAndCount, mergeCombiners);        
                 
         // next calculate ranked products and the number of elements
-        JavaPairRDD<String, Tuple2<Double, Integer>> rankedProducts = combinedByGeneRDD.mapValues(
-                new Function<
-                             RankProduct,               // input: RankProduct
-                             Tuple2<Double, Integer>    // output: (RankedProduct.count)
-                            >() {
-                @Override
-                public Tuple2<Double, Integer> call(RankProduct value) {
-                    double theRankedProduct = value.rank();
-                    return new Tuple2<Double, Integer>(theRankedProduct, value.count);
-                }
-        });                
+        JavaPairRDD<String, Tuple2<Double, Integer>> rankedProducts = 
+                combinedByGeneRDD.mapValues((RankProduct value) -> {
+            double theRankedProduct = value.rank();
+            return new Tuple2<Double, Integer>(theRankedProduct, value.count);
+        }); 
+        //
         return rankedProducts;
     }    
     
@@ -246,33 +231,22 @@ public class SparkRankProductUsingCombineByKey {
         // we need 3 function to be able to use combinebyKey()
         //
         // function 1
-        Function<Double, AverageCount> createCombiner = new Function<Double, AverageCount>() {
-          @Override
-          public AverageCount call(Double x) {
-            return new AverageCount(x, 1);
-          }
-        };
+        Function<Double, AverageCount> createCombiner = (Double x) -> new AverageCount(x, 1);
         
         // function 2
         Function2<AverageCount, Double, AverageCount> addAndCount =
-          new Function2<AverageCount, Double, AverageCount>() {
-          @Override
-          public AverageCount call(AverageCount a, Double x) {
-            a.total += x;
-            a.count += 1;
-            return a;
-          }
+          (AverageCount a, Double x) -> {
+              a.total += x;
+              a.count += 1;
+              return a;
         };
         
         // function 3
         Function2<AverageCount, AverageCount, AverageCount> mergeCombiners =
-          new Function2<AverageCount, AverageCount, AverageCount>() {
-          @Override
-          public AverageCount call(AverageCount a, AverageCount b) {
-            a.total += b.total;
-            a.count += b.count;
-            return a;
-          }
+          (AverageCount a, AverageCount b) -> {
+              a.total += b.total;
+              a.count += b.count;
+              return a;
         };
         
         JavaPairRDD<String, AverageCount> averageCounts =
@@ -285,17 +259,10 @@ public class SparkRankProductUsingCombineByKey {
         }
         
         // now compute the mean/average per gene
-        JavaPairRDD<String,Double> meanRDD = averageCounts.mapToPair(
-            new PairFunction<
-                             Tuple2<String, AverageCount>, // T: input
-                             String,                       // K
-                             Double                        // V
-                            >() {
-            @Override
-            public Tuple2<String,Double> call(Tuple2<String, AverageCount> s) {
-                return new Tuple2<String,Double>(s._1, s._2.average());
-            }
-        });
+        JavaPairRDD<String,Double> meanRDD = 
+                averageCounts.mapToPair((Tuple2<String, AverageCount> s) -> 
+                new Tuple2<String,Double>(s._1, s._2.average()) 
+        );
                 
         return meanRDD;
     }      
@@ -357,17 +324,10 @@ public class SparkRankProductUsingCombineByKey {
         
         // swap key and value (will be used for sorting by key)
         // convert value to abs(value)
-        JavaPairRDD<Double,String> swappedRDD = rdd.mapToPair(
-            new PairFunction<
-                             Tuple2<String, Double>,       // T: input
-                             Double,                       // K
-                             String                        // V
-                            >() {
-            @Override
-            public Tuple2<Double,String> call(Tuple2<String, Double> s) {
-                return new Tuple2<Double,String>(Math.abs(s._2), s._1);
-            }
-        }); 
+        JavaPairRDD<Double,String> swappedRDD = 
+                rdd.mapToPair((Tuple2<String, Double> s) -> 
+                    new Tuple2<Double,String>(Math.abs(s._2), s._1) 
+        ); 
         
         // sort copa scores descending
         // we need 1 partition so that we can zip numbers into this RDD by zipWithIndex()
@@ -380,17 +340,15 @@ public class SparkRankProductUsingCombineByKey {
         
         // next convert JavaPairRDD<Tuple2<Double,String>,Long> into JavaPairRDD<String,Long>
         //              JavaPairRDD<Tuple2<value,mapped_id>,rank> into JavaPairRDD<mapped_id,rank>
-        JavaPairRDD<String, Long> ranked = indexed.mapToPair(
-            new PairFunction<
-                             Tuple2<Tuple2<Double,String>,Long>,  // T: input
-                             String,                              // K: mapped_id
-                             Long                                 // V: rank
-                            >() {
-            @Override
-            public Tuple2<String, Long> call(Tuple2<Tuple2<Double,String>,Long> s) {
-                return new Tuple2<String,Long>(s._1._2, s._2 + 1); // ranks are 1, 2, ..., n
-            }
-        });   
+        //
+        // K: mapped_id
+        // V: rank
+        // ranks are 1, 2, ..., n
+        JavaPairRDD<String, Long> ranked = 
+                indexed.mapToPair((Tuple2<Tuple2<Double,String>,Long> s) -> 
+                        new Tuple2<String,Long>(s._1._2, s._2 + 1)   
+        );  
+        //
         return ranked;
     }
     
@@ -417,15 +375,12 @@ public class SparkRankProductUsingCombineByKey {
                           
         // for each record, we emit (K=mapped_id, V=test_expression)
         JavaPairRDD<String, Double> genes
-                = records.mapToPair(new PairFunction<String, String, Double>() {
-                    @Override
-                    public Tuple2<String, Double> call(String rec) {
-                        // rec = "mapped_id,test_expression"
-                        String[] tokens = StringUtils.split(rec, ",");
-                        // tokens[0] = mapped_id
-                        // tokens[1] = test_expression
-                        return new Tuple2<String, Double>(tokens[0], Double.parseDouble(tokens[1]));
-                    }
+                = records.mapToPair((String rec) -> {
+                    // rec = "mapped_id,test_expression"
+                    String[] tokens = StringUtils.split(rec, ",");
+                    // tokens[0] = mapped_id
+                    // tokens[1] = test_expression
+                    return new Tuple2<String, Double>(tokens[0], Double.parseDouble(tokens[1]));
         });
         
         return genes;

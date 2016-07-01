@@ -1,4 +1,4 @@
-package org.dataalgorithms.bonus.rankproduct.spark;
+package org.dataalgorithms.bonus.rankproduct.sparkwithlambda;
 
 
 import scala.Tuple2;
@@ -15,7 +15,7 @@ import org.apache.spark.api.java.function.PairFunction;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.conf.Configuration;
-//
+
 import org.apache.log4j.Logger;
 //
 import org.apache.commons.lang.StringUtils;
@@ -146,24 +146,20 @@ public class SparkRankProductUsingGroupByKey {
         JavaPairRDD<String, Iterable<Long>> groupedByGeneRDD = unionRDD.groupByKey();
         
         // next calculate ranked products and the number of elements
-        JavaPairRDD<String, Tuple2<Double, Integer>> rankedProducts = groupedByGeneRDD.mapValues(
-                new Function<
-                             Iterable<Long>,            // input: copa scores for all studies
-                             Tuple2<Double, Integer>    // output: (rankedProduct, N)
-                            >() {
-                @Override
-                public Tuple2<Double, Integer> call(Iterable<Long> values) {
-                    int N = 0;
-                    long products = 1;
-                    for (Long v : values) {
-                        products *= v;
-                        N++;
-                    }
-                    
-                    double rankedProduct = Math.pow( (double) products, 1.0/((double) N));
-                    return new Tuple2<Double, Integer>(rankedProduct, N);
-                }
-        });                
+        JavaPairRDD<String, Tuple2<Double, Integer>> rankedProducts = 
+                groupedByGeneRDD.mapValues((Iterable<Long> values) -> {
+            int N = 0;
+            long products = 1;
+            for (Long v : values) {
+                products *= v;
+                N++;
+            }
+            
+            double rankedProduct = Math.pow( (double) products, 1.0/((double) N));
+            return new Tuple2<Double, Integer>(rankedProduct, N);
+        } // input: copa scores for all studies
+        // output: (rankedProduct, N)
+        );                
         return rankedProducts;
     }    
     
@@ -184,25 +180,18 @@ public class SparkRankProductUsingGroupByKey {
         JavaPairRDD<String, Iterable<Double>> groupedByGene = genes.groupByKey();
         
         // calclulate mean per gene
-        JavaPairRDD<String, Double> meanRDD = groupedByGene.mapValues(
-                new Function<
-                             Iterable<Double>,      // input
-                             Double                 // output: mean
-                            >() {
-                @Override
-                public Double call(Iterable<Double> values) {
-                    double sum = 0.0;
-                    int count = 0;
-                    for (Double v : values) {
-                        sum += v;
-                        count++;
-                    }
-                    // calculate mean of samples
-                    double mean = sum / ((double) count);
-                    return mean;
-                }
+        JavaPairRDD<String, Double> meanRDD = groupedByGene.mapValues((Iterable<Double> values) -> {
+            double sum = 0.0;
+            int count = 0;
+            for (Double v : values) {
+                sum += v;
+                count++;
+            }
+            // calculate mean of samples
+            double mean = sum / ((double) count);
+            return mean;
         });
-        
+        //
         return meanRDD;
     }  
     
@@ -212,17 +201,9 @@ public class SparkRankProductUsingGroupByKey {
         
         // swap key and value (will be used for sorting by key)
         // convert value to abs(value)
-        JavaPairRDD<Double,String> swappedRDD = rdd.mapToPair(
-            new PairFunction<
-                             Tuple2<String, Double>,       // T: input
-                             Double,                       // K
-                             String                        // V
-                            >() {
-            @Override
-            public Tuple2<Double,String> call(Tuple2<String, Double> s) {
-                return new Tuple2<Double,String>(Math.abs(s._2), s._1);
-            }
-        }); 
+        JavaPairRDD<Double,String> swappedRDD = 
+                rdd.mapToPair((Tuple2<String, Double> s) -> 
+                        new Tuple2<Double,String>(Math.abs(s._2), s._1)); 
         
         // sort copa scores descending
         // we need 1 partition so that we can zip numbers into this RDD by zipWithIndex()
@@ -235,17 +216,11 @@ public class SparkRankProductUsingGroupByKey {
         
         // next convert JavaPairRDD<Tuple2<Double,String>,Long> into JavaPairRDD<String,Long>
         //              JavaPairRDD<Tuple2<value,mapped_id>,rank> into JavaPairRDD<mapped_id,rank>
-        JavaPairRDD<String, Long> ranked = indexed.mapToPair(
-            new PairFunction<
-                             Tuple2<Tuple2<Double,String>,Long>,  // T: input
-                             String,                              // K: mapped_id
-                             Long                                 // V: rank
-                            >() {
-            @Override
-            public Tuple2<String, Long> call(Tuple2<Tuple2<Double,String>,Long> s) {
-                return new Tuple2<String,Long>(s._1._2, s._2 + 1); // ranks are 1, 2, ..., n
-            }
-        });   
+        JavaPairRDD<String, Long> ranked = 
+                indexed.mapToPair((Tuple2<Tuple2<Double,String>,Long> s) -> 
+                        new Tuple2<String,Long>(s._1._2, s._2 + 1) // ranks are 1, 2, ..., n
+        ); 
+        //
         return ranked;
     }
     
@@ -272,17 +247,14 @@ public class SparkRankProductUsingGroupByKey {
                           
         // for each record, we emit (K=mapped_id, V=test_expression)
         JavaPairRDD<String, Double> genes
-                = records.mapToPair(new PairFunction<String, String, Double>() {
-                    @Override
-                    public Tuple2<String, Double> call(String rec) {
-                        // rec = "mapped_id,test_expression"
-                        String[] tokens = StringUtils.split(rec, ",");
-                        // tokens[0] = mapped_id
-                        // tokens[1] = test_expression
-                        return new Tuple2<String, Double>(tokens[0], Double.parseDouble(tokens[1]));
-                    }
+                = records.mapToPair((String rec) -> {
+                    // rec = "mapped_id,test_expression"
+                    String[] tokens = StringUtils.split(rec, ",");
+                    // tokens[0] = mapped_id
+                    // tokens[1] = test_expression
+                    return new Tuple2<String, Double>(tokens[0], Double.parseDouble(tokens[1]));
         });
-        
+        //
         return genes;
     }
            
@@ -341,19 +313,13 @@ public class SparkRankProductUsingGroupByKey {
         //// BEGIN DEBUG
         //// BEGIN DEBUG
         JavaPairRDD<String, List<Double>> debugRDD =
-            groupedByGeneFiltered.mapValues(new Function<
-                                                         Iterable<Double>, // input
-                                                         List<Double>      // output
-                                                        >() {
-            @Override
-            public List<Double> call(Iterable<Double> values) {
+            groupedByGeneFiltered.mapValues((Iterable<Double> values) -> {
                 // build list of test_expression 
                 List<Double> list = new ArrayList<Double>();
                 for (Double d : values) {
                     list.add(d);
                 }  
                 return list;
-            }
         }); 
         String debugPath = "/biomarker/output/rnae/debug";
  	deleteDirectoryAndIgnoreException(debugPath);
