@@ -18,6 +18,7 @@ public class WordCountReducer
     // This method is called once for each key. Most applications will 
     // define their reduce class by overriding this method. The default 
     // implementation is an identity function.
+    @Override
     public void reduce(Text key, Iterable<IntWritable> values, Context context)
        throws IOException, InterruptedException {
        int sum = 0;

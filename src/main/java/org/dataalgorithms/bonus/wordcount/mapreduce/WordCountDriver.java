@@ -26,7 +26,7 @@ import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
  */
 public class WordCountDriver  extends Configured implements Tool {
 
-    private static Logger theLogger = Logger.getLogger(WordCountDriver.class);
+    private static Logger THE_LOGGER = Logger.getLogger(WordCountDriver.class);
 
     /**
      *      Arguments are:
@@ -63,7 +63,7 @@ public class WordCountDriver  extends Configured implements Tool {
        FileOutputFormat.setOutputPath(job, new Path(args[2]));
 
        boolean status = job.waitForCompletion(true);
-       theLogger.info("run(): status="+status);
+       THE_LOGGER.info("run(): status="+status);
        return status ? 0 : 1;
     }
 
@@ -79,16 +79,16 @@ public class WordCountDriver  extends Configured implements Tool {
        }
 
        //int N = args[0];
-       theLogger.info("N="+args[0]);
+       THE_LOGGER.info("N="+args[0]);
 
        //String inputDir = args[1];
-       theLogger.info("inputDir="+args[1]);
+       THE_LOGGER.info("inputDir="+args[1]);
 
        //String outputDir = args[2];
-       theLogger.info("outputDir="+args[2]);
+       THE_LOGGER.info("outputDir="+args[2]);
 
        int returnStatus = submitJob(args);
-       theLogger.info("returnStatus="+returnStatus);
+       THE_LOGGER.info("returnStatus="+returnStatus);
       
        System.exit(returnStatus);
     }

@@ -22,10 +22,11 @@ public class WordCountMapper
 
     private static final int DEFAULT_IGNORED_LENGTH = 3; // default
     private int N = DEFAULT_IGNORED_LENGTH; 
-    private static final IntWritable one = new IntWritable(1);
-    private Text reducerKey = new Text();
+    private static final IntWritable ONE = new IntWritable(1);
+    private final Text reducerKey = new Text();
 
     // called once at the beginning of the task.   
+    @Override
     protected void setup(Context context)
        throws IOException,InterruptedException {
        this.N = context.getConfiguration().getInt("word.count.ignored.length", 
@@ -35,6 +36,7 @@ public class WordCountMapper
     // called once for each key/value pair in the input split. 
     // most applications should override this, but the default 
     // is the identity function.
+    @Override
     public void map(LongWritable key, Text value, Context context)
        throws IOException, InterruptedException {
       
@@ -58,7 +60,7 @@ public class WordCountMapper
                 word = word.substring(0, word.length() -1); 
             }
             reducerKey.set(word);
-            context.write(reducerKey, one);
+            context.write(reducerKey, ONE);
        }
     }
    
