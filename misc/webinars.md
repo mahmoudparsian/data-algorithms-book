@@ -11,7 +11,7 @@ Spark Presentation @North-Carolina State University
 ---------------------------------------------------
 * [Beyond MapReduce: Spark @NC State University](http://mapreduce4hackers.com/docs/north_carolina_state_univ_spark_2015_11_23.pptx)
 
-[Guest Speaker @NC State University](./misc/Mahmoud_Parsian_Guest_Speaker.pdf)
+[Guest Speaker @NC State University](./Mahmoud_Parsian_Guest_Speaker.pdf)
 ------------------------------------
 
 
