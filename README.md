@@ -8,14 +8,11 @@
 
 [Production Version is Available NOW!](http://shop.oreilly.com/product/0636920033950.do)
 ======================================
+
 [![Data Algorithms Book](./misc/da_book3.jpeg)](http://shop.oreilly.com/product/0636920033950.do)
 
 [Adding Java 8's LAMBDA Expressions to Spark Programs...](./misc/jdk8_and_lambda.md)
 =========================================================
-
-### [COPA using Spark #ApacheBigData, May 10, 2016 (Abstract)](http://sched.co/6M0Y)
-### [COPA using Spark #ApacheBigData, May 10, 2016 (Slides)](http://mapreduce4hackers.com/copa_spark_2016.pdf)
-
 
 [How To Build using Apache's Ant](./misc/ant/README.md)
 ===============================
@@ -32,32 +29,18 @@
 [Spark Solution for Cancer Outlier Profile Analysis](http://hadoopsummit.uservoice.com/forums/344955-data-science-analytics-and-spark/suggestions/11664381-spark-solution-for-cancer-outlier-profile-analysis)
 ====================================================
  
-[Guest Speaker @NC State University](./misc/Mahmoud_Parsian_Guest_Speaker.pdf)
-====================================
-
-[Beyond MapReduce: Spark @NC State University](http://mapreduce4hackers.com/docs/north_carolina_state_univ_spark_2015_11_23.pptx)
-==============================================
-
-[Webinars on Data Algorithms](./misc/webinars.md)
-=============================
-
+[Webinars and Presentions on Data Algorithms](./misc/webinars.md)
+=================================================================
 
 [Introduction to MapReduce](https://github.com/mahmoudparsian/data-algorithms-book/tree/master/src/main/java/org/dataalgorithms/bonus/charcount)
 ===========================
-
-
-[Bonus Chapter: Outlier Detection](https://github.com/mahmoudparsian/data-algorithms-book/tree/master/src/main/java/org/dataalgorithms/bonus/outlierdetection/spark)
-=====================================
-
-[Bonus Chapter: Rank Product](https://github.com/mahmoudparsian/data-algorithms-book/tree/master/src/main/java/org/dataalgorithms/bonus/rankproduct)
-=========================================
  
-  
+[Bonus Chapters](./misc/bonus-chapters.md)
+================
+ 
 [Author Book Signing](./misc/book-signing.md)
 =====================
 
-[Bonus Chapters](./misc/bonus-chapters.md)
-================
 
 <!---
 your comment goes here

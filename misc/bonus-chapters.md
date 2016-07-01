@@ -5,6 +5,14 @@ have been over 1000+ pages -- too much!!!). To keep it short, sweet, and focused
 chapters in the book and then put the remaining chapters (as bonus chapters) in here.  I have 
 started adding bonus chapters. Already have added the following bonus chapters (will keep adding more):
 
+
+[New Chapter: Outlier Detection](https://github.com/mahmoudparsian/data-algorithms-book/tree/master/src/main/java/org/dataalgorithms/bonus/outlierdetection/spark)
+--------------------------------
+
+[New Chapter: Rank Product](https://github.com/mahmoudparsian/data-algorithms-book/tree/master/src/main/java/org/dataalgorithms/bonus/rankproduct)
+--------------------------------
+
+
 Bonus chapter                                                                                                                                           | Description
 --------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------
 [Introduction to MapReduce](https://github.com/mahmoudparsian/data-algorithms-book/tree/master/src/main/java/org/dataalgorithms/bonus/charcount)        | Character Count Examples in Spark and MapReduce/Hadoop
@@ -15,3 +23,6 @@ Bonus chapter                                                                   
 [Log Query](https://github.com/mahmoudparsian/data-algorithms-book/tree/master/src/main/java/org/dataalgorithms/bonus/logquery)                         | Basic log query implementation  in Spark and MapReduce/Hadoop  
 [Word Count](https://github.com/mahmoudparsian/data-algorithms-book/tree/master/src/main/java/org/dataalgorithms/bonus/wordcount)                       | Hello World! of Spark and MapReduce/Hadoop   
 [Outlier Detection](https://github.com/mahmoudparsian/data-algorithms-book/tree/master/src/main/java/org/dataalgorithms/bonus/outlierdetection/spark)   | Outlier Detection for Categorical Datasets
+
+
+
