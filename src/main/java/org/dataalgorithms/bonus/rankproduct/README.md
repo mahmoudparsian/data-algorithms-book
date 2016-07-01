@@ -18,10 +18,12 @@ public <C> JavaPairRDD<K,C> combineByKey(Function<V,C> createCombiner,
 
 ````
 
-* ````createCombiner```` accepts a single value ````V```` and creates an instance of ````C````
-* ````mergeValue()```` accepts two parameters: ````V```` and ````C```` and then create a new instance of ````C````
-* ````mergeCombiners()```` accepts two parameters: ````C1```` (of type ````C````) and ````C2```` (of type ````C````) 
-and then create a new instance of ````C````
+* ````createCombiner```` accepts a single input value ````V```` and creates an instance of ````C````
+* ````mergeValue()```` accepts two input parameters: ````V```` and ````C```` and then 
+   create a new instance of ````C````
+* ````mergeCombiners()```` accepts two input parameters: ````C1```` (of type ````C````) and 
+  ````C2```` (of type ````C````) and then create a new instance of ````C```` (by merging 
+  ````C1```` and ````C2````)
 
 
 O'Reilly Webinar Slides
