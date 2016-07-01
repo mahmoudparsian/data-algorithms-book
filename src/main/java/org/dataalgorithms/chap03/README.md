@@ -1,3 +1,5 @@
+![Top-10](./top10.jpg)
+
 Chapter 03
 ==========
 The purpose of this chapter is to find top-10 (or bottom-10)
