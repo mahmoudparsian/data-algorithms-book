@@ -1,7 +1,7 @@
-Chapter 28: Mean Monodized
+Chapter 28: Mean Monoidized
 ===========================
-The purpose of this chapter is to understand "left outer join" concept.
-Spark does provide ````JavaPairRDD.leftOuterJoin()```` functionality.
+The purpose of this chapter is to understand Monoids as a Design Principle 
+for Efficient MapReduce Algorithms.
 
 
 
@@ -17,3 +17,4 @@ org.dataalgorithms.chap28.mapreduce       | MapReduce/Hadoop solution to Mean Mo
 References
 ==========
 [Monoidify! Monoids as a Design Principle for Efficient MapReduce Algorithms by Jimmy Lin](http://arxiv.org/pdf/1304.7544v1.pdf)
+[Monoid wikipedia](https://en.wikipedia.org/wiki/Monoid)
