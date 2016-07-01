@@ -10,6 +10,6 @@ in MapReduce/Hadoop and Spark.
 
 Packages 
 =======
-org.dataalgorithms.bonus.wordcount.spark
-org.dataalgorithms.bonus.wordcount.sparkwithlambda
-org.dataalgorithms.bonus.wordcount.mapreduce
+* org.dataalgorithms.bonus.wordcount.spark
+* org.dataalgorithms.bonus.wordcount.sparkwithlambda
+* org.dataalgorithms.bonus.wordcount.mapreduce
