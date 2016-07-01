@@ -1,5 +1,5 @@
 ![Word Count](./word-count.jpg)
-
+![Word Count with MapReduce](./wordcount-with-mapreduce.jpg)
 
 Bonus Chapter: Classic Word Count
 =================================
