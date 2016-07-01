@@ -1,5 +1,7 @@
-Webinars and Presentations on Data Algorithms Book
-==================================================
+Webinars & Presentations 
+========================
+on Data Algorithms Book
+========================
 
 O'Reilly Webinars
 -----------------
