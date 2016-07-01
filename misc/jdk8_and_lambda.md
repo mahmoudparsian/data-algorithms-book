@@ -13,6 +13,7 @@
 * [Chapter 28 ... done.](../src/main/java/org/dataalgorithms/chap28/)
 
 #### Bonus Chapters
+* [Rank Product   ... done.](../src/main/java/org/dataalgorithms/bonus/rankproduct/)
 * [Word Count     ... done.](../src/main/java/org/dataalgorithms/bonus/wordcount/)
 * [Anagram Finder ... done.](../src/main/java/org/dataalgorithms/bonus/anagram/)
 * ...
