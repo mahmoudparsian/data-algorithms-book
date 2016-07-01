@@ -1,3 +1,5 @@
+![Rank Product](./rank-product.png)
+
 Rank Product
 ============
 The [Rank Product](./RankProduct_chapter.pdf) is defined and two scalable Spark algorithms provided:
