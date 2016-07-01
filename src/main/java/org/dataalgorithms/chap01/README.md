@@ -1,7 +1,7 @@
 ![Secondary Sorting](./secondary_sorting.png)
 
 
-Chapter 01
+Chapter 01: Secondary Sorting
 ==========
 The purpose of this chapter is to have a sorted values 
 for reducer keys.  For example, if our input is like 
