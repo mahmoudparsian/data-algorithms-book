@@ -1,5 +1,6 @@
 ### Adding Java 8's LAMBDA Expressions to Spark Programs...
 
+#### Book Chapters
 * [Chapter 01 ... done.](../src/main/java/org/dataalgorithms/chap01/)
 * [Chapter 02 ... done.](../src/main/java/org/dataalgorithms/chap02/)
 * [Chapter 03 ... done.](../src/main/java/org/dataalgorithms/chap03/)
@@ -10,3 +11,8 @@
 * [Chapter 08 ... done.](../src/main/java/org/dataalgorithms/chap08/)
 * ...
 * [Chapter 28 ... done.](../src/main/java/org/dataalgorithms/chap28/)
+
+#### Bonus Chapters
+* [Word Count     ... done.](../src/main/java/org/dataalgorithms/bonus/wordcount/)
+* [Anagram Finder ... done.](../src/main/java/org/dataalgorithms/bonus/anagram/)
+* ...
