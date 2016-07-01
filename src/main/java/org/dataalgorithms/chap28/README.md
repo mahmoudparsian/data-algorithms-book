@@ -1,5 +1,5 @@
-Chapter 28: Mean Monoidized
-===========================
+Chapter 28: Monoids
+===================
 The purpose of this chapter is to understand Monoids as a Design Principle 
 for Efficient MapReduce Algorithms.
 
