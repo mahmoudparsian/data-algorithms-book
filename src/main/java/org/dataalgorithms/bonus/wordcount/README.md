@@ -1,4 +1,4 @@
-![Word Count](./word-count.png)
+![Word Count](./word-count.jpg)
 
 
 Bonus Chapter: Classic Word Count
