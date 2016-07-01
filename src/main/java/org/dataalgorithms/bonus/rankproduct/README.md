@@ -1,4 +1,4 @@
-[![Rank Product](./rank-product.png)]
+[![Rank Product](./rank-product.png)]()
 
 Rank Product
 ============
