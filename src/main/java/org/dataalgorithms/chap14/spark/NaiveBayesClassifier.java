@@ -1,29 +1,26 @@
 package org.dataalgorithms.chap14.spark;
 
-import org.dataalgorithms.util.SparkUtil;
 
 // STEP-0: import required classes and interfaces
 import java.util.Map;
-import java.util.HashMap;
 import java.util.List;
-import java.util.ArrayList;
+//
 import scala.Tuple2;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaPairRDD;
 import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.api.java.function.PairFunction;
-import org.apache.spark.api.java.function.PairFlatMapFunction;
-import org.apache.spark.api.java.function.FlatMapFunction;
-import org.apache.spark.api.java.function.Function;
-import org.apache.spark.api.java.function.Function2;
-import org.apache.spark.SparkConf;
 import org.apache.spark.broadcast.Broadcast;
+//
 import edu.umd.cloud9.io.pair.PairOfStrings;
+//
 import org.apache.hadoop.mapred.SequenceFileInputFormat;
 import org.apache.hadoop.io.DoubleWritable;
+//
+import org.dataalgorithms.util.SparkUtil;
  
 /**
- * Naive Bayes Classifier, wchich classifies (using the 
+ * Naive Bayes Classifier, which classifies (using the 
  * classifier built by the BuildNaiveBayesClassifier class) 
  * new data. 
  *
@@ -87,10 +84,11 @@ public class NaiveBayesClassifier implements java.io.Serializable {
                           Tuple2<String,String>,                // K2,
                           Double                                // V2
                          >() {
+          @Override
           public Tuple2<Tuple2<String,String>,Double> call(Tuple2<PairOfStrings,DoubleWritable> rec) {
             PairOfStrings pair = rec._1;
             Tuple2<String,String> K2 = new Tuple2<String,String>(pair.getLeftElement(), pair.getRightElement());
-            Double V2 = new Double(rec._2.get());
+            Double V2 = rec._2.get();
             return new Tuple2<Tuple2<String,String>,Double>(K2, V2);
          }
       });    
@@ -116,6 +114,7 @@ public class NaiveBayesClassifier implements java.io.Serializable {
           String,                       // K = A1,A2, ...,Am (data to be classified)
           String                        // V = classification for T
         >() {
+         @Override
          public Tuple2<String,String>  call(String rec) {
             
             // get the classifer from the cache

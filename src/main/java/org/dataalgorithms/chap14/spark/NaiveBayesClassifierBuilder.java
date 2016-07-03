@@ -1,33 +1,35 @@
 package org.dataalgorithms.chap14.spark;
 
-import org.dataalgorithms.util.SparkUtil;
 
 // STEP-0: import required classes and interfaces
 import java.util.Map;
 import java.util.HashMap;
 import java.util.List;
 import java.util.ArrayList;
+//
 import scala.Tuple2;
+//
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaPairRDD;
 import org.apache.spark.api.java.JavaSparkContext;
-import org.apache.spark.api.java.function.PairFunction;
 import org.apache.spark.api.java.function.PairFlatMapFunction;
-import org.apache.spark.api.java.function.FlatMapFunction;
-import org.apache.spark.api.java.function.Function;
 import org.apache.spark.api.java.function.Function2;
-import org.apache.spark.SparkConf;
-import org.apache.spark.broadcast.Broadcast;
+//
 import edu.umd.cloud9.io.pair.PairOfStrings;
+//
 import org.apache.hadoop.mapred.SequenceFileOutputFormat;
 import org.apache.hadoop.io.DoubleWritable;
- 
+//
+import org.dataalgorithms.util.SparkUtil;
+
 /**
- * Build Naive Bayes Classifier. The goal is to build the following 
- * data strucures (probabilities and conditional probabilities) to 
+ * Build Naive Bayes Classifier. 
+ * The goal is to build the following data structures 
+ * (probabilities and conditional probabilities) to 
  * be used in classifying new data:
  *  Let C = {C1, C2, ..., Ck} be set of classifications, 
- *  and let each training data element to have m attributes: A = {A1, A2, ..., Am}
+ *  and let each training data element to have m attributes: 
+ *     A = {A1, A2, ..., Am}
  *  then we will build 
  *     ProbabilityTable(c) = p-value where c in C
  *     ProbabilityTable(c, a) = p-value where c in C and a in A
@@ -35,7 +37,7 @@ import org.apache.hadoop.io.DoubleWritable;
  *
  * @author Mahmoud Parsian
  */
-public class BuildNaiveBayesClassifier implements java.io.Serializable {
+public class NaiveBayesClassifierBuilder implements java.io.Serializable {
 
    static List<Tuple2<PairOfStrings, DoubleWritable>> toWritableList(Map<Tuple2<String,String>, 
                                                                      Double> PT) {
@@ -83,6 +85,7 @@ public class BuildNaiveBayesClassifier implements java.io.Serializable {
           Tuple2<String,String>,        // K = Tuple2(CLASS,classifcation) or Tuple2(attribute,classifcation)
           Integer                       // V = 1
         >() {
+         @Override
          public Iterable<Tuple2<Tuple2<String,String>,Integer>> call(String rec) {
             List<Tuple2<Tuple2<String,String>,Integer>> result = 
                new ArrayList<Tuple2<Tuple2<String,String>,Integer>>();
@@ -110,6 +113,7 @@ public class BuildNaiveBayesClassifier implements java.io.Serializable {
       // STEP-4: implement reduce() function to all elelments of training data 
       JavaPairRDD<Tuple2<String,String>, Integer> counts = 
          pairs.reduceByKey(new Function2<Integer, Integer, Integer>() {
+         @Override
          public Integer call(Integer i1, Integer i2) {
             return i1 + i2;
          }
@@ -236,7 +240,7 @@ export CLASSPATH=$MP/mp.jar:$CLASSPATH
 export CLASSPATH=$MP/commons-math3-3.0.jar:$CLASSPATH
 export CLASSPATH=$MP/commons-math-2.2.jar:$CLASSPATH
 export SPARK_CLASSPATH=$CLASSPATH
-prog=BuildNaiveBayesClassifier
+prog=NaiveBayesClassifierBuilder
 export HADOOP_HOME=/usr/local/hadoop/hadoop-2.4.0
 export SPARK_LIBRARY_PATH=$HADOOP_HOME/lib/native
 export JAVA_HOME=/usr/java/jdk7
