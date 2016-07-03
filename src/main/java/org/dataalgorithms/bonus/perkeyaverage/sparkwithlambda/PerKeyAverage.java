@@ -1,4 +1,4 @@
-package org.dataalgorithms.bonus.perkeyaverage.spark;
+package org.dataalgorithms.bonus.perkeyaverage.sparkwithlambda;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -12,7 +12,6 @@ import org.apache.spark.api.java.JavaPairRDD;
 import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.api.java.function.Function;
 import org.apache.spark.api.java.function.Function2;
-import org.apache.spark.api.java.function.PairFunction;
 
 /**
  * This class finds "per key average" for all keys.
@@ -63,12 +62,9 @@ public final class PerKeyAverage {
             // use input provided 
             String inputPath = args[0];
             JavaRDD<String> recs = context.textFile(inputPath, 1);
-            rdd = recs.mapToPair(new PairFunction<String,String,Double>() {
-                @Override
-                public Tuple2<String,Double> call(String s) { 
-                    String[] tokens = s.split(":");
-                    return new Tuple2<String,Double>(tokens[0], Double.parseDouble(tokens[1]));
-                }   
+            rdd = recs.mapToPair((String s) -> {
+                String[] tokens = s.split(":");
+                return new Tuple2<String,Double>(tokens[0], Double.parseDouble(tokens[1]));   
             });
         }
         else {
@@ -81,31 +77,20 @@ public final class PerKeyAverage {
         // and then you invoke it as: combineByKey(f1, f2, f3)
         
         // function 1: 
-        Function<Double, AvgCount> createAcc = new Function<Double, AvgCount>() {
-            @Override
-            public AvgCount call(Double x) {
-                return new AvgCount(x, 1);
-            }
-        };
+        Function<Double, AvgCount> createAcc = (Double x) -> new AvgCount(x, 1);
         
         // function 2
-        Function2<AvgCount, Double, AvgCount> addAndCount = new Function2<AvgCount, Double, AvgCount>() {
-            @Override
-            public AvgCount call(AvgCount a, Double x) {
-                a.total += x;
-                a.num += 1;
-                return a;
-            }
+        Function2<AvgCount, Double, AvgCount> addAndCount = (AvgCount a, Double x) -> {
+            a.total += x;
+            a.num += 1;
+            return a;
         };
         
         // function 3
-        Function2<AvgCount, AvgCount, AvgCount> combine = new Function2<AvgCount, AvgCount, AvgCount>() {
-            @Override
-            public AvgCount call(AvgCount a, AvgCount b) {
-                a.total += b.total;
-                a.num += b.num;
-                return a;
-            }
+        Function2<AvgCount, AvgCount, AvgCount> combine = (AvgCount a, AvgCount b) -> {
+            a.total += b.total;
+            a.num += b.num;
+            return a;
         };
         
         // now that we have defined 3 functions, we can use combineByKey()

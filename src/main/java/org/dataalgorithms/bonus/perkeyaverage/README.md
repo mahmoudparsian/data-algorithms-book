@@ -1,7 +1,10 @@
 Per Key Average
 ===============
-The purpose of the Spark program (PerKeyAverage.java) is to find "per key average"
-for all keys.
+The purpose of the Spark program (PerKeyAverage.java) is to find 
+"per key average" for all keys. Here we provide two classes:
+
+* ````org.dataalgorithms.bonus.perkeyaverage.spark.PerKeyAverage```` (without using Lambda Expressions)
+* ````org.dataalgorithms.bonus.perkeyaverage.sparkwithlambda.PerKeyAverage```` (with using Lambda Expressions)
 
 Input Format:
 =============
