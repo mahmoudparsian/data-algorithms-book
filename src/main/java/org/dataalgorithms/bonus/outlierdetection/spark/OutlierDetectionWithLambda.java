@@ -12,9 +12,6 @@ import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaPairRDD;
 import org.apache.spark.api.java.JavaSparkContext;
-import org.apache.spark.api.java.function.PairFunction;
-import org.apache.spark.api.java.function.Function2;
-import org.apache.spark.api.java.function.PairFlatMapFunction;
 //
 import org.apache.log4j.Logger;
 //
@@ -46,9 +43,9 @@ import org.apache.commons.lang.StringUtils;
  * @author Mahmoud Parsian
  *
  */
-public class OutlierDetection {
+public class OutlierDetectionWithLambda {
 
-    private static final Logger THE_LOGGER = Logger.getLogger(OutlierDetection.class);
+    private static final Logger THE_LOGGER = Logger.getLogger(OutlierDetectionWithLambda.class);
       
     
     static class TupleComparatorAscending 
@@ -157,33 +154,21 @@ public class OutlierDetection {
         //
 	// PairFunction<T, K, V>	
 	// T => Tuple2<K, V>
-        JavaPairRDD<String,Integer> ones = records.flatMapToPair(new PairFlatMapFunction
-               <
-                String,       // T = input record
-                String,       // K = categorical data value
-                Integer       // V = 1
-               >() {
-            @Override
-            public Iterable<Tuple2<String,Integer>> call(String rec) { 
-                //        
-                List<Tuple2<String,Integer>> results = new ArrayList<Tuple2<String,Integer>>();
-                // rec has the following format:
-                // <record-id><,><data1><,><data2><,><data3><,>...
-                String[] tokens = StringUtils.split(rec, ",");
-                for (int i=1; i < tokens.length; i++) {
-                    results.add(new Tuple2<String,Integer>(tokens[i], 1));
-                }
-                return results;
+        JavaPairRDD<String,Integer> ones = records.flatMapToPair((String rec) -> {
+            //
+            List<Tuple2<String,Integer>> results = new ArrayList<Tuple2<String,Integer>>();
+            // rec has the following format:
+            // <record-id><,><data1><,><data2><,><data3><,>...
+            String[] tokens = StringUtils.split(rec, ",");
+            for (int i=1; i < tokens.length; i++) {
+                results.add(new Tuple2<String,Integer>(tokens[i], 1));
             }
+            return results;
         });
         
         // Step-4: find frequencies of all categirical data (keep categorical-data as String)
-        JavaPairRDD<String, Integer> counts = ones.reduceByKey(new Function2<Integer, Integer, Integer>() {
-            @Override
-            public Integer call(Integer i1, Integer i2) {
-                return i1 + i2;
-            }
-        });    
+        JavaPairRDD<String, Integer> counts = 
+                ones.reduceByKey((Integer i1, Integer i2) -> i1 + i2);    
         
         // Step-5: build an associative array to be used for finding AVF Score
         // public java.util.Map<K,V> collectAsMap()
@@ -192,27 +177,19 @@ public class OutlierDetection {
         
         
         // Step-6: compute AVF Score using the built associative array
-        JavaPairRDD<String,Double> avfScore = records.mapToPair(new PairFunction
-               <
-                String,        // T = input record
-                String,        // K = record-id
-                Double         // V = avf score
-               >() {
-            @Override
-            public Tuple2<String,Double> call(String rec) { 
-                //        
-                // rec has the following format:
-                // <record-id><,><data1><,><data2><,><data3><,>...
-                String[] tokens = StringUtils.split(rec, ",");
-                String recordID = tokens[0];
-                int sum = 0;
-                for (int i=1; i < tokens.length; i++) {
-                    sum += map.get(tokens[i]);
-                }
-                double m = (double) (tokens.length -1);
-                double avfScore = ((double) sum) / m;
-                return new Tuple2<String,Double>(recordID, avfScore);
+        JavaPairRDD<String,Double> avfScore = records.mapToPair((String rec) -> {
+            //
+            // rec has the following format:
+            // <record-id><,><data1><,><data2><,><data3><,>...
+            String[] tokens = StringUtils.split(rec, ",");
+            String recordID = tokens[0];
+            int sum = 0;
+            for (int i=1; i < tokens.length; i++) {
+                sum += map.get(tokens[i]);
             }
+            double m = (double) (tokens.length -1);
+            double avfScore1 = ((double) sum) / m;
+            return new Tuple2<String,Double>(recordID, avfScore1);
         });
         
         // Step-7: take the lowest K AVF scores
