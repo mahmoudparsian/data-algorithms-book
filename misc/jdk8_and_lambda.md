@@ -17,6 +17,5 @@
 * [Word Count     ... done.](../src/main/java/org/dataalgorithms/bonus/wordcount/)
 * [Anagram Finder ... done.](../src/main/java/org/dataalgorithms/bonus/anagram/)
 * [Per Key Average ... done.](../src/main/java/org/dataalgorithms/bonus/perkeyaverage/)
-* [Outlier Detection ... done.](../src/main/java/org/dataalgorithms/bonus/outlierdetection/)
-
+* [Outlier Detection ... done.](../src/main/java/org/dataalgorithms/bonus/outlierdetection/spark/)
 * ...
