@@ -1,6 +1,15 @@
-### Adding Java 8's LAMBDA Expressions to Spark Programs...
+### Added Java 8's LAMBDA Expressions to Spark Programs...
 
 #### Book Chapters
+
+Chapter                                                      | Title                                      |
+------------------------------------------------------------ | ------------------------------------------ | 
+[Chapter 01](../src/main/java/org/dataalgorithms/chap01/)    | [Secondary Sorting](../src/main/java/org/dataalgorithms/chap01/)                         | 
+[Chapter 02](../src/main/java/org/dataalgorithms/chap02/)    | [Secondary Sorting Detailed](../src/main/java/org/dataalgorithms/chap02/)                         | 
+[Chapter 03](../src/main/java/org/dataalgorithms/chap03/)    | [Top-10](../src/main/java/org/dataalgorithms/chap03/)                         | 
+
+
+
 * [Chapter 01: Secondary Sorting ... done.](../src/main/java/org/dataalgorithms/chap01/)
 * [Chapter 02: Secondary Sorting ... done.](../src/main/java/org/dataalgorithms/chap02/)
 * [Chapter 03: Top-10 ... done.](../src/main/java/org/dataalgorithms/chap03/)
