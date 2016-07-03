@@ -16,4 +16,5 @@
 * [Rank Product   ... done.](../src/main/java/org/dataalgorithms/bonus/rankproduct/)
 * [Word Count     ... done.](../src/main/java/org/dataalgorithms/bonus/wordcount/)
 * [Anagram Finder ... done.](../src/main/java/org/dataalgorithms/bonus/anagram/)
+* [Per Key Average ... done.](../src/main/java/org/dataalgorithms/bonus/perkeyaverage/)
 * ...
