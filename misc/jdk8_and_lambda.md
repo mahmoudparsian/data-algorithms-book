@@ -7,6 +7,15 @@ Chapter                                                      | Title            
 [Chapter 01](../src/main/java/org/dataalgorithms/chap01/)    | [Secondary Sorting](../src/main/java/org/dataalgorithms/chap01/)                         | 
 [Chapter 02](../src/main/java/org/dataalgorithms/chap02/)    | [Secondary Sorting Detailed](../src/main/java/org/dataalgorithms/chap02/)                         | 
 [Chapter 03](../src/main/java/org/dataalgorithms/chap03/)    | [Top-10](../src/main/java/org/dataalgorithms/chap03/)                         | 
+[Chapter 04](../src/main/java/org/dataalgorithms/chap04/)    | [Left Outer Join](../src/main/java/org/dataalgorithms/chap04/)                         | 
+[Chapter 05](../src/main/java/org/dataalgorithms/chap05/)    | [Order Inversion](../src/main/java/org/dataalgorithms/chap05/)                         | 
+[Chapter 06](../src/main/java/org/dataalgorithms/chap06/)    | [Moving Average](../src/main/java/org/dataalgorithms/chap06/)                         | 
+[Chapter 07](../src/main/java/org/dataalgorithms/chap07/)    | [Market Basket Analysis](../src/main/java/org/dataalgorithms/chap07/)                         | 
+[Chapter 08](../src/main/java/org/dataalgorithms/chap08/)    | [Find Common Friends](../src/main/java/org/dataalgorithms/chap08/)                         | 
+[Chapter 14](../src/main/java/org/dataalgorithms/chap06/)    | [Naive Bayes Classifier](../src/main/java/org/dataalgorithms/chap14/)                         | 
+[Chapter 23](../src/main/java/org/dataalgorithms/chap07/)    | [All vs. All Correlation](../src/main/java/org/dataalgorithms/chap23/)                         | 
+[Chapter 28](../src/main/java/org/dataalgorithms/chap08/)    | [Monoids](../src/main/java/org/dataalgorithms/chap28/)                         | 
+
 
 
 
