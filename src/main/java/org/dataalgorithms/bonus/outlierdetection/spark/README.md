@@ -1,3 +1,5 @@
+[![Outlier Detection](./outlier.gif)]()
+
 Outlier Detection for Categorical Datasets
 ==========================================
 In Math., an "outlier" is a number in a set of data that is 
