@@ -3,10 +3,11 @@ package org.dataalgorithms.bonus.sortedwordcount.spark;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Collections;
-
+//
 import scala.Tuple2;
-import org.apache.spark.api.java.JavaPairRDD;
+//
 import org.apache.spark.api.java.JavaRDD;
+import org.apache.spark.api.java.JavaPairRDD;
 import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.api.java.function.FlatMapFunction;
 import org.apache.spark.api.java.function.Function2;
@@ -15,18 +16,18 @@ import org.apache.spark.api.java.function.PairFunction;
 /**
  * Description:
  *
- *    SparkSparkWordCount: 
+ *    SortedWordCount: 
  *        1. Counting the words if their size is greater than or equal N, where N > 1.
  *        2. Sort words based on frequencies
  *
  * @author Mahmoud Parsian
  *
  */
-public class SparkSortedWordCount {
+public class SortedWordCount {
 
     public static void main(String[] args) throws Exception {
        if (args.length != 4) {
-          System.err.println("Usage: SparkSortedWordCount <N> <input> <output> <orderBy>");
+          System.err.println("Usage: SortedWordCount <N> <input> <output> <orderBy>");
           System.exit(1);
        }
 
@@ -47,26 +48,8 @@ public class SparkSortedWordCount {
        JavaRDD<String> words = lines.flatMap(new FlatMapFunction<String, String>() {
           //              output       input
           @Override
-          public Iterable<String> call(String s) {
-             if ((s == null) || (s.length() < N)) {
-                return Collections.emptyList();
-             }
-             
-             String[] tokens = s.split(" ");
-             List<String> list = new ArrayList<String>();
-             for (String  tok : tokens) {
-                if (tok.matches(".*[,.;]$")) {
-                   // remove the special char from the end
-                   tok = tok.substring(0, tok.length() -1); 
-                }
-           
-                if (tok.length() < N) {
-                   continue;
-                }
-           
-                list.add(tok);
-             }
-             return list;
+          public Iterable<String> call(String line) {
+                return convertLineToWords(line, N);
           }
        });
 
@@ -126,10 +109,14 @@ public class SparkSortedWordCount {
 
        // close the context and we are done
        ctx.close();
+       
+       // done
        System.exit(0);
     }
     
-    static JavaPairRDD<Integer,String> sort(JavaPairRDD<Integer,String> frequencies, String orderBy) 
+    static JavaPairRDD<Integer,String> sort(
+            final JavaPairRDD<Integer,String> frequencies, 
+            final String orderBy) 
         throws Exception {
         if (orderBy.equals("ascending")) {
             return frequencies.sortByKey(true);
@@ -138,6 +125,29 @@ public class SparkSortedWordCount {
             // "descending" order
             return frequencies.sortByKey(false);
         }
+    }
+    
+    static List<String> convertLineToWords(String line, final int N) {
+        if ((line == null) || (line.length() < N)) {
+            return Collections.emptyList();
+        }
+        //
+        String[] tokens = line.split(" ");
+        List<String> list = new ArrayList<>();
+        for (String tok : tokens) {
+            if (tok.matches(".*[,.;]$")) {
+                // remove the special char from the end
+                tok = tok.substring(0, tok.length() - 1);
+            }
+            //
+            if (tok.length() < N) {
+                continue;
+            }
+            //
+            list.add(tok);
+        }
+        //
+        return list;
     }
     
 }
