@@ -29,7 +29,10 @@ For additional references:
  
 Spark Algorithm for Outlier Detection
 =====================================
-[org.dataalgorithms.bonus.outlierdetection.spark.OutlierDetection](./OutlierDetection.java)
+We provide two Spark solutions for Outlier Detection:
+
+* [org.dataalgorithms.bonus.outlierdetection.spark.OutlierDetection](./OutlierDetection.java)
+* [org.dataalgorithms.bonus.outlierdetection.spark.OutlierDetectionWithLambda](./OutlierDetectionWithLambda.java)
 
 Step    | Description
 --------|------------------------------------------------------------------------
