@@ -31,8 +31,8 @@ Spark Algorithm for Outlier Detection
 =====================================
 We provide two Spark solutions for Outlier Detection:
 
-* [org.dataalgorithms.bonus.outlierdetection.spark.OutlierDetection without Lambda Expr.](./OutlierDetection.java)
-* [org.dataalgorithms.bonus.outlierdetection.spark.OutlierDetectionWithLambda with Lambda Expr.](./OutlierDetectionWithLambda.java)
+* [org.dataalgorithms.bonus.outlierdetection.spark.OutlierDetection (without Lambda Expr.)](./OutlierDetection.java)
+* [org.dataalgorithms.bonus.outlierdetection.spark.OutlierDetectionWithLambda (with Lambda Expr.)](./OutlierDetectionWithLambda.java)
 
 Step    | Description
 --------|------------------------------------------------------------------------
