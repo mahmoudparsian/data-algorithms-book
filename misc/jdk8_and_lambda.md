@@ -13,6 +13,7 @@ Chapter                                                      | Title            
 [Chapter 07](../src/main/java/org/dataalgorithms/chap07/)    | [Market Basket Analysis](../src/main/java/org/dataalgorithms/chap07/)                         | 
 [Chapter 08](../src/main/java/org/dataalgorithms/chap08/)    | [Find Common Friends](../src/main/java/org/dataalgorithms/chap08/)                         | 
 [Chapter 14](../src/main/java/org/dataalgorithms/chap14/)    | [Naive Bayes Classifier](../src/main/java/org/dataalgorithms/chap14/)                         | 
+[Chapter 22](../src/main/java/org/dataalgorithms/chap22/)    | [Ttest](../src/main/java/org/dataalgorithms/chap22/)                         | 
 [Chapter 23](../src/main/java/org/dataalgorithms/chap23/)    | [All vs. All Correlation](../src/main/java/org/dataalgorithms/chap23/)                         | 
 [Chapter 28](../src/main/java/org/dataalgorithms/chap28/)    | [Monoids](../src/main/java/org/dataalgorithms/chap28/)                         | 
 
