@@ -11,7 +11,7 @@
 
 [![Data Algorithms Book](./misc/da_book3.jpeg)](http://shop.oreilly.com/product/0636920033950.do)
 
-[Adding Java 8's LAMBDA Expressions to Spark...](./misc/jdk8_and_lambda.md)
+[Added Java 8's LAMBDA Expressions to Spark...](./misc/jdk8_and_lambda.md)
 ================================================
 
 [How To Build using Apache's Ant](./misc/ant/README.md)
