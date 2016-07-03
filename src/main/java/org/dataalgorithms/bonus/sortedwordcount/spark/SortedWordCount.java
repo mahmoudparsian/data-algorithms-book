@@ -1,9 +1,5 @@
 package org.dataalgorithms.bonus.sortedwordcount.spark;
 
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Collections;
-//
 import scala.Tuple2;
 //
 import org.apache.spark.api.java.JavaRDD;
@@ -49,7 +45,7 @@ public class SortedWordCount {
           //              output       input
           @Override
           public Iterable<String> call(String line) {
-                return convertLineToWords(line, N);
+                return Util.convertLineToWords(line, N);
           }
        });
 
@@ -101,7 +97,7 @@ public class SortedWordCount {
         
         // next, sort frequencies by key 
         // JavaPairRDD<K,V> sortByKey(boolean ascending)
-        JavaPairRDD<Integer,String> sortedByFreq = sort(frequencies, orderBy);
+        JavaPairRDD<Integer,String> sortedByFreq = Util.sort(frequencies, orderBy);
         
         
        // save the sorted final output 
@@ -112,42 +108,6 @@ public class SortedWordCount {
        
        // done
        System.exit(0);
-    }
-    
-    static JavaPairRDD<Integer,String> sort(
-            final JavaPairRDD<Integer,String> frequencies, 
-            final String orderBy) 
-        throws Exception {
-        if (orderBy.equals("ascending")) {
-            return frequencies.sortByKey(true);
-        }
-        else {
-            // "descending" order
-            return frequencies.sortByKey(false);
-        }
-    }
-    
-    static List<String> convertLineToWords(String line, final int N) {
-        if ((line == null) || (line.length() < N)) {
-            return Collections.emptyList();
-        }
-        //
-        String[] tokens = line.split(" ");
-        List<String> list = new ArrayList<>();
-        for (String tok : tokens) {
-            if (tok.matches(".*[,.;]$")) {
-                // remove the special char from the end
-                tok = tok.substring(0, tok.length() - 1);
-            }
-            //
-            if (tok.length() < N) {
-                continue;
-            }
-            //
-            list.add(tok);
-        }
-        //
-        return list;
     }
     
 }
