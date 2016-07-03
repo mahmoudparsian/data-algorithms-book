@@ -4,7 +4,7 @@ import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaSparkContext;
 
 /**
- * This is a utitity class to create JavaSparkContext 
+ * This is a utility class to create JavaSparkContext 
  * and other objects required by Spark. There are many 
  * ways to create JavaSparkContext object. Here we offer 
  * 2 ways to create it:

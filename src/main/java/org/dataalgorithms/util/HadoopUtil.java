@@ -15,7 +15,7 @@ import org.apache.hadoop.filecache.DistributedCache;
 
 
 /**
- * This calss provides convenient methods for accessing  
+ * This class provides convenient methods for accessing  
  * Hadoop distributed file system (HDFS).
  *
  * @author Mahmoud Parsian

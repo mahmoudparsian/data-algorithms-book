@@ -1,12 +1,13 @@
 package org.dataalgorithms.util;
 
 import java.util.List;
+//
 import org.apache.commons.math.stat.inference.TTest;
 import org.apache.commons.math.stat.inference.TTestImpl;
 
 /**
  * MathUtil is a utility class, which provides some basic math. 
- * and stat. functions (such as ttest).
+ * and statistical functions (such as ttest).
  *
  * @author Mahmoud Parsian
  *
