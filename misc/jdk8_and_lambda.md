@@ -18,9 +18,11 @@ Chapter                                                      | Title            
 
 
 #### Bonus Chapters
-* [Rank Product   ... done.](../src/main/java/org/dataalgorithms/bonus/rankproduct/)
-* [Word Count     ... done.](../src/main/java/org/dataalgorithms/bonus/wordcount/)
-* [Anagram Finder ... done.](../src/main/java/org/dataalgorithms/bonus/anagram/)
-* [Per Key Average ... done.](../src/main/java/org/dataalgorithms/bonus/perkeyaverage/)
-* [Outlier Detection ... done.](../src/main/java/org/dataalgorithms/bonus/outlierdetection/spark/)
-* ...
+
+Chapter                                                                          | Title                                      |
+-------------------------------------------------------------------------------- | ------------------------------------------ | 
+[Chapter B01](../src/main/java/org/dataalgorithms/bonus/rankproduct/)            | [Rank Product](../src/main/java/org/dataalgorithms/bonus/rankproduct/)                         | 
+[Chapter B02](../src/main/java/org/dataalgorithms/bonus/wordcount/)              | [Word Count](../src/main/java/org/dataalgorithms/bonus/wordcount/)                         | 
+[Chapter B03](../src/main/java/org/dataalgorithms/bonus/anagram/)                | [Anagram Finder](../src/main/java/org/dataalgorithms/bonus/anagram/)                         | 
+[Chapter B04](../src/main/java/org/dataalgorithms/bonus/perkeyaverage/)          | [Per Key Average](../src/main/java/org/dataalgorithms/bonus/perkeyaverage/)                         | 
+[Chapter B05](../src/main/java/org/dataalgorithms/bonus/outlierdetection/spark/) | [Outlier Detection](../src/main/java/org/dataalgorithms/bonus/outlierdetection/spark/)                         | 
