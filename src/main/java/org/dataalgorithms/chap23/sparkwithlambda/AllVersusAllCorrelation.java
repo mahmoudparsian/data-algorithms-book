@@ -1,4 +1,4 @@
-package org.dataalgorithms.chap23.spark;
+package org.dataalgorithms.chap23.sparkwithlambda;
 
 // STEP-0: import required classes and interfaces
 import java.util.Map;
@@ -13,8 +13,6 @@ import scala.Tuple2;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaPairRDD;
 import org.apache.spark.api.java.JavaSparkContext;
-import org.apache.spark.api.java.function.PairFunction;
-import org.apache.spark.api.java.function.Function;
 import org.apache.spark.broadcast.Broadcast;
 //
 import org.apache.hadoop.fs.Path;
@@ -52,8 +50,8 @@ import org.dataalgorithms.chap23.correlation.MutableDouble;
 public class AllVersusAllCorrelation implements java.io.Serializable {
   
    /**
-    * Return true if g1 comes before g2 (to make 
-    * sure not to create duplicate pair of genes)
+    * Return true if g1 comes before g2 (to make sure not 
+    * to create duplicate pair of genes).
     */
    static boolean smaller(String g1, String g2) {
       if (g1.compareTo(g2) < 0){
@@ -161,39 +159,30 @@ public class AllVersusAllCorrelation implements java.io.Serializable {
 
       // JavaRDD<T> filter(Function<T,Boolean> f)
       // Return a new RDD containing only the elements that satisfy a predicate.
-      JavaRDD<String> filtered = biosets.filter(new Function<String,Boolean>() {
-        @Override
-        public Boolean call(String record) {
+      JavaRDD<String> filtered = biosets.filter((String record) -> {
           String ref = REF.value();
           String[] tokens = record.split(",");
           if (ref.equals(tokens[1]))  {
-             return true; // do return these records
+              return true; // do return these records
           }
           else {
-             return false; // do not retrun these records
+              return false; // do not retrun these records
           }
-        }
       });
       filtered.saveAsTextFile("/output/2");
       
       // PairMapFunction<T, K, V>     
       // T => Tuple2<K, V> = Tuple2<gene, Tuple2<patientID, value>>
       //
-      JavaPairRDD<String,Tuple2<String,Double>> pairs = filtered.mapToPair(new PairFunction<
-          String,                       // T
-          String,                       // K = 1234
-          Tuple2<String,Double>         // V = <patientID, value>
-        >() {
-         @Override
-         public Tuple2<String,Tuple2<String,Double>> call(String rec) {
-            String[] tokens = rec.split(",");
-            // tokens[0] = 1234
-            // tokens[1] = 2 (this is a ref in {"1", "2", "3", "4"}
-            // tokens[2] = patientID
-            // tokens[3] = value       
-            Tuple2<String,Double> V = new Tuple2<String,Double>(tokens[2], Double.valueOf(tokens[3]));
-            return new Tuple2<String,Tuple2<String,Double>>(tokens[0], V);
-         }
+      JavaPairRDD<String,Tuple2<String,Double>> pairs = 
+              filtered.mapToPair((String rec) -> {
+          String[] tokens = rec.split(",");
+          // tokens[0] = 1234
+          // tokens[1] = 2 (this is a ref in {"1", "2", "3", "4"}
+          // tokens[2] = patientID
+          // tokens[3] = value
+          Tuple2<String,Double> V = new Tuple2<String,Double>(tokens[2], Double.valueOf(tokens[3]));
+          return new Tuple2<String,Tuple2<String,Double>>(tokens[0], V);
       });    
       pairs.saveAsTextFile("/output/3");
     
@@ -231,22 +220,16 @@ public class AllVersusAllCorrelation implements java.io.Serializable {
     // Return a new RDD containing only the elements that satisfy a predicate.
       JavaPairRDD<Tuple2<String, Iterable<Tuple2<String,Double>>>,
                   Tuple2<String, Iterable<Tuple2<String,Double>>>> filtered2 = 
-             cart.filter(new Function<Tuple2<Tuple2<String, Iterable<Tuple2<String,Double>>>,
-                                             Tuple2<String, Iterable<Tuple2<String,Double>>>
-                                            >,
-                        Boolean>() {
-        @Override
-        public Boolean call(Tuple2<Tuple2<String, Iterable<Tuple2<String,Double>>>,
-                                   Tuple2<String, Iterable<Tuple2<String,Double>>>> pair) {
-          // pair._1 = Tuple2<String, Iterable<Tuple2<String,Double>>>
-          // pair._2 = Tuple2<String, Iterable<Tuple2<String,Double>>>
-          if (smaller(pair._1._1,  pair._2._1))  {
-             return true; // do return these records
-          }
-          else {
-             return false; // do not retrun these records
-          }
-        }
+             cart.filter((Tuple2<Tuple2<String, Iterable<Tuple2<String,Double>>>,
+                     Tuple2<String, Iterable<Tuple2<String,Double>>>> pair) -> {
+                 // pair._1 = Tuple2<String, Iterable<Tuple2<String,Double>>>
+                 // pair._2 = Tuple2<String, Iterable<Tuple2<String,Double>>>
+                 if (smaller(pair._1._1,  pair._2._1))  {
+                     return true; // do return these records
+                 }
+                 else {
+                     return false; // do not retrun these records
+                 }
       });
       filtered2.saveAsTextFile("/output/7");    
       
@@ -259,63 +242,54 @@ public class AllVersusAllCorrelation implements java.io.Serializable {
       //   V = Tuple2<Double,Double>(corr, pvalue)
       //    
       JavaPairRDD<Tuple2<String,String>,Tuple2<Double,Double>> finalresult =
-            filtered2.mapToPair(new PairFunction<
-                Tuple2<Tuple2<String,Iterable<Tuple2<String,Double>>>,
-                       Tuple2<String,Iterable<Tuple2<String,Double>>>>, // input
-                Tuple2<String,String>,                                  // K
-                Tuple2<Double,Double>                                   // V
-            >() {
-      @Override
-      public Tuple2<Tuple2<String,String>,Tuple2<Double,Double>> 
-        call(Tuple2<Tuple2<String,Iterable<Tuple2<String,Double>>>,
-                    Tuple2<String,Iterable<Tuple2<String,Double>>>> t) {
-        Tuple2<String,Iterable<Tuple2<String,Double>>> g1 = t._1;
-        Tuple2<String,Iterable<Tuple2<String,Double>>> g2 = t._2;
-        // 
-        Map<String, MutableDouble> g1map = toMap(g1._2); 
-        Map<String, MutableDouble> g2map = toMap(g2._2);
-        // now perform a correlation(one, other)
-        // make sure we order the values accordingly by patientID
-        // each patientID may have one or more values
-        List<Double> x = new ArrayList<Double>();
-        List<Double> y = new ArrayList<Double>();
-        for (Map.Entry<String, MutableDouble> g1Entry : g1map.entrySet()) {
-            String g1PatientID = g1Entry.getKey();
-            MutableDouble g2MD = g2map.get(g1PatientID);
-            if (g2MD != null) {
-               // both one and other for patientID have values
-               x.add(g1Entry.getValue().avg());
-               y.add(g2MD.avg());
-            }
-        }
-        
-        System.out.println("x="+x);
-        System.out.println("y="+y);
-        // K = pair of genes
-        Tuple2<String,String> K = new Tuple2<String,String>(g1._1,g2._1);
-        if (x.size() < 3) {
-            return new Tuple2<Tuple2<String,String>,Tuple2<Double,Double>>
-                (
-                  K, new Tuple2<Double,Double>(Double.NaN, Double.NaN)
-                );
-        
-        }
-        else {
-            // Pearson
-            double correlation = Pearson.getCorrelation(x, y);  
-            double pvalue = Pearson.getPvalue(correlation, x.size() );
-        
-            // Spearman
-            //double correlation = Spearman.getCorrelation(x, y);  
-            //double pvalue = Spearman.getPvalue(correlation, (double) x.size() );
-            return new Tuple2<Tuple2<String,String>,Tuple2<Double,Double>>
-                (
-                 K, 
-                 new Tuple2<Double,Double>(correlation, pvalue)
-                );
-        }
-      }
-    });
+            filtered2.mapToPair((Tuple2<Tuple2<String,Iterable<Tuple2<String,Double>>>,
+                    Tuple2<String,Iterable<Tuple2<String,Double>>>> t) -> {
+                Tuple2<String,Iterable<Tuple2<String,Double>>> g1 = t._1;
+                Tuple2<String,Iterable<Tuple2<String,Double>>> g2 = t._2;
+                //
+                Map<String, MutableDouble> g1map = toMap(g1._2);
+                Map<String, MutableDouble> g2map = toMap(g2._2);
+                // now perform a correlation(one, other)
+                // make sure we order the values accordingly by patientID
+                // each patientID may have one or more values
+                List<Double> x = new ArrayList<Double>();
+                List<Double> y = new ArrayList<Double>();
+                for (Map.Entry<String, MutableDouble> g1Entry : g1map.entrySet()) {
+                    String g1PatientID = g1Entry.getKey();
+                    MutableDouble g2MD = g2map.get(g1PatientID);
+                    if (g2MD != null) {
+                        // both one and other for patientID have values
+                        x.add(g1Entry.getValue().avg());
+                        y.add(g2MD.avg());
+                    }
+                }
+                
+                System.out.println("x="+x);
+                System.out.println("y="+y);
+                // K = pair of genes
+                Tuple2<String,String> K = new Tuple2<String,String>(g1._1,g2._1);
+                if (x.size() < 3) {
+                    return new Tuple2<Tuple2<String,String>,Tuple2<Double,Double>>
+                        (
+                                K, new Tuple2<Double,Double>(Double.NaN, Double.NaN)
+                        );
+                    
+                }
+                else {
+                    // Pearson
+                    double correlation = Pearson.getCorrelation(x, y);
+                    double pvalue = Pearson.getPvalue(correlation, x.size() );
+                    
+                    // Spearman
+                    //double correlation = Spearman.getCorrelation(x, y);
+                    //double pvalue = Spearman.getPvalue(correlation, (double) x.size() );
+                    return new Tuple2<Tuple2<String,String>,Tuple2<Double,Double>>
+                        (
+                                K,
+                                new Tuple2<Double,Double>(correlation, pvalue)
+                        );
+                }
+            });
     finalresult.saveAsTextFile("/output/corr");          
     
     // done

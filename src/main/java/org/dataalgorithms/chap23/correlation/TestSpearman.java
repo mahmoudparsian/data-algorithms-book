@@ -1,4 +1,4 @@
-package org.dataalgorithms.chap23.spark;
+package org.dataalgorithms.chap23.correlation;
 
 import java.util.Arrays;
 import java.util.List;
