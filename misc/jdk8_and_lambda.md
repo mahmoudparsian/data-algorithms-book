@@ -1,3 +1,5 @@
+[![Java 8 Lambda Expr](http://img.viralpatel.net/2014/01/java-lambda-expression.png)]()
+
 ### Added Java 8's LAMBDA Expressions to Spark Programs...
 
 #### Book Chapters
