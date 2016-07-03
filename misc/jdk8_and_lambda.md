@@ -2,7 +2,7 @@
 
 ### Added Java 8's LAMBDA Expressions to Spark Programs...
 
-#### Book Chapters
+#### Data Algorithms book chapters
 
 Chapter                                                      | Title                                      |
 ------------------------------------------------------------ | ------------------------------------------ | 
@@ -20,9 +20,9 @@ Chapter                                                      | Title            
 [Chapter 28](../src/main/java/org/dataalgorithms/chap28/)    | [Monoids](../src/main/java/org/dataalgorithms/chap28/)                         | 
 
 
-#### Bonus Chapters
+#### Data Algorithms book bonus chapters
 
-Chapter                                                                          | Title                                      |
+Bonus Chapter                                                                    | Title                                      |
 -------------------------------------------------------------------------------- | ------------------------------------------ | 
 [Chapter B01](../src/main/java/org/dataalgorithms/bonus/rankproduct/)            | [Rank Product](../src/main/java/org/dataalgorithms/bonus/rankproduct/)                         | 
 [Chapter B02](../src/main/java/org/dataalgorithms/bonus/wordcount/)              | [Word Count](../src/main/java/org/dataalgorithms/bonus/wordcount/)                         | 
