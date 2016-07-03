@@ -28,3 +28,4 @@ Chapter                                                                         
 [Chapter B04](../src/main/java/org/dataalgorithms/bonus/perkeyaverage/)          | [Per Key Average](../src/main/java/org/dataalgorithms/bonus/perkeyaverage/)                         | 
 [Chapter B05](../src/main/java/org/dataalgorithms/bonus/outlierdetection/spark/) | [Outlier Detection](../src/main/java/org/dataalgorithms/bonus/outlierdetection/spark/)                         | 
 [Chapter B06](../src/main/java/org/dataalgorithms/bonus/sql/)                    | [SQL on Spark](../src/main/java/org/dataalgorithms/bonus/sql/)                         | 
+[Chapter B07](../src/main/java/org/dataalgorithms/bonus/sortedwordcount/)        | [Sorted Word Count](../src/main/java/org/dataalgorithms/bonus/sortedwordcount/)                         | 
