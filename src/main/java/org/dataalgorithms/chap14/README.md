@@ -1,3 +1,5 @@
+[![Bayes Theorem](./bayes-theorem.png)]()
+
 Naive Bayes Classifier
 ======================
 In machine learning, naive Bayes classifiers are a 
