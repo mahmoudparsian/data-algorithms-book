@@ -3,12 +3,12 @@
 #### Book Chapters
 * [Chapter 01: Secondary Sorting ... done.](../src/main/java/org/dataalgorithms/chap01/)
 * [Chapter 02: Secondary Sorting ... done.](../src/main/java/org/dataalgorithms/chap02/)
-* [Chapter 03 ... done.](../src/main/java/org/dataalgorithms/chap03/)
-* [Chapter 04 ... done.](../src/main/java/org/dataalgorithms/chap04/)
-* [Chapter 05 ... in progress...](../src/main/java/org/dataalgorithms/chap05/)
-* [Chapter 06 ... in progress...](../src/main/java/org/dataalgorithms/chap06/)
-* [Chapter 07 ... in progress...](../src/main/java/org/dataalgorithms/chap07/)
-* [Chapter 08 ... done.](../src/main/java/org/dataalgorithms/chap08/)
+* [Chapter 03: Top-10 ... done.](../src/main/java/org/dataalgorithms/chap03/)
+* [Chapter 04: Left Outer Join ... done.](../src/main/java/org/dataalgorithms/chap04/)
+* [Chapter 05: Order Inversion ... in progress...](../src/main/java/org/dataalgorithms/chap05/)
+* [Chapter 06: Moving Average ... in progress...](../src/main/java/org/dataalgorithms/chap06/)
+* [Chapter 07: Market Basket Analysis ... in progress...](../src/main/java/org/dataalgorithms/chap07/)
+* [Chapter 08: Find Common Friends ... done.](../src/main/java/org/dataalgorithms/chap08/)
 * ...
 * [Chapter 23: All vs. All Correlation ... done.](../src/main/java/org/dataalgorithms/chap23/)
 * ...
