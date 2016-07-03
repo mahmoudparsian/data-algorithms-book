@@ -34,8 +34,8 @@ PerKeyAverage=org.dataalgorithms.bonus.perkeyaverage.spark.PerKeyAverage
 $SPARK_HOME/bin/spark-submit  --class $PerKeyAverage --master $SPARK_MASTER $APP_JAR
 ````
 
-Sample Run and Ouput
-====================
+Sample Run and Output
+=====================
 ````
 ./run_perkeyaverage_spark.sh
 pandas:10.0
