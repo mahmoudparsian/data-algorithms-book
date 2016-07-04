@@ -18,16 +18,19 @@ public class Util {
             final JavaPairRDD<Integer,String> frequencies, 
             final String orderBy) 
         throws Exception {
+        //
         if (orderBy.equals("ascending")) {
+            // sort in "ascending" order
             return frequencies.sortByKey(true);
         }
         else {
-            // "descending" order
+            // sort in "descending" order
             return frequencies.sortByKey(false);
         }
     }
     
     static List<String> convertLineToWords(String line, final int N) {
+        //
         if ((line == null) || (line.length() < N)) {
             return Collections.emptyList();
         }
