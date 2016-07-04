@@ -26,9 +26,9 @@ public class SortedWordCountWithLambda {
 
        // handle input parameters
        final int N = Integer.parseInt(args[0]); // 2, 3, 4, ...
-       final String inputPath = args[1];
-       final String outputPath = args[2];
-       final String orderBy = args[3]; // "ascending" OR "descending"
+       final String inputPath = args[1];        // input path
+       final String outputPath = args[2];       // output path
+       final String orderBy = args[3];          // sort "ascending" OR "descending"
 
        // create a context object, which is used 
        // as a factory for creating new RDDs

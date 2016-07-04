@@ -32,19 +32,23 @@ public class Util {
             return Collections.emptyList();
         }
         //
-        String[] tokens = line.split(" ");
+        String[] words = line.split(" ");
+        if ((words == null) || (words.length < 1)) {
+            return Collections.emptyList();
+        }
+        //
         List<String> list = new ArrayList<>();
-        for (String tok : tokens) {
-            if (tok.matches(".*[,.;]$")) {
+        for (String word : words) {
+            if (word.matches(".*[,.;]$")) {
                 // remove the special char from the end
-                tok = tok.substring(0, tok.length() - 1);
+                word = word.substring(0, word.length() - 1);
             }
             //
-            if (tok.length() < N) {
+            if (word.length() < N) {
                 continue;
             }
             //
-            list.add(tok);
+            list.add(word);
         }
         //
         return list;
