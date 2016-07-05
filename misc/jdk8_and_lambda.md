@@ -4,7 +4,7 @@
 [![Java 8 Lambda Expr](http://img.viralpatel.net/2014/01/java-lambda-expression.png)](http://shop.oreilly.com/product/0636920033950.do)
 
 
-#### Data Algorithms book chapters
+#### Data Algorithms -- Book Chapters
 
 Chapter                                                      | Title                                      |
 ------------------------------------------------------------ | ------------------------------------------ | 
@@ -22,17 +22,22 @@ Chapter                                                      | Title            
 [Chapter 28](../src/main/java/org/dataalgorithms/chap28/)    | [Monoids](../src/main/java/org/dataalgorithms/chap28/)                         | 
 
 
-#### Data Algorithms book bonus chapters
+#### Data Algorithms -- Bonus Book Chapters
 
-Bonus Chapter                                                                    | Title                                      |
--------------------------------------------------------------------------------- | ------------------------------------------ | 
-[Chapter B01](../src/main/java/org/dataalgorithms/bonus/rankproduct/)            | [Rank Product](../src/main/java/org/dataalgorithms/bonus/rankproduct/)                         | 
-[Chapter B02](../src/main/java/org/dataalgorithms/bonus/wordcount/)              | [Word Count](../src/main/java/org/dataalgorithms/bonus/wordcount/)                         | 
-[Chapter B03](../src/main/java/org/dataalgorithms/bonus/anagram/)                | [Anagram Finder](../src/main/java/org/dataalgorithms/bonus/anagram/)                         | 
-[Chapter B04](../src/main/java/org/dataalgorithms/bonus/perkeyaverage/)          | [Per Key Average](../src/main/java/org/dataalgorithms/bonus/perkeyaverage/)                         | 
-[Chapter B05](../src/main/java/org/dataalgorithms/bonus/outlierdetection/spark/) | [Outlier Detection](../src/main/java/org/dataalgorithms/bonus/outlierdetection/spark/)                         | 
-[Chapter B06](../src/main/java/org/dataalgorithms/bonus/sql/)                    | [SQL on Spark](../src/main/java/org/dataalgorithms/bonus/sql/)                         | 
-[Chapter B07](../src/main/java/org/dataalgorithms/bonus/sortedwordcount/)        | [Sorted Word Count](../src/main/java/org/dataalgorithms/bonus/sortedwordcount/)                         | 
+Bonus Chapter                                                                     | Title                                      |
+--------------------------------------------------------------------------------- | ------------------------------------------ | 
+[Chapter B01](../src/main/java/org/dataalgorithms/chapB01/wordcount/)             | [Word Count](../src/main/java/org/dataalgorithms/chapB01/wordcount/)                         | 
+[Chapter B02](../src/main/java/org/dataalgorithms/chapB02/sortedwordcount/)       | [Sorted Word Count](../src/main/java/org/dataalgorithms/chapB02/sortedwordcount/)                         | 
+[Chapter B03](../src/main/java/org/dataalgorithms/chapB03/perkeyaverage/)         | [Per Key Average](../src/main/java/org/dataalgorithms/chapB03/perkeyaverage/)                         | 
+[Chapter B04](../src/main/java/org/dataalgorithms/chapB04/rankproduct/)           | [Rank Product](../src/main/java/org/dataalgorithms/chapB04/rankproduct/)                         | 
+[Chapter B05](../src/main/java/org/dataalgorithms/chapB05/anagram/)               | [Anagram Finder](../src/main/java/org/dataalgorithms/chapB05/anagram/)                         | 
+[Chapter B06](../src/main/java/org/dataalgorithms/chapB06/outlierdetection/spark/)| [Outlier Detection](../src/main/java/org/dataalgorithms/chapB06/outlierdetection/spark/)                         | 
+[Chapter B07](../src/main/java/org/dataalgorithms/chapB07/sql/)                   | [SQL on Spark](../src/main/java/org/dataalgorithms/chapB07/sql/)                         | 
+[Chapter B08](../src/main/java/org/dataalgorithms/chapB08/logquery/)              | [Log Query](../src/main/java/org/dataalgorithms/chapB08/logquery/)                         | 
+[Chapter B09](../src/main/java/org/dataalgorithms/chapB09/charcount/)             | [Char Count](../src/main/java/org/dataalgorithms/chapB09/logquery/)                         | 
+[Chapter B10](../src/main/java/org/dataalgorithms/chapB10/friendrecommendation/)  | [Friend Recommendation](../src/main/java/org/dataalgorithms/chapB10/friendrecommendation/)                         | 
+[Chapter B11](../src/main/java/org/dataalgorithms/chapB11/cartesian/)             | [Cartesian Product](../src/main/java/org/dataalgorithms/chapB11/cartesian/)                         | 
+[Chapter B12](../src/main/java/org/dataalgorithms/chapB12/docwordcount/)          | [Document Word Count](../src/main/java/org/dataalgorithms/chapB12/docwordcount/)                         | 
 
 
 [![Data Algorithms book](./large-image.jpg)](http://shop.oreilly.com/product/0636920033950.do)
