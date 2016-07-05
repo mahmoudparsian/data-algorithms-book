@@ -38,6 +38,7 @@ Bonus Chapter                                                                   
 [Chapter B10](../src/main/java/org/dataalgorithms/chapB10/friendrecommendation/)  | [Friend Recommendation](../src/main/java/org/dataalgorithms/chapB10/friendrecommendation/)                         | 
 [Chapter B11](../src/main/java/org/dataalgorithms/chapB11/cartesian/)             | [Cartesian Product](../src/main/java/org/dataalgorithms/chapB11/cartesian/)                         | 
 [Chapter B12](../src/main/java/org/dataalgorithms/chapB12/docwordcount/)          | [Document Word Count](../src/main/java/org/dataalgorithms/chapB12/docwordcount/)                         | 
+[Chapter B13](../src/main/java/org/dataalgorithms/chapB13/client/)                | [Client Calls](../src/main/java/org/dataalgorithms/chapB13/client/)                         | 
 
 
 [![Data Algorithms book](./large-image.jpg)](http://shop.oreilly.com/product/0636920033950.do)
