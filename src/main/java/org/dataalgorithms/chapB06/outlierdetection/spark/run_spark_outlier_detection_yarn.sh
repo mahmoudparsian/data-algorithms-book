@@ -24,7 +24,7 @@ done
 K=10
 INPUT=/outlierdetection/input
 #
-driver=org.dataalgorithms.bonus.outlierdetection.spark.OutlierDetection
+driver=org.dataalgorithms.chapB06.outlierdetection.spark.OutlierDetection
 $SPARK_HOME/bin/spark-submit --class $driver \
 	--master yarn-cluster \
 	--jars $OTHER_JARS \

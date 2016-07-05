@@ -1,6 +1,14 @@
 Friend Recommendation
 =====================
-The purpose of these MapReduce and Spark programs are to find "friends recommnedation" (to offer "people you may know" service). We write a [MapReduce program in Hadoop] and a [Spark program] that implements a simple “People You May Know” social network friendship recommendation algorithm. The main idea is that if two people have a lot of mutual friends, then the system should recommend that they connect with each other. Our assumption is that friendship is bi-directional: if A is a friend of B, then B is a friend of A.
+The purpose of these MapReduce and Spark programs are to find 
+"friends recommnedation" (to offer "people you may know" service). 
+We write a [MapReduce program in Hadoop] and a [Spark program] 
+that implements a simple “People You May Know” social network 
+friendship recommendation algorithm. The main idea is that if 
+two people have a lot of mutual friends, then the system should 
+recommend that they connect with each other. Our assumption is 
+that friendship is bi-directional: if A is a friend of B, then 
+B is a friend of A.
 
 Input Format:
 =============
@@ -35,7 +43,7 @@ export INPUT=/friends/input
 export OUTPUT=/friends/output
 export APP_JAR=/Users/mparsian/zmp/github/data-algorithms-book/dist/data_algorithms_book.jar
 #run the program
-export DRIVER=org.dataalgorithms.bonus.friendrecommendation.mapreduce.FriendRecommendationDriver
+export DRIVER=org.dataalgorithms.chapB10.friendrecommendation.mapreduce.FriendRecommendationDriver
 $HADOOP_HOME/bin/hadoop jar $APP_JAR $DRIVER 3 $INPUT $OUTPUT
 
 # display output: recommendations per user
@@ -87,7 +95,7 @@ $HADOOP_HOME/bin/hadoop fs -rmr $OUTPUT
 
 
 # remove all files under output
-driver=org.dataalgorithms.bonus.friendrecommendation.spark.SparkFriendRecommendation
+driver=org.dataalgorithms.chapB10.friendrecommendation.spark.SparkFriendRecommendation
 $SPARK_HOME/bin/spark-submit --class $driver \
 	--master $SPARK_MASTER \
 	--jars $OTHER_JARS \
