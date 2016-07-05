@@ -1,6 +1,6 @@
-package org.dataalgorithms.client;
+package org.dataalgorithms.chapB13.client;
 /**
- * This package (org.dataalgorithms.client) contains 
+ * This package (org.dataalgorithms.chapB13.client) contains 
  * source code for understanding Spark clients.
  *
 

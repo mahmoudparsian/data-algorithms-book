@@ -32,7 +32,7 @@ Running Complete Java Client Program
 Now, we can submit Spark job from Java code:
 ````
 export LIB_DIR=/Users/mparsian/zmp/github/data-algorithms-book/lib
-$ java  org.dataalgorithms.client.SubmitSparkJobToYARNFromJavaCode  $LIB_DIR
+$ java  org.dataalgorithms.chapB13.client.SubmitSparkJobToYARNFromJavaCode  $LIB_DIR
 ````
 
 Note

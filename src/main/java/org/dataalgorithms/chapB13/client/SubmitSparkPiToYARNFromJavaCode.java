@@ -1,4 +1,4 @@
-package org.dataalgorithms.client;
+package org.dataalgorithms.chapB13.client;
 
 import org.apache.spark.SparkConf;
 import org.apache.spark.deploy.yarn.Client;
@@ -38,7 +38,7 @@ import org.apache.log4j.Logger;
   How to call this program example:
   
      export SPARK_HOME="/Users/mparsian/spark-1.6.1-bin-hadoop2.6"
-     java -DSPARK_HOME="$SPARK_HOME" org.dataalgorithms.client.SubmitSparkPiToYARNFromJavaCode 10
+     java -DSPARK_HOME="$SPARK_HOME" org.dataalgorithms.chapB13.client.SubmitSparkPiToYARNFromJavaCode 10
 
 * 
 *  @author Mahmoud Parsian (mahmoud.parsian@yahoo.com)

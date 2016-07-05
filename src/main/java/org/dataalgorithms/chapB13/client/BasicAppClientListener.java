@@ -1,4 +1,4 @@
-package org.dataalgorithms.client;
+package org.dataalgorithms.chapB13.client;
 
 import scala.Option;
 import org.apache.log4j.Logger;

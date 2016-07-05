@@ -1,4 +1,4 @@
-package org.dataalgorithms.client;
+package org.dataalgorithms.chapB13.client;
 
 import java.util.List;
 import java.util.Arrays;
