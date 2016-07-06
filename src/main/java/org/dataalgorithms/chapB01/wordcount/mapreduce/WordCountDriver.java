@@ -1,6 +1,7 @@
 package org.dataalgorithms.chapB01.wordcount.mapreduce;
 
 import org.apache.log4j.Logger;
+//
 import org.apache.hadoop.util.Tool;
 import org.apache.hadoop.util.ToolRunner;
 import org.apache.hadoop.conf.Configured;
@@ -54,7 +55,7 @@ public class WordCountDriver  extends Configured implements Tool {
           
        job.setMapperClass(WordCountMapper.class);
        // since addition is amonoid, we can have a combiner function
-       job.setCombinerClass(WordCountReducer.class);
+       job.setCombinerClass(WordCountCombiner.class);
        job.setReducerClass(WordCountReducer.class);
       
        // args[1] = input directory

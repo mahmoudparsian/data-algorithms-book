@@ -8,12 +8,15 @@ import org.apache.hadoop.mapreduce.Reducer;
 import org.apache.hadoop.mapreduce.Reducer.Context;
 
 /**
- * A reducer class that just emits the sum of the input values.
+ * A combiner class that just emits the sum of the input values.
+ * 
+ * Note that a combiner can be used since addition is a monoid 
+ * over a set of integer numbers.
  *
  * @author Mahmoud Parsian
  *
  */
-public class WordCountReducer 
+public class WordCountCombiner
     extends Reducer<Text, IntWritable, Text, IntWritable> {
    
     // This method is called once for each key. Most applications will 
@@ -32,5 +35,4 @@ public class WordCountReducer
     }
     
 }
-
 
