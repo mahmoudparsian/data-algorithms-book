@@ -120,6 +120,7 @@ public class kNN {
     });   
     knnOutput.saveAsTextFile("/output/knnOutput");
 
+    // done 
     System.exit(0);
   }
 }
