@@ -1,4 +1,4 @@
-package org.dataalgorithms.chap13.spark;
+package org.dataalgorithms.chap13.sparkwithlambda;
 
 
 // STEP-0: Import required classes and interfaces
@@ -11,9 +11,6 @@ import org.apache.spark.broadcast.Broadcast;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaPairRDD;
 import org.apache.spark.api.java.JavaSparkContext;
-import org.apache.spark.api.java.function.Function;
-import org.apache.spark.api.java.function.PairFunction;
-//
 //
 import org.dataalgorithms.util.SparkUtil;
 import org.dataalgorithms.chap13.util.Util;
@@ -25,7 +22,7 @@ import org.dataalgorithms.chap13.util.Util;
  *
  */
 public class kNN {
-   
+     
    public static void main(String[] args) throws Exception {
     // STEP-1: Handle input parameters
     if (args.length < 5) {
@@ -66,25 +63,21 @@ public class kNN {
     // distance = distance(r, s) where r in R and s in S
     // classification is extracted from s 
     JavaPairRDD<String,Tuple2<Double,String>> knnMapped =
-            //                              input                  K       V
-            cart.mapToPair(new PairFunction<Tuple2<String,String>, String, Tuple2<Double,String>>() {
-      @Override
-      public Tuple2<String,Tuple2<Double,String>> call(Tuple2<String,String> cartRecord) {
-        String rRecord = cartRecord._1;
-        String sRecord = cartRecord._2;
-        String[] rTokens = rRecord.split(";"); 
-        String rRecordID = rTokens[0];
-        String r = rTokens[1]; //  r.1, r.2, ..., r.d
-        String[] sTokens = sRecord.split(";"); 
-        // sTokens[0] = s.recordID
-        String sClassificationID = sTokens[1]; 
-        String s = sTokens[2]; // s.1, s.2, ..., s.d
-        Integer d = broadcastD.value();
-        double distance = Util.calculateDistance(r, s, d);
-        String K = rRecordID; //  r.recordID
-        Tuple2<Double,String> V = new Tuple2<Double,String>(distance, sClassificationID);
-        return new Tuple2<String,Tuple2<Double,String>>(K, V);
-      }
+            cart.mapToPair((Tuple2<String,String> cartRecord) -> {
+                String rRecord = cartRecord._1;
+                String sRecord = cartRecord._2;
+                String[] rTokens = rRecord.split(";");
+                String rRecordID = rTokens[0];
+                String r = rTokens[1]; //  r.1, r.2, ..., r.d
+                String[] sTokens = sRecord.split(";");
+                // sTokens[0] = s.recordID
+                String sClassificationID = sTokens[1];
+                String s = sTokens[2]; // s.1, s.2, ..., s.d
+                Integer d1 = broadcastD.value();
+                double distance = Util.calculateDistance(r, s, d1);
+                String K = rRecordID; //  r.recordID
+                Tuple2<Double,String> V = new Tuple2<Double,String>(distance, sClassificationID);
+                return new Tuple2<String,Tuple2<Double,String>>(K, V);
     });
     knnMapped.saveAsTextFile("/output/knnMapped");    
 
@@ -98,25 +91,20 @@ public class kNN {
     // map function without changing the keys;
     // this also retains the original RDD's partitioning.
     // Generate (K,V) pairs where K=r.recordID, V = classificationID
+    // input: Iterable<Tuple2<Double,String>>
+    // output (classification): String    
     JavaPairRDD<String, String> knnOutput =
-        knnGrouped.mapValues(new Function<Iterable<Tuple2<Double,String>>, // input
-                                          String                           // output (classification)
-                                      >() {
-      @Override
-      public String call(Iterable<Tuple2<Double,String>> neighbors) {
-          Integer k = broadcastK.value();
-          // keep only k-nearest-neighbors
-          SortedMap<Double, String> nearestK = Util.findNearestK(neighbors, k);
-          
-          // now we have the k-nearest-neighbors in nearestK
-          // we need to find out the classification by majority
-          // count classifications
-          Map<String, Integer> majority = Util.buildClassificationCount(nearestK);
-            
-          // find a classificationID with majority of vote
-          String selectedClassification = Util.classifyByMajority(majority);
-          return selectedClassification;
-      }
+        knnGrouped.mapValues((Iterable<Tuple2<Double,String>> neighbors) -> {
+            Integer k1 = broadcastK.value();
+        // keep only k-nearest-neighbors
+        SortedMap<Double, String> nearestK = Util.findNearestK(neighbors, k1);
+        // now we have the k-nearest-neighbors in nearestK
+        // we need to find out the classification by majority
+        // count classifications
+        Map<String, Integer> majority = Util.buildClassificationCount(nearestK);
+        // find a classificationID with majority of vote
+        String selectedClassification = Util.classifyByMajority(majority);
+        return selectedClassification;
     });   
     knnOutput.saveAsTextFile("/output/knnOutput");
 
