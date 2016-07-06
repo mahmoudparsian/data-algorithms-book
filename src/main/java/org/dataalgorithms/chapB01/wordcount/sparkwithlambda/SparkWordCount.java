@@ -2,13 +2,11 @@ package org.dataalgorithms.chapB01.wordcount.sparkwithlambda;
 
 import scala.Tuple2;
 //
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Collections;
-//
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaPairRDD;
 import org.apache.spark.api.java.JavaSparkContext;
+//
+import org.dataalgorithms.chapB01.wordcount.util.Util;
 
 /**
  * Description:
@@ -40,25 +38,7 @@ public class SparkWordCount {
        JavaRDD<String> lines = ctx.textFile(inputPath, 1);
 
        JavaRDD<String> words = lines.flatMap((String s) -> {
-           if ((s == null) || (s.length() < N)) {
-               return Collections.emptyList();
-           }
-           
-           String[] tokens = s.split(" ");
-           List<String> list = new ArrayList<String>();
-           for (String  tok : tokens) {
-               if (tok.matches(".*[,.;]$")) {
-                   // remove the special char from the end
-                   tok = tok.substring(0, tok.length() -1);
-               }
-               
-               if (tok.length() < N) {
-                   continue;
-               }
-               
-               list.add(tok);
-           }
-           return list;
+           return Util.convertStringToWords(s, N);
        });
 
        JavaPairRDD<String, Integer> ones = 
