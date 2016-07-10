@@ -13,3 +13,12 @@ typically used during sequence assembly,[1] but can also be used in
 sequence alignment. In the context of the human genome, k-mers of 
 various lengths have been used to explain variability in mutation 
 rates. (source: Wikipedia: https://en.wikipedia.org/wiki/K-mer)
+
+Packages
+========
+
+Package                                   | Description
+------------------------------------------|-------------------------------------------
+org.dataalgorithms.chap17.spark           | Spark solution for K-mer
+org.dataalgorithms.chap17.sparkwithlambda | Spark solution with Lambda Expr. for K-mer
+org.dataalgorithms.chap17.mapreduce       | MapReduce/Hadoop solution for K-mer
