@@ -1,11 +1,9 @@
 package org.dataalgorithms.chap17.mapreduce;
 
 import java.io.IOException;
-import java.util.StringTokenizer;
-
+//
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.io.IntWritable;
-
 import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.mapreduce.Mapper;
 import org.apache.hadoop.conf.Configuration;
@@ -27,14 +25,16 @@ public class KmerCountMapper
 
    private int k; // k in k-mer 
 
-   private Text kmerKey = new Text();
+   private final Text kmerKey = new Text();
 
+   @Override
    protected void setup(Context context)
       throws IOException,InterruptedException {
       Configuration conf = context.getConfiguration();    
       this.k = conf.getInt("k.mer", 3); // default k=3 
    }
 
+   @Override
    public void map(LongWritable key, Text value, Context context)
       throws IOException, InterruptedException {
       String sequence = value.toString();
