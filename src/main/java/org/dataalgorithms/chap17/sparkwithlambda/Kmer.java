@@ -1,4 +1,4 @@
-package org.dataalgorithms.chap17.spark;
+package org.dataalgorithms.chap17.sparkwithlambda;
 
 // STEP-0: import required classes and interfaces
 import java.util.Map;
@@ -54,75 +54,58 @@ public class Kmer {
 
       // JavaRDD<T> filter(Function<T,Boolean> f)
       // Return a new RDD containing only the elements that satisfy a predicate.
-      JavaRDD<String> filteredRDD = records.filter(new Function<String,Boolean>() {
-        @Override
-        public Boolean call(String record) {
+      JavaRDD<String> filteredRDD = records.filter((String record) -> {
           String firstChar = record.substring(0,1);
           if ( firstChar.equals("@") ||
                firstChar.equals("+") ||
                firstChar.equals(";") ||
                firstChar.equals("!") ||
                firstChar.equals("~") ) {
-             return false; // do not return these records
+              return false; // do not return these records
           }
           else {
-             return true;
+              return true;
           }
-        }
       });
       
       // STEP-4: generate K-mers
       // PairFlatMapFunction<T, K, V>     
       // T => Iterable<Tuple2<K, V>>
-      JavaPairRDD<String,Integer> kmers = filteredRDD.flatMapToPair(new PairFlatMapFunction<
-          String,        // T
-          String,        // K
-          Integer        // V
-        >() {
-         @Override
-         public Iterable<Tuple2<String,Integer>> call(String sequence) {
-            int K = broadcastK.value();         
-            List<Tuple2<String,Integer>> list = new ArrayList<Tuple2<String,Integer>>();
-            for (int i=0; i < sequence.length()-K+1 ; i++) {
-                String kmer = sequence.substring(i, K+i);
-                list.add(new Tuple2<String,Integer>(kmer, 1));
-            }         
-            return list;
-         }
+      JavaPairRDD<String,Integer> kmers = filteredRDD.flatMapToPair((String sequence) -> {
+          int K1 = broadcastK.value();
+          List<Tuple2<String,Integer>> list = new ArrayList<Tuple2<String,Integer>>();
+          for (int i = 0; i < sequence.length() - K1 + 1; i++) {
+              String kmer = sequence.substring(i, K1 + i);
+              list.add(new Tuple2<String,Integer>(kmer, 1));
+          }
+          return list;
       });    
       kmers.saveAsTextFile("/kmers/output/2");
     
       // STEP-5: combine/reduce frequent kmers
-      JavaPairRDD<String, Integer> kmersGrouped = kmers.reduceByKey(new Function2<Integer, Integer, Integer>() {
-         @Override
-         public Integer call(Integer i1, Integer i2) {
-            return i1 + i2;
-         }
-      });    
+      JavaPairRDD<String, Integer> kmersGrouped = 
+              kmers.reduceByKey((Integer i1, Integer i2) -> i1 + i2);    
       kmersGrouped.saveAsTextFile("/kmers/output/3");
     
       // now, we have: (K=kmer,V=frequency)
       // next step is find the top-N kmers
       // create a local top-N
-      JavaRDD<SortedMap<Integer, String>> partitions = kmersGrouped.mapPartitions(
-           new FlatMapFunction<Iterator<Tuple2<String,Integer>>, SortedMap<Integer, String>>() {
-           @Override
-           public Iterable<SortedMap<Integer, String>> call(Iterator<Tuple2<String,Integer>> iter) {
-               int N = broadcastN.value();
-               SortedMap<Integer, String> topN = new TreeMap<Integer, String>();
-               while (iter.hasNext()) {
-                  Tuple2<String,Integer> tuple = iter.next();
-                  String kmer = tuple._1;
-                  int frequency = tuple._2;
-                  topN.put(frequency, kmer);
-                  // keep only top N 
-                  if (topN.size() > N) {
-                     topN.remove(topN.firstKey());
-                  }  
+      JavaRDD<SortedMap<Integer, String>> partitions = 
+              kmersGrouped.mapPartitions((Iterator<Tuple2<String,Integer>> iter) -> {
+          int N1 = broadcastN.value();
+          SortedMap<Integer, String> topN = new TreeMap<Integer, String>();
+          while (iter.hasNext()) {
+              Tuple2<String,Integer> tuple = iter.next();
+              String kmer = tuple._1;
+              int frequency = tuple._2;
+              topN.put(frequency, kmer);
+              // keep only top N
+              if (topN.size() > N1) {
+                  topN.remove(topN.firstKey());  
               }
-              System.out.println("topN="+topN);
-              return Collections.singletonList(topN);
-           }
+          }
+          System.out.println("topN="+topN);
+          return Collections.singletonList(topN);
       });
 
       // now collect all topN from all partitions 
