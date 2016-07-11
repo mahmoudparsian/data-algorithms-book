@@ -78,5 +78,4 @@ best regards,
 Mahmoud Parsian
 ````
 
-[comment]: [![Data Algorithms Book](./misc/data_algorithms_image.jpg)](http://shop.oreilly.com/product/0636920033950.do)
 [![Data Algorithms Book](./misc/large-image.jpg)](http://shop.oreilly.com/product/0636920033950.do)
