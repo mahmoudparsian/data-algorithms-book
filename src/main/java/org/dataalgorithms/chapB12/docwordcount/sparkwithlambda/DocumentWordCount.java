@@ -9,10 +9,6 @@ import scala.Tuple2;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaPairRDD;
 import org.apache.spark.api.java.JavaSparkContext;
-import org.apache.spark.api.java.function.Function;
-import org.apache.spark.api.java.function.Function2;
-import org.apache.spark.api.java.function.PairFunction;
-import org.apache.spark.api.java.function.FlatMapFunction;
 //
 import org.dataalgorithms.chapB12.docwordcount.util.Util;
 import org.dataalgorithms.chapB12.docwordcount.util.FrequencyComparator;
@@ -129,16 +125,11 @@ public class DocumentWordCount {
        // Pass each value in the key-value pair RDD through a map function without changing the keys;
        // this also retains the original RDD's partitioning.
        JavaPairRDD<String, Iterable<Tuple2<Integer, String>>> sorted = 
-          groupedByWord.mapValues(new Function<
-                                               Iterable<Tuple2<Integer, String>>,      // input
-                                               Iterable<Tuple2<Integer, String>>       // output
-                                              >() {
-          @Override
-          public Iterable<Tuple2<Integer, String>> call(Iterable<Tuple2<Integer, String>> s) {
-             List<Tuple2<Integer, String>> list = new ArrayList<Tuple2<Integer, String>>(iterableToList(s));
-             Collections.sort(list, FrequencyComparator.INSTANCE);
-             return list;
-          }
+          groupedByWord.mapValues((Iterable<Tuple2<Integer, String>> s) -> {
+              List<Tuple2<Integer, String>> list = 
+                      new ArrayList<Tuple2<Integer, String>>(iterableToList(s));
+              Collections.sort(list, FrequencyComparator.INSTANCE);
+              return list;
        });
     
 
