@@ -1,22 +1,27 @@
 package org.dataalgorithms.chap26.spark;
 
-import org.dataalgorithms.util.PairOfDoubleInteger;
-
+import java.io.FileReader;
+import java.io.BufferedReader;
+//
+import java.util.Map;
+import java.util.HashMap;
+import java.util.List;
+import java.util.ArrayList;
+//
 import scala.Tuple2;
+//
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaPairRDD;
 import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.api.java.function.Function;
 import org.apache.spark.api.java.function.PairFunction;
-import org.apache.commons.lang.StringUtils;
 import org.apache.spark.broadcast.Broadcast;
+//
+import org.apache.commons.lang.StringUtils;
+//
+import org.dataalgorithms.util.PairOfDoubleInteger;
 
-import java.io.FileReader;
-import java.io.BufferedReader;
-import java.util.Map;
-import java.util.HashMap;
-import java.util.List;
-import java.util.ArrayList;
+
 
 /**
  * This class (implemented in Spark API) solves "Gene Aggregation"
@@ -27,7 +32,7 @@ import java.util.ArrayList;
  */
 public class SparkGeneAggregationByAverage {
 
-   static final Tuple2<String, String> Tuple2Null = new Tuple2<String, String>("n", "n");
+   static final Tuple2<String, String> TUPLE_2_NULL = new Tuple2<String, String>("n", "n");
    
    /**
     * Convert all bioset files into a List<biosetFileName>
@@ -65,7 +70,7 @@ public class SparkGeneAggregationByAverage {
          }
          JavaRDD<String> allBiosets = ctx.union(rdds);
          return allBiosets.coalesce(9, false);
-   } // readInputFiles
+   } 
    
    private static Map<String,PairOfDoubleInteger>  buildPatientsMap(Iterable<String> values) {
       Map<String, PairOfDoubleInteger> patients = new HashMap<String, PairOfDoubleInteger>(); 
@@ -154,6 +159,7 @@ public class SparkGeneAggregationByAverage {
     //   where K = "<geneID><,><referenceType>", 
     //         V = "<patientID><,><geneValue>"
     JavaPairRDD<String, String> genes = records.mapToPair(new PairFunction<String, String, String>() {
+      @Override
       public Tuple2<String, String> call(String record) {
          String[] tokens = StringUtils.split(record, ";");
          String geneIDAndReferenceType = tokens[0];
@@ -170,7 +176,7 @@ public class SparkGeneAggregationByAverage {
          else {
             // otherwise nothing will be counted  
             // later we will filter out these "null" keys  
-            return Tuple2Null; 
+            return TUPLE_2_NULL; 
          }      
       }
     });
@@ -179,6 +185,7 @@ public class SparkGeneAggregationByAverage {
     // Return a new RDD containing only the elements that satisfy a predicate;
     // If K = "n", then exclude them 
     JavaPairRDD<String,String> filteredGenes = genes.filter(new Function<Tuple2<String,String>,Boolean>() {
+      @Override
       public Boolean call(Tuple2<String, String> s) {
          String value = s._1;
          if (value.equals("n")) {
@@ -204,6 +211,7 @@ public class SparkGeneAggregationByAverage {
     JavaPairRDD<String, Integer> frequency = genesByID.mapValues(new Function< Iterable<String>,  // input
                                                                                Integer            // output
                                                                              >() {  
+       @Override
        public Integer call(Iterable<String> values) {
           Map<String, PairOfDoubleInteger>  patients = buildPatientsMap(values);          
           String filterType = (String) broadcastVarFilterType.value();

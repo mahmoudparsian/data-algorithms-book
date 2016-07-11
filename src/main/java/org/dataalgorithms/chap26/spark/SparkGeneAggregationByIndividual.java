@@ -1,20 +1,25 @@
 package org.dataalgorithms.chap26.spark;
 
 //STEP-0: import required classes and interfaces
+import java.util.List;
+import java.util.ArrayList;
+//
+import java.io.FileReader;
+import java.io.BufferedReader;
+//
 import scala.Tuple2;
+//
 import org.apache.spark.api.java.JavaPairRDD;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.api.java.function.Function;
 import org.apache.spark.api.java.function.Function2;
 import org.apache.spark.api.java.function.PairFunction;
-import org.apache.commons.lang.StringUtils;
 import org.apache.spark.broadcast.Broadcast;
+//
+import org.apache.commons.lang.StringUtils;
 
-import java.util.List;
-import java.util.ArrayList;
-import java.io.FileReader;
-import java.io.BufferedReader;
+
 
 /**
  * This class (implemented in Spark API) solves "Gene Aggregation"
@@ -25,7 +30,7 @@ import java.io.BufferedReader;
  */
 public class SparkGeneAggregationByIndividual {
 
-   static final Tuple2<String, Integer> Tuple2Null = new Tuple2<String, Integer>("null", 0);   
+   static final Tuple2<String, Integer> TUPLE_2_NULL = new Tuple2<String, Integer>("null", 0);   
    
    public static void main(String[] args) throws Exception {
       //STEP-1: handle input parameters
@@ -98,7 +103,7 @@ public class SparkGeneAggregationByIndividual {
          else {
             // otherwise nothing will be counted  
             // later we will filter out these "null" keys  
-            return Tuple2Null; 
+            return TUPLE_2_NULL; 
          }      
       }
     });

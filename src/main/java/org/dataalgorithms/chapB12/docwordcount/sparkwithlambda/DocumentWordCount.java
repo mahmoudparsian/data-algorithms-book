@@ -1,4 +1,4 @@
-package org.dataalgorithms.chapB12.docwordcount.spark;
+package org.dataalgorithms.chapB12.docwordcount.sparkwithlambda;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -16,6 +16,7 @@ import org.apache.spark.api.java.function.FlatMapFunction;
 //
 import org.dataalgorithms.chapB12.docwordcount.util.Util;
 import org.dataalgorithms.chapB12.docwordcount.util.FrequencyComparator;
+
 
 /**
  * Description:
@@ -68,6 +69,14 @@ Expected output:
  *
  */
 public class DocumentWordCount {
+
+    static List<Tuple2<Integer,String>> iterableToList(Iterable<Tuple2<Integer,String>> iterable) {
+       List<Tuple2<Integer,String>> list = new ArrayList<Tuple2<Integer,String>>();
+       for (Tuple2<Integer,String> item : iterable) {
+          list.add(item);
+       }
+       return list;
+    }    
     
     public static void main(String[] args) throws Exception {
        if (args.length != 3) {
@@ -88,57 +97,27 @@ public class DocumentWordCount {
        JavaRDD<String> lines = ctx.textFile(inputPath, 1);
 
        JavaRDD<Tuple2<String,String>> wordsAndDocs = 
-          lines.flatMap(new FlatMapFunction<
-                                            String,                 // input
-                                            Tuple2<String,String>   // output
-                                           >() {
-          @Override
-          public Iterable<Tuple2<String,String>> call(String s) {
-             return Util.convertToPairOfWordAndDocument(s, N);
-          }
-       });
+          lines.flatMap((String s) -> Util.convertToPairOfWordAndDocument(s, N));
 
-        //         K                      V    
        JavaPairRDD<Tuple2<String,String>, Integer> ones = 
-         wordsAndDocs.mapToPair(new PairFunction<
-                                                 Tuple2<String,String>, // input
-                                                 Tuple2<String,String>, // K
-                                                 Integer                // V
-                                                >() {
-         @Override
-         public Tuple2<Tuple2<String,String>, Integer> call(Tuple2<String,String> s) {
-           //                K                      V
-           return new Tuple2<Tuple2<String,String>, Integer>(s, 1);
-         }
-       });
+         wordsAndDocs.mapToPair((Tuple2<String,String> s) -> 
+                 new Tuple2<Tuple2<String,String>, Integer>(s, 1) 
+       );
 
        // find the total count for each unique word per documentID
        JavaPairRDD<Tuple2<String,String>, Integer> counts = 
-            ones.reduceByKey(new Function2<Integer, Integer, Integer>() {
-          @Override
-          public Integer call(Integer i1, Integer i2) {
-             return i1 + i2;
-          }
-       });
+            ones.reduceByKey((Integer i1, Integer i2) -> i1 + i2);
        
        // counts: { [(word1, doc1), f1], [(word2, doc2), f2], ... }
        // create another RDD as:
        // wordAsKey: { [word1, (f1, doc1)], [word2, (f2, doc2)], ...]
-       //          K       V    
        JavaPairRDD<String, Tuple2<Integer,String>> wordAsKey = 
-         counts.mapToPair(new PairFunction<
-                                           Tuple2<Tuple2<String,String>,Integer>, // input
-                                           String,                                // K
-                                           Tuple2<Integer,String>                 // V
-                                          >() {
-         @Override
-         public Tuple2<String,Tuple2<Integer,String>> call(Tuple2<Tuple2<String,String>,Integer>  s) {
-           String word = s._1._1;
-           String documntID = s._1._2;
-           Integer frequency = s._2;
-           Tuple2<Integer, String> freqAndDocument = new Tuple2<Integer, String>(frequency, documntID);
-           return new Tuple2<String,Tuple2<Integer,String>>(word, freqAndDocument);
-         }
+         counts.mapToPair((Tuple2<Tuple2<String,String>,Integer>  s) -> {
+             String word = s._1._1;
+             String documntID = s._1._2;
+             Integer frequency = s._2;
+             Tuple2<Integer, String> freqAndDocument = new Tuple2<Integer, String>(frequency, documntID);
+             return new Tuple2<String,Tuple2<Integer,String>>(word, freqAndDocument);
        });
 
        // now group words and sort by their frequencies
@@ -156,7 +135,7 @@ public class DocumentWordCount {
                                               >() {
           @Override
           public Iterable<Tuple2<Integer, String>> call(Iterable<Tuple2<Integer, String>> s) {
-             List<Tuple2<Integer, String>> list = new ArrayList<>(Util.iterableToList(s));
+             List<Tuple2<Integer, String>> list = new ArrayList<Tuple2<Integer, String>>(iterableToList(s));
              Collections.sort(list, FrequencyComparator.INSTANCE);
              return list;
           }
