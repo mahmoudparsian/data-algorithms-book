@@ -3,12 +3,18 @@ Bonus Chapters
 The story of bonus chapters: originally, I had about 60+ chapters 
 for the ````Data Algorithms```` book (which would have been over 
 1000+ pages -- too much!!!). To keep it short, sweet, and focused, 
-I put 31 chapters in the book (named as ````chap01````, ````chap02````,
-..., ````chap31````) and then put the remaining chapters (as bonus 
-chapters) in here.  
+I put 31 chapters in the book: named as 
+* ````chap01````, 
+* ````chap02````,
+* ..., 
+* ````chap31````
 
-
-Bonus chapters are named as ````chapB01````,  ````chapB02````, ..., ````chapB13````).
+Named and then put the remaining chapters (as bonus 
+chapters) in here.  Bonus chapters are named as:
+* ````chapB01````,  
+* ````chapB02````, 
+* ..., 
+* ````chapB13````
 
 
 I have started adding the bonus chapters. Already have added the 
