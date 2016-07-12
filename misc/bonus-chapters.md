@@ -4,17 +4,17 @@ The story of bonus chapters: originally, I had about 60+ chapters
 for the ````Data Algorithms```` book (which would have been over 
 1000+ pages -- too much!!!). To keep it short, sweet, and focused, 
 I put 31 chapters in the book: named as 
-* ````chap01````, 
-* ````chap02````,
+* [````chap01````](../src/main/java/org/dataalgorithms), 
+* [````chap02````](../src/main/java/org/dataalgorithms),
 * ..., 
-* ````chap31````
+* [````chap31````](../src/main/java/org/dataalgorithms)
 
 Named and then put the remaining chapters (as bonus 
 chapters) in here.  Bonus chapters are named as:
-* ````chapB01````,  
-* ````chapB02````, 
+* [````chapB01````](../src/main/java/org/dataalgorithms),  
+* [````chapB02````](../src/main/java/org/dataalgorithms), 
 * ..., 
-* ````chapB13````
+* [````chapB13````](../src/main/java/org/dataalgorithms)
 
 
 I have started adding the bonus chapters. Already have added the 
