@@ -20,7 +20,7 @@ import org.dataalgorithms.util.DataStructures;
 
 
 /** 
- * SparkSecondarySort class implements the secondary sort design pattern 
+ * SecondarySortUsingCombineByKey class implements the secondary sort design pattern 
  * by using combineByKey().
  *
  *
@@ -58,13 +58,13 @@ import org.dataalgorithms.util.DataStructures;
  * @author Mahmoud Parsian
  *
  */
-public class SparkSecondarySortUsingCombineByKey {
+public class SecondarySortUsingCombineByKey {
 
     public static void main(String[] args) throws Exception {
 
         // STEP-1: read input parameters and validate them
         if (args.length < 2) {
-            System.err.println("Usage: SparkSecondarySort <input> <output>");
+            System.err.println("Usage: SecondarySortUsingCombineByKey <input> <output>");
             System.exit(1);
         }
         String inputPath = args[0];
