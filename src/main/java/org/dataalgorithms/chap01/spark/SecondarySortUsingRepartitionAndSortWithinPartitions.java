@@ -24,7 +24,12 @@ import org.apache.spark.api.java.function.PairFunction;
  *                   This is more efficient than calling repartition and then sorting 
  *                   within each partition because it can push the sorting down into 
  *                   the shuffle machinery.
+ * 
+ *                   Partitioner: an object that defines how the elements in a key-value 
+ *                   pair RDD are partitioned by key. Maps each key to a partition ID, 
+ *                   from 0 to numPartitions - 1.
  *
+ * 
  * @author Gaurav Bhardwaj (gauravbhardwajemail@gmail.com)
  * 
  * @editor Mahmoud Parsian (mahmoud.parsian@yahoo.com)
