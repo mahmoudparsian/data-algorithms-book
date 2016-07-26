@@ -7,9 +7,9 @@ import org.apache.spark.Partitioner
  * A custom partitioner
  * 
  * org.apache.spark.Partitioner:
- *           An object that defines how the elements in a key-value 
- *           pair RDD are partitioned by key. Maps each key to a 
- *           partition ID, from 0 to numPartitions - 1.
+ *           An abstract class that defines how the elements in a  
+ *           key-value pair RDD are partitioned by key. Maps each 
+ *           key to a partition ID, from 0 to numPartitions - 1.
  *           
  *
  * @author Gaurav Bhardwaj (gauravbhardwajemail@gmail.com)

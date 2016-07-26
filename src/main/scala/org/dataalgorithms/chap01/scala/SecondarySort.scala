@@ -49,6 +49,7 @@ object SecondarySort {
 
     result.saveAsTextFile(outputPath)
 
-    sc.stop
+    // done
+    sc.stop()
   }
 }
