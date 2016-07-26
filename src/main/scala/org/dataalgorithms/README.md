@@ -3,6 +3,13 @@ Scala/Spark Solutions
 * This is the home for Scala/Spark solutions to Data Algorithms
 * Started providing Scala/Spark solutions to all of the chapter included in Data Algorithms book
 
+Chapter                            | Title                                     |
+-----------------------------------|-------------------------------------------| 
+[Chapter 01](./chap01/scala/)      | Secondary Sorting                         | 
+[Chapter 03](./chap03/scala/)      | Top-10                                    |
+...                                | ...                                       |
+
+
 
 Questions/Comments
 ==================
