@@ -53,7 +53,9 @@ object TopN {
     }
 
     val moreConciseApproach = pair.groupByKey().sortByKey(false).take(N.value)
-    moreConciseApproach.foreach { case (k, v) => println(s"$k \t ${v.flatten.mkString(",")}") }
+    moreConciseApproach.foreach { 
+      case (k, v) => println(s"$k \t ${v.flatten.mkString(",")}") 
+    }
 
     // done
     sc.stop()
