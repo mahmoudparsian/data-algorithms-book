@@ -46,17 +46,17 @@ object TopNNonUnique {
   
     val alltop10 = partitions.collect()
     val finaltop10 = SortedMap.empty[Int, String].++:(alltop10)
-    val yourResult = finaltop10.takeRight(N.value)
-    yourResult.foreach { case (k, v) => println(s"$k \t ${v.mkString(",")}") }
+    val resultUsingMapPartition = finaltop10.takeRight(N.value)
+    resultUsingMapPartition.foreach { case (k, v) => println(s"$k \t ${v.mkString(",")}") }
 
     val createCombiner = (v: Int) => v
     val mergeValue = (a: Int, b: Int) => (a + b)
-    val result = kv.combineByKey(createCombiner, mergeValue, mergeValue)
+    val moreConciseApproach = kv.combineByKey(createCombiner, mergeValue, mergeValue)
                    .map(_.swap)
                    .groupByKey()
                    .sortByKey(false).take(N.value)
     //              
-    result.foreach { 
+    moreConciseApproach.foreach { 
       case (k, v) => println(s"$k \t ${v.mkString(",")}") 
     }
 

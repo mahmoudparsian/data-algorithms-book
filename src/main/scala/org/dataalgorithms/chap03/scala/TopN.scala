@@ -47,13 +47,13 @@ object TopN {
   
     val alltop10 = partitions.collect()
     val finaltop10 = SortedMap.empty[Int, Array[String]].++:(alltop10)
-    val yourResult = finaltop10.takeRight(N.value)
-    yourResult.foreach { 
+    val resultUsingMapPartition = finaltop10.takeRight(N.value)
+    resultUsingMapPartition.foreach { 
       case (k, v) => println(s"$k \t ${v.asInstanceOf[Array[String]].mkString(",")}") 
     }
 
-    val result = pair.groupByKey().sortByKey(false).take(N.value)
-    result.foreach { case (k, v) => println(s"$k \t ${v.flatten.mkString(",")}") }
+    val moreConciseApproach = pair.groupByKey().sortByKey(false).take(N.value)
+    moreConciseApproach.foreach { case (k, v) => println(s"$k \t ${v.flatten.mkString(",")}") }
 
     // done
     sc.stop()
