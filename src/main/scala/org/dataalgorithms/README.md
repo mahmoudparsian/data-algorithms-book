@@ -9,10 +9,11 @@ Chapter                             |  Title                                    
 [Chapter 03](./chap03/scala/)       |  Top-10                                     |
 ...                                 |  ...                                        |
 
-Thank you!
-==========
+Credit and Thank you!
+=====================
 I want to thank Gaurav Bhardwaj (gauravbhardwajemail@gmail.com)
-for his contributions to the Scala/Spark programs.
+for his contributions to the Scala/Spark programs. I am sure 
+that his contributions will help Spark community.
 
 Questions/Comments
 ==================
