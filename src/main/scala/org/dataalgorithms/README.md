@@ -1,3 +1,5 @@
+![Scala/Spark Solutions](./scala.jpeg)
+
 Scala/Spark Solutions
 =====================
 * This is the home for Scala/Spark solutions to Data Algorithms
