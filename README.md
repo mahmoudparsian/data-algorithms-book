@@ -9,6 +9,9 @@
 [Production Version is Available NOW!](http://shop.oreilly.com/product/0636920033950.do)
 ======================================
 
+[Upgraded to Spark-2.0.0](http://spark.apache.org/news/spark-2-0-0-released.html)
+=========================
+
 [![Data Algorithms Book](./misc/da_book3.jpeg)](http://shop.oreilly.com/product/0636920033950.do)
 
 [Added Java 8's LAMBDA Expressions to Spark...](./misc/jdk8_and_lambda.md)
@@ -23,8 +26,6 @@
 [How To Build using Apache's Maven](./misc/maven/README.md)
 ===================================
 
-[Upgraded to Spark-1.6.1](http://spark.apache.org/news/spark-1-6-1-released.html)
-=========================
 
 [Machine Learning Algorithms using Spark](./src/main/java/org/dataalgorithms/machinelearning)
 =========================================
