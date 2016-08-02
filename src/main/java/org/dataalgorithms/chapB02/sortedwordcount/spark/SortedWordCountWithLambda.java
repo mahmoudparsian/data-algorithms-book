@@ -37,7 +37,7 @@ public class SortedWordCountWithLambda {
        // read input and create the first RDD
        JavaRDD<String> lines = ctx.textFile(inputPath, 1);
 
-       JavaRDD<String> words = lines.flatMap((String line) -> Util.convertLineToWords(line, N));
+       JavaRDD<String> words = lines.flatMap((String line) -> Util.convertLineToWords(line, N).iterator());
 
        JavaPairRDD<String, Integer> ones = 
                words.mapToPair((String s) -> new Tuple2<String, Integer>(s, 1));

@@ -74,7 +74,7 @@ public class SparkDNABaseCountFASTQ {
       JavaRDD<Map<Character, Long>> partitions = fastqRDD.mapPartitions(
         new FlatMapFunction<Iterator<Tuple2<LongWritable ,Text>>, Map<Character,Long>>() {
         @Override
-        public Iterable<Map<Character,Long>> call(Iterator<Tuple2<LongWritable ,Text>> iter) {
+        public Iterator<Map<Character,Long>> call(Iterator<Tuple2<LongWritable ,Text>> iter) {
         Map<Character,Long> baseCounts = new HashMap<Character,Long>();
         while (iter.hasNext()) {
              Tuple2<LongWritable ,Text> kv = iter.next();
@@ -94,7 +94,7 @@ public class SparkDNABaseCountFASTQ {
                 }
              }     
           }
-          return Collections.singletonList(baseCounts);
+          return Collections.singletonList(baseCounts).iterator();
         }
       });
 
@@ -120,6 +120,9 @@ public class SparkDNABaseCountFASTQ {
          System.out.println(entry.getKey() + "\t" + entry.getValue());
       }
       
+      // done
+      ctx.close();
+
       System.exit(0);
    }
 }

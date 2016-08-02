@@ -12,15 +12,10 @@ import org.apache.spark.api.java.JavaPairRDD;
 import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.api.java.function.Function;
 import org.apache.spark.api.java.function.PairFlatMapFunction;
-import org.apache.spark.api.java.function.FlatMapFunction;
 import org.apache.spark.api.java.function.PairFunction;
 
-import java.util.Set;
-import java.util.HashSet;
-import java.util.Arrays;
 import java.util.List;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Iterator;
 
 /**
@@ -99,7 +94,8 @@ public class MovieRecommendations {
     JavaPairRDD<String,Tuple3<String,Integer,Integer>> usersRDD = 
          //                                                  T                                                 K       V 
          moviesGrouped.flatMapToPair(new PairFlatMapFunction<Tuple2<String, Iterable<Tuple2<String,Integer>>>, String, Tuple3<String,Integer,Integer>>() {
-      public Iterable<Tuple2<String,Tuple3<String,Integer,Integer>>> call(Tuple2<String, Iterable<Tuple2<String,Integer>>> s) {
+      @Override
+      public Iterator<Tuple2<String,Tuple3<String,Integer,Integer>>> call(Tuple2<String, Iterable<Tuple2<String,Integer>>> s) {
          List<Tuple2<String,Integer>> listOfUsersAndRatings = new ArrayList<Tuple2<String,Integer>>();
      	 // now read inputs and generate desired (K,V) pairs
      	 String movie = s._1;
@@ -119,7 +115,7 @@ public class MovieRecommendations {
        		results.add(new Tuple2<String, Tuple3<String,Integer,Integer>>(user, t3));
          }
 
-         return results;
+         return results.iterator();
       }
     });
     
@@ -166,7 +162,8 @@ public class MovieRecommendations {
                 Tuple2<String,String>,                                          // K
                 Tuple7<Integer,Integer,Integer,Integer,Integer,Integer,Integer> // V
                >() {
-      public Iterable< 
+      @Override
+      public Iterator< 
                       Tuple2< 
                               Tuple2<String,String>, Tuple7<Integer,Integer,Integer,Integer,Integer,Integer,Integer>
                             >
@@ -193,7 +190,7 @@ public class MovieRecommendations {
            new Tuple2<Tuple2<String,String>, Tuple7<Integer,Integer,Integer,Integer,Integer,Integer,Integer>>(k3, v3);
            results.add(k3v3);
         }     	
-        return results;
+        return results.iterator();
       }
     });
     

@@ -5,6 +5,7 @@ import java.util.Set;
 import java.util.HashSet;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Iterator;
 //
 import scala.Tuple2;
 //
@@ -92,7 +93,7 @@ public class SparkLeftOuterJoin {
          //                                               T                                                K       V 
          groupedRDD.flatMapToPair(new PairFlatMapFunction<Tuple2<String, Iterable<Tuple2<String,String>>>, String, String>() {
       @Override
-      public Iterable<Tuple2<String,String>> call(Tuple2<String, Iterable<Tuple2<String,String>>> s) {
+      public Iterator<Tuple2<String,String>> call(Tuple2<String, Iterable<Tuple2<String,String>>> s) {
       	// String userID = s._1;  // NOT Needed
       	Iterable<Tuple2<String,String>> pairs = s._2;
        	String location = "UNKNOWN";
@@ -114,7 +115,7 @@ public class SparkLeftOuterJoin {
        	}
        	// Note that edges must be reciprocal, that is every
 		// {source, destination} edge must have a corresponding {destination, source}.
-        return kvList;
+        return kvList.iterator();
       }
     });
     

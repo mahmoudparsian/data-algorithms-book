@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.io.Serializable;
+import java.util.Iterator;
 
 import scala.Tuple2;
 import org.apache.spark.api.java.JavaRDD;
@@ -248,10 +249,10 @@ public class SparkMarkov implements Serializable {
                                  Integer                        // V
                                 >() {
          @Override
-         public Iterable<Tuple2<Tuple2<String,String>, Integer>> call(Tuple2<String, List<String>> s) {
+         public Iterator<Tuple2<Tuple2<String,String>, Integer>> call(Tuple2<String, List<String>> s) {
             List<String> states = s._2;
             if ( (states == null) || (states.size() < 2) ) {
-               return Collections.emptyList();
+               return Collections.EMPTY_LIST.iterator();
             }
          
             List<Tuple2<Tuple2<String,String>, Integer>> mapperOutput =
@@ -262,7 +263,7 @@ public class SparkMarkov implements Serializable {
                 Tuple2<String,String> k = new Tuple2<String,String>(fromState, toState);
                 mapperOutput.add(new Tuple2<Tuple2<String,String>, Integer>(k, 1));
             }
-            return mapperOutput;
+            return mapperOutput.iterator();
          }
        });
        model.saveAsTextFile("/output/6.1");
@@ -284,6 +285,7 @@ public class SparkMarkov implements Serializable {
        // Return a new RDD by applying a function to all elements of this RDD.
        JavaRDD<String> markovModelFormatted = 
           markovModel.map(new Function<Tuple2<Tuple2<String,String>, Integer>, String>() {
+          @Override
           public String call(Tuple2<Tuple2<String,String>, Integer> t) {
             return t._1._1 + "," + t._1._2 + "\t" + t._2;
           }

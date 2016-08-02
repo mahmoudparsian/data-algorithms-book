@@ -43,7 +43,7 @@ public class SparkDNABaseCountFASTA  {
       JavaRDD<Map<Character, Long>> partitions = fastaRDD.mapPartitions(
         new FlatMapFunction<Iterator<String>, Map<Character,Long>>() {
         @Override
-        public Iterable<Map<Character,Long>> call(Iterator<String> iter) {
+        public Iterator<Map<Character,Long>> call(Iterator<String> iter) {
         Map<Character,Long> baseCounts = new HashMap<Character,Long>();
         while (iter.hasNext()) {
              String record = iter.next();
@@ -64,7 +64,7 @@ public class SparkDNABaseCountFASTA  {
                 } 
              }
           }
-          return Collections.singletonList(baseCounts);
+          return Collections.singletonList(baseCounts).iterator();
         }
       });
 
@@ -90,6 +90,9 @@ public class SparkDNABaseCountFASTA  {
       for (Map.Entry<Character, Long> entry : allBaseCounts.entrySet()) {
          System.out.println(entry.getKey() + "\t" + entry.getValue());
       }
+      
+      // done
+      ctx.close();
       
       System.exit(0);
    }

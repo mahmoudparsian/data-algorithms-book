@@ -92,7 +92,7 @@ public class Top10 {
                   top10.remove(top10.firstKey());
               }
           }
-          return Collections.singletonList(top10);
+          return Collections.singletonList(top10).iterator();
       });
 
       // STEP-6: find a final top-10

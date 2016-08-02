@@ -14,6 +14,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
 
 /**
  * This class finds, counts, and lists all triangles for a given graph.
@@ -36,7 +37,8 @@ public class CountTriangles {
     // PairFlatMapFunction<T, K, V>	
     // T => Iterable<Tuple2<K, V>>
     JavaPairRDD<Long,Long> edges = lines.flatMapToPair(new PairFlatMapFunction<String, Long, Long>() {
-      public Iterable<Tuple2<Long,Long>> call(String s) {
+      @Override
+      public Iterator<Tuple2<Long,Long>> call(String s) {
          String[] nodes = s.split(" ");
          long start = Long.parseLong(nodes[0]);
          long end = Long.parseLong(nodes[1]);
@@ -44,7 +46,7 @@ public class CountTriangles {
          // is every {source, destination} edge must have 
          // a corresponding {destination, source}.
         return Arrays.asList(new Tuple2<Long, Long>(start, end), 
-                             new Tuple2<Long, Long>(end, start));
+                             new Tuple2<Long, Long>(end, start)).iterator();
       }
     });
     
@@ -64,7 +66,7 @@ public class CountTriangles {
                                                         Tuple2<Long,Long>,            // key (output)
                                                          Long                         // value (output)
                                                       >() {
-        public Iterable<Tuple2<Tuple2<Long,Long>, Long>> call(Tuple2<Long, Iterable<Long>> s) {
+        public Iterator<Tuple2<Tuple2<Long,Long>, Long>> call(Tuple2<Long, Iterable<Long>> s) {
       
            // s._1 = Long (as a key)
            // s._2 = Iterable<Long> (as a values)
@@ -96,7 +98,7 @@ public class CountTriangles {
               }
            }
      
-           return result;
+           return result.iterator();
         }
     });
     
@@ -119,7 +121,8 @@ public class CountTriangles {
                                                      Tuple2<Tuple2<Long,Long>, Iterable<Long>>,  // input
                                                      Tuple3<Long,Long,Long>                      // output
                                                    >() {
-        public Iterable<Tuple3<Long,Long,Long>> call(Tuple2<Tuple2<Long,Long>, Iterable<Long>> s) {
+        @Override
+        public Iterator<Tuple3<Long,Long,Long>> call(Tuple2<Tuple2<Long,Long>, Iterable<Long>> s) {
       
            // s._1 = Tuple2<Long,Long> (as a key) = "<nodeA><,><nodeB>"
            // s._2 = Iterable<Long> (as a values) = {0, n1, n2, n3, ...} or {n1, n2, n3, ...}
@@ -144,7 +147,7 @@ public class CountTriangles {
               if (list.isEmpty()) {
                 // no triangles found
                  // return null;
-                 return result;
+                 return result.iterator();
               }
               // emit triangles
               for (long node : list) {         
@@ -159,10 +162,10 @@ public class CountTriangles {
            else {
               // no triangles found
               // return null;
-              return result;
+              return result.iterator();
            }
      
-           return result;
+           return result.iterator();
         }
     });
     

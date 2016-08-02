@@ -93,7 +93,8 @@ public class DocumentWordCount {
        JavaRDD<String> lines = ctx.textFile(inputPath, 1);
 
        JavaRDD<Tuple2<String,String>> wordsAndDocs = 
-          lines.flatMap((String s) -> Util.convertToPairOfWordAndDocument(s, N));
+          lines.flatMap((String s) -> Util.convertToPairOfWordAndDocument(s, N).iterator()
+       );
 
        JavaPairRDD<Tuple2<String,String>, Integer> ones = 
          wordsAndDocs.mapToPair((Tuple2<String,String> s) -> 
@@ -138,6 +139,7 @@ public class DocumentWordCount {
 
        // close the context and we are done
        ctx.close();
+       
        System.exit(0);
     }
     

@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
 
 import scala.Tuple2;
 import org.apache.spark.api.java.JavaRDD;
@@ -43,9 +44,9 @@ public class CharCountLocalAggregation {
        //                                                                              input   output:K   output:V
        JavaPairRDD<Character,Long> chars = lines.flatMapToPair(new PairFlatMapFunction<String, Character, Long>() {
           @Override
-          public Iterable<Tuple2<Character,Long>> call(String s) {
+          public Iterator<Tuple2<Character,Long>> call(String s) {
              if ((s == null) || (s.length() == 0)) {
-                return Collections.emptyList();
+                return Collections.EMPTY_LIST.iterator();
              }            
              Map<Character,Long> map = new HashMap<Character,Long>();
              String[] words = s.split(" ");
@@ -61,7 +62,7 @@ public class CharCountLocalAggregation {
                     }
                 }
              }
-             return toListOfKeyValuePairs(map);
+             return toListOfKeyValuePairs(map).iterator();
           }
        });
  

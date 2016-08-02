@@ -74,7 +74,9 @@ public class AnagramCountUsingGroupByKey {
         // where 
         //      K = sorted(word)
         //      V = word
-        JavaPairRDD<String, String> rdd = lines.flatMapToPair((String line) -> Util.mapToKeyValueList(line, N));
+        JavaPairRDD<String, String> rdd = lines.flatMapToPair(
+                (String line) -> Util.mapToKeyValueList(line, N).iterator()
+        );
 
         // STEP-5: create anagrams
         // JavaPairRDD<String, Iterable<String>> anagrams = rdd.groupByKey();

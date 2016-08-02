@@ -42,7 +42,7 @@ public class CharCountInMapperCombiner {
         JavaRDD<Map<Character, Integer>> partitions = lines.mapPartitions(
             new FlatMapFunction<Iterator<String>, Map<Character, Integer>>() {
             @Override
-            public Iterable<Map<Character, Integer>> call(Iterator<String> iter) {
+            public Iterator<Map<Character, Integer>> call(Iterator<String> iter) {
                 Map<Character, Integer> map = new HashMap<Character, Integer>();
                 while (iter.hasNext()) {
                     String record = iter.next();
@@ -60,7 +60,7 @@ public class CharCountInMapperCombiner {
                         }
                     }
                 }
-                return Collections.singletonList(map);
+                return Collections.singletonList(map).iterator();
             }
         });
 
@@ -93,6 +93,7 @@ public class CharCountInMapperCombiner {
 
        // close the context and we are done
        context.close();
+       
        System.exit(0);
     }
     

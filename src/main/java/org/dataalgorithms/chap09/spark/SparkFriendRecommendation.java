@@ -3,20 +3,18 @@ package org.dataalgorithms.chap09.spark;
 import org.dataalgorithms.util.SparkUtil;
 
 import scala.Tuple2;
-import scala.Tuple3;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaPairRDD;
 import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.api.java.function.PairFlatMapFunction;
-import org.apache.spark.api.java.function.FlatMapFunction;
 import org.apache.spark.api.java.function.Function;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.Iterator;
 
 /**
  * The SparkFriendRecommendation is a Spark program to implement a basic
@@ -53,7 +51,8 @@ public class SparkFriendRecommendation {
     JavaPairRDD<Long, Tuple2<Long,Long>> pairs =
           //                                      T       K     V
           records.flatMapToPair(new PairFlatMapFunction<String, Long, Tuple2<Long,Long>>() {
-      public Iterable<Tuple2<Long,Tuple2<Long,Long>>> call(String record) {
+      @Override
+      public Iterator<Tuple2<Long,Tuple2<Long,Long>>> call(String record) {
          // record=<person><TAB><friend1><,><friend2><,><friend3><,>... 
          String[] tokens = record.split("\t");
          long person = Long.parseLong(tokens[0]);
@@ -81,7 +80,7 @@ public class SparkFriendRecommendation {
             }
          } 
                  
-         return mapperOutput;
+         return mapperOutput.iterator();
       }
     });
 
@@ -109,6 +108,7 @@ public class SparkFriendRecommendation {
         grouped.mapValues(new Function< Iterable<Tuple2<Long, Long>>, // input
                                         String                        // final output
                                       >() {
+      @Override
       public String call(Iterable<Tuple2<Long, Long>> values) {
       
         // mutualFriends.key = the recommended friend 

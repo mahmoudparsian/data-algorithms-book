@@ -38,3 +38,4 @@
 .nb-gradle
 /nbproject/private
 /dist/
+/target/

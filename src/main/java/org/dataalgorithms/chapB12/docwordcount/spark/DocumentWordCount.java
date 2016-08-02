@@ -3,6 +3,7 @@ package org.dataalgorithms.chapB12.docwordcount.spark;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
 //
 import scala.Tuple2;
 //
@@ -93,8 +94,8 @@ public class DocumentWordCount {
                                             Tuple2<String,String>   // output
                                            >() {
           @Override
-          public Iterable<Tuple2<String,String>> call(String s) {
-             return Util.convertToPairOfWordAndDocument(s, N);
+          public Iterator<Tuple2<String,String>> call(String s) {
+             return Util.convertToPairOfWordAndDocument(s, N).iterator();
           }
        });
 
@@ -168,6 +169,7 @@ public class DocumentWordCount {
 
        // close the context and we are done
        ctx.close();
+       
        System.exit(0);
     }
     

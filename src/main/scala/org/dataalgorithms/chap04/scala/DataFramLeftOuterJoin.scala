@@ -1,10 +1,10 @@
 package org.dataalgorithms.chap04.scala
 
-import org.apache.spark.SparkConf
-import org.apache.spark.SparkContext
-//import org.apache.spark.sql.hive.HiveContext
-import org.apache.spark.sql.SQLContext
+//import org.apache.spark.SparkConf
+//import org.apache.spark.SparkContext
+//import org.apache.spark.sql.SQLContext
 import org.apache.spark.sql.Row
+import org.apache.spark.sql.SparkSession
 
 /**
  * This approach used DataFrame add in Spark 1.3 and above.
@@ -34,12 +34,10 @@ object DataFramLeftOuterJoin {
     val usersInputFile = args(0)
     val transactionsInputFile = args(1)
     val output = args(2)
-
-    val sparkConf = new SparkConf().setAppName("DataFram LeftOuterJoin")
-    val sc = new SparkContext(sparkConf)
-
-    //val sqlContext = new HiveContext(sc)
-    val sqlContext = new SQLContext(sc)
+    
+    val sparkSession = SparkSession.builder.appName("my-spark-app").getOrCreate()  
+    val sparkContext = sparkSession.sparkContext
+    val sqlContext = sparkSession.sqlContext
 
     import sqlContext.implicits._
     import org.apache.spark.sql.types._
@@ -67,11 +65,11 @@ object DataFramLeftOuterJoin {
       Row(tokens(0), tokens(1), tokens(2), tokens(3), tokens(4))
     }
     
-    val usersRaw = sc.textFile(usersInputFile) // Loading user data
+    val usersRaw = sparkContext.textFile(usersInputFile) // Loading user data
     val userRDDRows = usersRaw.map(userRows(_)) // Converting to RDD[org.apache.spark.sql.Row]
     val users = sqlContext.createDataFrame(userRDDRows, userSchema) // obtaining DataFrame from RDD
 
-    val transactionsRaw = sc.textFile(transactionsInputFile) // Loading transactions data
+    val transactionsRaw = sparkContext.textFile(transactionsInputFile) // Loading transactions data
     val transactionsRDDRows = transactionsRaw.map(transactionRows(_)) // Converting to  RDD[org.apache.spark.sql.Row]
     val transactions = sqlContext.createDataFrame(transactionsRDDRows, transactionSchema) // obtaining DataFrame from RDD
 
@@ -91,8 +89,8 @@ object DataFramLeftOuterJoin {
     //
     // Approach 2 using plain old SQL query
     // 
-    users.registerTempTable("users") // Register as table (temporary) so that query can be performed on the table
-    transactions.registerTempTable("transactions") // Register as table (temporary) so that query can be performed on the table
+    users.createOrReplaceTempView("users") // Register as table (temporary) so that query can be performed on the table
+    transactions.createOrReplaceTempView("transactions") // Register as table (temporary) so that query can be performed on the table
 
     import sqlContext.sql
     
@@ -105,7 +103,7 @@ object DataFramLeftOuterJoin {
     sqlContext.clearCache()
     
     // done
-    sc.stop()
+    sparkContext.stop()
   }
 
 }

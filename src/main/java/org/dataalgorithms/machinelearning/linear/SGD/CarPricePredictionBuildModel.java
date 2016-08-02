@@ -58,20 +58,20 @@ public final class CarPricePredictionBuildModel {
         final double stepSize = 0.0000000009;   // 
         final int numberOfIterations = 40;      // 
         // 
-        final LinearRegressionModel model = new LinearRegressionWithSGD(stepSize, numberOfIterations, 1.0)
-                .setIntercept(true)
-                .run(JavaRDD.toRDD(trainingData));
+        
+        // 1.6.1
+        //final LinearRegressionModel model = new LinearRegressionWithSGD(stepSize, numberOfIterations, 1.0)
+        //        .setIntercept(true)
+        //        .run(JavaRDD.toRDD(trainingData));
+        
+        // 2.0.0
+        final LinearRegressionModel model =
+              LinearRegressionWithSGD.train(JavaRDD.toRDD(trainingData), numberOfIterations, stepSize);
+
+        
         //
         THE_LOGGER.info("LinearRegressionModel weights: " + model.weights());
         THE_LOGGER.info("LinearRegressionModel intercept: " + model.intercept());
-           
-        /*
-        LinearRegressionWithSGD regression = new LinearRegressionWithSGD();
-        regression.setIntercept(true);
-        regression.optimizer().setStepSize(stepSize);   
-        regression.optimizer().setNumIterations(numberOfIterations);       
-        final LinearRegressionModel model = regression.run(JavaRDD.toRDD(trainingData));
-        */
         
         
         // SAVE the MODEL: for the future use

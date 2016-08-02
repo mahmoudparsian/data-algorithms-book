@@ -5,6 +5,7 @@ package org.dataalgorithms.chapB10.friendrecommendation.spark;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.TreeMap;
 
 import scala.Tuple2;
@@ -90,9 +91,9 @@ public class SparkFriendRecommendation {
       JavaPairRDD<Tuple2<Long,Long>, Long> rdd = lines.flatMapToPair(
           new PairFlatMapFunction<String, Tuple2<Long,Long>, Long>() {
           @Override
-          public Iterable<Tuple2<Tuple2<Long,Long>, Long>> call(String record) {       
+          public Iterator<Tuple2<Tuple2<Long,Long>, Long>> call(String record) {       
              if ((record == null) || (record.length() == 0)) {
-                return Collections.EMPTY_LIST;
+                return Collections.EMPTY_LIST.iterator();
              }
              String[] tokens = StringUtils.split(record, ":");
             long person = Long.parseLong(tokens[0]);
@@ -136,7 +137,7 @@ public class SparkFriendRecommendation {
                   kvPairs.add(new Tuple2<Tuple2<Long,Long>, Long>(s2, 1l));
                }
             } 
-            return kvPairs;
+            return kvPairs.iterator();
           }
       });
       
@@ -156,6 +157,7 @@ public class SparkFriendRecommendation {
                        Iterable<Long>,  // input
                        Long             // output (result of ttest)
                       >() {
+          @Override
           public Long call(Iterable<Long> statusList) {
              long sum = 0l;
              for (Long status : statusList) {
@@ -173,6 +175,7 @@ public class SparkFriendRecommendation {
       // If a v == 0, then exclude them
      JavaPairRDD<Tuple2<Long,Long>, Long> filtered = aggregated.filter(
         new Function<Tuple2<Tuple2<Long,Long>, Long>,Boolean>() {
+        @Override
         public Boolean call(Tuple2<Tuple2<Long,Long>, Long> s) {
            if (s._2 == 0l) {
               // exclude (k,v)'s when v == 0
@@ -191,7 +194,7 @@ public class SparkFriendRecommendation {
       JavaPairRDD<Long,Tuple2<Long,Long>> possibleRecommendations = filtered.flatMapToPair(
           new PairFlatMapFunction<Tuple2<Tuple2<Long,Long>,Long>, Long, Tuple2<Long,Long>>() {
           @Override
-          public Iterable<Tuple2<Long, Tuple2<Long,Long>>> call(Tuple2<Tuple2<Long,Long>,Long> element) { 
+          public Iterator<Tuple2<Long, Tuple2<Long,Long>>> call(Tuple2<Tuple2<Long,Long>,Long> element) { 
               List<Tuple2<Long,Tuple2<Long,Long>>> results = new ArrayList<Tuple2<Long,Tuple2<Long,Long>>>();
               // identify two users with mutual number of friends
               long user1 = element._1._1;
@@ -205,7 +208,7 @@ public class SparkFriendRecommendation {
               // string 2 is a value representing that user2 has mutualFriends in common with user1
               Tuple2<Long,Long> s2 = new Tuple2<Long,Long>(user1, numberOfMutualFriends);
               results.add(new Tuple2(user2, s2));
-              return results;
+              return results.iterator();
           }
       });
      

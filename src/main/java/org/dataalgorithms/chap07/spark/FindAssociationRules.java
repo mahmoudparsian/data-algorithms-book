@@ -6,6 +6,7 @@ import org.dataalgorithms.util.Combination;
 
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Iterator;
 import scala.Tuple2;
 import scala.Tuple3;
 import org.apache.spark.api.java.JavaRDD;
@@ -74,7 +75,7 @@ public class FindAssociationRules {
                                                              Integer        // V
                                                            >() {
          @Override
-         public Iterable<Tuple2<List<String>,Integer>> call(String transaction) {
+         public Iterator<Tuple2<List<String>,Integer>> call(String transaction) {
             List<String> list = toList(transaction);
             List<List<String>> combinations = Combination.findSortedCombinations(list);
             List<Tuple2<List<String>,Integer>> result = new ArrayList<Tuple2<List<String>,Integer>>();
@@ -83,7 +84,7 @@ public class FindAssociationRules {
                    result.add(new Tuple2<List<String>,Integer>(combList, 1));
                  }
             }
-            return result;
+            return result.iterator();
          }
       });    
       patterns.saveAsTextFile("/rules/output/2");
@@ -119,7 +120,7 @@ public class FindAssociationRules {
           Tuple2<List<String>,Integer>     // V
         >() {
        @Override
-       public Iterable<Tuple2<List<String>,Tuple2<List<String>,Integer>>> 
+       public Iterator<Tuple2<List<String>,Tuple2<List<String>,Integer>>> 
           call(Tuple2<List<String>, Integer> pattern) {
             List<Tuple2<List<String>,Tuple2<List<String>,Integer>>> result = 
                new ArrayList<Tuple2<List<String>,Tuple2<List<String>,Integer>>>();
@@ -127,7 +128,7 @@ public class FindAssociationRules {
             Integer frequency = pattern._2;
             result.add(new Tuple2(list, new Tuple2(null,frequency)));
             if (list.size() == 1) {
-               return result;
+               return result.iterator();
             }
             
             // pattern has more than one items
@@ -136,7 +137,7 @@ public class FindAssociationRules {
                List<String> sublist = removeOneItem(list, i);
                result.add(new Tuple2(sublist, new Tuple2(list, frequency)));
             }
-            return result;
+            return result.iterator();
         }
       });
       subpatterns.saveAsTextFile("/rules/output/4");

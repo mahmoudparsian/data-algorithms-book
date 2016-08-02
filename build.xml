@@ -7,6 +7,7 @@
 <!-- ============================================================= -->
             
    <property name="src" location="src/main/java"/>
+   <property name="src.scala" location="src/main/scala"/>
    <property name="test" location="src/test/java"/>
    <property name="build" location="build"/>
    <property name="dist"  location="dist"/>
@@ -17,40 +18,25 @@
   
    <path id="required_libs">
         <fileset dir="lib" includes="**/*.jar"/>
+	    <!-- scala init begin --> 
+        <!-- <fileset dir="${env.SCALA_HOME}/lib" includes="**/*.jar"/> --> 
+	    <!-- scala init end -->         
    </path>
 
-   <!-- ===================================================================  -->
-   <!-- Note that since the size of  spark-assembly-1.6.1-hadoop2.6.0.jar    -->
-   <!-- is over 100MBs, I could not upload this jar to the lib directory.    -->
-   <!-- I needed to add the "copy_jar" target, so that it can copy it from   -->
-   <!-- my web site.  Once this task is done (the jar is copied to your      -->
-   <!-- lib), subsequent builds will not dowload the jar file.               -->
-   <!-- ===================================================================  -->
 
-   <!-- -->
-   <target name="copy_jar"  depends="init">
-      <echo message="copying spark-assembly-1.6.1-hadoop2.6.0.jar..."/>    
-      <copy todir="lib" flatten="true">
-          <url url="http://www.mapreduce4hackers.com/dataalgorithmsbook/lib/spark-assembly-1.6.1-hadoop2.6.0.jar"/>
-      </copy>  
-   </target>
-   <!-- -->
+   <target name="build_jar"  depends="init">
    
-	<target name="check-spark-jar">
-    	<available file="./lib/spark-assembly-1.6.1-hadoop2.6.0.jar" property="spark-jar.present"/>
-	</target>
-
-	<target name="do-copy-jar" depends="check-spark-jar" unless="spark-jar.present">
-      <echo message="copying spark-assembly-1.6.1-hadoop2.6.0.jar..."/>    
-      <copy todir="lib" flatten="true">
-          <url url="http://www.mapreduce4hackers.com/dataalgorithmsbook/lib/spark-assembly-1.6.1-hadoop2.6.0.jar"/>
-      </copy>  
-	</target>    
-   
-    
-   <target name="build_jar"  depends="init,do-copy-jar">
-         <echo message="javac"/>    
-        <echo message="compiling src..."/>              
+        <echo message="compiling scala src..."/>                 
+ 		<scalac srcdir="${src.scala}" 
+ 		        destdir="${build}"
+                classpathref="required_libs"
+      			force="never"
+      			deprecation="on">
+                <!-- force="changed"> -->
+    		    <include name="**/*.scala"/> 
+  		</scalac>  
+  		
+        <echo message="compiling java src..."/>         		
         <javac includeantruntime="false"
                srcdir="src" 
                destdir="build"
@@ -66,6 +52,7 @@
                verbose="false">
                <compilerarg line="-encoding ISO-8859-1"/>
         </javac> 
+            			  	       
         <jar destfile="dist/data_algorithms_book.jar"
              basedir="build"
         />  
@@ -80,6 +67,7 @@
       <echo>"java.home=${java.home}"</echo>
       <echo>"ANT_HOME=${env.ANT_HOME}"</echo>
       <echo>"JAVA_HOME=${env.JAVA_HOME}"</echo>
+      <echo>"SCALA_HOME=${env.SCALA_HOME}"</echo>
       <echo>----------------------------</echo>
    </target>
  
@@ -162,7 +150,29 @@
        <mkdir dir="${reports}"/>
        <mkdir dir="${reports}/raw/"/>
        <mkdir dir="${reports}/html/"/>
+       
+	   <!-- scala init begin --> 
+  		<property
+    		name="scala-library.jar"
+    		value="${scala.home}/lib/scala-library.jar"
+     	/>
+  		<path id="build.classpath">
+    		<pathelement location="${scala-library.jar}"   />
+    		<!-- <pathelement location="${your.path}"   /> -->
+    		<pathelement location="${build.dir}"   />
+  		</path>
+  		<taskdef resource="scala/tools/ant/antlib.xml">
+    		<classpath>
+      			<pathelement location="${scala.home}/lib/scala-compiler.jar"   />
+      			<!-- NEW: For scala 2.10.2 you need scala-reflect: -->
+      			<pathelement location="${scala.home}/lib/scala-reflect.jar"   />
+      			<pathelement location="${scala-library.jar}"   />
+    		</classpath>
+  		</taskdef>
+	   <!-- scala init end --> 
+  	         
    </target>
+
   
    <target name="all" depends="clean, test">
    </target>

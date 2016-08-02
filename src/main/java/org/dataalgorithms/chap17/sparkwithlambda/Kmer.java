@@ -14,10 +14,6 @@ import scala.Tuple2;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaPairRDD;
 import org.apache.spark.api.java.JavaSparkContext;
-import org.apache.spark.api.java.function.PairFlatMapFunction;
-import org.apache.spark.api.java.function.FlatMapFunction;
-import org.apache.spark.api.java.function.Function;
-import org.apache.spark.api.java.function.Function2;
 import org.apache.spark.broadcast.Broadcast;
 //
 import org.dataalgorithms.util.SparkUtil;
@@ -78,7 +74,7 @@ public class Kmer {
               String kmer = sequence.substring(i, K1 + i);
               list.add(new Tuple2<String,Integer>(kmer, 1));
           }
-          return list;
+          return list.iterator();
       });    
       kmers.saveAsTextFile("/kmers/output/2");
     
@@ -105,7 +101,7 @@ public class Kmer {
               }
           }
           System.out.println("topN="+topN);
-          return Collections.singletonList(topN);
+          return Collections.singletonList(topN).iterator();
       });
 
       // now collect all topN from all partitions 

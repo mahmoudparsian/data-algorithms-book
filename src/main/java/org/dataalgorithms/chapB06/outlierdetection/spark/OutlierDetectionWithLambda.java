@@ -163,7 +163,7 @@ public class OutlierDetectionWithLambda {
             for (int i=1; i < tokens.length; i++) {
                 results.add(new Tuple2<String,Integer>(tokens[i], 1));
             }
-            return results;
+            return results.iterator();
         });
         
         // Step-4: find frequencies of all categirical data (keep categorical-data as String)

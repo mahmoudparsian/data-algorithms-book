@@ -80,14 +80,14 @@ public class Kmer {
           Integer        // V
         >() {
          @Override
-         public Iterable<Tuple2<String,Integer>> call(String sequence) {
+         public Iterator<Tuple2<String,Integer>> call(String sequence) {
             int K = broadcastK.value();         
             List<Tuple2<String,Integer>> list = new ArrayList<Tuple2<String,Integer>>();
             for (int i=0; i < sequence.length()-K+1 ; i++) {
                 String kmer = sequence.substring(i, K+i);
                 list.add(new Tuple2<String,Integer>(kmer, 1));
             }         
-            return list;
+            return list.iterator();
          }
       });    
       kmers.saveAsTextFile("/kmers/output/2");
@@ -107,7 +107,7 @@ public class Kmer {
       JavaRDD<SortedMap<Integer, String>> partitions = kmersGrouped.mapPartitions(
            new FlatMapFunction<Iterator<Tuple2<String,Integer>>, SortedMap<Integer, String>>() {
            @Override
-           public Iterable<SortedMap<Integer, String>> call(Iterator<Tuple2<String,Integer>> iter) {
+           public Iterator<SortedMap<Integer, String>> call(Iterator<Tuple2<String,Integer>> iter) {
                int N = broadcastN.value();
                SortedMap<Integer, String> topN = new TreeMap<Integer, String>();
                while (iter.hasNext()) {
@@ -121,7 +121,7 @@ public class Kmer {
                   }  
               }
               System.out.println("topN="+topN);
-              return Collections.singletonList(topN);
+              return Collections.singletonList(topN).iterator();
            }
       });
 

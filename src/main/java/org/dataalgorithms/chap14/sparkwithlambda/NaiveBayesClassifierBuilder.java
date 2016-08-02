@@ -99,7 +99,7 @@ public class NaiveBayesClassifierBuilder implements java.io.Serializable {
           
           Tuple2<String,String> K = new Tuple2<String,String>("CLASS", theClassification);
           result.add(new Tuple2<Tuple2<String,String>,Integer>(K, 1));
-          return result;
+          return result.iterator();
       });    
       pairs.saveAsTextFile("/output/2");
       

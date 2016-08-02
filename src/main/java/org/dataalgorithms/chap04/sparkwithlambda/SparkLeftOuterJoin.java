@@ -100,7 +100,7 @@ public class SparkLeftOuterJoin {
              }
              // Note that edges must be reciprocal, that is every
              // {source, destination} edge must have a corresponding {destination, source}.
-             return kvList;
+             return kvList.iterator();
         }
     );
     

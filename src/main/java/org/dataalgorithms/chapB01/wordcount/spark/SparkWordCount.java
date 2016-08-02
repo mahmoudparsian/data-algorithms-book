@@ -1,5 +1,7 @@
 package org.dataalgorithms.chapB01.wordcount.spark;
 
+import java.util.Iterator;
+//
 import scala.Tuple2;
 //
 import org.apache.spark.api.java.JavaRDD;
@@ -45,8 +47,8 @@ public class SparkWordCount {
        JavaRDD<String> words = lines.flatMap(new FlatMapFunction<String, String>() {
           //              output       input
           @Override
-          public Iterable<String> call(String s) {
-             return Util.convertStringToWords(s, N);
+          public Iterator<String> call(String s) {
+             return Util.convertStringToWords(s, N).iterator();
           }
        });
 
@@ -76,6 +78,7 @@ public class SparkWordCount {
 
        // close the context and we are done
        ctx.close();
+       
        System.exit(0);
     }
     

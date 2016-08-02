@@ -1,9 +1,10 @@
 package org.dataalgorithms.chapB10.friendrecommendation.spark;
 
+import org.apache.spark.SparkConf;
 import org.apache.spark.deploy.yarn.Client;
 import org.apache.spark.deploy.yarn.ClientArguments;
+//
 import org.apache.hadoop.conf.Configuration;
-import org.apache.spark.SparkConf;
 
 /**
  * Submit a Spark job to YARN from Java code.
@@ -69,7 +70,8 @@ public class SubmitSparkJobToYARNFromJavaCode {
        SparkConf sparkConf = new SparkConf();
 
        // create ClientArguments, which will be passed to Client
-       ClientArguments cArgs = new ClientArguments(args, sparkConf); 
+       //ClientArguments cArgs = new ClientArguments(args, sparkConf); // 1.6.1
+       ClientArguments cArgs = new ClientArguments(args);              // 2.0.0
        
        // create an instance of yarn Client client
        Client client = new Client(cArgs, config, sparkConf); 

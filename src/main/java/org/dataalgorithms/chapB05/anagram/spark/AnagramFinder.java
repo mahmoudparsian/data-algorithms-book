@@ -3,6 +3,7 @@ package org.dataalgorithms.chapB05.anagram.spark;
 // STEP-0: import required classes and interfaces
 import java.util.Set;
 import java.util.HashSet;
+import java.util.Iterator;
 //
 import scala.Tuple2;
 //
@@ -55,8 +56,8 @@ public class AnagramFinder {
         JavaPairRDD<String, String> rdd = lines.flatMapToPair(
                 new PairFlatMapFunction<String, String, String>() {
             @Override
-            public Iterable<Tuple2<String, String>> call(String line) {  
-                return Util.mapToKeyValueList(line, N);
+            public Iterator<Tuple2<String, String>> call(String line) {  
+                return Util.mapToKeyValueList(line, N).iterator();
             } 
          });
 
@@ -112,6 +113,7 @@ public class AnagramFinder {
 
         // STEP-7: done
         ctx.close();
+        
         System.exit(0);
     }
 }

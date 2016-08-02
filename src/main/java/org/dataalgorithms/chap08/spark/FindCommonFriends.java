@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.Iterator;
 //
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaPairRDD;
@@ -63,14 +64,14 @@ public class FindCommonFriends {
           //                                            T       K                  V
           records.flatMapToPair(new PairFlatMapFunction<String, Tuple2<Long,Long>, Iterable<Long>>() {
       @Override
-      public Iterable<Tuple2<Tuple2<Long,Long>,Iterable<Long>>> call(String s) {
+      public Iterator<Tuple2<Tuple2<Long,Long>,Iterable<Long>>> call(String s) {
          String[] tokens = s.split(",");
          long person = Long.parseLong(tokens[0]);
          String friendsAsString = tokens[1];
          String[] friendsTokenized = friendsAsString.split(" ");
          if (friendsTokenized.length == 1) {
             Tuple2<Long,Long> key = buildSortedTuple(person, Long.parseLong(friendsTokenized[0]));
-            return Arrays.asList(new Tuple2<Tuple2<Long,Long>,Iterable<Long>>(key, new ArrayList<Long>()));
+            return Arrays.asList(new Tuple2<Tuple2<Long,Long>,Iterable<Long>>(key, new ArrayList<Long>())).iterator();
          }
          List<Long> friends = new ArrayList<Long>();
          for (String f : friendsTokenized) {
@@ -83,7 +84,7 @@ public class FindCommonFriends {
             Tuple2<Long,Long> key = buildSortedTuple(person, f);
             result.add(new Tuple2<Tuple2<Long,Long>, Iterable<Long>>(key, friends));
          }
-         return result;
+         return result.iterator();
       }
     });
 

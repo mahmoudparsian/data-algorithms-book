@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.io.Serializable;
+import java.util.Iterator;
 //
 import scala.Tuple2;
 //
@@ -164,7 +165,7 @@ public class OutlierDetection {
                 Integer       // V = 1
                >() {
             @Override
-            public Iterable<Tuple2<String,Integer>> call(String rec) { 
+            public Iterator<Tuple2<String,Integer>> call(String rec) { 
                 //        
                 List<Tuple2<String,Integer>> results = new ArrayList<Tuple2<String,Integer>>();
                 // rec has the following format:
@@ -173,7 +174,7 @@ public class OutlierDetection {
                 for (int i=1; i < tokens.length; i++) {
                     results.add(new Tuple2<String,Integer>(tokens[i], 1));
                 }
-                return results;
+                return results.iterator();
             }
         });
         

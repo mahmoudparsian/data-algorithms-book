@@ -90,7 +90,8 @@ public class SubmitSparkPiToYARNFromJavaCode {
         System.setProperty("SPARK_YARN_MODE", "true");
         //
         SparkConf sparkConf = new SparkConf();
-        ClientArguments clientArgs = new ClientArguments(args, sparkConf); // worked
+        //ClientArguments clientArgs = new ClientArguments(args, sparkConf); // 1.6.1
+        ClientArguments clientArgs = new ClientArguments(args); // 2.0.0
         Client client = new Client(clientArgs, config, sparkConf);
         //
         client.run();

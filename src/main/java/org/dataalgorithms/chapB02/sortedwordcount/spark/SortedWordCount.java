@@ -1,5 +1,7 @@
 package org.dataalgorithms.chapB02.sortedwordcount.spark;
 
+import java.util.Iterator;
+//
 import scala.Tuple2;
 //
 import org.apache.spark.api.java.JavaRDD;
@@ -44,8 +46,8 @@ public class SortedWordCount {
        JavaRDD<String> words = lines.flatMap(new FlatMapFunction<String, String>() {
           //              output       input
           @Override
-          public Iterable<String> call(String line) {
-                return Util.convertLineToWords(line, N);
+          public Iterator<String> call(String line) {
+                return Util.convertLineToWords(line, N).iterator();
           }
        });
 

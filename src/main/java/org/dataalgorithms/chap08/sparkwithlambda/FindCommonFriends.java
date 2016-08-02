@@ -64,7 +64,7 @@ public class FindCommonFriends {
               String[] friendsTokenized = friendsAsString.split(" ");
               if (friendsTokenized.length == 1) {
                   Tuple2<Long,Long> key = buildSortedTuple(person, Long.parseLong(friendsTokenized[0]));
-                  return Arrays.asList(new Tuple2<Tuple2<Long,Long>,Iterable<Long>>(key, new ArrayList<Long>()));
+                  return Arrays.asList(new Tuple2<Tuple2<Long,Long>,Iterable<Long>>(key, new ArrayList<Long>())).iterator();
               }
               List<Long> friends = new ArrayList<Long>();
               for (String f : friendsTokenized) {
@@ -77,7 +77,7 @@ public class FindCommonFriends {
                   Tuple2<Long,Long> key = buildSortedTuple(person, f);
                   result.add(new Tuple2<Tuple2<Long,Long>, Iterable<Long>>(key, friends));
               }
-              return result;
+              return result.iterator();
           }
     );
 

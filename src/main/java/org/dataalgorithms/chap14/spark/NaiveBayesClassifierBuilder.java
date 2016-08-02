@@ -6,6 +6,7 @@ import java.util.Map;
 import java.util.HashMap;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Iterator;
 //
 import scala.Tuple2;
 //
@@ -86,7 +87,7 @@ public class NaiveBayesClassifierBuilder implements java.io.Serializable {
           Integer                       // V = 1
         >() {
          @Override
-         public Iterable<Tuple2<Tuple2<String,String>,Integer>> call(String rec) {
+         public Iterator<Tuple2<Tuple2<String,String>,Integer>> call(String rec) {
             List<Tuple2<Tuple2<String,String>,Integer>> result = 
                new ArrayList<Tuple2<Tuple2<String,String>,Integer>>();
             String[] tokens = rec.split(",");
@@ -104,7 +105,7 @@ public class NaiveBayesClassifierBuilder implements java.io.Serializable {
             
             Tuple2<String,String> K = new Tuple2<String,String>("CLASS", theClassification);
             result.add(new Tuple2<Tuple2<String,String>,Integer>(K, 1));
-            return result;
+            return result.iterator();
          }
       });    
       pairs.saveAsTextFile("/output/2");

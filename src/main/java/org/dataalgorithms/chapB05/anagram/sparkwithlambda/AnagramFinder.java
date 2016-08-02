@@ -51,7 +51,9 @@ public class AnagramFinder {
         // STEP-4: create (K, V) pairs from input
         // K = sorted(word)
         // V = word
-        JavaPairRDD<String, String> rdd = lines.flatMapToPair((String line) -> Util.mapToKeyValueList(line, N));
+        JavaPairRDD<String, String> rdd = lines.flatMapToPair(
+                (String line) -> Util.mapToKeyValueList(line, N).iterator()
+        );
         
         // STEP-5: create anagrams
         JavaPairRDD<String, Iterable<String>> anagrams = rdd.groupByKey();
@@ -99,6 +101,7 @@ public class AnagramFinder {
 
         // STEP-7: done
         ctx.close();
+        
         System.exit(0);
     }
 }

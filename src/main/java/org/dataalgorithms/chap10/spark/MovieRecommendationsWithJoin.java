@@ -11,15 +11,10 @@ import org.apache.spark.api.java.JavaPairRDD;
 import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.api.java.function.Function;
 import org.apache.spark.api.java.function.PairFlatMapFunction;
-import org.apache.spark.api.java.function.FlatMapFunction;
 import org.apache.spark.api.java.function.PairFunction;
 
-import java.util.Set;
-import java.util.HashSet;
-import java.util.Arrays;
 import java.util.List;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Iterator;
 
 
@@ -59,6 +54,7 @@ public class MovieRecommendationsWithJoin {
           //                                      T       K       V
           usersRatings.mapToPair(new PairFunction<String, String, Tuple2<String,Integer>>() {
           //                                            T
+      @Override
       public Tuple2<String,Tuple2<String,Integer>> call(String s) {
       	String[] record = s.split("\t");
       	String user = record[0];
@@ -98,7 +94,8 @@ public class MovieRecommendationsWithJoin {
     JavaPairRDD<String,Tuple3<String,Integer,Integer>> usersRDD = 
          //                                                  T                                                 K       V 
          moviesGrouped.flatMapToPair(new PairFlatMapFunction<Tuple2<String, Iterable<Tuple2<String,Integer>>>, String, Tuple3<String,Integer,Integer>>() {
-      public Iterable<Tuple2<String,Tuple3<String,Integer,Integer>>> call(Tuple2<String, Iterable<Tuple2<String,Integer>>> s) {
+      @Override
+      public Iterator<Tuple2<String,Tuple3<String,Integer,Integer>>> call(Tuple2<String, Iterable<Tuple2<String,Integer>>> s) {
          List<Tuple2<String,Integer>> listOfUsersAndRatings = new ArrayList<Tuple2<String,Integer>>();
      	 // now read inputs and generate desired (K,V) pairs
      	 String movie = s._1;
@@ -118,7 +115,7 @@ public class MovieRecommendationsWithJoin {
        		results.add(new Tuple2<String, Tuple3<String,Integer,Integer>>(user, t3));
          }
 
-         return results;
+         return results.iterator();
       }
     });
     
@@ -200,6 +197,7 @@ public class MovieRecommendationsWithJoin {
                 Tuple2<String,String>,                                          // K
                 Tuple7<Integer,Integer,Integer,Integer,Integer,Integer,Integer> // V
                >() {
+      @Override
       public  Tuple2<Tuple2<String,String>, Tuple7<Integer,Integer,Integer,Integer,Integer,Integer,Integer>>  
         call(Tuple2<String,Tuple2<Tuple3<String,Integer,Integer>,Tuple3<String,Integer,Integer>>> s) {
             // String user = s._1; // will be dropped
@@ -233,6 +231,7 @@ public class MovieRecommendationsWithJoin {
           corrRDD.mapValues(new Function< Iterable<Tuple7<Integer,Integer,Integer,Integer,Integer,Integer,Integer>>,   // input
                                           Tuple3<Double,Double,Double>                                                                       // output
                                         >() {
+      @Override
       public Tuple3<Double,Double,Double> call(Iterable<Tuple7<Integer,Integer,Integer,Integer,Integer,Integer,Integer>> s) {
       	 return calculateCorrelations(s);
       }

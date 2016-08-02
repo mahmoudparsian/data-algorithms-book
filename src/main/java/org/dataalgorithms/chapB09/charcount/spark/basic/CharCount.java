@@ -3,6 +3,7 @@ package org.dataalgorithms.chapB09.charcount.spark.basic;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
 
 import scala.Tuple2;
 import org.apache.spark.api.java.JavaRDD;
@@ -52,9 +53,9 @@ public class CharCount {
        //                                                                              input   output:K   output:V
        JavaPairRDD<Character,Long> chars = lines.flatMapToPair(new PairFlatMapFunction<String, Character, Long>() {
           @Override
-          public Iterable<Tuple2<Character,Long>> call(String s) {
+          public Iterator<Tuple2<Character,Long>> call(String s) {
              if ((s == null) || (s.length() == 0)) {
-                return Collections.emptyList();
+                return Collections.EMPTY_LIST.iterator();
              }            
              String[] words = s.split(" ");
              List<Tuple2<Character,Long>> list = new ArrayList<Tuple2<Character,Long>>();
@@ -64,7 +65,7 @@ public class CharCount {
                     list.add(new Tuple2<Character, Long>(c, 1l));
                 }
              }
-             return list;
+             return list.iterator();
           }
        });
  
@@ -83,6 +84,7 @@ public class CharCount {
 
        // close the context and we are done
        context.close();
+       
        System.exit(0);
     }
     

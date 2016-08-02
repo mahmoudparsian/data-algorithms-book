@@ -2,15 +2,14 @@ package org.dataalgorithms.chapB13.client;
 
 import scala.Option;
 import org.apache.log4j.Logger;
-import org.apache.spark.deploy.client.AppClientListener;
-
+import org.apache.spark.deploy.client.StandaloneAppClientListener;
 /**
  * This is a very basic AppClientListener.
  * 
  *  @author Mahmoud Parsian (mahmoud.parsian@yahoo.com)
  * 
  */
-public class BasicAppClientListener implements AppClientListener  {
+public class BasicAppClientListener implements StandaloneAppClientListener  {
     
      static final Logger THE_LOGGER = Logger.getLogger(BasicAppClientListener.class);
    

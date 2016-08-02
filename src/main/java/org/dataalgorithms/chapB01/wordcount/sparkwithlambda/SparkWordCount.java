@@ -38,7 +38,7 @@ public class SparkWordCount {
        JavaRDD<String> lines = ctx.textFile(inputPath, 1);
 
        JavaRDD<String> words = lines.flatMap((String s) -> {
-           return Util.convertStringToWords(s, N);
+           return Util.convertStringToWords(s, N).iterator();
        });
 
        JavaPairRDD<String, Integer> ones = 
@@ -54,6 +54,7 @@ public class SparkWordCount {
 
        // close the context and we are done
        ctx.close();
+       
        System.exit(0);
     }
     

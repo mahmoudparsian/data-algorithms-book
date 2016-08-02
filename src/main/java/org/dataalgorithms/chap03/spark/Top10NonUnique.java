@@ -105,7 +105,7 @@ public class Top10NonUnique {
       JavaRDD<SortedMap<Integer, String>> partitions = uniqueKeys.mapPartitions(
           new FlatMapFunction<Iterator<Tuple2<String,Integer>>, SortedMap<Integer, String>>() {
           @Override
-          public Iterable<SortedMap<Integer, String>> call(Iterator<Tuple2<String,Integer>> iter) {
+          public Iterator<SortedMap<Integer, String>> call(Iterator<Tuple2<String,Integer>> iter) {
              final int N = topN.value();
              SortedMap<Integer, String> localTopN = new TreeMap<Integer, String>();
              while (iter.hasNext()) {
@@ -116,7 +116,7 @@ public class Top10NonUnique {
                    localTopN.remove(localTopN.firstKey());
                 } 
              }
-             return Collections.singletonList(localTopN);
+             return Collections.singletonList(localTopN).iterator();
           }
       });
       partitions.saveAsTextFile("/output/4");
