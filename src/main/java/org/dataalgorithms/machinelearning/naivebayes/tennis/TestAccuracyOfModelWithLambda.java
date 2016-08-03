@@ -8,8 +8,6 @@ import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.api.java.JavaPairRDD;
 import org.apache.spark.api.java.JavaRDD;
-import org.apache.spark.api.java.function.Function;
-import org.apache.spark.api.java.function.PairFunction;
 //
 import org.apache.spark.mllib.classification.NaiveBayesModel;
 import org.apache.spark.mllib.regression.LabeledPoint;
@@ -85,9 +83,9 @@ outlook temperature humidity    windy   play
  * @author Mahmoud Parsian (mahmoud.parsian@yahoo.com)
  *
  */
-public class TestAccuracyOfModel {
+public class TestAccuracyOfModelWithLambda {
 
-    private static final Logger THE_LOGGER = Logger.getLogger(TestAccuracyOfModel.class);
+    private static final Logger THE_LOGGER = Logger.getLogger(TestAccuracyOfModelWithLambda.class);
 
     public static void main(String[] args) throws Exception {
         Util.printArguments(args);
@@ -122,22 +120,14 @@ public class TestAccuracyOfModel {
         // predict the test data
         //
         JavaPairRDD<Double, Double> predictionAndLabel = 
-            test.mapToPair(new PairFunction<LabeledPoint, Double, Double>() {
-            @Override 
-            public Tuple2<Double, Double> call(LabeledPoint p) {
-                return new Tuple2<Double, Double>(model.predict(p.features()), p.label());
-            }
-        });
+            test.mapToPair((LabeledPoint p) -> new Tuple2<Double, Double>(model.predict(p.features()), p.label()));
 
         //
         // check accuracy of test data against the training data
         //
-        double accuracy = predictionAndLabel.filter(new Function<Tuple2<Double, Double>, Boolean>() {
-            @Override 
-            public Boolean call(Tuple2<Double, Double> pl) {
-                return pl._1().equals(pl._2());
-            }
-        }).count() / (double) test.count();
+        double accuracy = predictionAndLabel.filter((Tuple2<Double, Double> pl) -> pl._1().equals(pl._2()))
+                                            .count() / (double) test.count();
+        //
         THE_LOGGER.info("accuracy="+accuracy);
 
 
