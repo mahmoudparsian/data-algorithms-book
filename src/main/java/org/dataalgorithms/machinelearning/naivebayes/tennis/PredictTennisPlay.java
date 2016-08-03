@@ -1,11 +1,14 @@
 package org.dataalgorithms.machinelearning.naivebayes.tennis;
 
 import scala.Tuple2;
+//
 import org.apache.log4j.Logger;
+//
 import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.api.java.JavaPairRDD;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.function.PairFunction;
+//
 import org.apache.spark.mllib.classification.NaiveBayesModel;
 import org.apache.spark.mllib.linalg.Vector;
 
@@ -83,9 +86,8 @@ and prediction.
  
  */
 public class PredictTennisPlay {
-    
+
     private static final Logger THE_LOGGER = Logger.getLogger(PredictTennisPlay.class);
-    
 
     public static void main(String[] args) throws Exception {
         Util.printArguments(args);
@@ -126,20 +128,19 @@ public class PredictTennisPlay {
                         double prediction = model.predict(v);
                         return new Tuple2<Vector, Double>(v, prediction);
                     }
-        });
-        
+                });
+
         //
         // DEBUG/VIEW predictions:
         //
         Iterable<Tuple2<Vector, Double>> predictions = predictionAndLabel.collect();
         for (Tuple2<Vector, Double> p : predictions) {
-            THE_LOGGER.info("input: "+ p._1);
-            THE_LOGGER.info("prediction: "+ p._2);
+            THE_LOGGER.info("input: " + p._1);
+            THE_LOGGER.info("prediction: " + p._2);
         }
 
         // done
         context.close();
     }
 
-    
 }

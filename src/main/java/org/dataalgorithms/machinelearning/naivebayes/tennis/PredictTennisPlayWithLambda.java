@@ -1,13 +1,15 @@
 package org.dataalgorithms.machinelearning.naivebayes.tennis;
 
+import scala.Tuple2;
+//
 import org.apache.log4j.Logger;
 //
-import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
+import org.apache.spark.api.java.JavaPairRDD;
+import org.apache.spark.api.java.JavaRDD;
 //
-import org.apache.spark.mllib.classification.NaiveBayes;
 import org.apache.spark.mllib.classification.NaiveBayesModel;
-import org.apache.spark.mllib.regression.LabeledPoint;
+import org.apache.spark.mllib.linalg.Vector;
 
 
 /**
@@ -82,46 +84,59 @@ and prediction.
 @author Mahmoud Parsian (mahmoud.parsian@yahoo.com)
  
  */
-public class BuildTennisModel {
-    
-    private static final Logger THE_LOGGER = Logger.getLogger(BuildTennisModel.class);   
+public class PredictTennisPlayWithLambda {
+
+    private static final Logger THE_LOGGER = Logger.getLogger(PredictTennisPlayWithLambda.class);
 
     public static void main(String[] args) throws Exception {
         Util.printArguments(args);
         if (args.length != 2) {
-            throw new RuntimeException("usage: BuildTennisModel <training-path> <saved-path-for-model>");
+            throw new RuntimeException("usage: PredictDiabetes <saved-model-path> <query-data-path>");
         }
 
         //
-        String trainingPath = args[0];
-        String savedModelPath = args[1];
-        THE_LOGGER.info("--- trainingPath=" + trainingPath);
+        String savedModelPath = args[0];
+        String queryDataPath = args[1];
         THE_LOGGER.info("--- savedModelPath=" + savedModelPath);
+        THE_LOGGER.info("--- queryDataPath=" + queryDataPath);
 
         // create a Factory context object
-        JavaSparkContext context = Util.createJavaSparkContext("BuildTennisModel");
-        
+        JavaSparkContext context = Util.createJavaSparkContext("PredictDiabetes");
 
         //
-        // create training data set
-        // input records format: outlook temp. humidity windy play|not-play
+        // create query data set
+        // input records format: <feature-1><,><feature-2><feature-3><,><feature-4>
         //
-        JavaRDD<String> trainingRDD = context.textFile(trainingPath);        
-        JavaRDD<LabeledPoint> training  = Util.createLabeledPointRDD(trainingRDD);
-        
+        JavaRDD<String> queryRDD = context.textFile(queryDataPath);
+        JavaRDD<Vector> query = Util.createFeatureVector(queryRDD);
 
         //
-        // create a model from the given training data set
+        // load the built model from the saved path
         //
-        final NaiveBayesModel model = NaiveBayes.train(training.rdd(), 1.0);
+        final NaiveBayesModel model = NaiveBayesModel.load(context.sc(), savedModelPath);
 
         //
-        // Save and load model for future use
+        // predict the query data
+        // JavaPairRDD<Vector, Double> = JavaPairRDD<Vector as input, Double prediction as output>
         //
-        model.save(context.sc(), savedModelPath);
-        
+        JavaPairRDD<Vector, Double> predictionAndLabel
+                = query.mapToPair((Vector v) -> {
+                    // predict values for a single data point using the model trained.
+                    double prediction = model.predict(v);
+                    return new Tuple2<Vector, Double>(v, prediction);
+                });
+
+        //
+        // DEBUG/VIEW predictions:
+        //
+        Iterable<Tuple2<Vector, Double>> predictions = predictionAndLabel.collect();
+        for (Tuple2<Vector, Double> p : predictions) {
+            THE_LOGGER.info("input: " + p._1);
+            THE_LOGGER.info("prediction: " + p._2);
+        }
+
         // done
         context.close();
     }
-     
+
 }
