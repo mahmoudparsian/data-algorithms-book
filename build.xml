@@ -164,7 +164,6 @@
   		<taskdef resource="scala/tools/ant/antlib.xml">
     		<classpath>
       			<pathelement location="${scala.home}/lib/scala-compiler.jar"   />
-      			<!-- NEW: For scala 2.10.2 you need scala-reflect: -->
       			<pathelement location="${scala.home}/lib/scala-reflect.jar"   />
       			<pathelement location="${scala-library.jar}"   />
     		</classpath>

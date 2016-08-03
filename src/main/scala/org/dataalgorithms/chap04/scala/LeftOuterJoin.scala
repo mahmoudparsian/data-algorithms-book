@@ -4,27 +4,27 @@ import org.apache.spark.SparkConf
 import org.apache.spark.SparkContext
 
 /**
- * Demonstrates how to do "left outer join" on two RDD 
- * without using Spark's inbuilt feature 'leftOuterJoin'. 
- * 
- * The main purpose here is to show the comparison with Hadoop 
+ * Demonstrates how to do "left outer join" on two RDD
+ * without using Spark's inbuilt feature 'leftOuterJoin'.
+ *
+ * The main purpose here is to show the comparison with Hadoop
  * MapReduce shown earlier in the book and is only for demonstration purpose.
- * For your project we suggest to use Spark's built-in feature 
- * 'leftOuterJoin' or using DataFrame (highly recommended).
+ * For your project we suggest to use Spark's built-in feature
+ * 'leftOuterJoin' or use DataFrame (highly recommended).
  *
  * @author Gaurav Bhardwaj (gauravbhardwajemail@gmail.com)
  *
  * @editor Mahmoud Parsian (mahmoud.parsian@yahoo.com)
- ** 
+ * *
  */
 object LeftOuterJoin {
-  
+
   def main(args: Array[String]): Unit = {
     if (args.size < 3) {
-      println("Usage: LeftOuterJoin <users> <transactions> <output>")
+      println("Usage: LeftOuterJoin <users-data-path> <transactions-data-path> <output-path>")
       sys.exit(1)
     }
-    
+
     val sparkConf = new SparkConf().setAppName("LeftOuterJoin")
     val sc = new SparkContext(sparkConf)
 
@@ -48,20 +48,22 @@ object LeftOuterJoin {
     // This operation is expensive and is listed to compare with Hadoop 
     // MapReduce approach, please compare it with more optimized approach 
     // shown in SparkLeftOuterJoin.scala or DataFramLeftOuterJoin.scala
-    val all = users union transactions 
+    val all = users union transactions
 
     val grouped = all.groupByKey()
-    
-    val productLocations = grouped.flatMap{case(userId, iterable) => 
-      // span returns two Iterable, one containing Location and other conatining Products 
-      val (location, products) = iterable span (_._1 == "L") 
-      val loc = location.head._2
-      products.map(p => (p._2, loc)).toSet //Converting to Set removes all the duplicates
+
+    val productLocations = grouped.flatMap {
+      case (userId, iterable) =>
+        // span returns two Iterable, one containing Location and other containing Products 
+        val (location, products) = iterable span (_._1 == "L")
+        val loc = location.headOption.getOrElse(("L", "UNKNOWN"))
+        products.filter(_._1 == "P").map(p => (p._2, loc._2)).toSet
     }
+    //
     val productByLocations = productLocations.groupByKey()
-    
+
     val result = productByLocations.map(t => (t._1, t._2.size)) // Return (product, location count) tuple
-    
+
     result.saveAsTextFile(output) // Saves output to the file.
 
     // done
