@@ -2,53 +2,32 @@ package org.dataalgorithms.chap07.spark;
 
 
 // STEP-0: import required classes and interfaces
-import org.dataalgorithms.util.Combination;
 
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Iterator;
+//
 import scala.Tuple2;
 import scala.Tuple3;
+//
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaPairRDD;
 import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.api.java.function.PairFlatMapFunction;
 import org.apache.spark.api.java.function.Function;
 import org.apache.spark.api.java.function.Function2;
+//
+import org.dataalgorithms.util.Combination;
 
 /**
  * 
- * he FindAssociationRules class finds all association rules 
+ * The FindAssociationRules class finds all association rules 
  * for a market basket data sets.
  *  
  * @author Mahmoud Parsian
  *
  */ 
 public class FindAssociationRules {
-  
-   static List<String> toList(String transaction) {
-      String[] items = transaction.trim().split(",");
-      List<String> list = new ArrayList<String>();
-      for (String item : items) {
-        list.add(item);
-      }
-      return list;
-   }
-  
-   static List<String>  removeOneItem(List<String> list, int i) {
-      if ( (list == null) || (list.isEmpty()) ) {
-        return list;
-      }
-      
-      if ( (i < 0) || (i > (list.size()-1)) ) {
-         return list;
-      }
-      
-      List<String> cloned = new ArrayList<String>(list);
-      cloned.remove(i);
-      return cloned;
-   }
-
   
    public static void main(String[] args) throws Exception {
       // STEP-1: handle input parameters
@@ -76,7 +55,7 @@ public class FindAssociationRules {
                                                            >() {
          @Override
          public Iterator<Tuple2<List<String>,Integer>> call(String transaction) {
-            List<String> list = toList(transaction);
+            List<String> list = Util.toList(transaction);
             List<List<String>> combinations = Combination.findSortedCombinations(list);
             List<Tuple2<List<String>,Integer>> result = new ArrayList<Tuple2<List<String>,Integer>>();
             for (List<String> combList : combinations) {
@@ -134,7 +113,7 @@ public class FindAssociationRules {
             // pattern has more than one items
             // result.add(new Tuple2(list, new Tuple2(null,size)));
             for (int i=0; i < list.size(); i++) {
-               List<String> sublist = removeOneItem(list, i);
+               List<String> sublist = Util.removeOneItem(list, i);
                result.add(new Tuple2(sublist, new Tuple2(list, frequency)));
             }
             return result.iterator();
@@ -195,7 +174,8 @@ public class FindAssociationRules {
       assocRules.saveAsTextFile("/rules/output/6");
 
       // done
-      ctx.close();      
+      ctx.close(); 
+      
       System.exit(0);
    }
 }
