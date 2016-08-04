@@ -3,7 +3,7 @@ package org.dataalgorithms.util;
 import java.util.SortedMap;
 
 /**
- * A utility class to do basics.
+ * A utility class to do basic data structure operations...
  *
  *
  * @author Mahmoud Parsian
@@ -22,12 +22,13 @@ public class DataStructures {
             final SortedMap<Integer, Integer> larger) {
         //
         for (Integer key : smaller.keySet()) {
-            Integer value = larger.get(key);
-            if (value == null) {
-                larger.put(key, value);
+            Integer valueFromLargeMap = larger.get(key);
+            if (valueFromLargeMap == null) {
+                larger.put(key, smaller.get(key));
             } 
             else {
-                larger.put(key, value + smaller.get(key));
+                int mergedValue = valueFromLargeMap + smaller.get(key);
+                larger.put(key, mergedValue);
             }
         }
         //
