@@ -16,7 +16,7 @@ object MovingAverage {
   
   def main(args: Array[String]): Unit = {
     if (args.size < 4) {
-      println("Usage: MemoryMovingAverage <window> <No of partition> <input dir> <output dir>")
+      println("Usage: MemoryMovingAverage <window> <number-of-partitions> <input-dir> <output-dir>")
       sys.exit(1)
     }
 

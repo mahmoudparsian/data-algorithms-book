@@ -23,7 +23,7 @@ object MovingAverageInMemory {
   
   def main(args: Array[String]): Unit = {
     if (args.size < 3) {
-      println("Usage: MovingAverageInMemory <window> <input dir> <output dir>")
+      println("Usage: MovingAverageInMemory <window> <input-dir> <output-dir>")
       sys.exit(1)
     }
 
