@@ -10,7 +10,7 @@ import org.apache.hadoop.mapred.TextOutputFormat;
 import org.apache.hadoop.util.GenericOptionsParser;
 import org.apache.hadoop.mapred.JobConf;
 import org.apache.hadoop.mapred.JobClient;
-
+//
 import org.dataalgorithms.util.HadoopUtil;
 import org.dataalgorithms.chap06.TimeSeriesData;
 
