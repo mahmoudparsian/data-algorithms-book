@@ -1,8 +1,10 @@
 # Moving Average in Scala/Spark
 
+## Introduction
 Moving Average is a succession of averages derived from successive segments 
 (typically of constant size and overlapping) of a series of values.
 
+## Scala Solution 
 
 Moving Average Scala Solution                                  |  Description                                        |
 -------------------------------------------------------------- | --------------------------------------------------- | 
