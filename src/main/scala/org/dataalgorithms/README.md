@@ -10,6 +10,7 @@ Chapter                             |  Title                                    
 [Chapter 01](./chap01/scala/)       |  Secondary Sorting                          | 
 [Chapter 03](./chap03/scala/)       |  Top-10                                     |
 [Chapter 04](./chap04/scala/)       |  Left Outer Join                            |
+[Chapter 06](./chap06/scala/)       |  Moving Average                             |
 ...                                 |  ...                                        |
 
 Credit and Thank you!
