@@ -1,5 +1,5 @@
-Submit a Spark job to YARN from Java Code
-=========================================
+Submit a Spark job to YARN/Cluster from Java Code
+=================================================
 In this post I will show you how to submit a Spark job from Java code. 
 Typically, we submit Spark jobs to "Spark Cluster" and Hadoop/YARN  by 
 using the ````$SPARK_HOME/bin/spark-submit````  shell script.  Submitting 
