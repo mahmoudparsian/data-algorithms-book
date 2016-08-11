@@ -22,8 +22,8 @@ Spark jobs to Spark Cluster or to Hadoop/YARN.
 
 Program/File                                |  Description                                                    |
 ------------------------------------------- | --------------------------------------------------------------- | 
-ConfigurationManager.java                   |  Creates an Hadoop ````Configuration```` object                 | 
-SubmitSparkJobToClusterFromJavaCode.java    |  Submits a Spark job to Spark cluster from Java code            |
+[ConfigurationManager.java](./ConfigurationManager.java)                   |  Creates an Hadoop ````Configuration```` object                 | 
+[SubmitSparkJobToClusterFromJavaCode.java](./SubmitSparkJobToClusterFromJavaCode.java)    |  Submits a Spark job to Spark cluster from Java code            |
 SubmitSparkJobToYARNFromJavaCode.java       |  Submits a Spark job to Hadoop/YARN from Java code              |
 SubmitSparkPiToClusterFromJavaCode.java     |  Submits a SparkPi to Spark cluster from Java code              |         
 SubmitSparkPiToClusterFromJavaCode.log      |  log file                                                       |
