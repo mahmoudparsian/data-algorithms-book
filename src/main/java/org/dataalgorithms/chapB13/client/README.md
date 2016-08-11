@@ -2,7 +2,7 @@ Submit a Spark job to YARN from Java Code
 =========================================
 In this post I will show you how to submit a Spark job from Java code. 
 Typically, we submit Spark jobs to "Spark Cluster" and Hadoop/YARN  by 
-using ````$SPARK_HOME/bin/spark-submit````  shell script.  Submitting 
+using the ````$SPARK_HOME/bin/spark-submit````  shell script.  Submitting 
 Spark job from a shell script limits programmers when they want to submit 
 Spark jobs from Java code (such as Java servlets or other Java code such 
 as REST servers).
@@ -11,29 +11,27 @@ Spark Version
 =============
 
 ````
-spark-1.6.1
+spark-2.0.0
 ````
 
-Use YARN's Client Class
-=======================
-Below is a complete Java code, which submits a Spark job to YARN from Java 
-code (no shell scripting  is required). The main class used for submitting 
-a Spark job to YARN is the ```org.apache.spark.deploy.yarn.Client```` class.
+Client Package ````org.dataalgorithms.chapB13.client````
+========================================================
+This package contains the following  programs, which submit
+Spark jobs to Spark Cluster or to Hadoop/YARN.
 
 
-Complete Java Client Program
-============================
-[SubmitSparkJobToYARNFromJavaCode](https://raw.githubusercontent.com/mahmoudparsian/data-algorithms-book/master/src/main/java/org/dataalgorithms/client/SubmitSparkJobToYARNFromJavaCode.java)
+Program/File                                |  Description                                                    |
+------------------------------------------- | --------------------------------------------------------------- | 
+ConfigurationManager.java                   |  Creates an Hadoop ````Configuration```` object                 | 
+SubmitSparkJobToClusterFromJavaCode.java    |  Submits a Spark job to Spark cluster from Java code            |
+SubmitSparkJobToYARNFromJavaCode.java       |  Submits a Spark job to Hadoop/YARN from Java code              |
+SubmitSparkPiToClusterFromJavaCode.java     |  Submits a SparkPi to Spark cluster from Java code              |         
+SubmitSparkPiToClusterFromJavaCode.log      |  log file                                                       |
+SubmitSparkPiToYARNFromJavaCode.java        |  Submits a SparkPi to Hadoop/YARN from Java code                |
+SubmitSparkPiToYARNFromJavaCode.log         |  log file                                                       |
+SubmitSparkPiToYARNFromJavaCode.stderr.html |  stderr file                                                    |
+SubmitSparkPiToYARNFromJavaCode.stdout.html |  stdout file                                                    |
 
-
-Running Complete Java Client Program
-====================================
-
-Now, we can submit Spark job from Java code:
-````
-export LIB_DIR=/Users/mparsian/zmp/github/data-algorithms-book/lib
-$ java  org.dataalgorithms.chapB13.client.SubmitSparkJobToYARNFromJavaCode  $LIB_DIR
-````
 
 Note
 ====
