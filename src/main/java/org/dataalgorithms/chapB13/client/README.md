@@ -24,13 +24,13 @@ Program/File                                |  Description                      
 ------------------------------------------- | --------------------------------------------------------------- | 
 [ConfigurationManager.java](./ConfigurationManager.java)                   |  Creates an Hadoop ````Configuration```` object                 | 
 [SubmitSparkJobToClusterFromJavaCode.java](./SubmitSparkJobToClusterFromJavaCode.java)    |  Submits a Spark job to Spark cluster from Java code            |
-SubmitSparkJobToYARNFromJavaCode.java       |  Submits a Spark job to Hadoop/YARN from Java code              |
-SubmitSparkPiToClusterFromJavaCode.java     |  Submits a SparkPi to Spark cluster from Java code              |         
-SubmitSparkPiToClusterFromJavaCode.log      |  log file                                                       |
-SubmitSparkPiToYARNFromJavaCode.java        |  Submits a SparkPi to Hadoop/YARN from Java code                |
-SubmitSparkPiToYARNFromJavaCode.log         |  log file                                                       |
-SubmitSparkPiToYARNFromJavaCode.stderr.html |  stderr file                                                    |
-SubmitSparkPiToYARNFromJavaCode.stdout.html |  stdout file                                                    |
+[SubmitSparkJobToYARNFromJavaCode.java](./SubmitSparkJobToYARNFromJavaCode.java)      |  Submits a Spark job to Hadoop/YARN from Java code              |
+[SubmitSparkPiToClusterFromJavaCode.java](./SubmitSparkPiToClusterFromJavaCode.java)     |  Submits a SparkPi to Spark cluster from Java code              |         
+[SubmitSparkPiToClusterFromJavaCode.log](./SubmitSparkPiToClusterFromJavaCode.log)     |  log file                                                       |
+[SubmitSparkPiToYARNFromJavaCode.java](./SubmitSparkPiToYARNFromJavaCode.java)       |  Submits a SparkPi to Hadoop/YARN from Java code                |
+[SubmitSparkPiToYARNFromJavaCode.log](./SubmitSparkPiToYARNFromJavaCode.log)        |  log file                                                       |
+[SubmitSparkPiToYARNFromJavaCode.stderr.html](./SubmitSparkPiToYARNFromJavaCode.stderr.html) |  stderr file                                                    |
+[SubmitSparkPiToYARNFromJavaCode.stdout.html](./SubmitSparkPiToYARNFromJavaCode.stdout.html) |  stdout file                                                    |
 
 
 Note
