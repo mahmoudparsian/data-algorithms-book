@@ -55,12 +55,19 @@ for j in $jars ; do
 done
 #
 #
+jars=`find $HADOOP_HOME/ -name '*.jar'`
+for j in $jars ; do
+	CLASSPATH=$j:$CLASSPATH
+done
+#
+#
 jars=`find $SCALA_HOME/lib -name '*.jar'`
 for j in $jars ; do
 	CLASSPATH=$j:$CLASSPATH
 done
 #
-CLASSPATH=$CLASSPATH:$BOOK_HOME/dist/data_algorithms_book.jar
+CLASSPATH=$BOOK_HOME/dist/data_algorithms_book.jar:$CLASSPATH
+CLASSPATH=$HADOOP_CONF_DIR:$CLASSPATH
 #
 #-------------------
 # finalize CLASSPATH

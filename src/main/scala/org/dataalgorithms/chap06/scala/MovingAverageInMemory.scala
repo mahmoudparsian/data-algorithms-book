@@ -10,8 +10,9 @@ import org.apache.spark.SparkContext
  * (https://github.com/mahmoudparsian/data-algorithms-book/blob/master/src/main/java/org/dataalgorithms/chap06/memorysort/SortInMemory_MovingAverageDriver.java)
  * 
  * Please note that this soultion will not scale with large data 
- * (if you have a limited amout of memory/RAM for sorting).
- * For large datasets use MovingAverage.scala which uses secondary sorting.
+ * (if you cluster nodes have a limited amout of memory/RAM for 
+ * sorting).  For large datasets use MovingAverage.scala which 
+ * uses secondary sorting via repartitionAndSortWithinPartitions().
  *
  *
  * @author Gaurav Bhardwaj (gauravbhardwajemail@gmail.com)

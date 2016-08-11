@@ -18,20 +18,20 @@ import org.apache.spark.launcher.SparkLauncher;
  * 
  */
 public class SubmitSparkJobToClusterFromJavaCode {
-    
+
     static final Logger THE_LOGGER = Logger.getLogger(SubmitSparkJobToClusterFromJavaCode.class);
 
     public static void main(String[] arguments) throws Exception {
-        long startTime = System.currentTimeMillis();    
+        long startTime = System.currentTimeMillis();
         test(arguments); // ... the code being measured ...    
-        long estimatedTime = System.currentTimeMillis() - startTime;   
-        THE_LOGGER.info("estimatedTime (millis)="+estimatedTime);
-    }        
-    
-    static void test(String[] arguments) throws Exception {       
+        long estimatedTime = System.currentTimeMillis() - startTime;
+        THE_LOGGER.info("estimatedTime (millis)=" + estimatedTime);
+    }
+
+    static void test(String[] arguments) throws Exception {
         //
-        final String javaHome = "/Library/Java/JavaVirtualMachines/jdk1.8.0_72.jdk/Contents/Home";        
-        final String sparkHome = "/Users/mparsian/spark-1.6.1-bin-hadoop2.6";
+        final String javaHome = "/Library/Java/JavaVirtualMachines/jdk1.8.0_72.jdk/Contents/Home";
+        final String sparkHome = "/Users/mparsian/spark-2.0.0-bin-hadoop2.6";
         final String appResource = "/Users/mparsian/zmp/github/data-algorithms-book/dist/data_algorithms_book.jar";
         final String mainClass = "org.dataalgorithms.bonus.friendrecommendation.spark.SparkFriendRecommendation";
         //
@@ -44,22 +44,22 @@ public class SubmitSparkJobToClusterFromJavaCode {
             "/friends/input",
             
             //"--arg",
-            "/friends/output"   
-        };    
+            "/friends/output"
+        };
         //
         //
         SparkLauncher spark = new SparkLauncher()
-            .setVerbose(true)
-            .setJavaHome(javaHome)
-            .setSparkHome(sparkHome)
-            .setAppResource(appResource) // "/my/app.jar"
-            .setMainClass(mainClass)     // "my.spark.app.Main"
-            .setMaster("local")
-            .setConf(SparkLauncher.DRIVER_MEMORY, "1g")
-            .addAppArgs(appArgs);
+                .setVerbose(true)
+                .setJavaHome(javaHome)
+                .setSparkHome(sparkHome)
+                .setAppResource(appResource)    // "/my/app.jar"
+                .setMainClass(mainClass)        // "my.spark.app.Main"
+                .setMaster("local")
+                .setConf(SparkLauncher.DRIVER_MEMORY, "1g")
+                .addAppArgs(appArgs);
         //
         // Launches a sub-process that will start the configured Spark application.
-        Process proc =  spark.launch();
+        Process proc = spark.launch();
         //
         InputStreamReaderRunnable inputStreamReaderRunnable = new InputStreamReaderRunnable(proc.getInputStream(), "input");
         Thread inputThread = new Thread(inputStreamReaderRunnable, "LogStreamReader input");
@@ -71,7 +71,6 @@ public class SubmitSparkJobToClusterFromJavaCode {
         //
         THE_LOGGER.info("Waiting for finish...");
         int exitCode = proc.waitFor();
-        THE_LOGGER.info("Finished! Exit code:" + exitCode);  
+        THE_LOGGER.info("Finished! Exit code:" + exitCode);
     }
 }
-

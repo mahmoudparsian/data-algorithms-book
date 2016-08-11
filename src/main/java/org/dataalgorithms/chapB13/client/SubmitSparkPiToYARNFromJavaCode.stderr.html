@@ -1,0 +1,328 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+  <meta http-equiv="X-UA-Compatible" content="IE=8">
+  <meta http-equiv="Content-type" content="text/html; charset=UTF-8">
+  <title>
+    Logs for container_1470767498283_0016_01_000001
+  </title>
+  <link rel="stylesheet" href="/static/yarn.css">
+  <style type="text/css">
+    #layout { height: 100%; }
+    #layout thead td { height: 3em; }
+    #layout #navcell { width: 11em; padding: 0 1em; }
+    #layout td.content { padding-top: 0 }
+    #layout tbody { vertical-align: top; }
+    #layout tfoot td { height: 4em; }
+  </style>
+  <link rel="stylesheet" href="/static/jquery/themes-1.9.1/base/jquery-ui.css">
+  <link rel="stylesheet" href="/static/dt-1.9.4/css/jui-dt.css">
+  <script type="text/javascript" src="/static/jquery/jquery-1.8.2.min.js">
+  </script>
+  <script type="text/javascript" src="/static/jquery/jquery-ui-1.9.1.custom.min.js">
+  </script>
+  <script type="text/javascript" src="/static/dt-1.9.4/js/jquery.dataTables.min.js">
+  </script>
+  <script type="text/javascript" src="/static/yarn.dt.plugins.js">
+  </script>
+  <style type="text/css">
+    #jsnotice { padding: 0.2em; text-align: center; }
+    .ui-progressbar { height: 1em; min-width: 5em }
+  </style>
+  <script type="text/javascript">
+    $(function() {
+      $('#nav').accordion({autoHeight:false, active:0});
+    });
+  </script>
+  <div id="jsnotice" class="ui-state-error">
+    This page works best with javascript enabled.
+  </div>
+  <script type="text/javascript">
+    $('#jsnotice').hide();
+  </script>
+  <table id="layout" class="ui-widget-content">
+    <thead>
+      <tr>
+        <td colspan="2">
+          <div id="header" class="ui-widget">
+            <div id="user">
+              Logged in as: dr.who
+            </div>
+            <div id="logo">
+              <img src="/static/hadoop-st.png">
+            </div>
+            <h1>
+              Logs for container_1470767498283_0016_01_000001
+            </h1>
+          </div>
+        </td>
+      </tr>
+    </thead>
+    <tfoot>
+      <tr>
+        <td colspan="2">
+          <div id="footer" class="ui-widget">
+          </div>
+        </td>
+      </tr>
+    </tfoot>
+    <tbody>
+      <tr>
+        <td id="navcell">
+          <div id="nav">
+            <h3>
+              ResourceManager
+            </h3>
+            <ul>
+              <li>
+                <a href="http://mahmoudsmacbook.illumina.com:8088">RM Home</a>
+            </ul>
+            <h3>
+              NodeManager
+            </h3>
+            <ul>
+              <li>
+                <a href="/node/node">Node Information</a>
+              <li>
+                <a href="/node/allApplications">List of Applications</a>
+              <li>
+                <a href="/node/allContainers">List of Containers</a>
+            </ul>
+            <h3>
+              Tools
+            </h3>
+            <ul>
+              <li>
+                <a href="/conf">Configuration</a>
+              <li>
+                <a href="/logs">Local logs</a>
+              <li>
+                <a href="/stacks">Server stacks</a>
+              <li>
+                <a href="/metrics">Server metrics</a>
+            </ul>
+          </div>
+        </td>
+        <td class="content">
+          <pre>SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [jar:file:/Users/mparsian/dev/hdfs263/tmp/nm-local-dir/usercache/mparsian/filecache/55/__spark_libs__5270625792387355106.zip/slf4j-log4j12-1.7.16.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/Users/mparsian/zmp/zs/hadoop-2.6.3/share/hadoop/common/lib/slf4j-log4j12-1.7.5.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]
+16/08/10 15:03:47 INFO util.SignalUtils: Registered signal handler for TERM
+16/08/10 15:03:47 INFO util.SignalUtils: Registered signal handler for HUP
+16/08/10 15:03:47 INFO util.SignalUtils: Registered signal handler for INT
+16/08/10 15:03:48 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+16/08/10 15:03:48 INFO yarn.ApplicationMaster: Preparing Local resources
+16/08/10 15:03:49 INFO yarn.ApplicationMaster: Prepared Local resources Map(__app__.jar -&gt; resource { scheme: &quot;hdfs&quot; host: &quot;localhost&quot; port: 9000 file: &quot;/user/mparsian/.sparkStaging/application_1470767498283_0016/spark-examples_2.11-2.0.0.jar&quot; } size: 1987737 timestamp: 1470866624467 type: FILE visibility: PRIVATE, __spark_libs__ -&gt; resource { scheme: &quot;hdfs&quot; host: &quot;localhost&quot; port: 9000 file: &quot;/user/mparsian/.sparkStaging/application_1470767498283_0016/__spark_libs__5270625792387355106.zip&quot; } size: 189213980 timestamp: 1470866624387 type: ARCHIVE visibility: PRIVATE, __spark_conf__ -&gt; resource { scheme: &quot;hdfs&quot; host: &quot;localhost&quot; port: 9000 file: &quot;/user/mparsian/.sparkStaging/application_1470767498283_0016/__spark_conf__.zip&quot; } size: 83192 timestamp: 1470866624514 type: ARCHIVE visibility: PRIVATE)
+16/08/10 15:03:49 INFO yarn.ApplicationMaster: ApplicationAttemptId: appattempt_1470767498283_0016_000001
+16/08/10 15:03:49 INFO spark.SecurityManager: Changing view acls to: mparsian
+16/08/10 15:03:49 INFO spark.SecurityManager: Changing modify acls to: mparsian
+16/08/10 15:03:49 INFO spark.SecurityManager: Changing view acls groups to: 
+16/08/10 15:03:49 INFO spark.SecurityManager: Changing modify acls groups to: 
+16/08/10 15:03:49 INFO spark.SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users  with view permissions: Set(mparsian); groups with view permissions: Set(); users  with modify permissions: Set(mparsian); groups with modify permissions: Set()
+16/08/10 15:03:49 INFO yarn.ApplicationMaster: Starting the user application in a separate Thread
+16/08/10 15:03:49 INFO yarn.ApplicationMaster: Waiting for spark context initialization
+16/08/10 15:03:49 INFO yarn.ApplicationMaster: Waiting for spark context initialization ... 
+16/08/10 15:03:49 INFO spark.SparkContext: Running Spark version 2.0.0
+16/08/10 15:03:49 INFO spark.SecurityManager: Changing view acls to: mparsian
+16/08/10 15:03:49 INFO spark.SecurityManager: Changing modify acls to: mparsian
+16/08/10 15:03:49 INFO spark.SecurityManager: Changing view acls groups to: 
+16/08/10 15:03:49 INFO spark.SecurityManager: Changing modify acls groups to: 
+16/08/10 15:03:49 INFO spark.SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users  with view permissions: Set(mparsian); groups with view permissions: Set(); users  with modify permissions: Set(mparsian); groups with modify permissions: Set()
+16/08/10 15:03:49 INFO util.Utils: Successfully started service 'sparkDriver' on port 60974.
+16/08/10 15:03:49 INFO spark.SparkEnv: Registering MapOutputTracker
+16/08/10 15:03:49 INFO spark.SparkEnv: Registering BlockManagerMaster
+16/08/10 15:03:49 INFO storage.DiskBlockManager: Created local directory at /Users/mparsian/dev/hdfs263/tmp/nm-local-dir/usercache/mparsian/appcache/application_1470767498283_0016/blockmgr-bf3f1888-3fe2-47e9-a218-fd776d673848
+16/08/10 15:03:49 INFO memory.MemoryStore: MemoryStore started with capacity 366.3 MB
+16/08/10 15:03:49 INFO spark.SparkEnv: Registering OutputCommitCoordinator
+16/08/10 15:03:49 INFO util.log: Logging initialized @2367ms
+16/08/10 15:03:49 INFO ui.JettyUtils: Adding filter: org.apache.hadoop.yarn.server.webproxy.amfilter.AmIpFilter
+16/08/10 15:03:49 INFO server.Server: jetty-9.2.z-SNAPSHOT
+16/08/10 15:03:49 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@5467e902{/jobs,null,AVAILABLE}
+16/08/10 15:03:49 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@3501df00{/jobs/json,null,AVAILABLE}
+16/08/10 15:03:49 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@5ff7097b{/jobs/job,null,AVAILABLE}
+16/08/10 15:03:49 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@78e3ee1f{/jobs/job/json,null,AVAILABLE}
+16/08/10 15:03:49 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@132727f8{/stages,null,AVAILABLE}
+16/08/10 15:03:49 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@28650343{/stages/json,null,AVAILABLE}
+16/08/10 15:03:49 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@4fbe7be5{/stages/stage,null,AVAILABLE}
+16/08/10 15:03:49 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@28cae71b{/stages/stage/json,null,AVAILABLE}
+16/08/10 15:03:49 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@2f81d1d{/stages/pool,null,AVAILABLE}
+16/08/10 15:03:49 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@207791a{/stages/pool/json,null,AVAILABLE}
+16/08/10 15:03:49 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@3e5a5bec{/storage,null,AVAILABLE}
+16/08/10 15:03:49 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@41d78103{/storage/json,null,AVAILABLE}
+16/08/10 15:03:49 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@3057cd1{/storage/rdd,null,AVAILABLE}
+16/08/10 15:03:49 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@3a731a02{/storage/rdd/json,null,AVAILABLE}
+16/08/10 15:03:49 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@569ab39b{/environment,null,AVAILABLE}
+16/08/10 15:03:49 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@2b38efd2{/environment/json,null,AVAILABLE}
+16/08/10 15:03:49 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@3f3ed90{/executors,null,AVAILABLE}
+16/08/10 15:03:49 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@217254e6{/executors/json,null,AVAILABLE}
+16/08/10 15:03:49 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@22772d38{/executors/threadDump,null,AVAILABLE}
+16/08/10 15:03:49 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@4e5d00db{/executors/threadDump/json,null,AVAILABLE}
+16/08/10 15:03:49 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@52deebed{/static,null,AVAILABLE}
+16/08/10 15:03:49 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@61384034{/,null,AVAILABLE}
+16/08/10 15:03:49 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@7a3dafc6{/api,null,AVAILABLE}
+16/08/10 15:03:49 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@5c403382{/stages/stage/kill,null,AVAILABLE}
+16/08/10 15:03:49 INFO server.ServerConnector: Started ServerConnector@354449fe{HTTP/1.1}{0.0.0.0:60975}
+16/08/10 15:03:49 INFO server.Server: Started @2507ms
+16/08/10 15:03:49 INFO util.Utils: Successfully started service 'SparkUI' on port 60975.
+16/08/10 15:03:49 INFO ui.SparkUI: Bound SparkUI to 0.0.0.0, and started at http://10.240.98.142:60975
+16/08/10 15:03:49 INFO cluster.YarnClusterScheduler: Created YarnClusterScheduler
+16/08/10 15:03:49 INFO cluster.SchedulerExtensionServices: Starting Yarn extension services with app application_1470767498283_0016 and attemptId Some(appattempt_1470767498283_0016_000001)
+16/08/10 15:03:49 INFO util.Utils: Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 60976.
+16/08/10 15:03:49 INFO netty.NettyBlockTransferService: Server created on 10.240.98.142:60976
+16/08/10 15:03:49 INFO storage.BlockManagerMaster: Registering BlockManager BlockManagerId(driver, 10.240.98.142, 60976)
+16/08/10 15:03:49 INFO storage.BlockManagerMasterEndpoint: Registering block manager 10.240.98.142:60976 with 366.3 MB RAM, BlockManagerId(driver, 10.240.98.142, 60976)
+16/08/10 15:03:49 INFO storage.BlockManagerMaster: Registered BlockManager BlockManagerId(driver, 10.240.98.142, 60976)
+16/08/10 15:03:50 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@5c815c53{/metrics/json,null,AVAILABLE}
+16/08/10 15:03:50 INFO cluster.YarnSchedulerBackend$YarnSchedulerEndpoint: ApplicationMaster registered as NettyRpcEndpointRef(spark://YarnAM@10.240.98.142:60974)
+16/08/10 15:03:50 INFO client.RMProxy: Connecting to ResourceManager at localhost/127.0.0.1:8030
+16/08/10 15:03:50 INFO yarn.YarnRMClient: Registering the ApplicationMaster
+16/08/10 15:03:50 INFO yarn.YarnAllocator: Will request 2 executor containers, each with 1 cores and 1408 MB memory including 384 MB overhead
+16/08/10 15:03:50 INFO yarn.YarnAllocator: Canceled 0 container requests (locality no longer needed)
+16/08/10 15:03:50 INFO yarn.YarnAllocator: Submitted container request (host: Any, capability: &lt;memory:1408, vCores:1&gt;)
+16/08/10 15:03:50 INFO yarn.YarnAllocator: Submitted container request (host: Any, capability: &lt;memory:1408, vCores:1&gt;)
+16/08/10 15:03:50 INFO yarn.ApplicationMaster: Started progress reporter thread with (heartbeat : 3000, initial allocation : 200) intervals
+16/08/10 15:03:51 INFO impl.AMRMClientImpl: Received new token for : mahmoudsmacbook.illumina.com:49637
+16/08/10 15:03:51 INFO yarn.YarnAllocator: Launching container container_1470767498283_0016_01_000002 for on host mahmoudsmacbook.illumina.com
+16/08/10 15:03:51 INFO yarn.YarnAllocator: Launching ExecutorRunnable. driverUrl: spark://CoarseGrainedScheduler@10.240.98.142:60974,  executorHostname: mahmoudsmacbook.illumina.com
+16/08/10 15:03:51 INFO yarn.YarnAllocator: Received 1 containers from YARN, launching executors on 1 of them.
+16/08/10 15:03:51 INFO yarn.ExecutorRunnable: Starting Executor Container
+16/08/10 15:03:51 INFO impl.ContainerManagementProtocolProxy: yarn.client.max-cached-nodemanagers-proxies : 0
+16/08/10 15:03:51 INFO yarn.ExecutorRunnable: Setting up ContainerLaunchContext
+16/08/10 15:03:51 INFO yarn.ExecutorRunnable: 
+===============================================================================
+YARN executor launch context:
+  env:
+    CLASSPATH -&gt; {{PWD}}&lt;CPS&gt;{{PWD}}/__spark_conf__&lt;CPS&gt;{{PWD}}/__spark_libs__/*&lt;CPS&gt;$HADOOP_CONF_DIR&lt;CPS&gt;$HADOOP_COMMON_HOME/share/hadoop/common/*&lt;CPS&gt;$HADOOP_COMMON_HOME/share/hadoop/common/lib/*&lt;CPS&gt;$HADOOP_HDFS_HOME/share/hadoop/hdfs/*&lt;CPS&gt;$HADOOP_HDFS_HOME/share/hadoop/hdfs/lib/*&lt;CPS&gt;$HADOOP_YARN_HOME/share/hadoop/yarn/*&lt;CPS&gt;$HADOOP_YARN_HOME/share/hadoop/yarn/lib/*&lt;CPS&gt;$HADOOP_MAPRED_HOME/share/hadoop/mapreduce/*&lt;CPS&gt;$HADOOP_MAPRED_HOME/share/hadoop/mapreduce/lib/*
+    SPARK_LOG_URL_STDERR -&gt; http://mahmoudsmacbook.illumina.com:8042/node/containerlogs/container_1470767498283_0016_01_000002/mparsian/stderr?start=-4096
+    SPARK_YARN_STAGING_DIR -&gt; hdfs://localhost:9000/user/mparsian/.sparkStaging/application_1470767498283_0016
+    SPARK_USER -&gt; mparsian
+    SPARK_YARN_MODE -&gt; true
+    SPARK_LOG_URL_STDOUT -&gt; http://mahmoudsmacbook.illumina.com:8042/node/containerlogs/container_1470767498283_0016_01_000002/mparsian/stdout?start=-4096
+
+  command:
+    {{JAVA_HOME}}/bin/java -server -Xmx1024m -Djava.io.tmpdir={{PWD}}/tmp '-Dspark.driver.port=60974' '-Dspark.ui.port=0' -Dspark.yarn.app.container.log.dir=&lt;LOG_DIR&gt; -XX:OnOutOfMemoryError='kill %p' org.apache.spark.executor.CoarseGrainedExecutorBackend --driver-url spark://CoarseGrainedScheduler@10.240.98.142:60974 --executor-id 1 --hostname mahmoudsmacbook.illumina.com --cores 1 --app-id application_1470767498283_0016 --user-class-path file:$PWD/__app__.jar 1&gt; &lt;LOG_DIR&gt;/stdout 2&gt; &lt;LOG_DIR&gt;/stderr
+===============================================================================
+      
+16/08/10 15:03:51 INFO impl.ContainerManagementProtocolProxy: Opening proxy : mahmoudsmacbook.illumina.com:49637
+16/08/10 15:03:53 INFO yarn.YarnAllocator: Launching container container_1470767498283_0016_01_000003 for on host mahmoudsmacbook.illumina.com
+16/08/10 15:03:53 INFO yarn.YarnAllocator: Launching ExecutorRunnable. driverUrl: spark://CoarseGrainedScheduler@10.240.98.142:60974,  executorHostname: mahmoudsmacbook.illumina.com
+16/08/10 15:03:53 INFO yarn.YarnAllocator: Received 1 containers from YARN, launching executors on 1 of them.
+16/08/10 15:03:53 INFO yarn.ExecutorRunnable: Starting Executor Container
+16/08/10 15:03:53 INFO impl.ContainerManagementProtocolProxy: yarn.client.max-cached-nodemanagers-proxies : 0
+16/08/10 15:03:53 INFO yarn.ExecutorRunnable: Setting up ContainerLaunchContext
+16/08/10 15:03:53 INFO yarn.ExecutorRunnable: 
+===============================================================================
+YARN executor launch context:
+  env:
+    CLASSPATH -&gt; {{PWD}}&lt;CPS&gt;{{PWD}}/__spark_conf__&lt;CPS&gt;{{PWD}}/__spark_libs__/*&lt;CPS&gt;$HADOOP_CONF_DIR&lt;CPS&gt;$HADOOP_COMMON_HOME/share/hadoop/common/*&lt;CPS&gt;$HADOOP_COMMON_HOME/share/hadoop/common/lib/*&lt;CPS&gt;$HADOOP_HDFS_HOME/share/hadoop/hdfs/*&lt;CPS&gt;$HADOOP_HDFS_HOME/share/hadoop/hdfs/lib/*&lt;CPS&gt;$HADOOP_YARN_HOME/share/hadoop/yarn/*&lt;CPS&gt;$HADOOP_YARN_HOME/share/hadoop/yarn/lib/*&lt;CPS&gt;$HADOOP_MAPRED_HOME/share/hadoop/mapreduce/*&lt;CPS&gt;$HADOOP_MAPRED_HOME/share/hadoop/mapreduce/lib/*
+    SPARK_LOG_URL_STDERR -&gt; http://mahmoudsmacbook.illumina.com:8042/node/containerlogs/container_1470767498283_0016_01_000003/mparsian/stderr?start=-4096
+    SPARK_YARN_STAGING_DIR -&gt; hdfs://localhost:9000/user/mparsian/.sparkStaging/application_1470767498283_0016
+    SPARK_USER -&gt; mparsian
+    SPARK_YARN_MODE -&gt; true
+    SPARK_LOG_URL_STDOUT -&gt; http://mahmoudsmacbook.illumina.com:8042/node/containerlogs/container_1470767498283_0016_01_000003/mparsian/stdout?start=-4096
+
+  command:
+    {{JAVA_HOME}}/bin/java -server -Xmx1024m -Djava.io.tmpdir={{PWD}}/tmp '-Dspark.driver.port=60974' '-Dspark.ui.port=0' -Dspark.yarn.app.container.log.dir=&lt;LOG_DIR&gt; -XX:OnOutOfMemoryError='kill %p' org.apache.spark.executor.CoarseGrainedExecutorBackend --driver-url spark://CoarseGrainedScheduler@10.240.98.142:60974 --executor-id 2 --hostname mahmoudsmacbook.illumina.com --cores 1 --app-id application_1470767498283_0016 --user-class-path file:$PWD/__app__.jar 1&gt; &lt;LOG_DIR&gt;/stdout 2&gt; &lt;LOG_DIR&gt;/stderr
+===============================================================================
+      
+16/08/10 15:03:53 INFO impl.ContainerManagementProtocolProxy: Opening proxy : mahmoudsmacbook.illumina.com:49637
+16/08/10 15:03:53 INFO cluster.YarnSchedulerBackend$YarnDriverEndpoint: Registered executor NettyRpcEndpointRef(null) (10.240.98.142:60983) with ID 1
+16/08/10 15:03:54 INFO storage.BlockManagerMasterEndpoint: Registering block manager mahmoudsmacbook.illumina.com:60984 with 366.3 MB RAM, BlockManagerId(1, mahmoudsmacbook.illumina.com, 60984)
+16/08/10 15:03:55 INFO cluster.YarnSchedulerBackend$YarnDriverEndpoint: Registered executor NettyRpcEndpointRef(null) (10.240.98.142:60987) with ID 2
+16/08/10 15:03:55 INFO cluster.YarnClusterSchedulerBackend: SchedulerBackend is ready for scheduling beginning after reached minRegisteredResourcesRatio: 0.8
+16/08/10 15:03:55 INFO cluster.YarnClusterScheduler: YarnClusterScheduler.postStartHook done
+16/08/10 15:03:55 WARN spark.SparkContext: Use an existing SparkContext, some configuration may not take effect.
+16/08/10 15:03:55 INFO storage.BlockManagerMasterEndpoint: Registering block manager mahmoudsmacbook.illumina.com:60988 with 366.3 MB RAM, BlockManagerId(2, mahmoudsmacbook.illumina.com, 60988)
+16/08/10 15:03:55 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@13410304{/SQL,null,AVAILABLE}
+16/08/10 15:03:55 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@6ebd426a{/SQL/json,null,AVAILABLE}
+16/08/10 15:03:55 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@172982c9{/SQL/execution,null,AVAILABLE}
+16/08/10 15:03:55 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@66e0e20d{/SQL/execution/json,null,AVAILABLE}
+16/08/10 15:03:55 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@16aa261f{/static/sql,null,AVAILABLE}
+16/08/10 15:03:55 INFO internal.SharedState: Warehouse path is 'file:/Users/mparsian/dev/hdfs263/tmp/nm-local-dir/usercache/mparsian/appcache/application_1470767498283_0016/container_1470767498283_0016_01_000001/spark-warehouse'.
+16/08/10 15:03:55 INFO spark.SparkContext: Starting job: reduce at SparkPi.scala:38
+16/08/10 15:03:55 INFO scheduler.DAGScheduler: Got job 0 (reduce at SparkPi.scala:38) with 5 output partitions
+16/08/10 15:03:55 INFO scheduler.DAGScheduler: Final stage: ResultStage 0 (reduce at SparkPi.scala:38)
+16/08/10 15:03:55 INFO scheduler.DAGScheduler: Parents of final stage: List()
+16/08/10 15:03:55 INFO scheduler.DAGScheduler: Missing parents: List()
+16/08/10 15:03:55 INFO scheduler.DAGScheduler: Submitting ResultStage 0 (MapPartitionsRDD[1] at map at SparkPi.scala:34), which has no missing parents
+16/08/10 15:03:55 INFO memory.MemoryStore: Block broadcast_0 stored as values in memory (estimated size 1832.0 B, free 366.3 MB)
+16/08/10 15:03:55 INFO memory.MemoryStore: Block broadcast_0_piece0 stored as bytes in memory (estimated size 1169.0 B, free 366.3 MB)
+16/08/10 15:03:55 INFO storage.BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.240.98.142:60976 (size: 1169.0 B, free: 366.3 MB)
+16/08/10 15:03:55 INFO spark.SparkContext: Created broadcast 0 from broadcast at DAGScheduler.scala:1012
+16/08/10 15:03:55 INFO scheduler.DAGScheduler: Submitting 5 missing tasks from ResultStage 0 (MapPartitionsRDD[1] at map at SparkPi.scala:34)
+16/08/10 15:03:55 INFO cluster.YarnClusterScheduler: Adding task set 0.0 with 5 tasks
+16/08/10 15:03:56 INFO scheduler.TaskSetManager: Starting task 0.0 in stage 0.0 (TID 0, mahmoudsmacbook.illumina.com, partition 0, PROCESS_LOCAL, 5343 bytes)
+16/08/10 15:03:56 INFO scheduler.TaskSetManager: Starting task 1.0 in stage 0.0 (TID 1, mahmoudsmacbook.illumina.com, partition 1, PROCESS_LOCAL, 5343 bytes)
+16/08/10 15:03:56 INFO cluster.YarnSchedulerBackend$YarnDriverEndpoint: Launching task 0 on executor id: 2 hostname: mahmoudsmacbook.illumina.com.
+16/08/10 15:03:56 INFO cluster.YarnSchedulerBackend$YarnDriverEndpoint: Launching task 1 on executor id: 1 hostname: mahmoudsmacbook.illumina.com.
+16/08/10 15:03:56 INFO storage.BlockManagerInfo: Added broadcast_0_piece0 in memory on mahmoudsmacbook.illumina.com:60984 (size: 1169.0 B, free: 366.3 MB)
+16/08/10 15:03:56 INFO storage.BlockManagerInfo: Added broadcast_0_piece0 in memory on mahmoudsmacbook.illumina.com:60988 (size: 1169.0 B, free: 366.3 MB)
+16/08/10 15:03:56 INFO yarn.YarnAllocator: Received 1 containers from YARN, launching executors on 0 of them.
+16/08/10 15:03:56 INFO scheduler.TaskSetManager: Starting task 2.0 in stage 0.0 (TID 2, mahmoudsmacbook.illumina.com, partition 2, PROCESS_LOCAL, 5343 bytes)
+16/08/10 15:03:56 INFO cluster.YarnSchedulerBackend$YarnDriverEndpoint: Launching task 2 on executor id: 1 hostname: mahmoudsmacbook.illumina.com.
+16/08/10 15:03:56 INFO scheduler.TaskSetManager: Finished task 1.0 in stage 0.0 (TID 1) in 466 ms on mahmoudsmacbook.illumina.com (1/5)
+16/08/10 15:03:56 INFO scheduler.TaskSetManager: Starting task 3.0 in stage 0.0 (TID 3, mahmoudsmacbook.illumina.com, partition 3, PROCESS_LOCAL, 5343 bytes)
+16/08/10 15:03:56 INFO cluster.YarnSchedulerBackend$YarnDriverEndpoint: Launching task 3 on executor id: 2 hostname: mahmoudsmacbook.illumina.com.
+16/08/10 15:03:56 INFO scheduler.TaskSetManager: Finished task 0.0 in stage 0.0 (TID 0) in 496 ms on mahmoudsmacbook.illumina.com (2/5)
+16/08/10 15:03:56 INFO scheduler.TaskSetManager: Starting task 4.0 in stage 0.0 (TID 4, mahmoudsmacbook.illumina.com, partition 4, PROCESS_LOCAL, 5343 bytes)
+16/08/10 15:03:56 INFO cluster.YarnSchedulerBackend$YarnDriverEndpoint: Launching task 4 on executor id: 1 hostname: mahmoudsmacbook.illumina.com.
+16/08/10 15:03:56 INFO scheduler.TaskSetManager: Finished task 2.0 in stage 0.0 (TID 2) in 50 ms on mahmoudsmacbook.illumina.com (3/5)
+16/08/10 15:03:56 INFO scheduler.TaskSetManager: Finished task 3.0 in stage 0.0 (TID 3) in 52 ms on mahmoudsmacbook.illumina.com (4/5)
+16/08/10 15:03:56 INFO scheduler.TaskSetManager: Finished task 4.0 in stage 0.0 (TID 4) in 28 ms on mahmoudsmacbook.illumina.com (5/5)
+16/08/10 15:03:56 INFO cluster.YarnClusterScheduler: Removed TaskSet 0.0, whose tasks have all completed, from pool 
+16/08/10 15:03:56 INFO scheduler.DAGScheduler: ResultStage 0 (reduce at SparkPi.scala:38) finished in 0.564 s
+16/08/10 15:03:56 INFO scheduler.DAGScheduler: Job 0 finished: reduce at SparkPi.scala:38, took 0.800681 s
+16/08/10 15:03:56 INFO server.ServerConnector: Stopped ServerConnector@354449fe{HTTP/1.1}{0.0.0.0:0}
+16/08/10 15:03:56 INFO handler.ContextHandler: Stopped o.s.j.s.ServletContextHandler@5c403382{/stages/stage/kill,null,UNAVAILABLE}
+16/08/10 15:03:56 INFO handler.ContextHandler: Stopped o.s.j.s.ServletContextHandler@7a3dafc6{/api,null,UNAVAILABLE}
+16/08/10 15:03:56 INFO handler.ContextHandler: Stopped o.s.j.s.ServletContextHandler@61384034{/,null,UNAVAILABLE}
+16/08/10 15:03:56 INFO handler.ContextHandler: Stopped o.s.j.s.ServletContextHandler@52deebed{/static,null,UNAVAILABLE}
+16/08/10 15:03:56 INFO handler.ContextHandler: Stopped o.s.j.s.ServletContextHandler@4e5d00db{/executors/threadDump/json,null,UNAVAILABLE}
+16/08/10 15:03:56 INFO handler.ContextHandler: Stopped o.s.j.s.ServletContextHandler@22772d38{/executors/threadDump,null,UNAVAILABLE}
+16/08/10 15:03:56 INFO handler.ContextHandler: Stopped o.s.j.s.ServletContextHandler@217254e6{/executors/json,null,UNAVAILABLE}
+16/08/10 15:03:56 INFO handler.ContextHandler: Stopped o.s.j.s.ServletContextHandler@3f3ed90{/executors,null,UNAVAILABLE}
+16/08/10 15:03:56 INFO handler.ContextHandler: Stopped o.s.j.s.ServletContextHandler@2b38efd2{/environment/json,null,UNAVAILABLE}
+16/08/10 15:03:56 INFO handler.ContextHandler: Stopped o.s.j.s.ServletContextHandler@569ab39b{/environment,null,UNAVAILABLE}
+16/08/10 15:03:56 INFO handler.ContextHandler: Stopped o.s.j.s.ServletContextHandler@3a731a02{/storage/rdd/json,null,UNAVAILABLE}
+16/08/10 15:03:56 INFO handler.ContextHandler: Stopped o.s.j.s.ServletContextHandler@3057cd1{/storage/rdd,null,UNAVAILABLE}
+16/08/10 15:03:56 INFO handler.ContextHandler: Stopped o.s.j.s.ServletContextHandler@41d78103{/storage/json,null,UNAVAILABLE}
+16/08/10 15:03:56 INFO handler.ContextHandler: Stopped o.s.j.s.ServletContextHandler@3e5a5bec{/storage,null,UNAVAILABLE}
+16/08/10 15:03:56 INFO handler.ContextHandler: Stopped o.s.j.s.ServletContextHandler@207791a{/stages/pool/json,null,UNAVAILABLE}
+16/08/10 15:03:56 INFO handler.ContextHandler: Stopped o.s.j.s.ServletContextHandler@2f81d1d{/stages/pool,null,UNAVAILABLE}
+16/08/10 15:03:56 INFO handler.ContextHandler: Stopped o.s.j.s.ServletContextHandler@28cae71b{/stages/stage/json,null,UNAVAILABLE}
+16/08/10 15:03:56 INFO handler.ContextHandler: Stopped o.s.j.s.ServletContextHandler@4fbe7be5{/stages/stage,null,UNAVAILABLE}
+16/08/10 15:03:56 INFO handler.ContextHandler: Stopped o.s.j.s.ServletContextHandler@28650343{/stages/json,null,UNAVAILABLE}
+16/08/10 15:03:56 INFO handler.ContextHandler: Stopped o.s.j.s.ServletContextHandler@132727f8{/stages,null,UNAVAILABLE}
+16/08/10 15:03:56 INFO handler.ContextHandler: Stopped o.s.j.s.ServletContextHandler@78e3ee1f{/jobs/job/json,null,UNAVAILABLE}
+16/08/10 15:03:56 INFO handler.ContextHandler: Stopped o.s.j.s.ServletContextHandler@5ff7097b{/jobs/job,null,UNAVAILABLE}
+16/08/10 15:03:56 INFO handler.ContextHandler: Stopped o.s.j.s.ServletContextHandler@3501df00{/jobs/json,null,UNAVAILABLE}
+16/08/10 15:03:56 INFO handler.ContextHandler: Stopped o.s.j.s.ServletContextHandler@5467e902{/jobs,null,UNAVAILABLE}
+16/08/10 15:03:56 INFO ui.SparkUI: Stopped Spark web UI at http://10.240.98.142:60975
+16/08/10 15:03:56 INFO yarn.YarnAllocator: Driver requested a total number of 0 executor(s).
+16/08/10 15:03:56 INFO cluster.YarnClusterSchedulerBackend: Shutting down all executors
+16/08/10 15:03:56 INFO cluster.YarnSchedulerBackend$YarnDriverEndpoint: Asking each executor to shut down
+16/08/10 15:03:56 INFO yarn.YarnAllocator: Canceling requests for 0 executor container(s) to have a new desired total 0 executors.
+16/08/10 15:03:56 WARN yarn.YarnAllocator: Expected to find pending requests, but found none.
+16/08/10 15:03:56 INFO cluster.SchedulerExtensionServices: Stopping SchedulerExtensionServices
+(serviceOption=None,
+ services=List(),
+ started=false)
+16/08/10 15:03:56 INFO spark.MapOutputTrackerMasterEndpoint: MapOutputTrackerMasterEndpoint stopped!
+16/08/10 15:03:56 INFO memory.MemoryStore: MemoryStore cleared
+16/08/10 15:03:56 INFO storage.BlockManager: BlockManager stopped
+16/08/10 15:03:56 INFO storage.BlockManagerMaster: BlockManagerMaster stopped
+16/08/10 15:03:56 INFO scheduler.OutputCommitCoordinator$OutputCommitCoordinatorEndpoint: OutputCommitCoordinator stopped!
+16/08/10 15:03:56 INFO spark.SparkContext: Successfully stopped SparkContext
+16/08/10 15:03:56 INFO yarn.ApplicationMaster: Final app status: SUCCEEDED, exitCode: 0
+16/08/10 15:03:56 INFO yarn.ApplicationMaster: Unregistering ApplicationMaster with SUCCEEDED
+16/08/10 15:03:56 INFO impl.AMRMClientImpl: Waiting for application to be successfully unregistered.
+16/08/10 15:03:56 INFO yarn.ApplicationMaster: Deleting staging directory hdfs://localhost:9000/user/mparsian/.sparkStaging/application_1470767498283_0016
+16/08/10 15:03:56 INFO util.ShutdownHookManager: Shutdown hook called
+16/08/10 15:03:56 INFO util.ShutdownHookManager: Deleting directory /Users/mparsian/dev/hdfs263/tmp/nm-local-dir/usercache/mparsian/appcache/application_1470767498283_0016/spark-6cba9896-ebea-4ceb-aecf-32029d9c880c
+</pre>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</html>

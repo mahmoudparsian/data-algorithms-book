@@ -1,0 +1,78 @@
+# java -DSPARK_HOME=/Users/mparsian/spark-2.0.0-bin-hadoop2.6 org.dataalgorithms.chapB13.client.SubmitSparkPiToYARNFromJavaCode 5
+16/08/10 15:03:40 INFO client.SubmitSparkPiToYARNFromJavaCode: SPARK_HOME=/Users/mparsian/spark-2.0.0-bin-hadoop2.6
+16/08/10 15:03:40 INFO client.SubmitSparkPiToYARNFromJavaCode: sparkExamplesJar=file:///Users/mparsian/spark-2.0.0-bin-hadoop2.6/examples/jars/spark-examples_2.11-2.0.0.jar
+16/08/10 15:03:40 INFO client.ConfigurationManager: createConfiguration() started.
+16/08/10 15:03:40 INFO client.ConfigurationManager: createConfiguration() HADOOP_HOME=/Users/mparsian/zmp/zs/hadoop-2.6.3
+16/08/10 15:03:40 INFO client.ConfigurationManager: createConfiguration() HADOOP_CONF_DIR=/Users/mparsian/zmp/zs/hadoop-2.6.3/etc/hadoop
+SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [jar:file:/Users/mparsian/zmp/zs/hadoop-2.6.3/share/hadoop/kms/tomcat/webapps/kms/WEB-INF/lib/slf4j-log4j12-1.7.5.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/Users/mparsian/zmp/zs/hadoop-2.6.3/share/hadoop/httpfs/tomcat/webapps/webhdfs/WEB-INF/lib/slf4j-log4j12-1.7.5.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/Users/mparsian/zmp/zs/hadoop-2.6.3/share/hadoop/common/lib/slf4j-log4j12-1.7.5.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/Users/mparsian/zmp/github/data-algorithms-book/lib/slf4j-log4j12-1.7.16.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]
+16/08/10 15:03:40 INFO client.ConfigurationManager: createConfiguration(): Configuration created.
+16/08/10 15:03:40 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+16/08/10 15:03:41 INFO client.RMProxy: Connecting to ResourceManager at localhost/127.0.0.1:8032
+16/08/10 15:03:41 INFO yarn.Client: Requesting a new application from cluster with 1 NodeManagers
+16/08/10 15:03:41 INFO yarn.Client: Verifying our application has not requested more than the maximum memory capability of the cluster (8192 MB per container)
+16/08/10 15:03:41 INFO yarn.Client: Will allocate AM container, with 1408 MB memory including 384 MB overhead
+16/08/10 15:03:41 INFO yarn.Client: Setting up container launch context for our AM
+16/08/10 15:03:41 INFO yarn.Client: Setting up the launch environment for our AM container
+16/08/10 15:03:41 INFO yarn.Client: Preparing resources for our AM container
+16/08/10 15:03:41 WARN yarn.Client: Neither spark.yarn.jars nor spark.yarn.archive is set, falling back to uploading libraries under SPARK_HOME.
+16/08/10 15:03:43 INFO yarn.Client: Uploading resource file:/private/var/folders/64/7fnc2mzx0jd5nhch32xwb1hhrhxtnh/T/spark-3cc56e7e-a89a-4205-8e0c-1650bfbcb684/__spark_libs__5270625792387355106.zip -> hdfs://localhost:9000/user/mparsian/.sparkStaging/application_1470767498283_0016/__spark_libs__5270625792387355106.zip
+16/08/10 15:03:44 INFO yarn.Client: Uploading resource file:/Users/mparsian/spark-2.0.0-bin-hadoop2.6/examples/jars/spark-examples_2.11-2.0.0.jar -> hdfs://localhost:9000/user/mparsian/.sparkStaging/application_1470767498283_0016/spark-examples_2.11-2.0.0.jar
+16/08/10 15:03:44 INFO yarn.Client: Uploading resource file:/private/var/folders/64/7fnc2mzx0jd5nhch32xwb1hhrhxtnh/T/spark-3cc56e7e-a89a-4205-8e0c-1650bfbcb684/__spark_conf__3086676484545575461.zip -> hdfs://localhost:9000/user/mparsian/.sparkStaging/application_1470767498283_0016/__spark_conf__.zip
+16/08/10 15:03:44 INFO spark.SecurityManager: Changing view acls to: mparsian
+16/08/10 15:03:44 INFO spark.SecurityManager: Changing modify acls to: mparsian
+16/08/10 15:03:44 INFO spark.SecurityManager: Changing view acls groups to:
+16/08/10 15:03:44 INFO spark.SecurityManager: Changing modify acls groups to:
+16/08/10 15:03:44 INFO spark.SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users  with view permissions: Set(mparsian); groups with view permissions: Set(); users  with modify permissions: Set(mparsian); groups with modify permissions: Set()
+16/08/10 15:03:44 INFO yarn.Client: Submitting application application_1470767498283_0016 to ResourceManager
+16/08/10 15:03:44 INFO impl.YarnClientImpl: Submitted application application_1470767498283_0016
+16/08/10 15:03:45 INFO yarn.Client: Application report for application_1470767498283_0016 (state: ACCEPTED)
+16/08/10 15:03:45 INFO yarn.Client:
+       	 client token: N/A
+       	 diagnostics: N/A
+       	 ApplicationMaster host: N/A
+       	 ApplicationMaster RPC port: -1
+       	 queue: default
+       	 start time: 1470866624590
+       	 final status: UNDEFINED
+       	 tracking URL: http://mahmoudsmacbook.illumina.com:8088/proxy/application_1470767498283_0016/
+       	 user: mparsian
+16/08/10 15:03:46 INFO yarn.Client: Application report for application_1470767498283_0016 (state: ACCEPTED)
+16/08/10 15:03:47 INFO yarn.Client: Application report for application_1470767498283_0016 (state: ACCEPTED)
+16/08/10 15:03:48 INFO yarn.Client: Application report for application_1470767498283_0016 (state: ACCEPTED)
+16/08/10 15:03:49 INFO yarn.Client: Application report for application_1470767498283_0016 (state: ACCEPTED)
+16/08/10 15:03:50 INFO yarn.Client: Application report for application_1470767498283_0016 (state: RUNNING)
+16/08/10 15:03:50 INFO yarn.Client:
+       	 client token: N/A
+       	 diagnostics: N/A
+       	 ApplicationMaster host: 10.240.98.142
+       	 ApplicationMaster RPC port: 0
+       	 queue: default
+       	 start time: 1470866624590
+       	 final status: UNDEFINED
+       	 tracking URL: http://mahmoudsmacbook.illumina.com:8088/proxy/application_1470767498283_0016/
+       	 user: mparsian
+16/08/10 15:03:51 INFO yarn.Client: Application report for application_1470767498283_0016 (state: RUNNING)
+16/08/10 15:03:52 INFO yarn.Client: Application report for application_1470767498283_0016 (state: RUNNING)
+16/08/10 15:03:53 INFO yarn.Client: Application report for application_1470767498283_0016 (state: RUNNING)
+16/08/10 15:03:54 INFO yarn.Client: Application report for application_1470767498283_0016 (state: RUNNING)
+16/08/10 15:03:55 INFO yarn.Client: Application report for application_1470767498283_0016 (state: RUNNING)
+16/08/10 15:03:56 INFO yarn.Client: Application report for application_1470767498283_0016 (state: FINISHED)
+16/08/10 15:03:56 INFO yarn.Client:
+       	 client token: N/A
+       	 diagnostics: N/A
+       	 ApplicationMaster host: 10.240.98.142
+       	 ApplicationMaster RPC port: 0
+       	 queue: default
+       	 start time: 1470866624590
+       	 final status: SUCCEEDED
+       	 tracking URL: http://mahmoudsmacbook.illumina.com:8088/proxy/application_1470767498283_0016/
+       	 user: mparsian
+16/08/10 15:03:56 INFO client.SubmitSparkPiToYARNFromJavaCode: elapsedTime (millis)=16722
+16/08/10 15:03:56 INFO util.ShutdownHookManager: Shutdown hook called
+16/08/10 15:03:56 INFO util.ShutdownHookManager: Deleting directory /private/var/folders/64/7fnc2mzx0jd5nhch32xwb1hhrhxtnh/T/spark-3cc56e7e-a89a-4205-8e0c-1650bfbcb684

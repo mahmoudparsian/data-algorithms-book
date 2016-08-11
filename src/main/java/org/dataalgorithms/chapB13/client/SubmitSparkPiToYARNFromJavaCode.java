@@ -15,32 +15,24 @@ import org.apache.log4j.Logger;
  * To accomplish submitting a Spark job from a Java client, we use 
  * the org.apache.spark.deploy.yarn.Client class described below:
  * 
- Usage: org.apache.spark.deploy.yarn.Client [options]
- Options:
-  --jar JAR_PATH           Path to your application's JAR file (required in yarn-cluster mode)
-  --class CLASS_NAME       Name of your application's main class (required)
-  --primary-py-file        A main Python file
-  --arg ARG                Argument to be passed to your application's main class. 
-                           Multiple invocations are possible, each will be passed in order.
-  --num-executors NUM      Number of executors to start (Default: 2)
-  --executor-cores NUM     Number of cores per executor (Default: 1).
-  --driver-memory MEM      Memory for driver (e.g. 1000M, 2G) (Default: 512 Mb)
-  --driver-cores NUM       Number of cores used by the driver (Default: 1).
-  --executor-memory MEM    Memory per executor (e.g. 1000M, 2G) (Default: 1G)
-  --name NAME              The name of your application (Default: Spark)
-  --queue QUEUE            The hadoop queue to use for allocation requests (Default: 'default')
-  --addJars jars           Comma separated list of local jars that want SparkContext.addJar to work with.
-  --py-files PY_FILES      Comma-separated list of .zip, .egg, or .py files to place on the PYTHONPATH for Python apps.
-  --files files            Comma separated list of files to be distributed with the job.
-  --archives archives      Comma separated list of archives to be distributed with the job.
-  
+
+
+|Usage: org.apache.spark.deploy.yarn.Client [options]
+      |Options:
+      |  --jar JAR_PATH           Path to your application's JAR file (required in yarn-cluster mode)
+      |  --class CLASS_NAME       Name of your application's main class (required)
+      |  --primary-py-file        A main Python file
+      |  --primary-r-file         A main R file
+      |  --arg ARG                Argument to be passed to your application's main class.
+      |                           Multiple invocations are possible, each will be passed in order.
   
   How to call this program example:
   
      export SPARK_HOME="/Users/mparsian/spark-1.6.1-bin-hadoop2.6"
-     java -DSPARK_HOME="$SPARK_HOME" org.dataalgorithms.chapB13.client.SubmitSparkPiToYARNFromJavaCode 10
+     java -DSPARK_HOME="$SPARK_HOME" org.dataalgorithms.chapB13.client.SubmitSparkPiToYARNFromJavaCode 5
 
-* 
+*  @since Spark-2.0.0
+
 *  @author Mahmoud Parsian (mahmoud.parsian@yahoo.com)
 * 
 */
@@ -63,36 +55,65 @@ public class SubmitSparkPiToYARNFromJavaCode {
     }
 
     static void pi(String SPARK_HOME, String slices) throws Exception {
-        //       
-        String[] args = new String[]{
-            "--name",
-            "test-SparkPi",
+        // 
+        String sparkExamplesJar = "file://" + SPARK_HOME + "/examples/jars/spark-examples_2.11-2.0.0.jar";
+        //String sparkExamplesJar = "/spark/spark-examples_2.11-2.0.0.jar"; // HDFS
+        THE_LOGGER.info("sparkExamplesJar=" + sparkExamplesJar);
+       //
+        final String[] args = new String[]{
+            //"--name",
+            //"test-SparkPi",
+            
             //
-            "--driver-memory",
-            "1000M",
+            //"--driver-memory",
+            //"1000M",
+            
             //
             "--jar",
-            //SPARK_HOME + "/examples/target/scala-2.10/spark-examples-1.6.0-hadoop2.5.0.jar",
-            SPARK_HOME + "/lib/spark-examples-1.6.1-hadoop2.6.0.jar",            
+            sparkExamplesJar,
+            
             //
             "--class",
             "org.apache.spark.examples.SparkPi",
+            
             // argument 1 to my Spark program
             "--arg",
-            slices,
+            slices
+            
             // argument 2 to my Spark program (helper argument to create a proper JavaSparkContext object)
-            "--arg",
-            "yarn-cluster"
+            //"--arg",
+            //"yarn-cluster"
+            //"yarn"
         };
 
-        Configuration config = new Configuration();
+        //Configuration config = new Configuration();
+        Configuration config = ConfigurationManager.createConfiguration();     
         //
         System.setProperty("SPARK_YARN_MODE", "true");
         //
         SparkConf sparkConf = new SparkConf();
-        //ClientArguments clientArgs = new ClientArguments(args, sparkConf); // 1.6.1
-        ClientArguments clientArgs = new ClientArguments(args); // 2.0.0
-        Client client = new Client(clientArgs, config, sparkConf);
+        sparkConf.setSparkHome(SPARK_HOME);
+        
+        sparkConf.setMaster("yarn");
+        //sparkConf.setMaster("yarn-cluster");
+        
+        sparkConf.setAppName("spark-yarn");
+        sparkConf.set("master", "yarn");
+        
+        sparkConf.set("spark.submit.deployMode", "cluster"); // worked
+        //sparkConf.set("spark.submit.deployMode", "client");  // did not work
+        
+        //sparkConf.set("spark.yarn.am.port", "8088"); 
+        //sparkConf.set("spark.driver.host", "localhost");
+        //sparkConf.set("spark.driver.host", "mahmoudsmacbook.illumina.com");
+        //sparkConf.set("spark.driver.port", "8088");  
+        //sparkConf.set("spark.yarn.access.namenodes", "hdfs://localhost:9000");
+        
+        //
+        //ClientArguments clientArguments = new ClientArguments(args, sparkConf);    // spark-1.6.1
+        ClientArguments clientArguments = new ClientArguments(args);                 // spark-2.0.0
+        Client client = new Client(clientArguments, config, sparkConf);
+        //Client client = new Client(clientArguments, sparkConf);
         //
         client.run();
         // done!

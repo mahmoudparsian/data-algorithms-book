@@ -1,0 +1,187 @@
+# java org.dataalgorithms.chapB13.client.SubmitSparkPiToClusterFromJavaCode
+16/08/10 13:16:44 INFO client.InputStreamReaderRunnable: InputStreamReaderRunnable:  name=input
+16/08/10 13:16:44 INFO client.InputStreamReaderRunnable: InputStreamReaderRunnable:  name=error
+16/08/10 13:16:44 INFO client.SubmitSparkPiToClusterFromJavaCode: Waiting for finish...
+16/08/10 13:16:44 INFO client.InputStreamReaderRunnable: Using properties file: null
+16/08/10 13:16:44 INFO client.InputStreamReaderRunnable: Parsed arguments:
+16/08/10 13:16:44 INFO client.InputStreamReaderRunnable:   master                  local
+16/08/10 13:16:44 INFO client.InputStreamReaderRunnable:   deployMode              null
+16/08/10 13:16:44 INFO client.InputStreamReaderRunnable:   executorMemory          null
+16/08/10 13:16:44 INFO client.InputStreamReaderRunnable:   executorCores           null
+16/08/10 13:16:44 INFO client.InputStreamReaderRunnable:   totalExecutorCores      null
+16/08/10 13:16:44 INFO client.InputStreamReaderRunnable:   propertiesFile          null
+16/08/10 13:16:44 INFO client.InputStreamReaderRunnable:   driverMemory            1g
+16/08/10 13:16:44 INFO client.InputStreamReaderRunnable:   driverCores             null
+16/08/10 13:16:44 INFO client.InputStreamReaderRunnable:   driverExtraClassPath    null
+16/08/10 13:16:44 INFO client.InputStreamReaderRunnable:   driverExtraLibraryPath  null
+16/08/10 13:16:44 INFO client.InputStreamReaderRunnable:   driverExtraJavaOptions  null
+16/08/10 13:16:44 INFO client.InputStreamReaderRunnable:   supervise               false
+16/08/10 13:16:44 INFO client.InputStreamReaderRunnable:   queue                   null
+16/08/10 13:16:44 INFO client.InputStreamReaderRunnable:   numExecutors            null
+16/08/10 13:16:44 INFO client.InputStreamReaderRunnable:   files                   null
+16/08/10 13:16:44 INFO client.InputStreamReaderRunnable:   pyFiles                 null
+16/08/10 13:16:44 INFO client.InputStreamReaderRunnable:   archives                null
+16/08/10 13:16:44 INFO client.InputStreamReaderRunnable:   mainClass               org.apache.spark.examples.SparkPi
+16/08/10 13:16:44 INFO client.InputStreamReaderRunnable:   primaryResource         file:/Users/mparsian/zmp/github/data-algorithms-book/lib/spark-examples_2.11-2.0.0.jar
+16/08/10 13:16:44 INFO client.InputStreamReaderRunnable:   name                    org.apache.spark.examples.SparkPi
+16/08/10 13:16:44 INFO client.InputStreamReaderRunnable:   childArgs               [5]
+16/08/10 13:16:44 INFO client.InputStreamReaderRunnable:   jars                    null
+16/08/10 13:16:44 INFO client.InputStreamReaderRunnable:   packages                null
+16/08/10 13:16:44 INFO client.InputStreamReaderRunnable:   packagesExclusions      null
+16/08/10 13:16:44 INFO client.InputStreamReaderRunnable:   repositories            null
+16/08/10 13:16:44 INFO client.InputStreamReaderRunnable:   verbose                 true
+16/08/10 13:16:44 INFO client.InputStreamReaderRunnable:
+16/08/10 13:16:44 INFO client.InputStreamReaderRunnable: Spark properties used, including those specified through
+16/08/10 13:16:44 INFO client.InputStreamReaderRunnable:  --conf and those from the properties file null:
+16/08/10 13:16:44 INFO client.InputStreamReaderRunnable:   spark.driver.memory -> 1g
+16/08/10 13:16:44 INFO client.InputStreamReaderRunnable:
+16/08/10 13:16:44 INFO client.InputStreamReaderRunnable:
+16/08/10 13:16:44 INFO client.InputStreamReaderRunnable: Main class:
+16/08/10 13:16:44 INFO client.InputStreamReaderRunnable: org.apache.spark.examples.SparkPi
+16/08/10 13:16:44 INFO client.InputStreamReaderRunnable: Arguments:
+16/08/10 13:16:44 INFO client.InputStreamReaderRunnable: 5
+16/08/10 13:16:44 INFO client.InputStreamReaderRunnable: System properties:
+16/08/10 13:16:44 INFO client.InputStreamReaderRunnable: spark.driver.memory -> 1g
+16/08/10 13:16:44 INFO client.InputStreamReaderRunnable: SPARK_SUBMIT -> true
+16/08/10 13:16:44 INFO client.InputStreamReaderRunnable: spark.app.name -> org.apache.spark.examples.SparkPi
+16/08/10 13:16:44 INFO client.InputStreamReaderRunnable: spark.jars -> file:/Users/mparsian/zmp/github/data-algorithms-book/lib/spark-examples_2.11-2.0.0.jar
+16/08/10 13:16:44 INFO client.InputStreamReaderRunnable: spark.submit.deployMode -> client
+16/08/10 13:16:44 INFO client.InputStreamReaderRunnable: spark.master -> local
+16/08/10 13:16:44 INFO client.InputStreamReaderRunnable: Classpath elements:
+16/08/10 13:16:44 INFO client.InputStreamReaderRunnable: file:/Users/mparsian/zmp/github/data-algorithms-book/lib/spark-examples_2.11-2.0.0.jar
+16/08/10 13:16:44 INFO client.InputStreamReaderRunnable:
+16/08/10 13:16:44 INFO client.InputStreamReaderRunnable:
+16/08/10 13:16:44 INFO client.InputStreamReaderRunnable: 16/08/10 13:16:44 INFO spark.SparkContext: Running Spark version 2.0.0
+16/08/10 13:16:45 INFO client.InputStreamReaderRunnable: 16/08/10 13:16:45 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+16/08/10 13:16:45 INFO client.InputStreamReaderRunnable: 16/08/10 13:16:45 INFO spark.SecurityManager: Changing view acls to: mparsian
+16/08/10 13:16:45 INFO client.InputStreamReaderRunnable: 16/08/10 13:16:45 INFO spark.SecurityManager: Changing modify acls to: mparsian
+16/08/10 13:16:45 INFO client.InputStreamReaderRunnable: 16/08/10 13:16:45 INFO spark.SecurityManager: Changing view acls groups to:
+16/08/10 13:16:45 INFO client.InputStreamReaderRunnable: 16/08/10 13:16:45 INFO spark.SecurityManager: Changing modify acls groups to:
+16/08/10 13:16:45 INFO client.InputStreamReaderRunnable: 16/08/10 13:16:45 INFO spark.SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users  with view permissions: Set(mparsian); groups with view permissions: Set(); users  with modify permissions: Set(mparsian); groups with modify permissions: Set()
+16/08/10 13:16:45 INFO client.InputStreamReaderRunnable: 16/08/10 13:16:45 INFO util.Utils: Successfully started service 'sparkDriver' on port 63922.
+16/08/10 13:16:45 INFO client.InputStreamReaderRunnable: 16/08/10 13:16:45 INFO spark.SparkEnv: Registering MapOutputTracker
+16/08/10 13:16:45 INFO client.InputStreamReaderRunnable: 16/08/10 13:16:45 INFO spark.SparkEnv: Registering BlockManagerMaster
+16/08/10 13:16:45 INFO client.InputStreamReaderRunnable: 16/08/10 13:16:45 INFO storage.DiskBlockManager: Created local directory at /private/var/folders/64/7fnc2mzx0jd5nhch32xwb1hhrhxtnh/T/blockmgr-7afa7ef4-034c-4ed5-8909-ee268bb02e73
+16/08/10 13:16:45 INFO client.InputStreamReaderRunnable: 16/08/10 13:16:45 INFO memory.MemoryStore: MemoryStore started with capacity 366.3 MB
+16/08/10 13:16:45 INFO client.InputStreamReaderRunnable: 16/08/10 13:16:45 INFO spark.SparkEnv: Registering OutputCommitCoordinator
+16/08/10 13:16:45 INFO client.InputStreamReaderRunnable: 16/08/10 13:16:45 INFO util.log: Logging initialized @1404ms
+16/08/10 13:16:45 INFO client.InputStreamReaderRunnable: 16/08/10 13:16:45 INFO server.Server: jetty-9.2.z-SNAPSHOT
+16/08/10 13:16:45 INFO client.InputStreamReaderRunnable: 16/08/10 13:16:45 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@4ae33a11{/jobs,null,AVAILABLE}
+16/08/10 13:16:45 INFO client.InputStreamReaderRunnable: 16/08/10 13:16:45 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@7a48e6e2{/jobs/json,null,AVAILABLE}
+16/08/10 13:16:45 INFO client.InputStreamReaderRunnable: 16/08/10 13:16:45 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@b40bb6e{/jobs/job,null,AVAILABLE}
+16/08/10 13:16:45 INFO client.InputStreamReaderRunnable: 16/08/10 13:16:45 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@3a94964{/jobs/job/json,null,AVAILABLE}
+16/08/10 13:16:45 INFO client.InputStreamReaderRunnable: 16/08/10 13:16:45 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@5049d8b2{/stages,null,AVAILABLE}
+16/08/10 13:16:45 INFO client.InputStreamReaderRunnable: 16/08/10 13:16:45 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@6d0b5baf{/stages/json,null,AVAILABLE}
+16/08/10 13:16:45 INFO client.InputStreamReaderRunnable: 16/08/10 13:16:45 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@631e06ab{/stages/stage,null,AVAILABLE}
+16/08/10 13:16:45 INFO client.InputStreamReaderRunnable: 16/08/10 13:16:45 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@2a3591c5{/stages/stage/json,null,AVAILABLE}
+16/08/10 13:16:45 INFO client.InputStreamReaderRunnable: 16/08/10 13:16:45 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@34a75079{/stages/pool,null,AVAILABLE}
+16/08/10 13:16:45 INFO client.InputStreamReaderRunnable: 16/08/10 13:16:45 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@346a361{/stages/pool/json,null,AVAILABLE}
+16/08/10 13:16:45 INFO client.InputStreamReaderRunnable: 16/08/10 13:16:45 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@107ed6fc{/storage,null,AVAILABLE}
+16/08/10 13:16:45 INFO client.InputStreamReaderRunnable: 16/08/10 13:16:45 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@1643d68f{/storage/json,null,AVAILABLE}
+16/08/10 13:16:45 INFO client.InputStreamReaderRunnable: 16/08/10 13:16:45 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@186978a6{/storage/rdd,null,AVAILABLE}
+16/08/10 13:16:45 INFO client.InputStreamReaderRunnable: 16/08/10 13:16:45 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@2e029d61{/storage/rdd/json,null,AVAILABLE}
+16/08/10 13:16:45 INFO client.InputStreamReaderRunnable: 16/08/10 13:16:45 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@482d776b{/environment,null,AVAILABLE}
+16/08/10 13:16:45 INFO client.InputStreamReaderRunnable: 16/08/10 13:16:45 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@4052274f{/environment/json,null,AVAILABLE}
+16/08/10 13:16:45 INFO client.InputStreamReaderRunnable: 16/08/10 13:16:45 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@132ddbab{/executors,null,AVAILABLE}
+16/08/10 13:16:45 INFO client.InputStreamReaderRunnable: 16/08/10 13:16:45 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@297ea53a{/executors/json,null,AVAILABLE}
+16/08/10 13:16:45 INFO client.InputStreamReaderRunnable: 16/08/10 13:16:45 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@acb0951{/executors/threadDump,null,AVAILABLE}
+16/08/10 13:16:45 INFO client.InputStreamReaderRunnable: 16/08/10 13:16:45 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@5bf22f18{/executors/threadDump/json,null,AVAILABLE}
+16/08/10 13:16:45 INFO client.InputStreamReaderRunnable: 16/08/10 13:16:45 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@267f474e{/static,null,AVAILABLE}
+16/08/10 13:16:45 INFO client.InputStreamReaderRunnable: 16/08/10 13:16:45 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@7a7471ce{/,null,AVAILABLE}
+16/08/10 13:16:45 INFO client.InputStreamReaderRunnable: 16/08/10 13:16:45 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@28276e50{/api,null,AVAILABLE}
+16/08/10 13:16:45 INFO client.InputStreamReaderRunnable: 16/08/10 13:16:45 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@62e70ea3{/stages/stage/kill,null,AVAILABLE}
+16/08/10 13:16:45 INFO client.InputStreamReaderRunnable: 16/08/10 13:16:45 INFO server.ServerConnector: Started ServerConnector@76c7beb3{HTTP/1.1}{0.0.0.0:4040}
+16/08/10 13:16:45 INFO client.InputStreamReaderRunnable: 16/08/10 13:16:45 INFO server.Server: Started @1507ms
+16/08/10 13:16:45 INFO client.InputStreamReaderRunnable: 16/08/10 13:16:45 INFO util.Utils: Successfully started service 'SparkUI' on port 4040.
+16/08/10 13:16:45 INFO client.InputStreamReaderRunnable: 16/08/10 13:16:45 INFO ui.SparkUI: Bound SparkUI to 0.0.0.0, and started at http://10.240.98.142:4040
+16/08/10 13:16:45 INFO client.InputStreamReaderRunnable: 16/08/10 13:16:45 INFO spark.SparkContext: Added JAR file:/Users/mparsian/zmp/github/data-algorithms-book/lib/spark-examples_2.11-2.0.0.jar at spark://10.240.98.142:63922/jars/spark-examples_2.11-2.0.0.jar with timestamp 1470860205801
+16/08/10 13:16:45 INFO client.InputStreamReaderRunnable: 16/08/10 13:16:45 INFO executor.Executor: Starting executor ID driver on host localhost
+16/08/10 13:16:45 INFO client.InputStreamReaderRunnable: 16/08/10 13:16:45 INFO util.Utils: Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 63923.
+16/08/10 13:16:45 INFO client.InputStreamReaderRunnable: 16/08/10 13:16:45 INFO netty.NettyBlockTransferService: Server created on 10.240.98.142:63923
+16/08/10 13:16:45 INFO client.InputStreamReaderRunnable: 16/08/10 13:16:45 INFO storage.BlockManagerMaster: Registering BlockManager BlockManagerId(driver, 10.240.98.142, 63923)
+16/08/10 13:16:45 INFO client.InputStreamReaderRunnable: 16/08/10 13:16:45 INFO storage.BlockManagerMasterEndpoint: Registering block manager 10.240.98.142:63923 with 366.3 MB RAM, BlockManagerId(driver, 10.240.98.142, 63923)
+16/08/10 13:16:45 INFO client.InputStreamReaderRunnable: 16/08/10 13:16:45 INFO storage.BlockManagerMaster: Registered BlockManager BlockManagerId(driver, 10.240.98.142, 63923)
+16/08/10 13:16:45 INFO client.InputStreamReaderRunnable: 16/08/10 13:16:45 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@77e2a6e2{/metrics/json,null,AVAILABLE}
+16/08/10 13:16:46 INFO client.InputStreamReaderRunnable: 16/08/10 13:16:46 WARN spark.SparkContext: Use an existing SparkContext, some configuration may not take effect.
+16/08/10 13:16:46 INFO client.InputStreamReaderRunnable: 16/08/10 13:16:46 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@6826c41e{/SQL,null,AVAILABLE}
+16/08/10 13:16:46 INFO client.InputStreamReaderRunnable: 16/08/10 13:16:46 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@64d43929{/SQL/json,null,AVAILABLE}
+16/08/10 13:16:46 INFO client.InputStreamReaderRunnable: 16/08/10 13:16:46 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@2d691f3d{/SQL/execution,null,AVAILABLE}
+16/08/10 13:16:46 INFO client.InputStreamReaderRunnable: 16/08/10 13:16:46 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@1e7f2e0f{/SQL/execution/json,null,AVAILABLE}
+16/08/10 13:16:46 INFO client.InputStreamReaderRunnable: 16/08/10 13:16:46 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@15f193b8{/static/sql,null,AVAILABLE}
+16/08/10 13:16:46 INFO client.InputStreamReaderRunnable: 16/08/10 13:16:46 INFO internal.SharedState: Warehouse path is 'file:/Users/mparsian/zmp/github/data-algorithms-book/spark-warehouse'.
+16/08/10 13:16:46 INFO client.InputStreamReaderRunnable: 16/08/10 13:16:46 INFO spark.SparkContext: Starting job: reduce at SparkPi.scala:38
+16/08/10 13:16:46 INFO client.InputStreamReaderRunnable: 16/08/10 13:16:46 INFO scheduler.DAGScheduler: Got job 0 (reduce at SparkPi.scala:38) with 5 output partitions
+16/08/10 13:16:46 INFO client.InputStreamReaderRunnable: 16/08/10 13:16:46 INFO scheduler.DAGScheduler: Final stage: ResultStage 0 (reduce at SparkPi.scala:38)
+16/08/10 13:16:46 INFO client.InputStreamReaderRunnable: 16/08/10 13:16:46 INFO scheduler.DAGScheduler: Parents of final stage: List()
+16/08/10 13:16:46 INFO client.InputStreamReaderRunnable: 16/08/10 13:16:46 INFO scheduler.DAGScheduler: Missing parents: List()
+16/08/10 13:16:46 INFO client.InputStreamReaderRunnable: 16/08/10 13:16:46 INFO scheduler.DAGScheduler: Submitting ResultStage 0 (MapPartitionsRDD[1] at map at SparkPi.scala:34), which has no missing parents
+16/08/10 13:16:46 INFO client.InputStreamReaderRunnable: 16/08/10 13:16:46 INFO memory.MemoryStore: Block broadcast_0 stored as values in memory (estimated size 1832.0 B, free 366.3 MB)
+16/08/10 13:16:46 INFO client.InputStreamReaderRunnable: 16/08/10 13:16:46 INFO memory.MemoryStore: Block broadcast_0_piece0 stored as bytes in memory (estimated size 1169.0 B, free 366.3 MB)
+16/08/10 13:16:46 INFO client.InputStreamReaderRunnable: 16/08/10 13:16:46 INFO storage.BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.240.98.142:63923 (size: 1169.0 B, free: 366.3 MB)
+16/08/10 13:16:46 INFO client.InputStreamReaderRunnable: 16/08/10 13:16:46 INFO spark.SparkContext: Created broadcast 0 from broadcast at DAGScheduler.scala:1012
+16/08/10 13:16:46 INFO client.InputStreamReaderRunnable: 16/08/10 13:16:46 INFO scheduler.DAGScheduler: Submitting 5 missing tasks from ResultStage 0 (MapPartitionsRDD[1] at map at SparkPi.scala:34)
+16/08/10 13:16:46 INFO client.InputStreamReaderRunnable: 16/08/10 13:16:46 INFO scheduler.TaskSchedulerImpl: Adding task set 0.0 with 5 tasks
+16/08/10 13:16:46 INFO client.InputStreamReaderRunnable: 16/08/10 13:16:46 INFO scheduler.TaskSetManager: Starting task 0.0 in stage 0.0 (TID 0, localhost, partition 0, PROCESS_LOCAL, 5415 bytes)
+16/08/10 13:16:46 INFO client.InputStreamReaderRunnable: 16/08/10 13:16:46 INFO executor.Executor: Running task 0.0 in stage 0.0 (TID 0)
+16/08/10 13:16:46 INFO client.InputStreamReaderRunnable: 16/08/10 13:16:46 INFO executor.Executor: Fetching spark://10.240.98.142:63922/jars/spark-examples_2.11-2.0.0.jar with timestamp 1470860205801
+16/08/10 13:16:46 INFO client.InputStreamReaderRunnable: 16/08/10 13:16:46 INFO client.TransportClientFactory: Successfully created connection to /10.240.98.142:63922 after 22 ms (0 ms spent in bootstraps)
+16/08/10 13:16:46 INFO client.InputStreamReaderRunnable: 16/08/10 13:16:46 INFO util.Utils: Fetching spark://10.240.98.142:63922/jars/spark-examples_2.11-2.0.0.jar to /private/var/folders/64/7fnc2mzx0jd5nhch32xwb1hhrhxtnh/T/spark-f033dd74-32c9-4eae-b556-8a3b20e4fbb3/userFiles-9a154dcb-375e-4273-ab9c-6e1f71b79e1d/fetchFileTemp3219916749038116864.tmp
+16/08/10 13:16:46 INFO client.InputStreamReaderRunnable: 16/08/10 13:16:46 INFO executor.Executor: Adding file:/private/var/folders/64/7fnc2mzx0jd5nhch32xwb1hhrhxtnh/T/spark-f033dd74-32c9-4eae-b556-8a3b20e4fbb3/userFiles-9a154dcb-375e-4273-ab9c-6e1f71b79e1d/spark-examples_2.11-2.0.0.jar to class loader
+16/08/10 13:16:46 INFO client.InputStreamReaderRunnable: 16/08/10 13:16:46 INFO executor.Executor: Finished task 0.0 in stage 0.0 (TID 0). 959 bytes result sent to driver
+16/08/10 13:16:46 INFO client.InputStreamReaderRunnable: 16/08/10 13:16:46 INFO scheduler.TaskSetManager: Starting task 1.0 in stage 0.0 (TID 1, localhost, partition 1, PROCESS_LOCAL, 5415 bytes)
+16/08/10 13:16:46 INFO client.InputStreamReaderRunnable: 16/08/10 13:16:46 INFO executor.Executor: Running task 1.0 in stage 0.0 (TID 1)
+16/08/10 13:16:46 INFO client.InputStreamReaderRunnable: 16/08/10 13:16:46 INFO scheduler.TaskSetManager: Finished task 0.0 in stage 0.0 (TID 0) in 206 ms on localhost (1/5)
+16/08/10 13:16:46 INFO client.InputStreamReaderRunnable: 16/08/10 13:16:46 INFO executor.Executor: Finished task 1.0 in stage 0.0 (TID 1). 945 bytes result sent to driver
+16/08/10 13:16:46 INFO client.InputStreamReaderRunnable: 16/08/10 13:16:46 INFO scheduler.TaskSetManager: Starting task 2.0 in stage 0.0 (TID 2, localhost, partition 2, PROCESS_LOCAL, 5415 bytes)
+16/08/10 13:16:46 INFO client.InputStreamReaderRunnable: 16/08/10 13:16:46 INFO executor.Executor: Running task 2.0 in stage 0.0 (TID 2)
+16/08/10 13:16:46 INFO client.InputStreamReaderRunnable: 16/08/10 13:16:46 INFO scheduler.TaskSetManager: Finished task 1.0 in stage 0.0 (TID 1) in 85 ms on localhost (2/5)
+16/08/10 13:16:46 INFO client.InputStreamReaderRunnable: 16/08/10 13:16:46 INFO executor.Executor: Finished task 2.0 in stage 0.0 (TID 2). 872 bytes result sent to driver
+16/08/10 13:16:46 INFO client.InputStreamReaderRunnable: 16/08/10 13:16:46 INFO scheduler.TaskSetManager: Starting task 3.0 in stage 0.0 (TID 3, localhost, partition 3, PROCESS_LOCAL, 5415 bytes)
+16/08/10 13:16:46 INFO client.InputStreamReaderRunnable: 16/08/10 13:16:46 INFO executor.Executor: Running task 3.0 in stage 0.0 (TID 3)
+16/08/10 13:16:46 INFO client.InputStreamReaderRunnable: 16/08/10 13:16:46 INFO scheduler.TaskSetManager: Finished task 2.0 in stage 0.0 (TID 2) in 14 ms on localhost (3/5)
+16/08/10 13:16:46 INFO client.InputStreamReaderRunnable: 16/08/10 13:16:46 INFO executor.Executor: Finished task 3.0 in stage 0.0 (TID 3). 872 bytes result sent to driver
+16/08/10 13:16:46 INFO client.InputStreamReaderRunnable: 16/08/10 13:16:46 INFO scheduler.TaskSetManager: Starting task 4.0 in stage 0.0 (TID 4, localhost, partition 4, PROCESS_LOCAL, 5415 bytes)
+16/08/10 13:16:46 INFO client.InputStreamReaderRunnable: 16/08/10 13:16:46 INFO executor.Executor: Running task 4.0 in stage 0.0 (TID 4)
+16/08/10 13:16:46 INFO client.InputStreamReaderRunnable: 16/08/10 13:16:46 INFO scheduler.TaskSetManager: Finished task 3.0 in stage 0.0 (TID 3) in 16 ms on localhost (4/5)
+16/08/10 13:16:46 INFO client.InputStreamReaderRunnable: 16/08/10 13:16:46 INFO executor.Executor: Finished task 4.0 in stage 0.0 (TID 4). 872 bytes result sent to driver
+16/08/10 13:16:46 INFO client.InputStreamReaderRunnable: 16/08/10 13:16:46 INFO scheduler.TaskSetManager: Finished task 4.0 in stage 0.0 (TID 4) in 15 ms on localhost (5/5)
+16/08/10 13:16:46 INFO client.InputStreamReaderRunnable: 16/08/10 13:16:46 INFO scheduler.DAGScheduler: ResultStage 0 (reduce at SparkPi.scala:38) finished in 0.340 s
+16/08/10 13:16:46 INFO client.InputStreamReaderRunnable: 16/08/10 13:16:46 INFO scheduler.TaskSchedulerImpl: Removed TaskSet 0.0, whose tasks have all completed, from pool
+16/08/10 13:16:46 INFO client.InputStreamReaderRunnable: 16/08/10 13:16:46 INFO scheduler.DAGScheduler: Job 0 finished: reduce at SparkPi.scala:38, took 0.537760 s
+16/08/10 13:16:46 INFO client.InputStreamReaderRunnable: Pi is roughly 3.1428382856765715
+16/08/10 13:16:46 INFO client.InputStreamReaderRunnable: 16/08/10 13:16:46 INFO server.ServerConnector: Stopped ServerConnector@76c7beb3{HTTP/1.1}{0.0.0.0:4040}
+16/08/10 13:16:46 INFO client.InputStreamReaderRunnable: 16/08/10 13:16:46 INFO handler.ContextHandler: Stopped o.s.j.s.ServletContextHandler@62e70ea3{/stages/stage/kill,null,UNAVAILABLE}
+16/08/10 13:16:46 INFO client.InputStreamReaderRunnable: 16/08/10 13:16:46 INFO handler.ContextHandler: Stopped o.s.j.s.ServletContextHandler@28276e50{/api,null,UNAVAILABLE}
+16/08/10 13:16:46 INFO client.InputStreamReaderRunnable: 16/08/10 13:16:46 INFO handler.ContextHandler: Stopped o.s.j.s.ServletContextHandler@7a7471ce{/,null,UNAVAILABLE}
+16/08/10 13:16:46 INFO client.InputStreamReaderRunnable: 16/08/10 13:16:46 INFO handler.ContextHandler: Stopped o.s.j.s.ServletContextHandler@267f474e{/static,null,UNAVAILABLE}
+16/08/10 13:16:46 INFO client.InputStreamReaderRunnable: 16/08/10 13:16:46 INFO handler.ContextHandler: Stopped o.s.j.s.ServletContextHandler@5bf22f18{/executors/threadDump/json,null,UNAVAILABLE}
+16/08/10 13:16:46 INFO client.InputStreamReaderRunnable: 16/08/10 13:16:46 INFO handler.ContextHandler: Stopped o.s.j.s.ServletContextHandler@acb0951{/executors/threadDump,null,UNAVAILABLE}
+16/08/10 13:16:46 INFO client.InputStreamReaderRunnable: 16/08/10 13:16:46 INFO handler.ContextHandler: Stopped o.s.j.s.ServletContextHandler@297ea53a{/executors/json,null,UNAVAILABLE}
+16/08/10 13:16:46 INFO client.InputStreamReaderRunnable: 16/08/10 13:16:46 INFO handler.ContextHandler: Stopped o.s.j.s.ServletContextHandler@132ddbab{/executors,null,UNAVAILABLE}
+16/08/10 13:16:46 INFO client.InputStreamReaderRunnable: 16/08/10 13:16:46 INFO handler.ContextHandler: Stopped o.s.j.s.ServletContextHandler@4052274f{/environment/json,null,UNAVAILABLE}
+16/08/10 13:16:46 INFO client.InputStreamReaderRunnable: 16/08/10 13:16:46 INFO handler.ContextHandler: Stopped o.s.j.s.ServletContextHandler@482d776b{/environment,null,UNAVAILABLE}
+16/08/10 13:16:46 INFO client.InputStreamReaderRunnable: 16/08/10 13:16:46 INFO handler.ContextHandler: Stopped o.s.j.s.ServletContextHandler@2e029d61{/storage/rdd/json,null,UNAVAILABLE}
+16/08/10 13:16:46 INFO client.InputStreamReaderRunnable: 16/08/10 13:16:46 INFO handler.ContextHandler: Stopped o.s.j.s.ServletContextHandler@186978a6{/storage/rdd,null,UNAVAILABLE}
+16/08/10 13:16:46 INFO client.InputStreamReaderRunnable: 16/08/10 13:16:46 INFO handler.ContextHandler: Stopped o.s.j.s.ServletContextHandler@1643d68f{/storage/json,null,UNAVAILABLE}
+16/08/10 13:16:46 INFO client.InputStreamReaderRunnable: 16/08/10 13:16:46 INFO handler.ContextHandler: Stopped o.s.j.s.ServletContextHandler@107ed6fc{/storage,null,UNAVAILABLE}
+16/08/10 13:16:46 INFO client.InputStreamReaderRunnable: 16/08/10 13:16:46 INFO handler.ContextHandler: Stopped o.s.j.s.ServletContextHandler@346a361{/stages/pool/json,null,UNAVAILABLE}
+16/08/10 13:16:46 INFO client.InputStreamReaderRunnable: 16/08/10 13:16:46 INFO handler.ContextHandler: Stopped o.s.j.s.ServletContextHandler@34a75079{/stages/pool,null,UNAVAILABLE}
+16/08/10 13:16:46 INFO client.InputStreamReaderRunnable: 16/08/10 13:16:46 INFO handler.ContextHandler: Stopped o.s.j.s.ServletContextHandler@2a3591c5{/stages/stage/json,null,UNAVAILABLE}
+16/08/10 13:16:46 INFO client.InputStreamReaderRunnable: 16/08/10 13:16:46 INFO handler.ContextHandler: Stopped o.s.j.s.ServletContextHandler@631e06ab{/stages/stage,null,UNAVAILABLE}
+16/08/10 13:16:46 INFO client.InputStreamReaderRunnable: 16/08/10 13:16:46 INFO handler.ContextHandler: Stopped o.s.j.s.ServletContextHandler@6d0b5baf{/stages/json,null,UNAVAILABLE}
+16/08/10 13:16:46 INFO client.InputStreamReaderRunnable: 16/08/10 13:16:46 INFO handler.ContextHandler: Stopped o.s.j.s.ServletContextHandler@5049d8b2{/stages,null,UNAVAILABLE}
+16/08/10 13:16:46 INFO client.InputStreamReaderRunnable: 16/08/10 13:16:46 INFO handler.ContextHandler: Stopped o.s.j.s.ServletContextHandler@3a94964{/jobs/job/json,null,UNAVAILABLE}
+16/08/10 13:16:46 INFO client.InputStreamReaderRunnable: 16/08/10 13:16:46 INFO handler.ContextHandler: Stopped o.s.j.s.ServletContextHandler@b40bb6e{/jobs/job,null,UNAVAILABLE}
+16/08/10 13:16:46 INFO client.InputStreamReaderRunnable: 16/08/10 13:16:46 INFO handler.ContextHandler: Stopped o.s.j.s.ServletContextHandler@7a48e6e2{/jobs/json,null,UNAVAILABLE}
+16/08/10 13:16:46 INFO client.InputStreamReaderRunnable: 16/08/10 13:16:46 INFO handler.ContextHandler: Stopped o.s.j.s.ServletContextHandler@4ae33a11{/jobs,null,UNAVAILABLE}
+16/08/10 13:16:46 INFO client.InputStreamReaderRunnable: 16/08/10 13:16:46 INFO ui.SparkUI: Stopped Spark web UI at http://10.240.98.142:4040
+16/08/10 13:16:46 INFO client.InputStreamReaderRunnable: 16/08/10 13:16:46 INFO spark.MapOutputTrackerMasterEndpoint: MapOutputTrackerMasterEndpoint stopped!
+16/08/10 13:16:46 INFO client.InputStreamReaderRunnable: 16/08/10 13:16:46 INFO memory.MemoryStore: MemoryStore cleared
+16/08/10 13:16:46 INFO client.InputStreamReaderRunnable: 16/08/10 13:16:46 INFO storage.BlockManager: BlockManager stopped
+16/08/10 13:16:46 INFO client.InputStreamReaderRunnable: 16/08/10 13:16:46 INFO storage.BlockManagerMaster: BlockManagerMaster stopped
+16/08/10 13:16:46 INFO client.InputStreamReaderRunnable: 16/08/10 13:16:46 INFO scheduler.OutputCommitCoordinator$OutputCommitCoordinatorEndpoint: OutputCommitCoordinator stopped!
+16/08/10 13:16:46 INFO client.InputStreamReaderRunnable: 16/08/10 13:16:46 INFO spark.SparkContext: Successfully stopped SparkContext
+16/08/10 13:16:46 INFO client.InputStreamReaderRunnable: 16/08/10 13:16:46 INFO util.ShutdownHookManager: Shutdown hook called
+16/08/10 13:16:46 INFO client.InputStreamReaderRunnable: 16/08/10 13:16:46 INFO util.ShutdownHookManager: Deleting directory /private/var/folders/64/7fnc2mzx0jd5nhch32xwb1hhrhxtnh/T/spark-f033dd74-32c9-4eae-b556-8a3b20e4fbb3
+16/08/10 13:16:47 INFO client.SubmitSparkPiToClusterFromJavaCode: Finished! Exit code:0
+16/08/10 13:16:47 INFO client.SubmitSparkPiToClusterFromJavaCode: estimatedTime (millis)=3222

@@ -4,7 +4,16 @@ import org.apache.spark.SparkConf
 import org.apache.spark.SparkContext
 
 /*
- * Moving Average in Scala using repartitionAndSortWithinPartitions()
+ * Moving Average in Scala sses "secondary sorting" via 
+ * repartitionAndSortWithinPartitions()
+ * 
+ * One question on using scala.collection.mutable.Queue data structure 
+ * for the moving average solution: will this scale out? The answer is 
+ * yes, since the queue size is almost fixed and will not grow beyond 
+ * the “window” size, it will scale out: if even we use thousands or 
+ * 10’s of thousands of it.  If at the reducer level we use unbounded 
+ * data structures, then we are looking for OOM error: in our case, 
+ * it is well guarded by the window size.
  * 
  * 
  * @author Gaurav Bhardwaj (gauravbhardwajemail@gmail.com)
