@@ -61,7 +61,7 @@ Please note that this is a work in progress...
 ==================================
 
 
-[Submit a Spark job to YARN from Java Code](./misc/how-to-submit-spark-job-to-yarn-from-java-code.md)
+[Submit a Spark Job from Java Code](./misc/how-to-submit-spark-job-from-java-code.md)
 ===========================================
 
 
