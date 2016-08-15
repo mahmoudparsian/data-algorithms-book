@@ -17,7 +17,7 @@
 [Added Java 8's LAMBDA Expressions to Spark...](./misc/jdk8_and_lambda.md)
 ================================================
 
-[Started Scala/Spark Solutions...](./src/main/scala/org/dataalgorithms)
+[Scala/Spark Solutions](./src/main/scala/org/dataalgorithms)
 ================================================
 
 [How To Build using Apache's Ant](./misc/ant/README.md)
@@ -25,7 +25,6 @@
 
 [How To Build using Apache's Maven](./misc/maven/README.md)
 ===================================
-
 
 [Machine Learning Algorithms using Spark](./src/main/java/org/dataalgorithms/machinelearning)
 =========================================
@@ -73,7 +72,7 @@ To run python programs just call them with `spark-submit` together with the argu
 Questions/Comments
 ==================
 * [View Mahmoud Parsian's profile on LinkedIn](http://www.linkedin.com/in/mahmoudparsian)
-* Please send me an email: mahmoud.parsian@yahoo.com
+* Please send me an email: <mahmoud.parsian@yahoo.com>
 * [Twitter: @mahmoudparsian](http://twitter.com/mahmoudparsian) 
 
 Thank you!
