@@ -1,0 +1,294 @@
+mparsian@mahmoudsmacbook:~/zmp/github/data-algorithms-book/src/main/java/org/dataalgorithms/chap13/spark# ./run_knn_spark.sh
+Wed Aug 24 10:51:23 PDT 2016
+16/08/24 10:51:24 INFO spark.SparkContext: Running Spark version 2.0.0
+16/08/24 10:51:24 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+16/08/24 10:51:25 INFO spark.SecurityManager: Changing view acls to: mparsian
+16/08/24 10:51:25 INFO spark.SecurityManager: Changing modify acls to: mparsian
+16/08/24 10:51:25 INFO spark.SecurityManager: Changing view acls groups to:
+16/08/24 10:51:25 INFO spark.SecurityManager: Changing modify acls groups to:
+16/08/24 10:51:25 INFO spark.SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users  with view permissions: Set(mparsian); groups with view permissions: Set(); users  with modify permissions: Set(mparsian); groups with modify permissions: Set()
+16/08/24 10:51:25 INFO util.Utils: Successfully started service 'sparkDriver' on port 54114.
+16/08/24 10:51:25 INFO spark.SparkEnv: Registering MapOutputTracker
+16/08/24 10:51:25 INFO spark.SparkEnv: Registering BlockManagerMaster
+16/08/24 10:51:25 INFO storage.DiskBlockManager: Created local directory at /private/var/folders/64/7fnc2mzx0jd5nhch32xwb1hhrhxtnh/T/blockmgr-716500a8-aa3e-489d-9a48-a7183239d511
+16/08/24 10:51:25 INFO memory.MemoryStore: MemoryStore started with capacity 366.3 MB
+16/08/24 10:51:25 INFO spark.SparkEnv: Registering OutputCommitCoordinator
+16/08/24 10:51:25 INFO util.log: Logging initialized @1459ms
+16/08/24 10:51:25 INFO server.Server: jetty-9.2.z-SNAPSHOT
+16/08/24 10:51:25 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@7a7471ce{/jobs,null,AVAILABLE}
+16/08/24 10:51:25 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@28276e50{/jobs/json,null,AVAILABLE}
+16/08/24 10:51:25 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@62e70ea3{/jobs/job,null,AVAILABLE}
+16/08/24 10:51:25 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@3efe7086{/jobs/job/json,null,AVAILABLE}
+16/08/24 10:51:25 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@675d8c96{/stages,null,AVAILABLE}
+16/08/24 10:51:25 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@741b3bc3{/stages/json,null,AVAILABLE}
+16/08/24 10:51:25 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@2ed3b1f5{/stages/stage,null,AVAILABLE}
+16/08/24 10:51:25 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@63648ee9{/stages/stage/json,null,AVAILABLE}
+16/08/24 10:51:25 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@68d6972f{/stages/pool,null,AVAILABLE}
+16/08/24 10:51:25 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@45be7cd5{/stages/pool/json,null,AVAILABLE}
+16/08/24 10:51:25 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@7651218e{/storage,null,AVAILABLE}
+16/08/24 10:51:25 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@3185fa6b{/storage/json,null,AVAILABLE}
+16/08/24 10:51:25 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@6d366c9b{/storage/rdd,null,AVAILABLE}
+16/08/24 10:51:25 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@5b58ed3c{/storage/rdd/json,null,AVAILABLE}
+16/08/24 10:51:25 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@24faea88{/environment,null,AVAILABLE}
+16/08/24 10:51:25 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@3a320ade{/environment/json,null,AVAILABLE}
+16/08/24 10:51:25 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@64beebb7{/executors,null,AVAILABLE}
+16/08/24 10:51:25 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@7813cb11{/executors/json,null,AVAILABLE}
+16/08/24 10:51:25 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@bcec031{/executors/threadDump,null,AVAILABLE}
+16/08/24 10:51:25 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@21005f6c{/executors/threadDump/json,null,AVAILABLE}
+16/08/24 10:51:25 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@32f0fba8{/static,null,AVAILABLE}
+16/08/24 10:51:25 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@545de5a4{/,null,AVAILABLE}
+16/08/24 10:51:25 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@29ef6856{/api,null,AVAILABLE}
+16/08/24 10:51:25 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@ab7a938{/stages/stage/kill,null,AVAILABLE}
+16/08/24 10:51:25 INFO server.ServerConnector: Started ServerConnector@452ba1db{HTTP/1.1}{0.0.0.0:4040}
+16/08/24 10:51:25 INFO server.Server: Started @1559ms
+16/08/24 10:51:25 INFO util.Utils: Successfully started service 'SparkUI' on port 4040.
+16/08/24 10:51:25 INFO ui.SparkUI: Bound SparkUI to 0.0.0.0, and started at http://10.240.98.142:4040
+16/08/24 10:51:25 INFO spark.SparkContext: Added JAR file:/Users/mparsian/zmp/github/data-algorithms-book/dist/data_algorithms_book.jar at spark://10.240.98.142:54114/jars/data_algorithms_book.jar with timestamp 1472061085618
+16/08/24 10:51:25 INFO executor.Executor: Starting executor ID driver on host localhost
+16/08/24 10:51:25 INFO util.Utils: Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 54115.
+16/08/24 10:51:25 INFO netty.NettyBlockTransferService: Server created on 10.240.98.142:54115
+16/08/24 10:51:25 INFO storage.BlockManagerMaster: Registering BlockManager BlockManagerId(driver, 10.240.98.142, 54115)
+16/08/24 10:51:25 INFO storage.BlockManagerMasterEndpoint: Registering block manager 10.240.98.142:54115 with 366.3 MB RAM, BlockManagerId(driver, 10.240.98.142, 54115)
+16/08/24 10:51:25 INFO storage.BlockManagerMaster: Registered BlockManager BlockManagerId(driver, 10.240.98.142, 54115)
+16/08/24 10:51:25 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@515f4131{/metrics/json,null,AVAILABLE}
+16/08/24 10:51:25 WARN spark.SparkContext: Use an existing SparkContext, some configuration may not take effect.
+16/08/24 10:51:25 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@5aa6202e{/SQL,null,AVAILABLE}
+16/08/24 10:51:25 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@771158fb{/SQL/json,null,AVAILABLE}
+16/08/24 10:51:25 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@3003697{/SQL/execution,null,AVAILABLE}
+16/08/24 10:51:25 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@1d269ed7{/SQL/execution/json,null,AVAILABLE}
+16/08/24 10:51:25 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@1e7f2e0f{/static/sql,null,AVAILABLE}
+16/08/24 10:51:25 INFO internal.SharedState: Warehouse path is 'file:/Users/mparsian/zmp/github/data-algorithms-book/src/main/java/org/dataalgorithms/chap13/spark/spark-warehouse'.
+16/08/24 10:51:25 INFO memory.MemoryStore: Block broadcast_0 stored as values in memory (estimated size 40.0 B, free 366.3 MB)
+16/08/24 10:51:25 INFO memory.MemoryStore: Block broadcast_0_piece0 stored as bytes in memory (estimated size 119.0 B, free 366.3 MB)
+16/08/24 10:51:25 INFO storage.BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.240.98.142:54115 (size: 119.0 B, free: 366.3 MB)
+16/08/24 10:51:25 INFO spark.SparkContext: Created broadcast 0 from broadcast at kNN.java:52
+16/08/24 10:51:26 INFO memory.MemoryStore: Block broadcast_1 stored as values in memory (estimated size 40.0 B, free 366.3 MB)
+16/08/24 10:51:26 INFO memory.MemoryStore: Block broadcast_1_piece0 stored as bytes in memory (estimated size 119.0 B, free 366.3 MB)
+16/08/24 10:51:26 INFO storage.BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.240.98.142:54115 (size: 119.0 B, free: 366.3 MB)
+16/08/24 10:51:26 INFO spark.SparkContext: Created broadcast 1 from broadcast at kNN.java:53
+16/08/24 10:51:27 INFO datasources.FileSourceStrategy: Pruning directories with:
+16/08/24 10:51:27 INFO datasources.FileSourceStrategy: Post-Scan Filters:
+16/08/24 10:51:27 INFO datasources.FileSourceStrategy: Pruned Data Schema: struct<value: string>
+16/08/24 10:51:27 INFO datasources.FileSourceStrategy: Pushed Filters:
+16/08/24 10:51:27 INFO memory.MemoryStore: Block broadcast_2 stored as values in memory (estimated size 220.6 KB, free 366.1 MB)
+16/08/24 10:51:27 INFO memory.MemoryStore: Block broadcast_2_piece0 stored as bytes in memory (estimated size 21.1 KB, free 366.1 MB)
+16/08/24 10:51:27 INFO storage.BlockManagerInfo: Added broadcast_2_piece0 in memory on 10.240.98.142:54115 (size: 21.1 KB, free: 366.3 MB)
+16/08/24 10:51:27 INFO spark.SparkContext: Created broadcast 2 from javaRDD at kNN.java:56
+16/08/24 10:51:27 INFO datasources.FileSourceStrategy: Planning scan with bin packing, max size: 4194386 bytes, open cost is considered as scanning 4194304 bytes.
+16/08/24 10:51:27 INFO lzo.GPLNativeCodeLoader: Loaded native gpl library from the embedded binaries
+16/08/24 10:51:27 INFO lzo.LzoCodec: Successfully loaded & initialized native-lzo library [hadoop-lzo rev 5e360bdefd8923280b1a0234b845448050bf0caa]
+16/08/24 10:51:28 INFO codegen.CodeGenerator: Code generated in 158.18899 ms
+16/08/24 10:51:28 INFO Configuration.deprecation: mapred.tip.id is deprecated. Instead, use mapreduce.task.id
+16/08/24 10:51:28 INFO Configuration.deprecation: mapred.task.id is deprecated. Instead, use mapreduce.task.attempt.id
+16/08/24 10:51:28 INFO Configuration.deprecation: mapred.task.is.map is deprecated. Instead, use mapreduce.task.ismap
+16/08/24 10:51:28 INFO Configuration.deprecation: mapred.task.partition is deprecated. Instead, use mapreduce.task.partition
+16/08/24 10:51:28 INFO Configuration.deprecation: mapred.job.id is deprecated. Instead, use mapreduce.job.id
+16/08/24 10:51:28 INFO spark.SparkContext: Starting job: saveAsTextFile at kNN.java:57
+16/08/24 10:51:28 INFO scheduler.DAGScheduler: Got job 0 (saveAsTextFile at kNN.java:57) with 1 output partitions
+16/08/24 10:51:28 INFO scheduler.DAGScheduler: Final stage: ResultStage 0 (saveAsTextFile at kNN.java:57)
+16/08/24 10:51:28 INFO scheduler.DAGScheduler: Parents of final stage: List()
+16/08/24 10:51:28 INFO scheduler.DAGScheduler: Missing parents: List()
+16/08/24 10:51:28 INFO scheduler.DAGScheduler: Submitting ResultStage 0 (MapPartitionsRDD[4] at saveAsTextFile at kNN.java:57), which has no missing parents
+16/08/24 10:51:28 INFO memory.MemoryStore: Block broadcast_3 stored as values in memory (estimated size 71.8 KB, free 366.0 MB)
+16/08/24 10:51:28 INFO memory.MemoryStore: Block broadcast_3_piece0 stored as bytes in memory (estimated size 27.3 KB, free 366.0 MB)
+16/08/24 10:51:28 INFO storage.BlockManagerInfo: Added broadcast_3_piece0 in memory on 10.240.98.142:54115 (size: 27.3 KB, free: 366.3 MB)
+16/08/24 10:51:28 INFO spark.SparkContext: Created broadcast 3 from broadcast at DAGScheduler.scala:1012
+16/08/24 10:51:28 INFO scheduler.DAGScheduler: Submitting 1 missing tasks from ResultStage 0 (MapPartitionsRDD[4] at saveAsTextFile at kNN.java:57)
+16/08/24 10:51:28 INFO scheduler.TaskSchedulerImpl: Adding task set 0.0 with 1 tasks
+16/08/24 10:51:28 INFO scheduler.TaskSetManager: Starting task 0.0 in stage 0.0 (TID 0, localhost, partition 0, PROCESS_LOCAL, 5985 bytes)
+16/08/24 10:51:28 INFO executor.Executor: Running task 0.0 in stage 0.0 (TID 0)
+16/08/24 10:51:28 INFO executor.Executor: Fetching spark://10.240.98.142:54114/jars/data_algorithms_book.jar with timestamp 1472061085618
+16/08/24 10:51:28 INFO client.TransportClientFactory: Successfully created connection to /10.240.98.142:54114 after 30 ms (0 ms spent in bootstraps)
+16/08/24 10:51:28 INFO util.Utils: Fetching spark://10.240.98.142:54114/jars/data_algorithms_book.jar to /private/var/folders/64/7fnc2mzx0jd5nhch32xwb1hhrhxtnh/T/spark-aaa9978d-6a75-4d4a-b230-0512fcbaf92f/userFiles-1d9d8e6d-b516-4c8c-a5f2-070636be1e69/fetchFileTemp5202300384537526386.tmp
+16/08/24 10:51:29 INFO executor.Executor: Adding file:/private/var/folders/64/7fnc2mzx0jd5nhch32xwb1hhrhxtnh/T/spark-aaa9978d-6a75-4d4a-b230-0512fcbaf92f/userFiles-1d9d8e6d-b516-4c8c-a5f2-070636be1e69/data_algorithms_book.jar to class loader
+16/08/24 10:51:29 INFO codegen.CodeGenerator: Code generated in 10.612546 ms
+16/08/24 10:51:29 INFO datasources.FileScanRDD: Reading File path: file:///Users/mparsian/zmp/github/data-algorithms-book/src/main/java/org/dataalgorithms/chap13/spark/resources/R.txt, range: 0-82, partition values: [empty row]
+16/08/24 10:51:29 INFO codegen.CodeGenerator: Code generated in 7.213659 ms
+16/08/24 10:51:29 INFO output.FileOutputCommitter: Saved output of task 'attempt_201608241051_0000_m_000000_0' to file:/Users/mparsian/zmp/github/data-algorithms-book/src/main/java/org/dataalgorithms/chap13/spark/output/R/_temporary/0/task_201608241051_0000_m_000000
+16/08/24 10:51:29 INFO mapred.SparkHadoopMapRedUtil: attempt_201608241051_0000_m_000000_0: Committed
+16/08/24 10:51:29 INFO executor.Executor: Finished task 0.0 in stage 0.0 (TID 0). 1390 bytes result sent to driver
+16/08/24 10:51:29 INFO scheduler.TaskSetManager: Finished task 0.0 in stage 0.0 (TID 0) in 293 ms on localhost (1/1)
+16/08/24 10:51:29 INFO scheduler.TaskSchedulerImpl: Removed TaskSet 0.0, whose tasks have all completed, from pool
+16/08/24 10:51:29 INFO scheduler.DAGScheduler: ResultStage 0 (saveAsTextFile at kNN.java:57) finished in 0.306 s
+16/08/24 10:51:29 INFO scheduler.DAGScheduler: Job 0 finished: saveAsTextFile at kNN.java:57, took 0.375738 s
+16/08/24 10:51:29 INFO datasources.FileSourceStrategy: Pruning directories with:
+16/08/24 10:51:29 INFO datasources.FileSourceStrategy: Post-Scan Filters:
+16/08/24 10:51:29 INFO datasources.FileSourceStrategy: Pruned Data Schema: struct<value: string>
+16/08/24 10:51:29 INFO datasources.FileSourceStrategy: Pushed Filters:
+16/08/24 10:51:29 INFO memory.MemoryStore: Block broadcast_4 stored as values in memory (estimated size 220.6 KB, free 365.8 MB)
+16/08/24 10:51:29 INFO memory.MemoryStore: Block broadcast_4_piece0 stored as bytes in memory (estimated size 21.1 KB, free 365.7 MB)
+16/08/24 10:51:29 INFO storage.BlockManagerInfo: Added broadcast_4_piece0 in memory on 10.240.98.142:54115 (size: 21.1 KB, free: 366.2 MB)
+16/08/24 10:51:29 INFO spark.SparkContext: Created broadcast 4 from javaRDD at kNN.java:58
+16/08/24 10:51:29 INFO datasources.FileSourceStrategy: Planning scan with bin packing, max size: 4194678 bytes, open cost is considered as scanning 4194304 bytes.
+16/08/24 10:51:29 INFO spark.SparkContext: Starting job: saveAsTextFile at kNN.java:59
+16/08/24 10:51:29 INFO scheduler.DAGScheduler: Got job 1 (saveAsTextFile at kNN.java:59) with 1 output partitions
+16/08/24 10:51:29 INFO scheduler.DAGScheduler: Final stage: ResultStage 1 (saveAsTextFile at kNN.java:59)
+16/08/24 10:51:29 INFO scheduler.DAGScheduler: Parents of final stage: List()
+16/08/24 10:51:29 INFO scheduler.DAGScheduler: Missing parents: List()
+16/08/24 10:51:29 INFO scheduler.DAGScheduler: Submitting ResultStage 1 (MapPartitionsRDD[9] at saveAsTextFile at kNN.java:59), which has no missing parents
+16/08/24 10:51:29 INFO memory.MemoryStore: Block broadcast_5 stored as values in memory (estimated size 71.6 KB, free 365.7 MB)
+16/08/24 10:51:29 INFO memory.MemoryStore: Block broadcast_5_piece0 stored as bytes in memory (estimated size 27.2 KB, free 365.6 MB)
+16/08/24 10:51:29 INFO storage.BlockManagerInfo: Added broadcast_5_piece0 in memory on 10.240.98.142:54115 (size: 27.2 KB, free: 366.2 MB)
+16/08/24 10:51:29 INFO spark.SparkContext: Created broadcast 5 from broadcast at DAGScheduler.scala:1012
+16/08/24 10:51:29 INFO scheduler.DAGScheduler: Submitting 1 missing tasks from ResultStage 1 (MapPartitionsRDD[9] at saveAsTextFile at kNN.java:59)
+16/08/24 10:51:29 INFO scheduler.TaskSchedulerImpl: Adding task set 1.0 with 1 tasks
+16/08/24 10:51:29 INFO scheduler.TaskSetManager: Starting task 0.0 in stage 1.0 (TID 1, localhost, partition 0, PROCESS_LOCAL, 5986 bytes)
+16/08/24 10:51:29 INFO executor.Executor: Running task 0.0 in stage 1.0 (TID 1)
+16/08/24 10:51:29 INFO datasources.FileScanRDD: Reading File path: file:///Users/mparsian/zmp/github/data-algorithms-book/src/main/java/org/dataalgorithms/chap13/spark/resources/S.txt, range: 0-374, partition values: [empty row]
+16/08/24 10:51:29 INFO output.FileOutputCommitter: Saved output of task 'attempt_201608241051_0001_m_000000_1' to file:/Users/mparsian/zmp/github/data-algorithms-book/src/main/java/org/dataalgorithms/chap13/spark/output/S/_temporary/0/task_201608241051_0001_m_000000
+16/08/24 10:51:29 INFO mapred.SparkHadoopMapRedUtil: attempt_201608241051_0001_m_000000_1: Committed
+16/08/24 10:51:29 INFO executor.Executor: Finished task 0.0 in stage 1.0 (TID 1). 1390 bytes result sent to driver
+16/08/24 10:51:29 INFO scheduler.TaskSetManager: Finished task 0.0 in stage 1.0 (TID 1) in 24 ms on localhost (1/1)
+16/08/24 10:51:29 INFO scheduler.TaskSchedulerImpl: Removed TaskSet 1.0, whose tasks have all completed, from pool
+16/08/24 10:51:29 INFO scheduler.DAGScheduler: ResultStage 1 (saveAsTextFile at kNN.java:59) finished in 0.024 s
+16/08/24 10:51:29 INFO scheduler.DAGScheduler: Job 1 finished: saveAsTextFile at kNN.java:59, took 0.046021 s
+16/08/24 10:51:29 INFO spark.SparkContext: Starting job: saveAsTextFile at kNN.java:67
+16/08/24 10:51:29 INFO scheduler.DAGScheduler: Got job 2 (saveAsTextFile at kNN.java:67) with 1 output partitions
+16/08/24 10:51:29 INFO scheduler.DAGScheduler: Final stage: ResultStage 2 (saveAsTextFile at kNN.java:67)
+16/08/24 10:51:29 INFO scheduler.DAGScheduler: Parents of final stage: List()
+16/08/24 10:51:29 INFO scheduler.DAGScheduler: Missing parents: List()
+16/08/24 10:51:29 INFO scheduler.DAGScheduler: Submitting ResultStage 2 (MapPartitionsRDD[11] at saveAsTextFile at kNN.java:67), which has no missing parents
+16/08/24 10:51:29 INFO memory.MemoryStore: Block broadcast_6 stored as values in memory (estimated size 73.9 KB, free 365.6 MB)
+16/08/24 10:51:29 INFO memory.MemoryStore: Block broadcast_6_piece0 stored as bytes in memory (estimated size 27.9 KB, free 365.5 MB)
+16/08/24 10:51:29 INFO storage.BlockManagerInfo: Added broadcast_6_piece0 in memory on 10.240.98.142:54115 (size: 27.9 KB, free: 366.2 MB)
+16/08/24 10:51:29 INFO spark.SparkContext: Created broadcast 6 from broadcast at DAGScheduler.scala:1012
+16/08/24 10:51:29 INFO scheduler.DAGScheduler: Submitting 1 missing tasks from ResultStage 2 (MapPartitionsRDD[11] at saveAsTextFile at kNN.java:67)
+16/08/24 10:51:29 INFO scheduler.TaskSchedulerImpl: Adding task set 2.0 with 1 tasks
+16/08/24 10:51:29 INFO scheduler.TaskSetManager: Starting task 0.0 in stage 2.0 (TID 2, localhost, partition 0, PROCESS_LOCAL, 6374 bytes)
+16/08/24 10:51:29 INFO executor.Executor: Running task 0.0 in stage 2.0 (TID 2)
+16/08/24 10:51:29 INFO datasources.FileScanRDD: Reading File path: file:///Users/mparsian/zmp/github/data-algorithms-book/src/main/java/org/dataalgorithms/chap13/spark/resources/R.txt, range: 0-82, partition values: [empty row]
+16/08/24 10:51:29 INFO datasources.FileScanRDD: Reading File path: file:///Users/mparsian/zmp/github/data-algorithms-book/src/main/java/org/dataalgorithms/chap13/spark/resources/S.txt, range: 0-374, partition values: [empty row]
+16/08/24 10:51:29 INFO datasources.FileScanRDD: Reading File path: file:///Users/mparsian/zmp/github/data-algorithms-book/src/main/java/org/dataalgorithms/chap13/spark/resources/S.txt, range: 0-374, partition values: [empty row]
+16/08/24 10:51:29 INFO datasources.FileScanRDD: Reading File path: file:///Users/mparsian/zmp/github/data-algorithms-book/src/main/java/org/dataalgorithms/chap13/spark/resources/S.txt, range: 0-374, partition values: [empty row]
+16/08/24 10:51:29 INFO datasources.FileScanRDD: Reading File path: file:///Users/mparsian/zmp/github/data-algorithms-book/src/main/java/org/dataalgorithms/chap13/spark/resources/S.txt, range: 0-374, partition values: [empty row]
+16/08/24 10:51:29 INFO datasources.FileScanRDD: Reading File path: file:///Users/mparsian/zmp/github/data-algorithms-book/src/main/java/org/dataalgorithms/chap13/spark/resources/S.txt, range: 0-374, partition values: [empty row]
+16/08/24 10:51:29 INFO datasources.FileScanRDD: Reading File path: file:///Users/mparsian/zmp/github/data-algorithms-book/src/main/java/org/dataalgorithms/chap13/spark/resources/S.txt, range: 0-374, partition values: [empty row]
+16/08/24 10:51:29 INFO output.FileOutputCommitter: Saved output of task 'attempt_201608241051_0002_m_000000_2' to file:/Users/mparsian/zmp/github/data-algorithms-book/src/main/java/org/dataalgorithms/chap13/spark/output/cart/_temporary/0/task_201608241051_0002_m_000000
+16/08/24 10:51:29 INFO mapred.SparkHadoopMapRedUtil: attempt_201608241051_0002_m_000000_2: Committed
+16/08/24 10:51:29 INFO executor.Executor: Finished task 0.0 in stage 2.0 (TID 2). 1542 bytes result sent to driver
+16/08/24 10:51:29 INFO scheduler.TaskSetManager: Finished task 0.0 in stage 2.0 (TID 2) in 39 ms on localhost (1/1)
+16/08/24 10:51:29 INFO scheduler.TaskSchedulerImpl: Removed TaskSet 2.0, whose tasks have all completed, from pool
+16/08/24 10:51:29 INFO scheduler.DAGScheduler: ResultStage 2 (saveAsTextFile at kNN.java:67) finished in 0.040 s
+16/08/24 10:51:29 INFO scheduler.DAGScheduler: Job 2 finished: saveAsTextFile at kNN.java:67, took 0.059480 s
+16/08/24 10:51:29 INFO spark.SparkContext: Starting job: saveAsTextFile at kNN.java:94
+16/08/24 10:51:29 INFO scheduler.DAGScheduler: Got job 3 (saveAsTextFile at kNN.java:94) with 1 output partitions
+16/08/24 10:51:29 INFO scheduler.DAGScheduler: Final stage: ResultStage 3 (saveAsTextFile at kNN.java:94)
+16/08/24 10:51:29 INFO scheduler.DAGScheduler: Parents of final stage: List()
+16/08/24 10:51:29 INFO scheduler.DAGScheduler: Missing parents: List()
+16/08/24 10:51:29 INFO scheduler.DAGScheduler: Submitting ResultStage 3 (MapPartitionsRDD[13] at saveAsTextFile at kNN.java:94), which has no missing parents
+16/08/24 10:51:29 INFO memory.MemoryStore: Block broadcast_7 stored as values in memory (estimated size 74.6 KB, free 365.5 MB)
+16/08/24 10:51:29 INFO memory.MemoryStore: Block broadcast_7_piece0 stored as bytes in memory (estimated size 28.3 KB, free 365.4 MB)
+16/08/24 10:51:29 INFO storage.BlockManagerInfo: Added broadcast_7_piece0 in memory on 10.240.98.142:54115 (size: 28.3 KB, free: 366.2 MB)
+16/08/24 10:51:29 INFO spark.SparkContext: Created broadcast 7 from broadcast at DAGScheduler.scala:1012
+16/08/24 10:51:29 INFO scheduler.DAGScheduler: Submitting 1 missing tasks from ResultStage 3 (MapPartitionsRDD[13] at saveAsTextFile at kNN.java:94)
+16/08/24 10:51:29 INFO scheduler.TaskSchedulerImpl: Adding task set 3.0 with 1 tasks
+16/08/24 10:51:29 INFO scheduler.TaskSetManager: Starting task 0.0 in stage 3.0 (TID 3, localhost, partition 0, PROCESS_LOCAL, 6374 bytes)
+16/08/24 10:51:29 INFO executor.Executor: Running task 0.0 in stage 3.0 (TID 3)
+16/08/24 10:51:29 INFO datasources.FileScanRDD: Reading File path: file:///Users/mparsian/zmp/github/data-algorithms-book/src/main/java/org/dataalgorithms/chap13/spark/resources/R.txt, range: 0-82, partition values: [empty row]
+16/08/24 10:51:29 INFO datasources.FileScanRDD: Reading File path: file:///Users/mparsian/zmp/github/data-algorithms-book/src/main/java/org/dataalgorithms/chap13/spark/resources/S.txt, range: 0-374, partition values: [empty row]
+16/08/24 10:51:29 INFO datasources.FileScanRDD: Reading File path: file:///Users/mparsian/zmp/github/data-algorithms-book/src/main/java/org/dataalgorithms/chap13/spark/resources/S.txt, range: 0-374, partition values: [empty row]
+16/08/24 10:51:29 INFO datasources.FileScanRDD: Reading File path: file:///Users/mparsian/zmp/github/data-algorithms-book/src/main/java/org/dataalgorithms/chap13/spark/resources/S.txt, range: 0-374, partition values: [empty row]
+16/08/24 10:51:29 INFO datasources.FileScanRDD: Reading File path: file:///Users/mparsian/zmp/github/data-algorithms-book/src/main/java/org/dataalgorithms/chap13/spark/resources/S.txt, range: 0-374, partition values: [empty row]
+16/08/24 10:51:29 INFO datasources.FileScanRDD: Reading File path: file:///Users/mparsian/zmp/github/data-algorithms-book/src/main/java/org/dataalgorithms/chap13/spark/resources/S.txt, range: 0-374, partition values: [empty row]
+16/08/24 10:51:29 INFO datasources.FileScanRDD: Reading File path: file:///Users/mparsian/zmp/github/data-algorithms-book/src/main/java/org/dataalgorithms/chap13/spark/resources/S.txt, range: 0-374, partition values: [empty row]
+16/08/24 10:51:29 INFO output.FileOutputCommitter: Saved output of task 'attempt_201608241051_0003_m_000000_3' to file:/Users/mparsian/zmp/github/data-algorithms-book/src/main/java/org/dataalgorithms/chap13/spark/output/knnMapped/_temporary/0/task_201608241051_0003_m_000000
+16/08/24 10:51:29 INFO mapred.SparkHadoopMapRedUtil: attempt_201608241051_0003_m_000000_3: Committed
+16/08/24 10:51:29 INFO executor.Executor: Finished task 0.0 in stage 3.0 (TID 3). 1542 bytes result sent to driver
+16/08/24 10:51:29 INFO scheduler.TaskSetManager: Finished task 0.0 in stage 3.0 (TID 3) in 59 ms on localhost (1/1)
+16/08/24 10:51:29 INFO scheduler.TaskSchedulerImpl: Removed TaskSet 3.0, whose tasks have all completed, from pool
+16/08/24 10:51:29 INFO scheduler.DAGScheduler: ResultStage 3 (saveAsTextFile at kNN.java:94) finished in 0.059 s
+16/08/24 10:51:29 INFO scheduler.DAGScheduler: Job 3 finished: saveAsTextFile at kNN.java:94, took 0.080025 s
+16/08/24 10:51:29 INFO spark.SparkContext: Starting job: saveAsTextFile at kNN.java:127
+16/08/24 10:51:29 INFO scheduler.DAGScheduler: Registering RDD 12 (mapToPair at kNN.java:75)
+16/08/24 10:51:29 INFO scheduler.DAGScheduler: Got job 4 (saveAsTextFile at kNN.java:127) with 1 output partitions
+16/08/24 10:51:29 INFO scheduler.DAGScheduler: Final stage: ResultStage 5 (saveAsTextFile at kNN.java:127)
+16/08/24 10:51:29 INFO scheduler.DAGScheduler: Parents of final stage: List(ShuffleMapStage 4)
+16/08/24 10:51:29 INFO scheduler.DAGScheduler: Missing parents: List(ShuffleMapStage 4)
+16/08/24 10:51:29 INFO scheduler.DAGScheduler: Submitting ShuffleMapStage 4 (MapPartitionsRDD[12] at mapToPair at kNN.java:75), which has no missing parents
+16/08/24 10:51:29 INFO memory.MemoryStore: Block broadcast_8 stored as values in memory (estimated size 13.2 KB, free 365.4 MB)
+16/08/24 10:51:29 INFO memory.MemoryStore: Block broadcast_8_piece0 stored as bytes in memory (estimated size 6.3 KB, free 365.4 MB)
+16/08/24 10:51:29 INFO storage.BlockManagerInfo: Added broadcast_8_piece0 in memory on 10.240.98.142:54115 (size: 6.3 KB, free: 366.1 MB)
+16/08/24 10:51:29 INFO spark.SparkContext: Created broadcast 8 from broadcast at DAGScheduler.scala:1012
+16/08/24 10:51:29 INFO scheduler.DAGScheduler: Submitting 1 missing tasks from ShuffleMapStage 4 (MapPartitionsRDD[12] at mapToPair at kNN.java:75)
+16/08/24 10:51:29 INFO scheduler.TaskSchedulerImpl: Adding task set 4.0 with 1 tasks
+16/08/24 10:51:29 INFO scheduler.TaskSetManager: Starting task 0.0 in stage 4.0 (TID 4, localhost, partition 0, PROCESS_LOCAL, 6363 bytes)
+16/08/24 10:51:29 INFO executor.Executor: Running task 0.0 in stage 4.0 (TID 4)
+16/08/24 10:51:29 INFO datasources.FileScanRDD: Reading File path: file:///Users/mparsian/zmp/github/data-algorithms-book/src/main/java/org/dataalgorithms/chap13/spark/resources/R.txt, range: 0-82, partition values: [empty row]
+16/08/24 10:51:29 INFO datasources.FileScanRDD: Reading File path: file:///Users/mparsian/zmp/github/data-algorithms-book/src/main/java/org/dataalgorithms/chap13/spark/resources/S.txt, range: 0-374, partition values: [empty row]
+16/08/24 10:51:29 INFO datasources.FileScanRDD: Reading File path: file:///Users/mparsian/zmp/github/data-algorithms-book/src/main/java/org/dataalgorithms/chap13/spark/resources/S.txt, range: 0-374, partition values: [empty row]
+16/08/24 10:51:29 INFO datasources.FileScanRDD: Reading File path: file:///Users/mparsian/zmp/github/data-algorithms-book/src/main/java/org/dataalgorithms/chap13/spark/resources/S.txt, range: 0-374, partition values: [empty row]
+16/08/24 10:51:29 INFO datasources.FileScanRDD: Reading File path: file:///Users/mparsian/zmp/github/data-algorithms-book/src/main/java/org/dataalgorithms/chap13/spark/resources/S.txt, range: 0-374, partition values: [empty row]
+16/08/24 10:51:29 INFO datasources.FileScanRDD: Reading File path: file:///Users/mparsian/zmp/github/data-algorithms-book/src/main/java/org/dataalgorithms/chap13/spark/resources/S.txt, range: 0-374, partition values: [empty row]
+16/08/24 10:51:29 INFO datasources.FileScanRDD: Reading File path: file:///Users/mparsian/zmp/github/data-algorithms-book/src/main/java/org/dataalgorithms/chap13/spark/resources/S.txt, range: 0-374, partition values: [empty row]
+16/08/24 10:51:29 INFO executor.Executor: Finished task 0.0 in stage 4.0 (TID 4). 1788 bytes result sent to driver
+16/08/24 10:51:29 INFO scheduler.TaskSetManager: Finished task 0.0 in stage 4.0 (TID 4) in 44 ms on localhost (1/1)
+16/08/24 10:51:29 INFO scheduler.TaskSchedulerImpl: Removed TaskSet 4.0, whose tasks have all completed, from pool
+16/08/24 10:51:29 INFO scheduler.DAGScheduler: ShuffleMapStage 4 (mapToPair at kNN.java:75) finished in 0.046 s
+16/08/24 10:51:29 INFO scheduler.DAGScheduler: looking for newly runnable stages
+16/08/24 10:51:29 INFO scheduler.DAGScheduler: running: Set()
+16/08/24 10:51:29 INFO scheduler.DAGScheduler: waiting: Set(ResultStage 5)
+16/08/24 10:51:29 INFO scheduler.DAGScheduler: failed: Set()
+16/08/24 10:51:29 INFO scheduler.DAGScheduler: Submitting ResultStage 5 (MapPartitionsRDD[17] at saveAsTextFile at kNN.java:127), which has no missing parents
+16/08/24 10:51:29 INFO memory.MemoryStore: Block broadcast_9 stored as values in memory (estimated size 77.3 KB, free 365.3 MB)
+16/08/24 10:51:29 INFO memory.MemoryStore: Block broadcast_9_piece0 stored as bytes in memory (estimated size 29.6 KB, free 365.3 MB)
+16/08/24 10:51:29 INFO storage.BlockManagerInfo: Added broadcast_9_piece0 in memory on 10.240.98.142:54115 (size: 29.6 KB, free: 366.1 MB)
+16/08/24 10:51:29 INFO spark.SparkContext: Created broadcast 9 from broadcast at DAGScheduler.scala:1012
+16/08/24 10:51:29 INFO scheduler.DAGScheduler: Submitting 1 missing tasks from ResultStage 5 (MapPartitionsRDD[17] at saveAsTextFile at kNN.java:127)
+16/08/24 10:51:29 INFO scheduler.TaskSchedulerImpl: Adding task set 5.0 with 1 tasks
+16/08/24 10:51:29 INFO scheduler.TaskSetManager: Starting task 0.0 in stage 5.0 (TID 5, localhost, partition 0, ANY, 5215 bytes)
+16/08/24 10:51:29 INFO executor.Executor: Running task 0.0 in stage 5.0 (TID 5)
+16/08/24 10:51:29 INFO storage.ShuffleBlockFetcherIterator: Getting 1 non-empty blocks out of 1 blocks
+16/08/24 10:51:29 INFO storage.ShuffleBlockFetcherIterator: Started 0 remote fetches in 11 ms
+16/08/24 10:51:29 INFO storage.BlockManagerInfo: Removed broadcast_3_piece0 on 10.240.98.142:54115 in memory (size: 27.3 KB, free: 366.1 MB)
+16/08/24 10:51:29 INFO storage.BlockManagerInfo: Removed broadcast_5_piece0 on 10.240.98.142:54115 in memory (size: 27.2 KB, free: 366.2 MB)
+16/08/24 10:51:29 INFO storage.BlockManagerInfo: Removed broadcast_8_piece0 on 10.240.98.142:54115 in memory (size: 6.3 KB, free: 366.2 MB)
+16/08/24 10:51:29 INFO storage.BlockManagerInfo: Removed broadcast_6_piece0 on 10.240.98.142:54115 in memory (size: 27.9 KB, free: 366.2 MB)
+16/08/24 10:51:29 INFO storage.BlockManagerInfo: Removed broadcast_7_piece0 on 10.240.98.142:54115 in memory (size: 28.3 KB, free: 366.2 MB)
+16/08/24 10:51:29 INFO output.FileOutputCommitter: Saved output of task 'attempt_201608241051_0005_m_000000_5' to file:/Users/mparsian/zmp/github/data-algorithms-book/src/main/java/org/dataalgorithms/chap13/spark/output/knnOutput/_temporary/0/task_201608241051_0005_m_000000
+16/08/24 10:51:29 INFO mapred.SparkHadoopMapRedUtil: attempt_201608241051_0005_m_000000_5: Committed
+16/08/24 10:51:29 INFO executor.Executor: Finished task 0.0 in stage 5.0 (TID 5). 2252 bytes result sent to driver
+16/08/24 10:51:29 INFO scheduler.TaskSetManager: Finished task 0.0 in stage 5.0 (TID 5) in 110 ms on localhost (1/1)
+16/08/24 10:51:29 INFO scheduler.TaskSchedulerImpl: Removed TaskSet 5.0, whose tasks have all completed, from pool
+16/08/24 10:51:29 INFO scheduler.DAGScheduler: ResultStage 5 (saveAsTextFile at kNN.java:127) finished in 0.111 s
+16/08/24 10:51:29 INFO scheduler.DAGScheduler: Job 4 finished: saveAsTextFile at kNN.java:127, took 0.200076 s
+16/08/24 10:51:29 INFO server.ServerConnector: Stopped ServerConnector@452ba1db{HTTP/1.1}{0.0.0.0:4040}
+16/08/24 10:51:29 INFO handler.ContextHandler: Stopped o.s.j.s.ServletContextHandler@ab7a938{/stages/stage/kill,null,UNAVAILABLE}
+16/08/24 10:51:29 INFO handler.ContextHandler: Stopped o.s.j.s.ServletContextHandler@29ef6856{/api,null,UNAVAILABLE}
+16/08/24 10:51:29 INFO handler.ContextHandler: Stopped o.s.j.s.ServletContextHandler@545de5a4{/,null,UNAVAILABLE}
+16/08/24 10:51:29 INFO handler.ContextHandler: Stopped o.s.j.s.ServletContextHandler@32f0fba8{/static,null,UNAVAILABLE}
+16/08/24 10:51:29 INFO handler.ContextHandler: Stopped o.s.j.s.ServletContextHandler@21005f6c{/executors/threadDump/json,null,UNAVAILABLE}
+16/08/24 10:51:29 INFO handler.ContextHandler: Stopped o.s.j.s.ServletContextHandler@bcec031{/executors/threadDump,null,UNAVAILABLE}
+16/08/24 10:51:29 INFO handler.ContextHandler: Stopped o.s.j.s.ServletContextHandler@7813cb11{/executors/json,null,UNAVAILABLE}
+16/08/24 10:51:29 INFO handler.ContextHandler: Stopped o.s.j.s.ServletContextHandler@64beebb7{/executors,null,UNAVAILABLE}
+16/08/24 10:51:29 INFO handler.ContextHandler: Stopped o.s.j.s.ServletContextHandler@3a320ade{/environment/json,null,UNAVAILABLE}
+16/08/24 10:51:29 INFO handler.ContextHandler: Stopped o.s.j.s.ServletContextHandler@24faea88{/environment,null,UNAVAILABLE}
+16/08/24 10:51:29 INFO handler.ContextHandler: Stopped o.s.j.s.ServletContextHandler@5b58ed3c{/storage/rdd/json,null,UNAVAILABLE}
+16/08/24 10:51:29 INFO handler.ContextHandler: Stopped o.s.j.s.ServletContextHandler@6d366c9b{/storage/rdd,null,UNAVAILABLE}
+16/08/24 10:51:29 INFO handler.ContextHandler: Stopped o.s.j.s.ServletContextHandler@3185fa6b{/storage/json,null,UNAVAILABLE}
+16/08/24 10:51:29 INFO handler.ContextHandler: Stopped o.s.j.s.ServletContextHandler@7651218e{/storage,null,UNAVAILABLE}
+16/08/24 10:51:29 INFO handler.ContextHandler: Stopped o.s.j.s.ServletContextHandler@45be7cd5{/stages/pool/json,null,UNAVAILABLE}
+16/08/24 10:51:29 INFO handler.ContextHandler: Stopped o.s.j.s.ServletContextHandler@68d6972f{/stages/pool,null,UNAVAILABLE}
+16/08/24 10:51:29 INFO handler.ContextHandler: Stopped o.s.j.s.ServletContextHandler@63648ee9{/stages/stage/json,null,UNAVAILABLE}
+16/08/24 10:51:29 INFO handler.ContextHandler: Stopped o.s.j.s.ServletContextHandler@2ed3b1f5{/stages/stage,null,UNAVAILABLE}
+16/08/24 10:51:29 INFO handler.ContextHandler: Stopped o.s.j.s.ServletContextHandler@741b3bc3{/stages/json,null,UNAVAILABLE}
+16/08/24 10:51:29 INFO handler.ContextHandler: Stopped o.s.j.s.ServletContextHandler@675d8c96{/stages,null,UNAVAILABLE}
+16/08/24 10:51:29 INFO handler.ContextHandler: Stopped o.s.j.s.ServletContextHandler@3efe7086{/jobs/job/json,null,UNAVAILABLE}
+16/08/24 10:51:29 INFO handler.ContextHandler: Stopped o.s.j.s.ServletContextHandler@62e70ea3{/jobs/job,null,UNAVAILABLE}
+16/08/24 10:51:29 INFO handler.ContextHandler: Stopped o.s.j.s.ServletContextHandler@28276e50{/jobs/json,null,UNAVAILABLE}
+16/08/24 10:51:29 INFO handler.ContextHandler: Stopped o.s.j.s.ServletContextHandler@7a7471ce{/jobs,null,UNAVAILABLE}
+16/08/24 10:51:29 INFO ui.SparkUI: Stopped Spark web UI at http://10.240.98.142:4040
+16/08/24 10:51:29 INFO spark.MapOutputTrackerMasterEndpoint: MapOutputTrackerMasterEndpoint stopped!
+16/08/24 10:51:29 INFO memory.MemoryStore: MemoryStore cleared
+16/08/24 10:51:29 INFO storage.BlockManager: BlockManager stopped
+16/08/24 10:51:29 INFO storage.BlockManagerMaster: BlockManagerMaster stopped
+16/08/24 10:51:29 INFO scheduler.OutputCommitCoordinator$OutputCommitCoordinatorEndpoint: OutputCommitCoordinator stopped!
+16/08/24 10:51:29 INFO spark.SparkContext: Successfully stopped SparkContext
+16/08/24 10:51:29 INFO util.ShutdownHookManager: Shutdown hook called
+16/08/24 10:51:29 INFO util.ShutdownHookManager: Deleting directory /private/var/folders/64/7fnc2mzx0jd5nhch32xwb1hhrhxtnh/T/spark-aaa9978d-6a75-4d4a-b230-0512fcbaf92f
+mparsian@mahmoudsmacbook:~/zmp/github/data-algorithms-book/src/main/java/org/dataalgorithms/chap13/spark# cat output/knnOutput/part-00000
+(1005,c3)
+(1001,c3)
+(1000,c1)
+(1004,c1)
+(1006,c2)
+(1003,c1)

@@ -1,16 +1,18 @@
 package org.dataalgorithms.machinelearning.logistic.cancer;
 
 import org.apache.commons.lang.StringUtils;
+//
 import org.apache.log4j.Logger;
-
+//
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.api.java.function.Function;
+//
+import org.apache.spark.mllib.linalg.Vector;
+import org.apache.spark.mllib.linalg.DenseVector;
 import org.apache.spark.mllib.regression.LabeledPoint;
 import org.apache.spark.mllib.classification.LogisticRegressionModel;
 import org.apache.spark.mllib.classification.LogisticRegressionWithSGD;
-import org.apache.spark.mllib.linalg.DenseVector;
-import org.apache.spark.mllib.linalg.Vector;
 
 /**
  * Input format:
