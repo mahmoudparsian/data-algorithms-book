@@ -1,6 +1,6 @@
-![Scala/Spark Solutions](./scala.jpeg)
+![Scala Spark Solutions](./scala.jpeg)
 
-Scala/Spark Solutions
+Scala Spark Solutions
 =====================
 * This is the home for Scala/Spark solutions to Data Algorithms
 * Started providing Scala/Spark solutions to chapters included in Data Algorithms book
