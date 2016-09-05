@@ -66,8 +66,34 @@ public class Util {
         double difference = r.get(i) - s.get(i);
         sum += difference * difference;
       }
+      //
       return Math.sqrt(sum);
    }
+   
+   /**
+    * @param rAsString = "r.1,r.2,...,r.d"
+    * @param sAsString = "s.1,s.2,...,s.d"
+    * @param d dimension of R and S
+    */
+   public static double calculateDistance(double[] r, double[] s, int d) { 
+      // d is the number of dimensions in the vector 
+      if (r.length != d) {
+         return Double.NaN;
+      }
+      //
+      if (s.length != d) {
+         return Double.NaN;
+      }      
+      
+      // here we have (r.length == s.length == d) 
+      double sum = 0.0;
+      for (int i = 0; i < d; i++) {
+        double difference = r[i] - s[i];
+        sum += difference * difference;
+      }
+      //
+      return Math.sqrt(sum);
+   }   
 
    public static SortedMap<Double, String> findNearestK(Iterable<Tuple2<Double,String>> neighbors, int k) {
        // keep only k-nearest-neighbors

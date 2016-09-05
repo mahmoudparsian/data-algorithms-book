@@ -5,14 +5,15 @@ Scala Spark Solutions
 * This is the home for Scala/Spark solutions to Data Algorithms
 * Started providing Scala/Spark solutions to chapters included in Data Algorithms book
 
-Chapter                             |  Title                                      |
------------------------------------ | ------------------------------------------- | 
-[Chapter 01](./chap01/scala/)       |  Secondary Sorting                          | 
-[Chapter 03](./chap03/scala/)       |  Top-10                                     |
-[Chapter 04](./chap04/scala/)       |  Left Outer Join                            |
-[Chapter 05](./chap05/scala/)       |  Relative Frequency                         |
-[Chapter 06](./chap06/scala/)       |  Moving Average                             |
-...                                 |  ...                                        |
+Chapter                             |  Title                                          |
+----------------------------------- | ----------------------------------------------- | 
+[Chapter 01](./chap01/scala/)       |  Secondary Sorting                              | 
+[Chapter 03](./chap03/scala/)       |  Top-10                                         |
+[Chapter 04](./chap04/scala/)       |  Left Outer Join                                |
+[Chapter 05](./chap05/scala/)       |  Relative Frequency                             |
+[Chapter 06](./chap06/scala/)       |  Moving Average                                 |
+[Chapter 07](./chap07/scala/)       |  Market Basket Analysis: Find Association Rules |
+...                                 |  ...                                            |
 
 Credit and Thank you!
 =====================
