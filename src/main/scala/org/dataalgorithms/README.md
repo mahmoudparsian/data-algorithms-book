@@ -13,6 +13,7 @@ Chapter                             |  Title                                    
 [Chapter 05](./chap05/scala/)       |  Relative Frequency                             |
 [Chapter 06](./chap06/scala/)       |  Moving Average                                 |
 [Chapter 07](./chap07/scala/)       |  Market Basket Analysis: Find Association Rules |
+[Chapter 08](./chap08/scala/)       |  Find Common Friends                            |
 ...                                 |  ...                                            |
 
 Credit and Thank you!
