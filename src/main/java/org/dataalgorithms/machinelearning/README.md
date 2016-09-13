@@ -39,6 +39,8 @@ Machine Learning vs. Traditional Programming
 
 * [Spark Machine Learning Library Tutorial](http://web.cs.ucla.edu/~mtgarip/linear.html)
 
+* [Using Intel® Data Analytics Acceleration Library to Improve the Performance of Naïve Bayes Algorithm in Python](https://software.intel.com/en-us/articles/using-intel-data-analytics-acceleration-library-improve-performance-of-na-ve-bayes)
+
 K-Means Clustering Algorithm
 ============================
 K-Means clustering is a clustering algorithm that can be used to partition 
