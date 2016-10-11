@@ -19,9 +19,9 @@ Chapter                             |  Title                                    
 
 Credit and Thank you!
 =====================
-I want to say "big thank you" to my friend: Gaurav Bhardwaj (gauravbhardwajemail@gmail.com)
-for his great contributions to the Scala/Spark programs. I am sure 
-that his contributions will help the Spark community.
+I want to say "big thank you" to my friend: Gaurav Bhardwaj (<gauravbhardwajemail@gmail.com>)
+for his great contributions to the Scala/Spark programs. I am 
+sure that his contributions will help the Spark community.
 
 Questions/Comments
 ==================
