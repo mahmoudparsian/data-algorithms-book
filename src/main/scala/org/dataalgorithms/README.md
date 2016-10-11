@@ -14,6 +14,7 @@ Chapter                             |  Title                                    
 [Chapter 06](./chap06/scala/)       |  Moving Average                                 |
 [Chapter 07](./chap07/scala/)       |  Market Basket Analysis: Find Association Rules |
 [Chapter 08](./chap08/scala/)       |  Find Common Friends                            |
+[Chapter 09](./chap09/scala/)       |  Friend Recommendation: recommed friends        |
 ...                                 |  ...                                            |
 
 Credit and Thank you!
@@ -25,7 +26,7 @@ that his contributions will help the Spark community.
 Questions/Comments
 ==================
 * [View Mahmoud Parsian's profile on LinkedIn](http://www.linkedin.com/in/mahmoudparsian)
-* Please send me an email: mahmoud.parsian@yahoo.com
+* Please send me an email: <mahmoud.parsian@yahoo.com>
 * [Twitter: @mahmoudparsian](http://twitter.com/mahmoudparsian) 
 
 Thank you!
