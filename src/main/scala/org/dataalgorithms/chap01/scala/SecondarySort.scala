@@ -14,8 +14,9 @@ import org.apache.spark.SparkContext
 object SecondarySort {
   
   def main(args: Array[String]): Unit = {
+    //
     if (args.length != 3) {
-      println("Usage <No of Partition> <input dir> <output dir>")
+      println("Usage <number-of-partitions> <input-path> <output-path>")
       sys.exit(1)
     }
 
