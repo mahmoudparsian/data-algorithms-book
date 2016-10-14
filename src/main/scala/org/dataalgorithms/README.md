@@ -15,12 +15,14 @@ Chapter                             |  Title                                    
 [Chapter 07](./chap07/scala/)       |  Market Basket Analysis: Find Association Rules |
 [Chapter 08](./chap08/scala/)       |  Find Common Friends                            |
 [Chapter 09](./chap09/scala/)       |  Friend Recommendation: recommed friends        |
+[Chapter 10](./chap10/scala/)       |  Movie Recommendation: recommed movies          |
 ...                                 |  ...                                            |
 
 Credit and Thank you!
 =====================
-I want to say "big thank you" to my friend: Gaurav Bhardwaj (<gauravbhardwajemail@gmail.com>)
-for his great contributions to the Scala/Spark programs. I am 
+I want to say "big thank you" to my friend: Gaurav 
+Bhardwaj (<gauravbhardwajemail@gmail.com>) for his 
+great contributions to the Scala/Spark programs. I am 
 sure that his contributions will help the Spark community.
 
 Questions/Comments

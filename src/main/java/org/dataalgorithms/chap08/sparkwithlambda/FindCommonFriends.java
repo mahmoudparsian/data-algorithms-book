@@ -15,7 +15,6 @@ import org.apache.spark.api.java.JavaSparkContext;
 import org.dataalgorithms.util.SparkUtil;
 
 
-
 /**
  * The FindCommonFriends is a Spark program to find "common friends"
  * between all users.
@@ -28,15 +27,10 @@ public class FindCommonFriends {
   public static void main(String[] args) throws Exception {
   
     if (args.length < 1) {
-       // Spark master URL:
-       // format:   spark://<spark-master-host-name>:7077
-       // example:  spark://myserver00:7077
        System.err.println("Usage: FindCommonFriends <input-file>");
        System.exit(1);
     }
     
-    //String sparkMasterURL = args[0];
-    //System.out.println("sparkMasterURL="+sparkMasterURL);
     
     String hdfsInputFileName = args[0];
     System.out.println("hdfsInputFileName="+hdfsInputFileName);
@@ -64,7 +58,9 @@ public class FindCommonFriends {
               String[] friendsTokenized = friendsAsString.split(" ");
               if (friendsTokenized.length == 1) {
                   Tuple2<Long,Long> key = buildSortedTuple(person, Long.parseLong(friendsTokenized[0]));
-                  return Arrays.asList(new Tuple2<Tuple2<Long,Long>,Iterable<Long>>(key, new ArrayList<Long>())).iterator();
+                  List<Tuple2<Tuple2<Long, Long> ,Iterable<Long>>> list =
+                          Arrays.asList(new Tuple2<Tuple2<Long,Long>,Iterable<Long>>(key, new ArrayList<Long>()));
+                  return list.iterator();
               }
               List<Long> friends = new ArrayList<Long>();
               for (String f : friendsTokenized) {
