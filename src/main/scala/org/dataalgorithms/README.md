@@ -16,6 +16,7 @@ Chapter                             |  Title                                    
 [Chapter 08](./chap08/scala/)       |  Find Common Friends                            |
 [Chapter 09](./chap09/scala/)       |  Friend Recommendation: recommed friends        |
 [Chapter 10](./chap10/scala/)       |  Movie Recommendation: recommed movies          |
+[Chapter 11](./chap11/scala/)       |  Markov algorithm: smart email marketing        |
 ...                                 |  ...                                            |
 
 Credit and Thank you!
