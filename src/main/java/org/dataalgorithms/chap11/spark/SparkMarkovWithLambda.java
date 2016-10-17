@@ -7,8 +7,9 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.io.Serializable;
 import java.util.Iterator;
-
+//
 import scala.Tuple2;
+//
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaPairRDD;
 import org.apache.spark.api.java.JavaSparkContext;
@@ -17,7 +18,7 @@ import org.apache.spark.api.java.function.Function2;
 import org.apache.spark.api.java.function.Function;
 import org.apache.spark.api.java.function.PairFlatMapFunction;
 import org.apache.commons.lang.StringUtils;
-
+//
 import org.dataalgorithms.util.DateUtil;
 
 /**
@@ -69,7 +70,7 @@ import org.dataalgorithms.util.DateUtil;
  * @author Mahmoud Parsian
  *
  */
-public class SparkMarkov implements Serializable {
+public class SparkMarkovWithLambda implements Serializable {
 
    static List<Tuple2<Long,Integer>> toList(Iterable<Tuple2<Long,Integer>> iterable) {
       List<Tuple2<Long,Integer>> list = new ArrayList<Tuple2<Long,Integer>>();
@@ -78,7 +79,7 @@ public class SparkMarkov implements Serializable {
       }
       return list;
    }
-   
+
     static String getElapsedTime(long daysDiff) {
         if (daysDiff < 30) {
             return "S"; // small
@@ -157,34 +158,26 @@ public class SparkMarkov implements Serializable {
       //    V: Tuple2<purchaseDate, Amount> : Tuple2<Long, Integer>
       //    PairFunction<T, K, V>
       //    T => Tuple2<K, V>
-      JavaPairRDD<String, Tuple2<Long,Integer>> kv = records.mapToPair(
-         new PairFunction<
-                          String,               // T
-                          String,               // K
-                          Tuple2<Long,Integer>  // V
-                          >() {
-         @Override
-         public Tuple2<String,Tuple2<Long,Integer>> call(String rec) {
-             String[] tokens = StringUtils.split(rec, ",");
-             if (tokens.length != 4) {
-                // not a proper format
-                return null;
-             }
-             // tokens[0] = customer-id
-             // tokens[1] = transaction-id
-             // tokens[2] = purchase-date
-             // tokens[3] = amount
-             long date = 0;
-             try {
-                 date = DateUtil.getDateAsMilliSeconds(tokens[2]);
-             }
-             catch(Exception e) {
-                // ignore for now -- must be handled 
-             }
-             int amount = Integer.parseInt(tokens[3]);
-             Tuple2<Long,Integer> V = new Tuple2<Long,Integer>(date, amount);
-             return new Tuple2<String,Tuple2<Long,Integer>>(tokens[0], V);
-         }
+      JavaPairRDD<String, Tuple2<Long,Integer>> kv = records.mapToPair((String rec) -> {
+          String[] tokens = StringUtils.split(rec, ",");
+          if (tokens.length != 4) {
+              // not a proper format
+              return null;
+          }
+          // tokens[0] = customer-id
+          // tokens[1] = transaction-id
+          // tokens[2] = purchase-date
+          // tokens[3] = amount
+          long date = 0;
+          try {
+              date = DateUtil.getDateAsMilliSeconds(tokens[2]);
+          }
+          catch(Exception e) {
+              // ignore for now -- must be handled
+          }
+          int amount = Integer.parseInt(tokens[3]);
+          Tuple2<Long,Integer> V = new Tuple2<Long,Integer>(date, amount);
+          return new Tuple2<String,Tuple2<Long,Integer>>(tokens[0], V);
       });
       kv.saveAsTextFile("/output/3");
 
@@ -205,19 +198,13 @@ public class SparkMarkov implements Serializable {
       // mapValues[U](f: (V) => U): JavaPairRDD[K, U]
       // Pass each value in the key-value pair RDD through a map function without
       // changing the keys; this also retains the original RDD's partitioning.
-      JavaPairRDD<String, List<String>> stateSequence =  customerRDD.mapValues(
-          new Function<
-                       Iterable<Tuple2<Long,Integer>>,  // input
-                       List<String>                     // output ("state sequence")
-                      >() {
-          @Override
-          public List<String> call(Iterable<Tuple2<Long,Integer>> dateAndAmount) {
-             List<Tuple2<Long,Integer>> list = toList(dateAndAmount);
-             Collections.sort(list, TupleComparatorAscending.INSTANCE);
-             // now convert sorted list (be date) into a "state sequence"
-             List<String> stateSequence = toStateSequence(list);
-             return stateSequence;
-          }
+      JavaPairRDD<String, List<String>> stateSequence =  
+              customerRDD.mapValues((Iterable<Tuple2<Long,Integer>> dateAndAmount) -> {
+          List<Tuple2<Long,Integer>> list = toList(dateAndAmount);
+          Collections.sort(list, TupleComparatorAscending.INSTANCE);
+          // now convert sorted list (be date) into a "state sequence"
+          List<String> stateSequence1 = toStateSequence(list);
+          return stateSequence1;
       }); 
       stateSequence.saveAsTextFile("/output/5");
 
@@ -242,40 +229,28 @@ public class SparkMarkov implements Serializable {
       // For implementation of this step, we use:
       //     PairFlatMapFunction<T, K, V>
       //     T => Iterable<Tuple2<K, V>>
-      JavaPairRDD<Tuple2<String,String>, Integer> model = stateSequence.flatMapToPair(
-         new PairFlatMapFunction<
-                                 Tuple2<String, List<String>>,  // T
-                                 Tuple2<String,String>,         // K
-                                 Integer                        // V
-                                >() {
-         @Override
-         public Iterator<Tuple2<Tuple2<String,String>, Integer>> call(Tuple2<String, List<String>> s) {
-            List<String> states = s._2;
-            if ( (states == null) || (states.size() < 2) ) {
-               return Collections.EMPTY_LIST.iterator();
-            }
-         
-            List<Tuple2<Tuple2<String,String>, Integer>> mapperOutput =
-                new ArrayList<Tuple2<Tuple2<String,String>, Integer>>();
-            for (int i = 0; i < (states.size() -1); i++) {
-                String fromState = states.get(i);
-                String toState = states.get(i+1);
-                Tuple2<String,String> k = new Tuple2<String,String>(fromState, toState);
-                mapperOutput.add(new Tuple2<Tuple2<String,String>, Integer>(k, 1));
-            }
-            return mapperOutput.iterator();
-         }
-       });
+      JavaPairRDD<Tuple2<String,String>, Integer> model = 
+              stateSequence.flatMapToPair((Tuple2<String, List<String>> s) -> {
+          List<String> states = s._2;
+          if ( (states == null) || (states.size() < 2) ) {
+              return Collections.EMPTY_LIST.iterator();
+          }
+          
+          List<Tuple2<Tuple2<String,String>, Integer>> mapperOutput =
+                  new ArrayList<Tuple2<Tuple2<String,String>, Integer>>();
+          for (int i = 0; i < (states.size() -1); i++) {
+              String fromState = states.get(i);
+              String toState = states.get(i+1);
+              Tuple2<String,String> k = new Tuple2<String,String>(fromState, toState);
+              mapperOutput.add(new Tuple2<Tuple2<String,String>, Integer>(k, 1));
+          }
+          return mapperOutput.iterator();
+      });
        model.saveAsTextFile("/output/6.1");
     
        // combine/reduce frequent (fromState, toState)
        JavaPairRDD<Tuple2<String,String>, Integer> markovModel = 
-           model.reduceByKey(new Function2<Integer, Integer, Integer>() {
-           @Override
-           public Integer call(Integer i1, Integer i2) {
-              return i1 + i2;
-           }
-       });
+           model.reduceByKey((Integer i1, Integer i2) -> i1 + i2);
        markovModel.saveAsTextFile("/output/6.2");    
 
        // STEP-7: emit final output
@@ -284,12 +259,7 @@ public class SparkMarkov implements Serializable {
        // <R> JavaRDD<R> map(Function<T,R> f)
        // Return a new RDD by applying a function to all elements of this RDD.
        JavaRDD<String> markovModelFormatted = 
-          markovModel.map(new Function<Tuple2<Tuple2<String,String>, Integer>, String>() {
-          @Override
-          public String call(Tuple2<Tuple2<String,String>, Integer> t) {
-            return t._1._1 + "," + t._1._2 + "\t" + t._2;
-          }
-       });
+          markovModel.map((Tuple2<Tuple2<String,String>, Integer> t) -> t._1._1 + "," + t._1._2 + "\t" + t._2);
        markovModelFormatted.saveAsTextFile("/output/6.3");
        
        // done
