@@ -3,7 +3,8 @@
 Scala Spark Solutions
 =====================
 * This is the home for Scala/Spark solutions to Data Algorithms
-* Started providing Scala/Spark solutions to chapters included in Data Algorithms book
+* Started providing Scala/Spark solutions to chapters included 
+  in Data Algorithms book
 
 Chapter                             |  Title                                          |
 ----------------------------------- | ----------------------------------------------- | 
@@ -17,6 +18,7 @@ Chapter                             |  Title                                    
 [Chapter 09](./chap09/scala/)       |  Friend Recommendation: recommed friends        |
 [Chapter 10](./chap10/scala/)       |  Movie Recommendation: recommed movies          |
 [Chapter 11](./chap11/scala/)       |  Markov algorithm: smart email marketing        |
+[Chapter 12](./chap12/scala/)       |  Kmeans Example                                 |
 ...                                 |  ...                                            |
 
 Credit and Thank you!
