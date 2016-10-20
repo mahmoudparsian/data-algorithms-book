@@ -67,6 +67,7 @@ public class CustomPartitioner extends Partitioner {
         if (numPartitions != other.numPartitions) {
             return false;
         }
+        //
         return true;
     }
 }

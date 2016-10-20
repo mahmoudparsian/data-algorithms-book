@@ -35,7 +35,7 @@ import org.apache.spark.api.java.JavaSparkContext;
  * @author Mahmoud Parsian (mahmoud.parsian@yahoo.com)
  *
  */
-public class TestRepartitionAndSortWithinPartitions implements Serializable {
+public class RepartitionAndSortWithinPartitionsExample1 implements Serializable {
 
     static List<Tuple2<Integer, Integer>> buildSampleList() {
         //
@@ -112,7 +112,7 @@ export BOOK_HOME=/Users/mparsian/zmp/github/data-algorithms-book
 export SPARK_HOME=/Users/mparsian/spark-2.0.0-bin-hadoop2.6
 export APP_JAR=$BOOK_HOME/dist/data_algorithms_book.jar
 #
-prog=org.dataalgorithms.chap01.spark.TestRepartitionAndSortWithinPartitions
+prog=org.dataalgorithms.chap01.spark.RepartitionAndSortWithinPartitionsExample1
 $SPARK_HOME/bin/spark-submit  --class $prog --master local $APP_JAR
 
 

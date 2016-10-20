@@ -19,6 +19,7 @@ Chapter                             |  Title                                    
 [Chapter 10](./chap10/scala/)       |  Movie Recommendation: recommed movies          |
 [Chapter 11](./chap11/scala/)       |  Markov algorithm: smart email marketing        |
 [Chapter 12](./chap12/scala/)       |  Kmeans Example                                 |
+[Chapter 13](./chap13/scala/)       |  kNN algorithm                                  |
 ...                                 |  ...                                            |
 
 Credit and Thank you!
