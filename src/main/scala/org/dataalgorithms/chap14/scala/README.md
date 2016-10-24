@@ -1,10 +1,12 @@
+[![Bayes Theorem](./bayes-theorem.png)]()
+
 Spark Support for Naive Bayes
 =============================
 Naive Bayes is a simple multi-class classification algorithm with the assumption 
 of independence between every pair of features. Naive Bayes can be trained very 
 efficiently. Within a single pass to the training data, it computes the conditional 
 probability distribution of each feature given label, and then it applies Bayes’ 
-theorem to compute the conditional probability distribution of label given an 
+theorem to co[![Bayes Theorem](./bayes-theorem.png)]()mpute the conditional probability distribution of label given an 
 observation and use it for prediction 
 (source: http://spark.apache.org/docs/latest/mllib-naive-bayes.html).
 
