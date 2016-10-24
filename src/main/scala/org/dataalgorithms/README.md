@@ -20,6 +20,7 @@ Chapter                             |  Title                                    
 [Chapter 11](./chap11/scala/)       |  Markov algorithm: smart email marketing        |
 [Chapter 12](./chap12/scala/)       |  Kmeans Example                                 |
 [Chapter 13](./chap13/scala/)       |  kNN algorithm                                  |
+[Chapter 14](./chap14/scala/)       |  Naive Bayes Classifier                         |
 ...                                 |  ...                                            |
 
 Credit and Thank you!

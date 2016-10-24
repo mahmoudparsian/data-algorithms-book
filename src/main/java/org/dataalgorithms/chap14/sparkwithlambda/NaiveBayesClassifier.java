@@ -71,8 +71,8 @@ public class NaiveBayesClassifier implements java.io.Serializable {
       JavaPairRDD<PairOfStrings, DoubleWritable> ptRDD = ctx.hadoopFile(
                           nbProbTablePath,             	    // "/naivebayes/pt" 
                           SequenceFileInputFormat.class,    // input format class
-                          PairOfStrings.class,				// key class
-                          DoubleWritable.class				// value class	
+                          PairOfStrings.class,              // key class
+                          DoubleWritable.class              // value class	
                          );          
 
       // <K2,V2> JavaPairRDD<K2,V2> mapToPair(PairFunction<T,K2,V2> f)
