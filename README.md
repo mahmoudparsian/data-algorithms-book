@@ -68,6 +68,9 @@ How To Run Python Programs
 ==========================
 To run python programs just call them with `spark-submit` together with the arguments to the program.
 
+[My favorite quotes...](./misc/favorite_quotes/README.md)
+=========================================================
+
  
 Questions/Comments
 ==================
