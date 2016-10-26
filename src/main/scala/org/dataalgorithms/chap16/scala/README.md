@@ -1,4 +1,4 @@
-[![Bayes Theorem](./social_network_example.png)]()
+[![Count and List Triangles in a Graph](./social_network_example.png)]()
 
 Count and List Triangles in a Graph
 ===================================
