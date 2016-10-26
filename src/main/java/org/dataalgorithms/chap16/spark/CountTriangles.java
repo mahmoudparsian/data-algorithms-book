@@ -1,20 +1,21 @@
 package org.dataalgorithms.chap16.spark;
 
-import org.dataalgorithms.util.SparkUtil;
-
-import scala.Tuple2;
-import scala.Tuple3;
-import org.apache.spark.api.java.JavaRDD;
-import org.apache.spark.api.java.JavaPairRDD;
-import org.apache.spark.api.java.JavaSparkContext;
-import org.apache.spark.api.java.function.PairFlatMapFunction;
-import org.apache.spark.api.java.function.FlatMapFunction;
-
 import java.util.Arrays;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
+//
+import scala.Tuple2;
+import scala.Tuple3;
+//
+import org.apache.spark.api.java.JavaRDD;
+import org.apache.spark.api.java.JavaPairRDD;
+import org.apache.spark.api.java.JavaSparkContext;
+import org.apache.spark.api.java.function.PairFlatMapFunction;
+import org.apache.spark.api.java.function.FlatMapFunction;
+//
+import org.dataalgorithms.util.SparkUtil;
 
 /**
  * This class finds, counts, and lists all triangles for a given graph.
@@ -23,16 +24,18 @@ import java.util.Iterator;
  *
  */
 public class CountTriangles {
+  //
   public static void main(String[] args) throws Exception {
-    if (args.length < 1) {
-       System.err.println("Usage: CountTriangles <input-path>");
+    if (args.length < 2) {
+       System.err.println("Usage: CountTriangles <input-path> <output-path>");
        System.exit(1);
     }
     String inputPath = args[0];
+    String outputPath = args[1];
 
     // create context object and the first RDD from input-path
     JavaSparkContext ctx = SparkUtil.createJavaSparkContext("count-triangles");
-    JavaRDD<String> lines = ctx.textFile(inputPath, 1);
+    JavaRDD<String> lines = ctx.textFile(inputPath);
 
     // PairFlatMapFunction<T, K, V>	
     // T => Iterable<Tuple2<K, V>>
@@ -186,10 +189,12 @@ public class CountTriangles {
       System.out.println("t3="+t3);
     }
     
-    uniqueTriangles.saveAsTextFile("/triangles/output");
+    uniqueTriangles.saveAsTextFile(outputPath);
 
     // done 
     ctx.close();
+    
+    //
     System.exit(0);
   }
 }
