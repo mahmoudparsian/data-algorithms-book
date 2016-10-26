@@ -21,6 +21,7 @@ Chapter                             |  Title                                    
 [Chapter 12](./chap12/scala/)       |  Kmeans Example                                 |
 [Chapter 13](./chap13/scala/)       |  kNN algorithm                                  |
 [Chapter 14](./chap14/scala/)       |  Naive Bayes Classifier                         |
+[Chapter 16](./chap16/scala/)       |  Counting and Listing Triangles in a Graph      |
 ...                                 |  ...                                            |
 
 Credit and Thank you!
