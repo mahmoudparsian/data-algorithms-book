@@ -150,11 +150,11 @@
        <mkdir dir="${reports}"/>
        <mkdir dir="${reports}/raw/"/>
        <mkdir dir="${reports}/html/"/>
-       
+
 	   <!-- scala init begin --> 
   		<property
     		name="scala-library.jar"
-    		value="${scala.home}/lib/scala-library.jar"
+    		value="${scala.home}/lib/scala-library-2.11.8.jar"
      	/>
   		<path id="build.classpath">
     		<pathelement location="${scala-library.jar}"   />

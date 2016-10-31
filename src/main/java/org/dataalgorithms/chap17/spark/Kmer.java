@@ -24,6 +24,16 @@ import org.dataalgorithms.util.SparkUtil;
 
 /**
  * This class provides K-mer counting functionality.
+ * 
+ * Kmer counting for a given K and N.
+ * K: to find K-mers
+ * N: to find top-N
+ * 
+ * A kmer or k-mer is a short DNA sequence consisting of a fixed 
+ * number (K) of bases. The value of k is usually divisible by 4 
+ * so that a kmer can fit compactly into a basevector object. 
+ * Typical values include 12, 20, 24, 36, and 48; kmers of these 
+ * sizes are referred to as 12-mers, 20-mers, and so forth.
  *
  * @author Mahmoud Parsian
  *

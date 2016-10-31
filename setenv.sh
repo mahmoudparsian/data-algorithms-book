@@ -29,6 +29,7 @@ export ANT_HOME=/Users/mparsian/zmp/zs/apache-ant-1.9.4
 echo "ANT_HOME=$ANT_HOME"
 #
 export SCALA_HOME=/Users/mparsian/scala-2.11.6
+#export SCALA_HOME=/Users/mparsian/scala-2.11.8
 echo "SCALA_HOME=$SCALA_HOME"
 
 #---------------------------------------
