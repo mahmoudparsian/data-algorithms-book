@@ -33,3 +33,5 @@ Sources and References
 * [Correlation and dependence](https://en.wikipedia.org/wiki/Correlation_and_dependence)
 
 * [What Is Correlation?](https://www.verywell.com/what-is-correlation-2794986)
+
+[![Data Algorithms Book](https://raw.githubusercontent.com/mahmoudparsian/data-algorithms-book/master/misc/large-image.jpg)](http://shop.oreilly.com/product/0636920033950.do)
