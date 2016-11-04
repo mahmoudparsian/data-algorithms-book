@@ -24,6 +24,7 @@ Chapter                             |  Title                                    
 [Chapter 16](./chap16/scala/)       |  Counting and Listing Triangles in a Graph      |
 [Chapter 17](./chap17/scala/)       |  Kmer Counting                                  |
 [Chapter 22](./chap22/scala/)       |  Ttest                                          |
+[Chapter 23](./chap23/scala/)       |  All vs. All Correlation                        |
 ...                                 |  ...                                            |
 
 Credit and Thank you!
