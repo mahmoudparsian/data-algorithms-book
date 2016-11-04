@@ -1,4 +1,4 @@
-[![All vs. All Correlation](./correlation.gif)]()
+<img src="./correlation.gif" style="max-height: 300px; max-width: 300px;">
 
 Correlation
 ===========
