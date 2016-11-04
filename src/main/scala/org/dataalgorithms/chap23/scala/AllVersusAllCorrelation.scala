@@ -58,6 +58,9 @@ object AllVersusAllCorrelation {
 
     val cart = grouped.cartesian(grouped)
 
+    // since "correlation of (A, B)" is the same as 
+    // "correlation of (B, A)", we just only keep (A, B) 
+    // before further computation and drop (B, A) 
     val filtered2 = cart.filter(pair => pair._1._1 < pair._2._1)
 
     val finalresult = filtered2.map(t => {
