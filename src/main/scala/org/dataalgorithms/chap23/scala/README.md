@@ -1,5 +1,4 @@
-<img src="./correlation.gif" style="max-height: 300px; max-width: 300px;">
-
+<img src="./correlation.gif">
 Correlation
 ===========
 A correlation is a single number that describes the 
