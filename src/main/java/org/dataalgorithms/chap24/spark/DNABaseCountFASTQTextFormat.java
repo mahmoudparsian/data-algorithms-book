@@ -22,12 +22,12 @@ import org.apache.spark.api.java.function.FlatMapFunction;
  * @author Mahmoud Parsian
  *
  */
-public class DNABaseCountFASTQNonCustomFormat {
+public class DNABaseCountFASTQTextFormat {
 
    public static void main(String[] args) throws Exception {
       // STEP-1: handle input parameters
       if (args.length != 1) {
-         System.err.println("Usage: DNABaseCountFASTQNonCustomFormat <input-path>");
+         System.err.println("Usage: DNABaseCountFASTQTextFormat <input-path>");
          System.exit(1);
       }
       final String inputPath = args[0];
