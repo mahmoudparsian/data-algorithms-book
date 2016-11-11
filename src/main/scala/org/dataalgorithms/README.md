@@ -25,6 +25,7 @@ Chapter                             |  Title                                    
 [Chapter 17](./chap17/scala/)       |  Kmer Counting                                  |
 [Chapter 22](./chap22/scala/)       |  Ttest                                          |
 [Chapter 23](./chap23/scala/)       |  All vs. All Correlation                        |
+[Chapter 24](./chap24/scala/)       |  DNA Base Counting                              |
 [Chapter 28](./chap28/scala/)       |  Monoid and MapReduce                           |
 ...                                 |  ...                                            |
 
