@@ -21,18 +21,32 @@ import org.apache.spark.api.java.function.PairFunction;
  * for each key. The programmer does not need to specify a combiner. 
  * Since combining is automatic, we need to pay an extra attention to
  * reduceByKey(), to make sure that using combiners will not alter 
- * the sematics of our desired function (in this example, the desired 
+ * the semantics of our desired function (in this example, the desired 
  * functionality is the "mean" function). Below, we provide a solution
  * to "mean" function by providing monoids structures so that the correct 
  * semantics of "mean" function is preserved. The entire solution is 
  * presented as a single Java class.
  * 
- * Note that "mean" of "mean" is not a monoid. Therefore, to preseve
+ * Note that "mean" of "mean" is not a monoid. Therefore, to preserve
  * the semantics of "mean" over a set of long data type numbers, we 
  * have to provide a monoid structure so that combiners can be used 
  * efficiently and correctly.
  * 
+ * To find means of numbers, convert each number into (number, 1),
+ * then add them preserving a monoid structure:
+ * 
+ * The monoid structure is defined as (sum, count)
+ * 
+ * number1 -> (number1, 1)
+ * number2 -> (number2, 1)
+ * (number1, 1) + (number2, 1) -> (number1+number2, 1+1) = (number1+number2, 2)
+ * (number1, x) + (number2, y) ->  (number1+number2, x+y)
+ * 
+ * Finally, per key, we will have a value as (sum, count), then to find the mean,
+ * mean = sum / count
+ * 
  *
+ * 
  * @author Mahmoud Parsian
  *
  */

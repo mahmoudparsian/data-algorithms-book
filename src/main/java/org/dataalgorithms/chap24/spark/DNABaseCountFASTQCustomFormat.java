@@ -4,20 +4,19 @@ package org.dataalgorithms.chap24.spark;
 import scala.Tuple2;
 
 import java.util.Map;
-import java.util.List;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Collections;
-
+//
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaPairRDD;
 import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.api.java.function.FlatMapFunction;
-
+//
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.conf.Configuration;
-
+//
 import org.dataalgorithms.chap24.mapreduce.FastqInputFormat;
 
 /**
@@ -26,11 +25,24 @@ import org.dataalgorithms.chap24.mapreduce.FastqInputFormat;
  * FASTQ format is defined here:
  *      http://en.wikipedia.org/wiki/FASTQ_format
  *      http://maq.sourceforge.net/fastq.shtml
+ * 
+ * 
+ *     // NOTE:
+ *     //
+ *     //     Each fastqRDD entry is Tule2<LongWritable, Text> where the value 
+ *     //     (Tuple2._2) is a concatenation of FASTQ record, which has 4 lines:
+ *     //
+ *     //     <line1><,;,><line2><,;,><line3><,;,><line4>
+ *     //
+ *     //     where <line2> is the actual DNA sequence, which we are interested in.
+ *     //     We used FastqInputFormat to convert FASTQ data records into a single
+ *     //     record, where the lines are delimited by ",;,"
+ *    
  *
  * @author Mahmoud Parsian
  *
  */
-public class SparkDNABaseCountFASTQ {
+public class DNABaseCountFASTQCustomFormat {
 
    public static void main(String[] args) throws Exception {
       // STEP-1: handle input parameters
@@ -67,7 +79,7 @@ public class SparkDNABaseCountFASTQ {
                    new Configuration() 
       );  
       
-         
+      
       // STEP-3: map partitions 
       // <U> JavaRDD<U> mapPartitions(FlatMapFunction<Iterator<T>,U> f)
       // Return a new RDD by applying a function to each partition of this RDD.	  
@@ -81,7 +93,7 @@ public class SparkDNABaseCountFASTQ {
              // get FASTQ record: comprised of 4 lines            
              String fastqRecord = kv._2.toString(); 
              String[] lines = fastqRecord.split(",;,");
-             // 2nd line (lines[1]) is the DNA sequence
+             // 2nd line (i.e., lines[1]) is the DNA sequence
              String sequence = lines[1].toUpperCase();
              for (int i = 0; i < sequence.length(); i++){
                 char c = sequence.charAt(i);
@@ -99,21 +111,8 @@ public class SparkDNABaseCountFASTQ {
       });
 
       // STEP-4: collect all DNA base counts
-      List<Map<Character, Long>> list = partitions.collect();
-      Map<Character, Long> allBaseCounts = list.get(0);     
-      for (int i=1; i < list.size(); i++) {
-         Map<Character, Long> aBaseCount = list.get(i);  
-         for (Map.Entry<Character, Long> entry : aBaseCount.entrySet()) {
-            char base = entry.getKey();
-            Long count = allBaseCounts.get(base);
-            if (count == null) {
-                allBaseCounts.put(base, entry.getValue());
-            }
-            else {
-                allBaseCounts.put(base, (count + entry.getValue()));
-            }
-         }
-      }
+      // List<Map<Character, Long>> list = partitions.collect();
+      Map<Character, Long> allBaseCounts = Util.merge(partitions.collect());
 
       // STEP-5: emit final counts
       for (Map.Entry<Character, Long> entry : allBaseCounts.entrySet()) {
