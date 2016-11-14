@@ -247,6 +247,7 @@ To check the accuracy of model, we run the training data against the built model
 ````run_check_accuracy_on_yarn.sh```` is used to perform this test.
 
 
+
 ````
 ./scripts/run_check_accuracy_on_yarn.sh
 ````
