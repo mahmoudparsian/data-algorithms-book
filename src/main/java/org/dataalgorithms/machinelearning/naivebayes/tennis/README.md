@@ -207,7 +207,7 @@ bag
       array: -2.4087682254187612
 |multinomial
 mparsian@Mahmouds-MacBook:~/zmp/github/data-algorithms-book/src/main/java/org/dataalgorithms/machinelearning/naivebayes/diabetes# 
-
+````
 
 
 Output from PredictDiabetes Run
