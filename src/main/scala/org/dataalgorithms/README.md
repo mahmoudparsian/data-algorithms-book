@@ -26,8 +26,8 @@ Chapter                             |  Title                                    
 [Chapter 22](./chap22/scala/)       |  Ttest                                          |
 [Chapter 23](./chap23/scala/)       |  All vs. All Correlation                        |
 [Chapter 24](./chap24/scala/)       |  DNA Base Counting                              |
+[Chapter 26](./chap26/scala/)       |  Gene Aggregation                               |
 [Chapter 28](./chap28/scala/)       |  Monoid and MapReduce                           |
-...                                 |  ...                                            |
 
 Credit and Thank you!
 =====================
