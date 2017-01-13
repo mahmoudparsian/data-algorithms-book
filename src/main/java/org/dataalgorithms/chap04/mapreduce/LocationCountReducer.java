@@ -15,12 +15,13 @@ import java.util.HashSet;
  */
 public  class LocationCountReducer 
 	extends Reducer<Text, Text, Text, LongWritable> {
-
-	Set<String> set = new HashSet<String>();
 	
     @Override
     public void reduce(Text productID, Iterable<Text> locations, Context context)
         throws  IOException, InterruptedException {
+		
+		Set<String> set = new HashSet<String>();
+
         for (Text location: locations) {
            set.add(location.toString());
         }
