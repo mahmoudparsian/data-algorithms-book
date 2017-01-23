@@ -1,5 +1,5 @@
-Machine Learning Algorithms using Spark: Logistic Regression
-============================================================
+Machine Learning Algorithms using Spark: Logistic Regression with K Classifications
+===================================================================================
 The purpose of this package (solutions expressed in Java 
 and Spark) is to show how to implement basic machine learning 
 algorithms such as Logistic Regression in Spark and Spark's 
