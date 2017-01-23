@@ -75,7 +75,7 @@ Training Data
 0,15,0,3,4,1,2,0,0,1,1,1,1,1,1,0,5,5,1,1,1,5,0,14,15,15
 ````
 
-Build Model
+Build LogisticRegressionModel
 ===========
 The class ````StudentAlcoholDetectionBuildModel```` reads the training data and
 builds a ````LogisticRegressionModel```` and saves it. The following script is 
