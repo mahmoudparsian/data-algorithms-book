@@ -6,6 +6,13 @@
 * Publisher: [O'Reilly Media](http://shop.oreilly.com/product/0636920033950.do)
 * Published date: July 2015
 
+Git Repository
+==============
+The book's codebase can also be downloaded from the git repository at:
+````
+git clone https://github.com/mahmoudparsian/data-algorithms-book.git
+````
+
 [Production Version is Available NOW!](http://shop.oreilly.com/product/0636920033950.do)
 ======================================
 
