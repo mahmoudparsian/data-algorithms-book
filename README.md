@@ -42,7 +42,7 @@ git clone https://github.com/mahmoudparsian/data-algorithms-book.git
 [Webinars and Presentions on Data Algorithms](./misc/webinars.md)
 =================================================================
 
-[Introduction to MapReduce](https://github.com/mahmoudparsian/data-algorithms-book/tree/master/src/main/java/org/dataalgorithms/bonus/charcount)
+[Introduction to MapReduce](https://github.com/mahmoudparsian/data-algorithms-book/tree/master/src/main/java/org/dataalgorithms/chapB09/charcount)
 ===========================
  
 [Bonus Chapters](./misc/bonus-chapters.md)
