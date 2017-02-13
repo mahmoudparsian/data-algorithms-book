@@ -21,7 +21,7 @@ git clone https://github.com/mahmoudparsian/data-algorithms-book.git
 
 [![Data Algorithms Book](./misc/da_book3.jpeg)](http://shop.oreilly.com/product/0636920033950.do)
 
-[Added Java 8's LAMBDA Expressions to Spark...](./misc/jdk8_and_lambda.md)
+[Java 8's LAMBDA Expressions to Spark...](./misc/jdk8_and_lambda.md)
 ================================================
 
 [Scala Spark Solutions](./src/main/scala/org/dataalgorithms)
