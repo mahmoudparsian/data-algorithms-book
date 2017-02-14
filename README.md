@@ -13,11 +13,12 @@ The book's codebase can also be downloaded from the git repository at:
 git clone https://github.com/mahmoudparsian/data-algorithms-book.git
 ````
 
+[Upgraded to Spark-2.1.0](http://spark.apache.org/news/spark-2-1-0-released.html)
+=========================
+
+
 [Production Version is Available NOW!](http://shop.oreilly.com/product/0636920033950.do)
 ======================================
-
-[Upgraded to Spark-2.0.0](http://spark.apache.org/news/spark-2-0-0-released.html)
-=========================
 
 [![Data Algorithms Book](./misc/da_book3.jpeg)](http://shop.oreilly.com/product/0636920033950.do)
 
