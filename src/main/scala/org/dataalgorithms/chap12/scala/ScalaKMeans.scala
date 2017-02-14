@@ -39,7 +39,8 @@ object ScalaKMeans {
     })
   
     // build model
-    val model = KMeans.train(points, k, iterations, runs, KMeans.K_MEANS_PARALLEL)
+    //val model = KMeans.train(points, k, iterations, runs, KMeans.K_MEANS_PARALLEL)	// spark-2.0.2
+    val model = KMeans.train(points, k, iterations, KMeans.K_MEANS_PARALLEL)			// spark-2.1.0
 
     println("Cluster centers:")
     model.clusterCenters.foreach(println)

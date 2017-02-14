@@ -35,8 +35,9 @@ public class BasicAppClientListener implements StandaloneAppClientListener  {
     }
 
     //scala: Option[Int] exitStatus
+    // p4 needs a description
     @Override
-    public void executorRemoved(String id, String message, Option exitStatus) {
+    public void executorRemoved(String id, String message, Option exitStatus, boolean p4) {
     }
     
 }
