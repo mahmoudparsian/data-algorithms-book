@@ -30,8 +30,10 @@ object SecondarySort {
 
     val input = sc.textFile(inputPath)
 
-    // each line has the following format:
+    //------------------------------------------------
+    // each input line/record has the following format:
     // <id><,><time><,><value>
+    //-------------------------------------------------
     val valueToKey = input.map(x => {
       val line = x.split(",")
       ((line(0) + "-" + line(1), line(2).toInt), line(2).toInt)
