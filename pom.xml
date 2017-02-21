@@ -22,10 +22,17 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
+    
+<repositories>
+  <!-- list of other repositories -->
+  <repository>
+    <id>SparkPackagesRepo</id>
+    <url>http://dl.bintray.com/spark-packages/maven</url>
+  </repository>
+</repositories>        
   
     <dependencies>
-    
-      
+        
         <dependency>
             <groupId>org.scala-lang</groupId>
             <artifactId>scala-library</artifactId>
@@ -169,7 +176,7 @@
             <groupId>graphframes</groupId>
             <artifactId>graphframes</artifactId>
             <version>0.3.0-spark2.0-s_2.11</version>
-        </dependency>      
+        </dependency>              
 
         <dependency>
             <groupId>com.typesafe.scala-logging</groupId>
