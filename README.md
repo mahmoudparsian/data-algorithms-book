@@ -13,6 +13,9 @@ The book's codebase can also be downloaded from the git repository at:
 git clone https://github.com/mahmoudparsian/data-algorithms-book.git
 ````
 
+[2nd Edition! Coming Out @ the End of 2017](./misc/dabook2-just-1st-page.pdf)
+===========================================
+
 [Upgraded to Spark-2.1.0](http://spark.apache.org/news/spark-2-1-0-released.html)
 =========================
 

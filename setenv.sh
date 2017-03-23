@@ -34,7 +34,7 @@ echo "SCALA_HOME=$SCALA_HOME"
 #---------------------------------------
 # set your spark and hadoop environments
 #---------------------------------------
-export SPARK_HOME=/Users/mparsian/spark-2.1.0-bin-hadoop2.6
+export SPARK_HOME=/Users/mparsian/spark-2.1.0
 export HADOOP_HOME=/Users/mparsian/zmp/zs/hadoop-2.6.3
 export HADOOP_CONF_DIR=$HADOOP_HOME/etc/hadoop
 export YARN_CONF_DIR=$HADOOP_HOME/etc/hadoop

@@ -29,9 +29,48 @@
     <id>SparkPackagesRepo</id>
     <url>http://dl.bintray.com/spark-packages/maven</url>
   </repository>
+  <!--
+    <repository>
+        <id>mavencentral</id>
+        <name>Maven Central</name>
+        <url>https://repo1.maven.org/maven2/</url>
+        <layout>default</layout>
+    </repository>
+    -->
 </repositories>        
   
     <dependencies>
+    
+<!-- https://mvnrepository.com/artifact/com.databricks/spark-csv_2.11 -->
+<!-- 
+<dependency>
+    <groupId>com.databricks</groupId>
+    <artifactId>spark-csv_2.11</artifactId>
+    <version>1.5.0</version>
+</dependency>
+-->   
+    
+<!-- https://mvnrepository.com/artifact/net.sf.jung/jung-graph-impl -->
+<dependency>
+    <groupId>net.sf.jung</groupId>
+    <artifactId>jung-graph-impl</artifactId>
+    <version>2.1.1</version>
+</dependency>
+
+<!-- https://mvnrepository.com/artifact/net.sf.jung/jung-api -->
+<dependency>
+    <groupId>net.sf.jung</groupId>
+    <artifactId>jung-api</artifactId>
+    <version>2.1.1</version>
+</dependency>
+
+<!-- https://mvnrepository.com/artifact/net.sf.jung/jung-algorithms -->
+<dependency>
+    <groupId>net.sf.jung</groupId>
+    <artifactId>jung-algorithms</artifactId>
+    <version>2.1.1</version>
+</dependency>
+    
         
         <dependency>
             <groupId>org.scala-lang</groupId>
