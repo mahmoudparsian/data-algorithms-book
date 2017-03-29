@@ -13,7 +13,7 @@ import org.apache.spark.launcher.SparkLauncher;
  * To accomplish submitting a Spark job from a Java  
  * client, we use the SparkLauncher class.
  *
- *  @since Spark-2.0.0
+ *  @since Spark-2.1.0
 
  *  @author Mahmoud Parsian (mahmoud.parsian@yahoo.com)
  * 
@@ -32,8 +32,8 @@ public class SubmitSparkPiToClusterFromJavaCode {
     static void submit(String[] arguments) throws Exception {
         //
         final String javaHome = "/Library/Java/JavaVirtualMachines/jdk1.8.0_72.jdk/Contents/Home";
-        final String sparkHome = "/Users/mparsian/spark-2.0.0-bin-hadoop2.6";
-        final String appResource = "/Users/mparsian/zmp/github/data-algorithms-book/lib/spark-examples_2.11-2.0.0.jar";
+        final String sparkHome = "/Users/mparsian/spark-2.1.0";
+        final String appResource = "/Users/mparsian/spark-2.1.0/examples/jars/spark-examples_2.11-2.1.0.jar";
         final String mainClass = "org.apache.spark.examples.SparkPi";
         //
         // parameters passed to the  SparkPi

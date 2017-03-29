@@ -31,7 +31,7 @@ public class SubmitSparkJobToClusterFromJavaCode {
     static void test(String[] arguments) throws Exception {
         //
         final String javaHome = "/Library/Java/JavaVirtualMachines/jdk1.8.0_72.jdk/Contents/Home";
-        final String sparkHome = "/Users/mparsian/spark-2.0.0-bin-hadoop2.6";
+        final String sparkHome = "/Users/mparsian/spark-2.1.0";
         final String appResource = "/Users/mparsian/zmp/github/data-algorithms-book/dist/data_algorithms_book.jar";
         final String mainClass = "org.dataalgorithms.bonus.friendrecommendation.spark.SparkFriendRecommendation";
         //

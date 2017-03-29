@@ -28,10 +28,10 @@ import org.apache.log4j.Logger;
   
   How to call this program example:
   
-     export SPARK_HOME="/Users/mparsian/spark-1.6.1-bin-hadoop2.6"
+     export SPARK_HOME="/Users/mparsian/spark-2.1.0"
      java -DSPARK_HOME="$SPARK_HOME" org.dataalgorithms.chapB13.client.SubmitSparkPiToYARNFromJavaCode 5
 
-*  @since Spark-2.0.0
+*  @since Spark-2.1.0
 
 *  @author Mahmoud Parsian (mahmoud.parsian@yahoo.com)
 * 
@@ -59,7 +59,7 @@ public class SubmitSparkPiToYARNFromJavaCode {
         String sparkExamplesJar = "file://" + SPARK_HOME + "/examples/jars/spark-examples_2.11-2.0.0.jar";
         //String sparkExamplesJar = "/spark/spark-examples_2.11-2.0.0.jar"; // HDFS
         THE_LOGGER.info("sparkExamplesJar=" + sparkExamplesJar);
-       //
+        //
         final String[] args = new String[]{
             //"--name",
             //"test-SparkPi",

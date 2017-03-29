@@ -38,7 +38,7 @@ public class ReadDataFromHDFS {
 	}
 	
 	public static List<TableItem> readDirectory(Path path) {
-		FileSystem fs = null;
+		FileSystem fs;
 		try {
 			fs = FileSystem.get(new Configuration());
 		} 
@@ -74,7 +74,7 @@ public class ReadDataFromHDFS {
 		try {
 			stream = fs.open(path);
 			reader = new BufferedReader(new InputStreamReader(stream));
-			String line = null;
+			String line;
 			while ((line = reader.readLine()) != null) {
 				// line = <fromState><,><toState><TAB><count>
 				THE_LOGGER.info("line="+line);
