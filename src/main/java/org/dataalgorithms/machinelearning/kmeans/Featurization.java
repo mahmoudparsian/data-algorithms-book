@@ -1,14 +1,16 @@
 package org.dataalgorithms.machinelearning.kmeans;
 
 import org.apache.log4j.Logger;
+//
 import org.apache.commons.lang.StringUtils;
-
+//
 import scala.Tuple2;
+//
+import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaPairRDD;
 import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.api.java.function.Function;
 import org.apache.spark.api.java.function.PairFunction;
-import org.apache.spark.api.java.JavaRDD;
 
 /**
  * A standalone Spark Java program to perform featurization of wikistats 
