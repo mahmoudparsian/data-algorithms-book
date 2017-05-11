@@ -15,6 +15,14 @@ Spark provides an amazing number of "map" transformations:
 * flatMap() -> one-to-many mapping
 * mapPartitions() -> many-to-one mapping
 
+Spark's mapPartitions() has the following signature:
+
+````
+<U> JavaRDD<U> mapPartitions(FlatMapFunction<java.util.Iterator<T>,U> f)
+Return a new RDD by applying a function to each partition of this RDD.
+````
+
+
 Spark's mapPartitions() transformation takes a partition and generates 
 small amount of information and data structures. For example, mapPartitions() 
 is ideal for finding minimum and maximum of all given numbers. To use map(),
