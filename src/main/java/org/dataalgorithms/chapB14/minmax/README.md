@@ -1,3 +1,12 @@
+Numbers | Statistics
+--------+-----------
+   6    |   min = 2
+   9    |   max = 9
+   7    |   sum = 27
+   2    |   mean = 5.4
+   3    |   median = 6
+
+
 # Simulating Spark's mapPartitions() in Hadoop/MapReduce
 
 Spark provides an amazing number of "map" transformations:
