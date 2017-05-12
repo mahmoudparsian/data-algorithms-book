@@ -1,4 +1,4 @@
-package org.dataalgorithms.chapB14.minmax;
+package org.dataalgorithms.chapB14.minmax.mapreduce;
 
 import org.apache.log4j.Logger;
 //
