@@ -57,7 +57,7 @@ public class Top10 {
       System.out.println("args[0]: <input-path>="+inputPath);
 
       // STEP-2: create an instance of JavaSparkContext
-      JavaSparkContext ctx = SparkUtil.createJavaSparkContext();
+      JavaSparkContext ctx = SparkUtil.createJavaSparkContext("Top10");
 
       // STEP-3: create an RDD for input
       // input record format:
@@ -88,7 +88,7 @@ public class Top10 {
       JavaRDD<SortedMap<Integer, String>> partitions = pairs.mapPartitions(
          new FlatMapFunction<Iterator<Tuple2<String,Integer>>, SortedMap<Integer, String>>() {
          @Override
-         public Iterator<SortedMap<Integer, String>> call(Iterator<Tuple2<String,Integer>> iter) {
+         public Iterable<SortedMap<Integer, String>> call(Iterator<Tuple2<String,Integer>> iter) {
              SortedMap<Integer, String> top10 = new TreeMap<Integer, String>();
              while (iter.hasNext()) {
                 Tuple2<String,Integer> tuple = iter.next();
@@ -98,7 +98,7 @@ public class Top10 {
                    top10.remove(top10.firstKey());
                 }  
              }
-             return Collections.singletonList(top10).iterator();
+             return Collections.singletonList(top10);
          }
       });
 

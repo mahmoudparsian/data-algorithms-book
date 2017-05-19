@@ -57,7 +57,7 @@ public class Top10 {
       //System.out.println("args[1]: <output-path>="+outputPath);
 
       // STEP-2: create an instance of JavaSparkContext
-      JavaSparkContext ctx = SparkUtil.createJavaSparkContext();
+      JavaSparkContext ctx = SparkUtil.createJavaSparkContext("Top10");
 
       // STEP-3: create an RDD for input
       // input record format:
@@ -92,7 +92,7 @@ public class Top10 {
                   top10.remove(top10.firstKey());
               }
           }
-          return Collections.singletonList(top10).iterator();
+          return Collections.singletonList(top10);
       });
 
       // STEP-6: find a final top-10
