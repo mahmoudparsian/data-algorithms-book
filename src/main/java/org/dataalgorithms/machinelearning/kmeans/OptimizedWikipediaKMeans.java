@@ -27,9 +27,12 @@ import org.apache.spark.mllib.linalg.Vector;
 import scala.Tuple2;
 
 /**
- * NOTE: Spark provides distributed K-Means algorithm; the purpose
- * of this class is to exercise and understand how does K-Means work.
-
+ * NOTE: ----------------------------------------
+ *       Apache Spark provides distributed K-Means algorithm; 
+ *       the purpose of this class is to exercise and understand 
+ *       how does K-Means work.
+ * END NOTE --------------------------------------
+ * 
  * @author Khatwani Parth Bharat (h2016170@pilani.bits-pilani.ac.in)
  *
  * @editor Mahmoud Parsian (mahmoud.parsian@yahoo.com)
