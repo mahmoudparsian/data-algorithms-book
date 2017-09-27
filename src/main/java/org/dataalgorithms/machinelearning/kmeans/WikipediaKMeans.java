@@ -17,8 +17,11 @@ import org.apache.log4j.Logger;
 import org.apache.commons.lang.StringUtils;
 
 /**
- * NOTE: Spark provides distributed K-Means algorithm; the purpose
- * of this class is to exercise and understand how does K-Means work.
+ * NOTE: ---------------------------------------------
+ *       Apache Spark provides distributed K-Means 
+ *       algorithm; the purpose of this class is to 
+ *       exercise and understand how does K-Means work.
+ * END NOTE -------------------------------------------
  * 
  * This example is adapted and revised from: AMP Camp Big Data Mini Course:
  * http://www.cs.berkeley.edu/~rxin/ampcamp-ecnu/featurization.html
@@ -103,7 +106,10 @@ public class WikipediaKMeans {
      * and V is a Vector of features
      *
      */
-    static JavaPairRDD<String, Vector> getFeatureizedData(String wikiData, JavaSparkContext context) {
+    static JavaPairRDD<String, Vector> getFeatureizedData(
+            String wikiData, 
+            JavaSparkContext context) {
+        //
         JavaPairRDD<String, Vector> data = context.textFile(wikiData).mapToPair(
                 new PairFunction<String, String, Vector>() {
             @Override
@@ -116,7 +122,10 @@ public class WikipediaKMeans {
         return data;
     }
 
-    static Map<Integer, Vector> getNewCentroids(JavaPairRDD<Integer, Iterable<Vector>> pointsGroup) {
+    static Map<Integer, Vector> getNewCentroids(
+            JavaPairRDD<Integer, 
+            Iterable<Vector>> pointsGroup) {
+        //
         Map<Integer, Vector> newCentroids = pointsGroup.mapValues(
                 new Function<Iterable<Vector>, Vector>() {
             @Override
@@ -127,7 +136,10 @@ public class WikipediaKMeans {
         return newCentroids;
     }
 
-    static JavaPairRDD<Integer, Vector> getClosest(JavaPairRDD<String, Vector> data, final List<Vector> centroids) {
+    static JavaPairRDD<Integer, Vector> getClosest(
+            JavaPairRDD<String, Vector> data, 
+            final List<Vector> centroids) {
+        //
         JavaPairRDD<Integer, Vector> closest = data.mapToPair(
                 new PairFunction<Tuple2<String, Vector>, Integer, Vector>() {
             @Override
@@ -139,7 +151,10 @@ public class WikipediaKMeans {
         return closest;
     }
 
-    static List<Vector> getInitialCentroids(JavaPairRDD<String, Vector> data, final int K) {
+    static List<Vector> getInitialCentroids(
+            JavaPairRDD<String, Vector> data, 
+            final int K) {
+        //
         List<Tuple2<String, Vector>> centroidTuples = data.takeSample(false, K, 42);
         final List<Vector> centroids = new ArrayList<Vector>();
         for (Tuple2<String, Vector> t : centroidTuples) {
