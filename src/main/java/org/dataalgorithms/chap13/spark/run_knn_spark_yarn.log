@@ -1,0 +1,786 @@
+[hadoop@namenode01 spark]$ ls -l
+total 64
+-rwxr-xr-x 1 hadoop hadoop  5356 Aug 24 23:58 kNN.java
+drwxr-xr-x 7 hadoop hadoop  4096 Aug 24 23:58 output
+-rwxr-xr-x 1 hadoop hadoop   251 Aug 24 23:58 package-info.java
+drwxr-xr-x 2 hadoop hadoop  4096 Aug 24 23:58 resources
+-rw-r--r-- 1 hadoop hadoop 36610 Aug 24 23:58 run_knn_spark.log
+-rwxr-xr-x 1 hadoop hadoop   832 Aug 24 23:58 run_knn_spark.sh
+-rwxr-xr-x 1 hadoop hadoop  1191 Aug 24 23:58 run_knn_spark_yarn.sh
+
+[hadoop@namenode01 spark]$ cat ./run_knn_spark_yarn.sh
+#!/bin/bash
+/bin/date
+# define the installation dir for hadoop
+export HADOOP_HOME=/usr/local/hadoop
+export HADOOP_CONF_DIR=$HADOOP_HOME/etc/hadoop
+export HADOOP_HOME_WARN_SUPPRESS=true
+# defines some environment for hadoop
+source $HADOOP_CONF_DIR/hadoop-env.sh
+#
+export JAVA_HOME=/usr/java/jdk8
+export BOOK_HOME=/home/hadoop/data-algorithms-book
+export SPARK_HOME=/home/hadoop/spark-2.0.0-bin-hadoop2.6
+#export SPARK_MASTER=spark://localhost:7077
+export APP_JAR=$BOOK_HOME/dist/data_algorithms_book.jar
+
+#
+# build all other dependent jars in OTHER_JARS
+JARS=`find $BOOK_HOME/lib -name '*.jar'`
+OTHER_JARS=""
+for J in $JARS ; do
+   OTHER_JARS=$J,$OTHER_JARS
+done
+#
+#
+k=4
+d=2
+R="hdfs://namenode01.nextsystem.net/resources/R.txt"
+S="hdfs://namenode01.nextsystem.net/resources/S.txt"
+OUTPUT="hdfs://namenode01.nextsystem.net/output"
+prog=org.dataalgorithms.chap13.spark.kNN
+#
+$SPARK_HOME/bin/spark-submit --class $prog \
+    --master yarn \
+    --num-executors 2 \
+    --driver-memory 1g \
+    --executor-memory 2g \
+    --executor-cores 2 \
+    --jars $OTHER_JARS \
+    $APP_JAR $k $d $R $S $OUTPUT
+
+
+[hadoop@namenode01 spark]$ ls -l resources/
+total 8
+-rw-r--r-- 1 hadoop hadoop  82 Aug 24 23:58 R.txt
+-rw-r--r-- 1 hadoop hadoop 374 Aug 24 23:58 S.txt
+[hadoop@namenode01 spark]$ hadoop fs -put resources /
+[hadoop@namenode01 spark]$ hadoop fs -ls /resources
+Found 2 items
+-rw-r--r--   2 hadoop root,hadoop         82 2016-08-25 00:06 /resources/R.txt
+-rw-r--r--   2 hadoop root,hadoop        374 2016-08-25 00:06 /resources/S.txt
+[hadoop@namenode01 spark]$ hadoop fs -cat /resources/R.txt
+1000;3.0,3.0
+1001;10.1,3.2
+1003;2.7,2.7
+1004;5.0,5.0
+1005;13.1,2.2
+1006;12.7,12.7
+[hadoop@namenode01 spark]$ hadoop fs -cat /resources/S.txt
+100;c1;1.0,1.0
+101;c1;1.1,1.2
+102;c1;1.2,1.0
+103;c1;1.6,1.5
+104;c1;1.3,1.7
+105;c1;2.0,2.1
+106;c1;2.0,2.2
+107;c1;2.3,2.3
+208;c2;9.0,9.0
+209;c2;9.1,9.2
+210;c2;9.2,9.0
+211;c2;10.6,10.5
+212;c2;10.3,10.7
+213;c2;9.6,9.1
+214;c2;9.4,10.4
+215;c2;10.3,10.3
+300;c3;10.0,1.0
+301;c3;10.1,1.2
+302;c3;10.2,1.0
+303;c3;10.6,1.5
+304;c3;10.3,1.7
+305;c3;1.0,2.1
+306;c3;10.0,2.2
+307;c3;10.3,2.3
+
+[hadoop@namenode01 spark]$ ls -l
+total 64
+-rwxr-xr-x 1 hadoop hadoop  5356 Aug 24 23:58 kNN.java
+drwxr-xr-x 7 hadoop hadoop  4096 Aug 24 23:58 output
+-rwxr-xr-x 1 hadoop hadoop   251 Aug 24 23:58 package-info.java
+drwxr-xr-x 2 hadoop hadoop  4096 Aug 24 23:58 resources
+-rw-r--r-- 1 hadoop hadoop 36610 Aug 24 23:58 run_knn_spark.log
+-rwxr-xr-x 1 hadoop hadoop   832 Aug 24 23:58 run_knn_spark.sh
+-rwxr-xr-x 1 hadoop hadoop  1191 Aug 24 23:58 run_knn_spark_yarn.sh
+
+[hadoop@namenode01 spark]$ pwd
+/home/hadoop/data-algorithms-book/src/main/java/org/dataalgorithms/chap13/spark
+[hadoop@namenode01 spark]$ ls -l
+total 64
+-rwxr-xr-x 1 hadoop hadoop  5356 Aug 24 23:58 kNN.java
+drwxr-xr-x 7 hadoop hadoop  4096 Aug 24 23:58 output
+-rwxr-xr-x 1 hadoop hadoop   251 Aug 24 23:58 package-info.java
+drwxr-xr-x 2 hadoop hadoop  4096 Aug 24 23:58 resources
+-rw-r--r-- 1 hadoop hadoop 36610 Aug 24 23:58 run_knn_spark.log
+-rwxr-xr-x 1 hadoop hadoop   832 Aug 24 23:58 run_knn_spark.sh
+-rwxr-xr-x 1 hadoop hadoop  1107 Aug 25 00:08 run_knn_spark_yarn.sh
+
+[hadoop@namenode01 spark]$ ./run_knn_spark_yarn.sh
+Thu Aug 25 00:11:16 PDT 2016
+Using Spark's default log4j profile: org/apache/spark/log4j-defaults.properties
+16/08/25 00:11:19 INFO SparkContext: Running Spark version 2.0.0
+16/08/25 00:11:19 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+16/08/25 00:11:19 INFO SecurityManager: Changing view acls to: hadoop
+16/08/25 00:11:19 INFO SecurityManager: Changing modify acls to: hadoop
+16/08/25 00:11:19 INFO SecurityManager: Changing view acls groups to:
+16/08/25 00:11:19 INFO SecurityManager: Changing modify acls groups to:
+16/08/25 00:11:19 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users  with view permissions: Set(hadoop); groups with view permissions: Set(); users  with modify permissions: Set(hadoop); groups with modify permissions: Set()
+16/08/25 00:11:19 INFO Utils: Successfully started service 'sparkDriver' on port 46975.
+16/08/25 00:11:19 INFO SparkEnv: Registering MapOutputTracker
+16/08/25 00:11:20 INFO SparkEnv: Registering BlockManagerMaster
+16/08/25 00:11:20 INFO DiskBlockManager: Created local directory at /tmp/blockmgr-850b73bf-d064-4aa0-ae2c-7b6eeeb1c7d1
+16/08/25 00:11:20 INFO MemoryStore: MemoryStore started with capacity 366.3 MB
+16/08/25 00:11:20 INFO SparkEnv: Registering OutputCommitCoordinator
+16/08/25 00:11:20 INFO Utils: Successfully started service 'SparkUI' on port 4040.
+16/08/25 00:11:20 INFO SparkUI: Bound SparkUI to 0.0.0.0, and started at http://192.168.13.62:4040
+16/08/25 00:11:20 INFO SparkContext: Added JAR file:/home/hadoop/data-algorithms-book/dist/data_algorithms_book.jar at spark://192.168.13.62:46975/jars/data_algorithms_book.jar with timestamp 1472109080421
+16/08/25 00:11:20 INFO RMProxy: Connecting to ResourceManager at /0.0.0.0:8032
+16/08/25 00:11:20 INFO Client: Requesting a new application from cluster with 5 NodeManagers
+16/08/25 00:11:20 INFO Client: Verifying our application has not requested more than the maximum memory capability of the cluster (26624 MB per container)
+16/08/25 00:11:20 INFO Client: Will allocate AM container, with 896 MB memory including 384 MB overhead
+16/08/25 00:11:20 INFO Client: Setting up container launch context for our AM
+16/08/25 00:11:20 INFO Client: Setting up the launch environment for our AM container
+16/08/25 00:11:20 INFO Client: Preparing resources for our AM container
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/JavaEWAH-0.3.2.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/RoaringBitmap-0.5.11.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/ST4-4.0.4.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/activation-1.1.1.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/antlr-2.7.7.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/antlr-runtime-3.4.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/antlr4-runtime-4.5.3.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/aopalliance-1.0.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/aopalliance-repackaged-2.4.0-b34.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/apache-log4j-extras-1.2.17.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/apacheds-i18n-2.0.0-M15.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/apacheds-kerberos-codec-2.0.0-M15.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/api-asn1-api-1.0.0-M20.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/api-util-1.0.0-M20.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/arpack_combined_all-0.1.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/avro-1.7.7.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/avro-ipc-1.7.7.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/avro-mapred-1.7.7-hadoop2.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/base64-2.3.8.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/bcprov-jdk15on-1.51.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/bonecp-0.8.0.RELEASE.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/breeze-macros_2.11-0.11.2.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/breeze_2.11-0.11.2.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/calcite-avatica-1.2.0-incubating.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/calcite-core-1.2.0-incubating.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/calcite-linq4j-1.2.0-incubating.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/chill-java-0.8.0.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/chill_2.11-0.8.0.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/commons-beanutils-1.7.0.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/commons-beanutils-core-1.8.0.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/commons-cli-1.2.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/commons-codec-1.10.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/commons-collections-3.2.2.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/commons-compiler-2.7.6.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/commons-compress-1.4.1.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/commons-configuration-1.6.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/commons-dbcp-1.4.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/commons-digester-1.8.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/commons-httpclient-3.1.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/commons-io-2.4.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/commons-lang-2.6.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/commons-lang3-3.3.2.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/commons-logging-1.1.3.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/commons-math3-3.4.1.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/commons-net-2.2.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/commons-pool-1.5.4.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/compress-lzf-1.0.3.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/core-1.1.2.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/curator-client-2.6.0.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/curator-framework-2.6.0.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/curator-recipes-2.6.0.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/datanucleus-api-jdo-3.2.6.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/datanucleus-core-3.2.10.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/datanucleus-rdbms-3.2.9.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/derby-10.11.1.1.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/eigenbase-properties-1.1.5.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/gson-2.2.4.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/guava-14.0.1.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/guice-3.0.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/guice-servlet-3.0.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/hadoop-annotations-2.6.4.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/hadoop-auth-2.6.4.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/hadoop-client-2.6.4.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/hadoop-common-2.6.4.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/hadoop-hdfs-2.6.4.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/hadoop-mapreduce-client-app-2.6.4.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/hadoop-mapreduce-client-common-2.6.4.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/hadoop-mapreduce-client-core-2.6.4.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/hadoop-mapreduce-client-jobclient-2.6.4.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/hadoop-mapreduce-client-shuffle-2.6.4.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/hadoop-yarn-api-2.6.4.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/hadoop-yarn-client-2.6.4.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/hadoop-yarn-common-2.6.4.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/hadoop-yarn-server-common-2.6.4.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/hadoop-yarn-server-web-proxy-2.6.4.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/hive-beeline-1.2.1.spark2.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/hive-cli-1.2.1.spark2.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/hive-exec-1.2.1.spark2.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/hive-jdbc-1.2.1.spark2.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/hive-metastore-1.2.1.spark2.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/hk2-api-2.4.0-b34.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/hk2-locator-2.4.0-b34.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/hk2-utils-2.4.0-b34.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/htrace-core-3.0.4.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/httpclient-4.5.2.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/httpcore-4.4.4.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/ivy-2.4.0.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/jackson-annotations-2.6.5.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/jackson-core-2.6.5.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/jackson-core-asl-1.9.13.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/jackson-databind-2.6.5.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/jackson-jaxrs-1.9.13.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/jackson-mapper-asl-1.9.13.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/jackson-module-paranamer-2.6.5.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/jackson-module-scala_2.11-2.6.5.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/jackson-xc-1.9.13.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/janino-2.7.8.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/java-xmlbuilder-1.0.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/javassist-3.18.1-GA.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/javax.annotation-api-1.2.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/javax.inject-1.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/javax.inject-2.4.0-b34.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/javax.servlet-api-3.1.0.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/javax.ws.rs-api-2.0.1.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/javolution-5.5.1.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/jaxb-api-2.2.2.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/jcl-over-slf4j-1.7.16.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/jdo-api-3.0.1.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/jersey-client-2.22.2.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/jersey-common-2.22.2.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/jersey-container-servlet-2.22.2.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/jersey-container-servlet-core-2.22.2.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/jersey-guava-2.22.2.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/jersey-media-jaxb-2.22.2.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/jersey-server-2.22.2.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/jets3t-0.9.3.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/jetty-6.1.26.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/jetty-util-6.1.26.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/jline-2.12.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/joda-time-2.9.3.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/jodd-core-3.5.2.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/jpam-1.1.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/json-20090211.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/json4s-ast_2.11-3.2.11.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/json4s-core_2.11-3.2.11.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/json4s-jackson_2.11-3.2.11.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/jsr305-1.3.9.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/jta-1.1.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/jtransforms-2.4.0.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/jul-to-slf4j-1.7.16.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/kryo-shaded-3.0.3.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/leveldbjni-all-1.8.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/libfb303-0.9.2.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/libthrift-0.9.2.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/log4j-1.2.17.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/lz4-1.3.0.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/mail-1.4.7.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/mesos-0.21.1-shaded-protobuf.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/metrics-core-3.1.2.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/metrics-graphite-3.1.2.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/metrics-json-3.1.2.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/metrics-jvm-3.1.2.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/minlog-1.3.0.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/mx4j-3.0.2.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/netty-3.8.0.Final.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/netty-all-4.0.29.Final.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/objenesis-2.1.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/opencsv-2.3.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/oro-2.0.8.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/osgi-resource-locator-1.0.1.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/paranamer-2.3.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/parquet-column-1.7.0.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/parquet-common-1.7.0.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/parquet-encoding-1.7.0.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/parquet-format-2.3.0-incubating.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/parquet-generator-1.7.0.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/parquet-hadoop-1.7.0.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/parquet-hadoop-bundle-1.6.0.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/parquet-jackson-1.7.0.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/pmml-model-1.2.15.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/pmml-schema-1.2.15.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/protobuf-java-2.5.0.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/py4j-0.10.1.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/pyrolite-4.9.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/scala-compiler-2.11.8.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/scala-library-2.11.8.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/scala-parser-combinators_2.11-1.0.4.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/scala-reflect-2.11.8.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/scala-xml_2.11-1.0.2.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/scalap-2.11.8.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/slf4j-api-1.7.16.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/slf4j-log4j12-1.7.16.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/snappy-0.2.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/snappy-java-1.1.2.4.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/spark-catalyst_2.11-2.0.0.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/spark-core_2.11-2.0.0.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/spark-graphx_2.11-2.0.0.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/spark-hive-thriftserver_2.11-2.0.0.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/spark-hive_2.11-2.0.0.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/spark-launcher_2.11-2.0.0.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/spark-mllib-local_2.11-2.0.0.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/spark-mllib_2.11-2.0.0.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/spark-network-common_2.11-2.0.0.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/spark-network-shuffle_2.11-2.0.0.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/spark-repl_2.11-2.0.0.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/spark-sketch_2.11-2.0.0.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/spark-sql_2.11-2.0.0.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/spark-streaming_2.11-2.0.0.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/spark-tags_2.11-2.0.0.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/spark-unsafe_2.11-2.0.0.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/spark-yarn_2.11-2.0.0.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/spire-macros_2.11-0.7.4.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/spire_2.11-0.7.4.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/stax-api-1.0-2.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/stax-api-1.0.1.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/stream-2.7.0.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/stringtemplate-3.2.1.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/super-csv-2.2.0.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/univocity-parsers-2.1.1.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/validation-api-1.1.0.Final.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/xbean-asm5-shaded-4.4.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/xercesImpl-2.9.1.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/xmlenc-0.52.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/xz-1.0.jar
+16/08/25 00:11:21 INFO Client: Source and destination file systems are the same. Not copying hdfs://namenode01.nextsystem.net/spark/yarn/jars/zookeeper-3.4.6.jar
+16/08/25 00:11:21 WARN Client: Same name resource file:/home/hadoop/data-algorithms-book/lib/commons-collections-3.2.2.jar added multiple times to distributed cache
+16/08/25 00:11:21 INFO Client: Uploading resource file:/home/hadoop/data-algorithms-book/lib/jsp-api-2.1-6.1.14.jar -> hdfs://namenode01.nextsystem.net/stagingDir/.sparkStaging/application_1470968575798_0510/jsp-api-2.1-6.1.14.jar
+16/08/25 00:11:22 WARN Client: Same name resource file:/home/hadoop/data-algorithms-book/lib/jersey-client-2.22.2.jar added multiple times to distributed cache
+16/08/25 00:11:22 WARN Client: Same name resource file:/home/hadoop/data-algorithms-book/lib/commons-httpclient-3.1.jar added multiple times to distributed cache
+16/08/25 00:11:22 WARN Client: Same name resource file:/home/hadoop/data-algorithms-book/lib/metrics-json-3.1.2.jar added multiple times to distributed cache
+16/08/25 00:11:22 WARN Client: Same name resource file:/home/hadoop/data-algorithms-book/lib/spire-macros_2.11-0.7.4.jar added multiple times to distributed cache
+16/08/25 00:11:22 WARN Client: Same name resource file:/home/hadoop/data-algorithms-book/lib/spark-network-common_2.11-2.0.0.jar added multiple times to distributed cache
+16/08/25 00:11:22 WARN Client: Same name resource file:/home/hadoop/data-algorithms-book/lib/avro-mapred-1.7.7-hadoop2.jar added multiple times to distributed cache
+16/08/25 00:11:22 WARN Client: Same name resource file:/home/hadoop/data-algorithms-book/lib/curator-client-2.6.0.jar added multiple times to distributed cache
+16/08/25 00:11:22 INFO Client: Uploading resource file:/home/hadoop/data-algorithms-book/lib/jasper-runtime-5.5.23.jar -> hdfs://namenode01.nextsystem.net/stagingDir/.sparkStaging/application_1470968575798_0510/jasper-runtime-5.5.23.jar
+16/08/25 00:11:22 WARN Client: Same name resource file:/home/hadoop/data-algorithms-book/lib/parquet-jackson-1.7.0.jar added multiple times to distributed cache
+16/08/25 00:11:22 INFO Client: Uploading resource file:/home/hadoop/data-algorithms-book/lib/jsp-api-2.1.jar -> hdfs://namenode01.nextsystem.net/stagingDir/.sparkStaging/application_1470968575798_0510/jsp-api-2.1.jar
+16/08/25 00:11:22 WARN Client: Same name resource file:/home/hadoop/data-algorithms-book/lib/RoaringBitmap-0.5.11.jar added multiple times to distributed cache
+16/08/25 00:11:22 INFO Client: Uploading resource file:/home/hadoop/data-algorithms-book/lib/scala-compiler-2.11.0.jar -> hdfs://namenode01.nextsystem.net/stagingDir/.sparkStaging/application_1470968575798_0510/scala-compiler-2.11.0.jar
+16/08/25 00:11:22 WARN Client: Same name resource file:/home/hadoop/data-algorithms-book/lib/jul-to-slf4j-1.7.16.jar added multiple times to distributed cache
+16/08/25 00:11:22 INFO Client: Uploading resource file:/home/hadoop/data-algorithms-book/lib/commons-codec-1.2.jar -> hdfs://namenode01.nextsystem.net/stagingDir/.sparkStaging/application_1470968575798_0510/commons-codec-1.2.jar
+16/08/25 00:11:22 WARN Client: Same name resource file:/home/hadoop/data-algorithms-book/lib/commons-io-2.4.jar added multiple times to distributed cache
+16/08/25 00:11:22 INFO Client: Uploading resource file:/home/hadoop/data-algorithms-book/lib/asm-3.1.jar -> hdfs://namenode01.nextsystem.net/stagingDir/.sparkStaging/application_1470968575798_0510/asm-3.1.jar
+16/08/25 00:11:22 WARN Client: Same name resource file:/home/hadoop/data-algorithms-book/lib/objenesis-2.1.jar added multiple times to distributed cache
+16/08/25 00:11:22 WARN Client: Same name resource file:/home/hadoop/data-algorithms-book/lib/jetty-util-6.1.26.jar added multiple times to distributed cache
+16/08/25 00:11:22 WARN Client: Same name resource file:/home/hadoop/data-algorithms-book/lib/parquet-encoding-1.7.0.jar added multiple times to distributed cache
+16/08/25 00:11:22 WARN Client: Same name resource file:/home/hadoop/data-algorithms-book/lib/oro-2.0.8.jar added multiple times to distributed cache
+16/08/25 00:11:22 INFO Client: Uploading resource file:/home/hadoop/data-algorithms-book/lib/scalap-2.11.0.jar -> hdfs://namenode01.nextsystem.net/stagingDir/.sparkStaging/application_1470968575798_0510/scalap-2.11.0.jar
+16/08/25 00:11:22 WARN Client: Same name resource file:/home/hadoop/data-algorithms-book/lib/xercesImpl-2.9.1.jar added multiple times to distributed cache
+16/08/25 00:11:22 WARN Client: Same name resource file:/home/hadoop/data-algorithms-book/lib/jersey-common-2.22.2.jar added multiple times to distributed cache
+16/08/25 00:11:22 INFO Client: Uploading resource file:/home/hadoop/data-algorithms-book/lib/servlet-api-2.5.jar -> hdfs://namenode01.nextsystem.net/stagingDir/.sparkStaging/application_1470968575798_0510/servlet-api-2.5.jar
+16/08/25 00:11:22 INFO Client: Uploading resource file:/home/hadoop/data-algorithms-book/lib/hadoop-auth-2.6.3.jar -> hdfs://namenode01.nextsystem.net/stagingDir/.sparkStaging/application_1470968575798_0510/hadoop-auth-2.6.3.jar
+16/08/25 00:11:22 WARN Client: Same name resource file:/home/hadoop/data-algorithms-book/lib/parquet-generator-1.7.0.jar added multiple times to distributed cache
+16/08/25 00:11:22 INFO Client: Uploading resource file:/home/hadoop/data-algorithms-book/lib/jets3t-0.7.1.jar -> hdfs://namenode01.nextsystem.net/stagingDir/.sparkStaging/application_1470968575798_0510/jets3t-0.7.1.jar
+16/08/25 00:11:22 INFO Client: Uploading resource file:/home/hadoop/data-algorithms-book/lib/hadoop-yarn-server-common-2.2.0.jar -> hdfs://namenode01.nextsystem.net/stagingDir/.sparkStaging/application_1470968575798_0510/hadoop-yarn-server-common-2.2.0.jar
+16/08/25 00:11:22 WARN Client: Same name resource file:/home/hadoop/data-algorithms-book/lib/jackson-databind-2.6.5.jar added multiple times to distributed cache
+16/08/25 00:11:22 WARN Client: Same name resource file:/home/hadoop/data-algorithms-book/lib/scala-library-2.11.8.jar added multiple times to distributed cache
+16/08/25 00:11:22 WARN Client: Same name resource file:/home/hadoop/data-algorithms-book/lib/guice-3.0.jar added multiple times to distributed cache
+16/08/25 00:11:22 WARN Client: Same name resource file:/home/hadoop/data-algorithms-book/lib/json4s-jackson_2.11-3.2.11.jar added multiple times to distributed cache
+16/08/25 00:11:22 INFO Client: Uploading resource file:/home/hadoop/data-algorithms-book/lib/hadoop-mapreduce-client-core-2.6.3.jar -> hdfs://namenode01.nextsystem.net/stagingDir/.sparkStaging/application_1470968575798_0510/hadoop-mapreduce-client-core-2.6.3.jar
+16/08/25 00:11:22 INFO Client: Uploading resource file:/home/hadoop/data-algorithms-book/lib/scala-archetype-simple-1.3.jar -> hdfs://namenode01.nextsystem.net/stagingDir/.sparkStaging/application_1470968575798_0510/scala-archetype-simple-1.3.jar
+16/08/25 00:11:23 WARN Client: Same name resource file:/home/hadoop/data-algorithms-book/lib/chill_2.11-0.8.0.jar added multiple times to distributed cache
+16/08/25 00:11:23 WARN Client: Same name resource file:/home/hadoop/data-algorithms-book/lib/xmlenc-0.52.jar added multiple times to distributed cache
+16/08/25 00:11:23 WARN Client: Same name resource file:/home/hadoop/data-algorithms-book/lib/api-util-1.0.0-M20.jar added multiple times to distributed cache
+16/08/25 00:11:23 WARN Client: Same name resource file:/home/hadoop/data-algorithms-book/lib/stax-api-1.0-2.jar added multiple times to distributed cache
+16/08/25 00:11:23 WARN Client: Same name resource file:/home/hadoop/data-algorithms-book/lib/spark-yarn_2.11-2.0.0.jar added multiple times to distributed cache
+16/08/25 00:11:23 INFO Client: Uploading resource file:/home/hadoop/data-algorithms-book/lib/jackson-xc-1.8.3.jar -> hdfs://namenode01.nextsystem.net/stagingDir/.sparkStaging/application_1470968575798_0510/jackson-xc-1.8.3.jar
+16/08/25 00:11:23 INFO Client: Uploading resource file:/home/hadoop/data-algorithms-book/lib/commons-cli-1.3.jar -> hdfs://namenode01.nextsystem.net/stagingDir/.sparkStaging/application_1470968575798_0510/commons-cli-1.3.jar
+16/08/25 00:11:23 WARN Client: Same name resource file:/home/hadoop/data-algorithms-book/lib/spark-sketch_2.11-2.0.0.jar added multiple times to distributed cache
+16/08/25 00:11:23 WARN Client: Same name resource file:/home/hadoop/data-algorithms-book/lib/janino-2.7.8.jar added multiple times to distributed cache
+16/08/25 00:11:23 INFO Client: Uploading resource file:/home/hadoop/data-algorithms-book/lib/unused-1.0.0.jar -> hdfs://namenode01.nextsystem.net/stagingDir/.sparkStaging/application_1470968575798_0510/unused-1.0.0.jar
+16/08/25 00:11:23 WARN Client: Same name resource file:/home/hadoop/data-algorithms-book/lib/jaxb-api-2.2.2.jar added multiple times to distributed cache
+16/08/25 00:11:23 INFO Client: Uploading resource file:/home/hadoop/data-algorithms-book/lib/hsqldb-1.8.0.10.jar -> hdfs://namenode01.nextsystem.net/stagingDir/.sparkStaging/application_1470968575798_0510/hsqldb-1.8.0.10.jar
+16/08/25 00:11:23 WARN Client: Same name resource file:/home/hadoop/data-algorithms-book/lib/aopalliance-1.0.jar added multiple times to distributed cache
+16/08/25 00:11:23 WARN Client: Same name resource file:/home/hadoop/data-algorithms-book/lib/aopalliance-repackaged-2.4.0-b34.jar added multiple times to distributed cache
+16/08/25 00:11:23 WARN Client: Same name resource file:/home/hadoop/data-algorithms-book/lib/htrace-core-3.0.4.jar added multiple times to distributed cache
+16/08/25 00:11:23 WARN Client: Same name resource file:/home/hadoop/data-algorithms-book/lib/javassist-3.18.1-GA.jar added multiple times to distributed cache
+16/08/25 00:11:23 INFO Client: Uploading resource file:/home/hadoop/data-algorithms-book/lib/commons-lang3-3.4.jar -> hdfs://namenode01.nextsystem.net/stagingDir/.sparkStaging/application_1470968575798_0510/commons-lang3-3.4.jar
+16/08/25 00:11:23 WARN Client: Same name resource file:/home/hadoop/data-algorithms-book/lib/xbean-asm5-shaded-4.4.jar added multiple times to distributed cache
+16/08/25 00:11:23 INFO Client: Uploading resource file:/home/hadoop/data-algorithms-book/lib/hadoop-client-2.6.3.jar -> hdfs://namenode01.nextsystem.net/stagingDir/.sparkStaging/application_1470968575798_0510/hadoop-client-2.6.3.jar
+16/08/25 00:11:23 WARN Client: Same name resource file:/home/hadoop/data-algorithms-book/lib/core-1.1.2.jar added multiple times to distributed cache
+16/08/25 00:11:23 WARN Client: Same name resource file:/home/hadoop/data-algorithms-book/lib/javax.inject-1.jar added multiple times to distributed cache
+16/08/25 00:11:23 INFO Client: Uploading resource file:/home/hadoop/data-algorithms-book/lib/jersey-server-1.9.jar -> hdfs://namenode01.nextsystem.net/stagingDir/.sparkStaging/application_1470968575798_0510/jersey-server-1.9.jar
+16/08/25 00:11:23 INFO Client: Uploading resource file:/home/hadoop/data-algorithms-book/lib/curator-framework-2.4.0.jar -> hdfs://namenode01.nextsystem.net/stagingDir/.sparkStaging/application_1470968575798_0510/curator-framework-2.4.0.jar
+16/08/25 00:11:23 WARN Client: Same name resource file:/home/hadoop/data-algorithms-book/lib/jackson-mapper-asl-1.9.13.jar added multiple times to distributed cache
+16/08/25 00:11:23 INFO Client: Uploading resource file:/home/hadoop/data-algorithms-book/lib/hadoop-mapreduce-client-app-2.6.3.jar -> hdfs://namenode01.nextsystem.net/stagingDir/.sparkStaging/application_1470968575798_0510/hadoop-mapreduce-client-app-2.6.3.jar
+16/08/25 00:11:23 WARN Client: Same name resource file:/home/hadoop/data-algorithms-book/lib/minlog-1.3.0.jar added multiple times to distributed cache
+16/08/25 00:11:23 WARN Client: Same name resource file:/home/hadoop/data-algorithms-book/lib/spark-tags_2.11-2.0.0.jar added multiple times to distributed cache
+16/08/25 00:11:23 INFO Client: Uploading resource file:/home/hadoop/data-algorithms-book/lib/activation-1.1.jar -> hdfs://namenode01.nextsystem.net/stagingDir/.sparkStaging/application_1470968575798_0510/activation-1.1.jar
+16/08/25 00:11:23 WARN Client: Same name resource file:/home/hadoop/data-algorithms-book/lib/univocity-parsers-2.1.1.jar added multiple times to distributed cache
+16/08/25 00:11:23 WARN Client: Same name resource file:/home/hadoop/data-algorithms-book/lib/lz4-1.3.0.jar added multiple times to distributed cache
+16/08/25 00:11:23 INFO Client: Uploading resource file:/home/hadoop/data-algorithms-book/lib/jersey-core-1.9.jar -> hdfs://namenode01.nextsystem.net/stagingDir/.sparkStaging/application_1470968575798_0510/jersey-core-1.9.jar
+16/08/25 00:11:23 WARN Client: Same name resource file:/home/hadoop/data-algorithms-book/lib/jackson-core-asl-1.9.13.jar added multiple times to distributed cache
+16/08/25 00:11:23 INFO Client: Uploading resource file:/home/hadoop/data-algorithms-book/lib/commons-configuration-1.10.jar -> hdfs://namenode01.nextsystem.net/stagingDir/.sparkStaging/application_1470968575798_0510/commons-configuration-1.10.jar
+16/08/25 00:11:23 WARN Client: Same name resource file:/home/hadoop/data-algorithms-book/lib/api-asn1-api-1.0.0-M20.jar added multiple times to distributed cache
+16/08/25 00:11:23 WARN Client: Same name resource file:/home/hadoop/data-algorithms-book/lib/slf4j-api-1.7.16.jar added multiple times to distributed cache
+16/08/25 00:11:23 INFO Client: Uploading resource file:/home/hadoop/data-algorithms-book/lib/hadoop-annotations-2.6.3.jar -> hdfs://namenode01.nextsystem.net/stagingDir/.sparkStaging/application_1470968575798_0510/hadoop-annotations-2.6.3.jar
+16/08/25 00:11:23 WARN Client: Same name resource file:/home/hadoop/data-algorithms-book/lib/xz-1.0.jar added multiple times to distributed cache
+16/08/25 00:11:23 WARN Client: Same name resource file:/home/hadoop/data-algorithms-book/lib/jersey-container-servlet-2.22.2.jar added multiple times to distributed cache
+16/08/25 00:11:23 WARN Client: Same name resource file:/home/hadoop/data-algorithms-book/lib/spire_2.11-0.7.4.jar added multiple times to distributed cache
+16/08/25 00:11:23 WARN Client: Same name resource file:/home/hadoop/data-algorithms-book/lib/gson-2.2.4.jar added multiple times to distributed cache
+16/08/25 00:11:23 WARN Client: Same name resource file:/home/hadoop/data-algorithms-book/lib/pmml-schema-1.2.15.jar added multiple times to distributed cache
+16/08/25 00:11:23 WARN Client: Same name resource file:/home/hadoop/data-algorithms-book/lib/log4j-1.2.17.jar added multiple times to distributed cache
+16/08/25 00:11:23 INFO Client: Uploading resource file:/home/hadoop/data-algorithms-book/lib/avro-1.7.4.jar -> hdfs://namenode01.nextsystem.net/stagingDir/.sparkStaging/application_1470968575798_0510/avro-1.7.4.jar
+16/08/25 00:11:23 INFO Client: Uploading resource file:/home/hadoop/data-algorithms-book/lib/hadoop-yarn-common-2.2.0.jar -> hdfs://namenode01.nextsystem.net/stagingDir/.sparkStaging/application_1470968575798_0510/hadoop-yarn-common-2.2.0.jar
+16/08/25 00:11:23 INFO Client: Uploading resource file:/home/hadoop/data-algorithms-book/lib/commons-el-1.0.jar -> hdfs://namenode01.nextsystem.net/stagingDir/.sparkStaging/application_1470968575798_0510/commons-el-1.0.jar
+16/08/25 00:11:23 WARN Client: Same name resource file:/home/hadoop/data-algorithms-book/lib/spark-graphx_2.11-2.0.0.jar added multiple times to distributed cache
+16/08/25 00:11:23 WARN Client: Same name resource file:/home/hadoop/data-algorithms-book/lib/spark-catalyst_2.11-2.0.0.jar added multiple times to distributed cache
+16/08/25 00:11:23 WARN Client: Same name resource file:/home/hadoop/data-algorithms-book/lib/jackson-annotations-2.6.5.jar added multiple times to distributed cache
+16/08/25 00:11:23 WARN Client: Same name resource file:/home/hadoop/data-algorithms-book/lib/snappy-java-1.1.2.4.jar added multiple times to distributed cache
+16/08/25 00:11:23 WARN Client: Same name resource file:/home/hadoop/data-algorithms-book/lib/validation-api-1.1.0.Final.jar added multiple times to distributed cache
+16/08/25 00:11:23 WARN Client: Same name resource file:/home/hadoop/data-algorithms-book/lib/commons-lang-2.6.jar added multiple times to distributed cache
+16/08/25 00:11:23 WARN Client: Same name resource file:/home/hadoop/data-algorithms-book/lib/jersey-container-servlet-core-2.22.2.jar added multiple times to distributed cache
+16/08/25 00:11:23 INFO Client: Uploading resource file:/home/hadoop/data-algorithms-book/lib/bliki-core-3.0.19.jar -> hdfs://namenode01.nextsystem.net/stagingDir/.sparkStaging/application_1470968575798_0510/bliki-core-3.0.19.jar
+16/08/25 00:11:23 INFO Client: Uploading resource file:/home/hadoop/data-algorithms-book/lib/hadoop-mapreduce-client-common-2.6.3.jar -> hdfs://namenode01.nextsystem.net/stagingDir/.sparkStaging/application_1470968575798_0510/hadoop-mapreduce-client-common-2.6.3.jar
+16/08/25 00:11:24 WARN Client: Same name resource file:/home/hadoop/data-algorithms-book/lib/netty-all-4.0.29.Final.jar added multiple times to distributed cache
+16/08/25 00:11:24 WARN Client: Same name resource file:/home/hadoop/data-algorithms-book/lib/jersey-media-jaxb-2.22.2.jar added multiple times to distributed cache
+16/08/25 00:11:24 WARN Client: Same name resource file:/home/hadoop/data-algorithms-book/lib/jersey-server-2.22.2.jar added multiple times to distributed cache
+16/08/25 00:11:24 INFO Client: Uploading resource file:/home/hadoop/data-algorithms-book/lib/scalatest_2.11-2.2.6.jar -> hdfs://namenode01.nextsystem.net/stagingDir/.sparkStaging/application_1470968575798_0510/scalatest_2.11-2.2.6.jar
+16/08/25 00:11:24 INFO Client: Uploading resource file:/home/hadoop/data-algorithms-book/lib/jasper-compiler-5.5.23.jar -> hdfs://namenode01.nextsystem.net/stagingDir/.sparkStaging/application_1470968575798_0510/jasper-compiler-5.5.23.jar
+16/08/25 00:11:24 WARN Client: Same name resource file:/home/hadoop/data-algorithms-book/lib/jersey-guava-2.22.2.jar added multiple times to distributed cache
+16/08/25 00:11:24 WARN Client: Same name resource file:/home/hadoop/data-algorithms-book/lib/netty-3.8.0.Final.jar added multiple times to distributed cache
+16/08/25 00:11:24 WARN Client: Same name resource file:/home/hadoop/data-algorithms-book/lib/zookeeper-3.4.6.jar added multiple times to distributed cache
+16/08/25 00:11:24 WARN Client: Same name resource file:/home/hadoop/data-algorithms-book/lib/slf4j-log4j12-1.7.16.jar added multiple times to distributed cache
+16/08/25 00:11:24 INFO Client: Uploading resource file:/home/hadoop/data-algorithms-book/lib/hadoop-yarn-api-2.2.0.jar -> hdfs://namenode01.nextsystem.net/stagingDir/.sparkStaging/application_1470968575798_0510/hadoop-yarn-api-2.2.0.jar
+16/08/25 00:11:24 WARN Client: Same name resource file:/home/hadoop/data-algorithms-book/lib/hk2-locator-2.4.0-b34.jar added multiple times to distributed cache
+16/08/25 00:11:24 INFO Client: Uploading resource file:/home/hadoop/data-algorithms-book/lib/hamcrest-all-1.3.jar -> hdfs://namenode01.nextsystem.net/stagingDir/.sparkStaging/application_1470968575798_0510/hamcrest-all-1.3.jar
+16/08/25 00:11:24 INFO Client: Uploading resource file:/home/hadoop/data-algorithms-book/lib/spark-examples_2.11-2.0.0.jar -> hdfs://namenode01.nextsystem.net/stagingDir/.sparkStaging/application_1470968575798_0510/spark-examples_2.11-2.0.0.jar
+16/08/25 00:11:24 WARN Client: Same name resource file:/home/hadoop/data-algorithms-book/lib/jackson-module-paranamer-2.6.5.jar added multiple times to distributed cache
+16/08/25 00:11:24 INFO Client: Uploading resource file:/home/hadoop/data-algorithms-book/lib/guava-11.0.2.jar -> hdfs://namenode01.nextsystem.net/stagingDir/.sparkStaging/application_1470968575798_0510/guava-11.0.2.jar
+16/08/25 00:11:24 WARN Client: Same name resource file:/home/hadoop/data-algorithms-book/lib/py4j-0.10.1.jar added multiple times to distributed cache
+16/08/25 00:11:24 INFO Client: Uploading resource file:/home/hadoop/data-algorithms-book/lib/jackson-jaxrs-1.8.3.jar -> hdfs://namenode01.nextsystem.net/stagingDir/.sparkStaging/application_1470968575798_0510/jackson-jaxrs-1.8.3.jar
+16/08/25 00:11:24 INFO Client: Uploading resource file:/home/hadoop/data-algorithms-book/lib/avro-ipc-1.7.7-tests.jar -> hdfs://namenode01.nextsystem.net/stagingDir/.sparkStaging/application_1470968575798_0510/avro-ipc-1.7.7-tests.jar
+16/08/25 00:11:24 WARN Client: Same name resource file:/home/hadoop/data-algorithms-book/lib/apacheds-kerberos-codec-2.0.0-M15.jar added multiple times to distributed cache
+16/08/25 00:11:24 WARN Client: Same name resource file:/home/hadoop/data-algorithms-book/lib/jsr305-1.3.9.jar added multiple times to distributed cache
+16/08/25 00:11:24 WARN Client: Same name resource file:/home/hadoop/data-algorithms-book/lib/pyrolite-4.9.jar added multiple times to distributed cache
+16/08/25 00:11:24 WARN Client: Same name resource file:/home/hadoop/data-algorithms-book/lib/javax.inject-2.4.0-b34.jar added multiple times to distributed cache
+16/08/25 00:11:24 WARN Client: Same name resource file:/home/hadoop/data-algorithms-book/lib/leveldbjni-all-1.8.jar added multiple times to distributed cache
+16/08/25 00:11:24 INFO Client: Uploading resource file:/home/hadoop/data-algorithms-book/lib/junit-4.12.jar -> hdfs://namenode01.nextsystem.net/stagingDir/.sparkStaging/application_1470968575798_0510/junit-4.12.jar
+16/08/25 00:11:24 INFO Client: Uploading resource file:/home/hadoop/data-algorithms-book/lib/httpcore-4.2.4.jar -> hdfs://namenode01.nextsystem.net/stagingDir/.sparkStaging/application_1470968575798_0510/httpcore-4.2.4.jar
+16/08/25 00:11:24 INFO Client: Uploading resource file:/home/hadoop/data-algorithms-book/lib/hadoop-hdfs-2.6.3.jar -> hdfs://namenode01.nextsystem.net/stagingDir/.sparkStaging/application_1470968575798_0510/hadoop-hdfs-2.6.3.jar
+16/08/25 00:11:24 INFO Client: Uploading resource file:/home/hadoop/data-algorithms-book/lib/core-3.1.1.jar -> hdfs://namenode01.nextsystem.net/stagingDir/.sparkStaging/application_1470968575798_0510/core-3.1.1.jar
+16/08/25 00:11:24 WARN Client: Same name resource file:/home/hadoop/data-algorithms-book/lib/spark-network-shuffle_2.11-2.0.0.jar added multiple times to distributed cache
+16/08/25 00:11:24 WARN Client: Same name resource file:/home/hadoop/data-algorithms-book/lib/chill-java-0.8.0.jar added multiple times to distributed cache
+16/08/25 00:11:24 INFO Client: Uploading resource file:/home/hadoop/data-algorithms-book/lib/commons-logging-1.1.1.jar -> hdfs://namenode01.nextsystem.net/stagingDir/.sparkStaging/application_1470968575798_0510/commons-logging-1.1.1.jar
+16/08/25 00:11:24 WARN Client: Same name resource file:/home/hadoop/data-algorithms-book/lib/jcl-over-slf4j-1.7.16.jar added multiple times to distributed cache
+16/08/25 00:11:24 WARN Client: Same name resource file:/home/hadoop/data-algorithms-book/lib/avro-ipc-1.7.7.jar added multiple times to distributed cache
+16/08/25 00:11:24 WARN Client: Same name resource file:/home/hadoop/data-algorithms-book/lib/parquet-hadoop-1.7.0.jar added multiple times to distributed cache
+16/08/25 00:11:24 WARN Client: Same name resource file:/home/hadoop/data-algorithms-book/lib/parquet-format-2.3.0-incubating.jar added multiple times to distributed cache
+16/08/25 00:11:24 WARN Client: Same name resource file:/home/hadoop/data-algorithms-book/lib/hk2-utils-2.4.0-b34.jar added multiple times to distributed cache
+16/08/25 00:11:24 WARN Client: Same name resource file:/home/hadoop/data-algorithms-book/lib/spark-sql_2.11-2.0.0.jar added multiple times to distributed cache
+16/08/25 00:11:24 INFO Client: Uploading resource file:/home/hadoop/data-algorithms-book/lib/json4s-core_2.10-3.2.11.jar -> hdfs://namenode01.nextsystem.net/stagingDir/.sparkStaging/application_1470968575798_0510/json4s-core_2.10-3.2.11.jar
+16/08/25 00:11:24 INFO Client: Uploading resource file:/home/hadoop/data-algorithms-book/lib/cloud9-1.3.2.jar -> hdfs://namenode01.nextsystem.net/stagingDir/.sparkStaging/application_1470968575798_0510/cloud9-1.3.2.jar
+16/08/25 00:11:25 INFO Client: Uploading resource file:/home/hadoop/data-algorithms-book/lib/scala-reflect-2.11.7.jar -> hdfs://namenode01.nextsystem.net/stagingDir/.sparkStaging/application_1470968575798_0510/scala-reflect-2.11.7.jar
+16/08/25 00:11:25 WARN Client: Same name resource file:/home/hadoop/data-algorithms-book/lib/stream-2.7.0.jar added multiple times to distributed cache
+16/08/25 00:11:25 WARN Client: Same name resource file:/home/hadoop/data-algorithms-book/lib/guice-servlet-3.0.jar added multiple times to distributed cache
+16/08/25 00:11:25 WARN Client: Same name resource file:/home/hadoop/data-algorithms-book/lib/commons-math3-3.4.1.jar added multiple times to distributed cache
+16/08/25 00:11:25 INFO Client: Uploading resource file:/home/hadoop/data-algorithms-book/lib/scala-parser-combinators_2.11-1.0.1.jar -> hdfs://namenode01.nextsystem.net/stagingDir/.sparkStaging/application_1470968575798_0510/scala-parser-combinators_2.11-1.0.1.jar
+16/08/25 00:11:25 WARN Client: Same name resource file:/home/hadoop/data-algorithms-book/lib/spark-launcher_2.11-2.0.0.jar added multiple times to distributed cache
+16/08/25 00:11:25 INFO Client: Uploading resource file:/home/hadoop/data-algorithms-book/lib/hamcrest-core-1.3.jar -> hdfs://namenode01.nextsystem.net/stagingDir/.sparkStaging/application_1470968575798_0510/hamcrest-core-1.3.jar
+16/08/25 00:11:25 INFO Client: Uploading resource file:/home/hadoop/data-algorithms-book/lib/lzo-hadoop-1.0.0.jar -> hdfs://namenode01.nextsystem.net/stagingDir/.sparkStaging/application_1470968575798_0510/lzo-hadoop-1.0.0.jar
+16/08/25 00:11:25 WARN Client: Same name resource file:/home/hadoop/data-algorithms-book/lib/breeze_2.11-0.11.2.jar added multiple times to distributed cache
+16/08/25 00:11:25 WARN Client: Same name resource file:/home/hadoop/data-algorithms-book/lib/javax.ws.rs-api-2.0.1.jar added multiple times to distributed cache
+16/08/25 00:11:25 WARN Client: Same name resource file:/home/hadoop/data-algorithms-book/lib/spark-mllib_2.11-2.0.0.jar added multiple times to distributed cache
+16/08/25 00:11:25 WARN Client: Same name resource file:/home/hadoop/data-algorithms-book/lib/hk2-api-2.4.0-b34.jar added multiple times to distributed cache
+16/08/25 00:11:25 WARN Client: Same name resource file:/home/hadoop/data-algorithms-book/lib/javax.servlet-api-3.1.0.jar added multiple times to distributed cache
+16/08/25 00:11:25 WARN Client: Same name resource file:/home/hadoop/data-algorithms-book/lib/opencsv-2.3.jar added multiple times to distributed cache
+16/08/25 00:11:25 INFO Client: Uploading resource file:/home/hadoop/data-algorithms-book/lib/jsch-0.1.42.jar -> hdfs://namenode01.nextsystem.net/stagingDir/.sparkStaging/application_1470968575798_0510/jsch-0.1.42.jar
+16/08/25 00:11:25 WARN Client: Same name resource file:/home/hadoop/data-algorithms-book/lib/spark-mllib-local_2.11-2.0.0.jar added multiple times to distributed cache
+16/08/25 00:11:25 WARN Client: Same name resource file:/home/hadoop/data-algorithms-book/lib/json4s-ast_2.11-3.2.11.jar added multiple times to distributed cache
+16/08/25 00:11:25 INFO Client: Uploading resource file:/home/hadoop/data-algorithms-book/lib/jersey-json-1.9.jar -> hdfs://namenode01.nextsystem.net/stagingDir/.sparkStaging/application_1470968575798_0510/jersey-json-1.9.jar
+16/08/25 00:11:25 WARN Client: Same name resource file:/home/hadoop/data-algorithms-book/lib/kryo-shaded-3.0.3.jar added multiple times to distributed cache
+16/08/25 00:11:25 WARN Client: Same name resource file:/home/hadoop/data-algorithms-book/lib/metrics-jvm-3.1.2.jar added multiple times to distributed cache
+16/08/25 00:11:25 WARN Client: Same name resource file:/home/hadoop/data-algorithms-book/lib/compress-lzf-1.0.3.jar added multiple times to distributed cache
+16/08/25 00:11:25 WARN Client: Same name resource file:/home/hadoop/data-algorithms-book/lib/paranamer-2.3.jar added multiple times to distributed cache
+16/08/25 00:11:25 INFO Client: Uploading resource file:/home/hadoop/data-algorithms-book/lib/xml-apis-1.3.04.jar -> hdfs://namenode01.nextsystem.net/stagingDir/.sparkStaging/application_1470968575798_0510/xml-apis-1.3.04.jar
+16/08/25 00:11:25 WARN Client: Same name resource file:/home/hadoop/data-algorithms-book/lib/pmml-model-1.2.15.jar added multiple times to distributed cache
+16/08/25 00:11:25 INFO Client: Uploading resource file:/home/hadoop/data-algorithms-book/lib/commons-daemon-1.0.15.jar -> hdfs://namenode01.nextsystem.net/stagingDir/.sparkStaging/application_1470968575798_0510/commons-daemon-1.0.15.jar
+16/08/25 00:11:25 WARN Client: Same name resource file:/home/hadoop/data-algorithms-book/lib/metrics-graphite-3.1.2.jar added multiple times to distributed cache
+16/08/25 00:11:25 WARN Client: Same name resource file:/home/hadoop/data-algorithms-book/lib/breeze-macros_2.11-0.11.2.jar added multiple times to distributed cache
+16/08/25 00:11:25 WARN Client: Same name resource file:/home/hadoop/data-algorithms-book/lib/mesos-0.21.1-shaded-protobuf.jar added multiple times to distributed cache
+16/08/25 00:11:25 WARN Client: Same name resource file:/home/hadoop/data-algorithms-book/lib/commons-compress-1.4.1.jar added multiple times to distributed cache
+16/08/25 00:11:25 WARN Client: Same name resource file:/home/hadoop/data-algorithms-book/lib/arpack_combined_all-0.1.jar added multiple times to distributed cache
+16/08/25 00:11:25 INFO Client: Uploading resource file:/home/hadoop/data-algorithms-book/lib/hadoop-yarn-client-2.2.0.jar -> hdfs://namenode01.nextsystem.net/stagingDir/.sparkStaging/application_1470968575798_0510/hadoop-yarn-client-2.2.0.jar
+16/08/25 00:11:25 WARN Client: Same name resource file:/home/hadoop/data-algorithms-book/lib/parquet-common-1.7.0.jar added multiple times to distributed cache
+16/08/25 00:11:25 INFO Client: Uploading resource file:/home/hadoop/data-algorithms-book/lib/curator-recipes-2.4.0.jar -> hdfs://namenode01.nextsystem.net/stagingDir/.sparkStaging/application_1470968575798_0510/curator-recipes-2.4.0.jar
+16/08/25 00:11:25 INFO Client: Uploading resource file:/home/hadoop/data-algorithms-book/lib/lzo-core-1.0.0.jar -> hdfs://namenode01.nextsystem.net/stagingDir/.sparkStaging/application_1470968575798_0510/lzo-core-1.0.0.jar
+16/08/25 00:11:25 WARN Client: Same name resource file:/home/hadoop/data-algorithms-book/lib/scala-xml_2.11-1.0.2.jar added multiple times to distributed cache
+16/08/25 00:11:25 WARN Client: Same name resource file:/home/hadoop/data-algorithms-book/lib/jackson-core-2.6.5.jar added multiple times to distributed cache
+16/08/25 00:11:25 INFO Client: Uploading resource file:/home/hadoop/data-algorithms-book/lib/jettison-1.1.jar -> hdfs://namenode01.nextsystem.net/stagingDir/.sparkStaging/application_1470968575798_0510/jettison-1.1.jar
+16/08/25 00:11:25 WARN Client: Same name resource file:/home/hadoop/data-algorithms-book/lib/jtransforms-2.4.0.jar added multiple times to distributed cache
+16/08/25 00:11:25 INFO Client: Uploading resource file:/home/hadoop/data-algorithms-book/lib/commons-compiler-2.7.8.jar -> hdfs://namenode01.nextsystem.net/stagingDir/.sparkStaging/application_1470968575798_0510/commons-compiler-2.7.8.jar
+16/08/25 00:11:25 WARN Client: Same name resource file:/home/hadoop/data-algorithms-book/lib/spark-streaming_2.11-2.0.0.jar added multiple times to distributed cache
+16/08/25 00:11:25 INFO Client: Uploading resource file:/home/hadoop/data-algorithms-book/lib/servlet-api-2.5-6.1.14.jar -> hdfs://namenode01.nextsystem.net/stagingDir/.sparkStaging/application_1470968575798_0510/servlet-api-2.5-6.1.14.jar
+16/08/25 00:11:26 INFO Client: Uploading resource file:/home/hadoop/data-algorithms-book/lib/httpclient-4.2.5.jar -> hdfs://namenode01.nextsystem.net/stagingDir/.sparkStaging/application_1470968575798_0510/httpclient-4.2.5.jar
+16/08/25 00:11:26 WARN Client: Same name resource file:/home/hadoop/data-algorithms-book/lib/apacheds-i18n-2.0.0-M15.jar added multiple times to distributed cache
+16/08/25 00:11:26 WARN Client: Same name resource file:/home/hadoop/data-algorithms-book/lib/json4s-core_2.11-3.2.11.jar added multiple times to distributed cache
+16/08/25 00:11:26 WARN Client: Same name resource file:/home/hadoop/data-algorithms-book/lib/javax.annotation-api-1.2.jar added multiple times to distributed cache
+16/08/25 00:11:26 WARN Client: Same name resource file:/home/hadoop/data-algorithms-book/lib/jackson-module-scala_2.11-2.6.5.jar added multiple times to distributed cache
+16/08/25 00:11:26 INFO Client: Uploading resource file:/home/hadoop/data-algorithms-book/lib/commons-math-2.1.jar -> hdfs://namenode01.nextsystem.net/stagingDir/.sparkStaging/application_1470968575798_0510/commons-math-2.1.jar
+16/08/25 00:11:26 WARN Client: Same name resource file:/home/hadoop/data-algorithms-book/lib/spark-unsafe_2.11-2.0.0.jar added multiple times to distributed cache
+16/08/25 00:11:26 WARN Client: Same name resource file:/home/hadoop/data-algorithms-book/lib/parquet-column-1.7.0.jar added multiple times to distributed cache
+16/08/25 00:11:26 INFO Client: Uploading resource file:/home/hadoop/data-algorithms-book/lib/json4s-jackson_2.10-3.2.11.jar -> hdfs://namenode01.nextsystem.net/stagingDir/.sparkStaging/application_1470968575798_0510/json4s-jackson_2.10-3.2.11.jar
+16/08/25 00:11:26 WARN Client: Same name resource file:/home/hadoop/data-algorithms-book/lib/spark-core_2.11-2.0.0.jar added multiple times to distributed cache
+16/08/25 00:11:26 WARN Client: Same name resource file:/home/hadoop/data-algorithms-book/lib/commons-net-2.2.jar added multiple times to distributed cache
+16/08/25 00:11:26 INFO Client: Uploading resource file:/home/hadoop/data-algorithms-book/lib/hadoop-common-2.6.3.jar -> hdfs://namenode01.nextsystem.net/stagingDir/.sparkStaging/application_1470968575798_0510/hadoop-common-2.6.3.jar
+16/08/25 00:11:26 INFO Client: Uploading resource file:/home/hadoop/data-algorithms-book/lib/hadoop-yarn-server-web-proxy-2.2.0.jar -> hdfs://namenode01.nextsystem.net/stagingDir/.sparkStaging/application_1470968575798_0510/hadoop-yarn-server-web-proxy-2.2.0.jar
+16/08/25 00:11:26 INFO Client: Uploading resource file:/home/hadoop/data-algorithms-book/lib/hadoop-mapreduce-client-shuffle-2.6.3.jar -> hdfs://namenode01.nextsystem.net/stagingDir/.sparkStaging/application_1470968575798_0510/hadoop-mapreduce-client-shuffle-2.6.3.jar
+16/08/25 00:11:26 WARN Client: Same name resource file:/home/hadoop/data-algorithms-book/lib/ivy-2.4.0.jar added multiple times to distributed cache
+16/08/25 00:11:26 INFO Client: Uploading resource file:/home/hadoop/data-algorithms-book/lib/hadoop-mapreduce-client-jobclient-2.6.3.jar -> hdfs://namenode01.nextsystem.net/stagingDir/.sparkStaging/application_1470968575798_0510/hadoop-mapreduce-client-jobclient-2.6.3.jar
+16/08/25 00:11:26 WARN Client: Same name resource file:/home/hadoop/data-algorithms-book/lib/jetty-6.1.26.jar added multiple times to distributed cache
+16/08/25 00:11:26 INFO Client: Uploading resource file:/home/hadoop/data-algorithms-book/lib/jaxb-impl-2.2.3-1.jar -> hdfs://namenode01.nextsystem.net/stagingDir/.sparkStaging/application_1470968575798_0510/jaxb-impl-2.2.3-1.jar
+16/08/25 00:11:26 INFO Client: Uploading resource file:/home/hadoop/data-algorithms-book/lib/jsp-2.1-6.1.14.jar -> hdfs://namenode01.nextsystem.net/stagingDir/.sparkStaging/application_1470968575798_0510/jsp-2.1-6.1.14.jar
+16/08/25 00:11:26 WARN Client: Same name resource file:/home/hadoop/data-algorithms-book/lib/protobuf-java-2.5.0.jar added multiple times to distributed cache
+16/08/25 00:11:26 WARN Client: Same name resource file:/home/hadoop/data-algorithms-book/lib/osgi-resource-locator-1.0.1.jar added multiple times to distributed cache
+16/08/25 00:11:26 INFO Client: Uploading resource file:/home/hadoop/data-algorithms-book/lib/json4s-ast_2.10-3.2.11.jar -> hdfs://namenode01.nextsystem.net/stagingDir/.sparkStaging/application_1470968575798_0510/json4s-ast_2.10-3.2.11.jar
+16/08/25 00:11:26 INFO Client: Uploading resource file:/home/hadoop/data-algorithms-book/lib/chill_2.10-0.8.0.jar -> hdfs://namenode01.nextsystem.net/stagingDir/.sparkStaging/application_1470968575798_0510/chill_2.10-0.8.0.jar
+16/08/25 00:11:27 WARN Client: Same name resource file:/home/hadoop/data-algorithms-book/lib/metrics-core-3.1.2.jar added multiple times to distributed cache
+16/08/25 00:11:27 INFO Client: Uploading resource file:/tmp/spark-faf84f36-a989-4a30-8e70-c141ff138e0d/__spark_conf__5201309135066957588.zip -> hdfs://namenode01.nextsystem.net/stagingDir/.sparkStaging/application_1470968575798_0510/__spark_conf__.zip
+16/08/25 00:11:27 INFO SecurityManager: Changing view acls to: hadoop
+16/08/25 00:11:27 INFO SecurityManager: Changing modify acls to: hadoop
+16/08/25 00:11:27 INFO SecurityManager: Changing view acls groups to:
+16/08/25 00:11:27 INFO SecurityManager: Changing modify acls groups to:
+16/08/25 00:11:27 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users  with view permissions: Set(hadoop); groups with view permissions: Set(); users  with modify permissions: Set(hadoop); groups with modify permissions: Set()
+16/08/25 00:11:27 INFO Client: Submitting application application_1470968575798_0510 to ResourceManager
+16/08/25 00:11:27 INFO YarnClientImpl: Submitted application application_1470968575798_0510
+16/08/25 00:11:27 INFO SchedulerExtensionServices: Starting Yarn extension services with app application_1470968575798_0510 and attemptId None
+16/08/25 00:11:28 INFO Client: Application report for application_1470968575798_0510 (state: ACCEPTED)
+16/08/25 00:11:28 INFO Client:
+            client token: N/A
+            diagnostics: N/A
+            ApplicationMaster host: N/A
+            ApplicationMaster RPC port: -1
+            queue: default
+            start time: 1472109087194
+            final status: UNDEFINED
+            tracking URL: http://namenode01.nextsystem.net:8088/proxy/application_1470968575798_0510/
+            user: hadoop
+16/08/25 00:11:29 INFO Client: Application report for application_1470968575798_0510 (state: ACCEPTED)
+16/08/25 00:11:30 INFO Client: Application report for application_1470968575798_0510 (state: ACCEPTED)
+16/08/25 00:11:31 INFO Client: Application report for application_1470968575798_0510 (state: ACCEPTED)
+16/08/25 00:11:32 INFO Client: Application report for application_1470968575798_0510 (state: ACCEPTED)
+16/08/25 00:11:33 INFO Client: Application report for application_1470968575798_0510 (state: ACCEPTED)
+16/08/25 00:11:34 INFO Client: Application report for application_1470968575798_0510 (state: ACCEPTED)
+16/08/25 00:11:35 INFO Client: Application report for application_1470968575798_0510 (state: ACCEPTED)
+16/08/25 00:11:36 INFO Client: Application report for application_1470968575798_0510 (state: ACCEPTED)
+16/08/25 00:11:36 INFO YarnSchedulerBackend$YarnSchedulerEndpoint: ApplicationMaster registered as NettyRpcEndpointRef(null)
+16/08/25 00:11:36 INFO YarnClientSchedulerBackend: Add WebUI Filter. org.apache.hadoop.yarn.server.webproxy.amfilter.AmIpFilter, Map(PROXY_HOSTS -> namenode01.nextsystem.net, PROXY_URI_BASES -> http://namenode01.nextsystem.net:8088/proxy/application_1470968575798_0510), /proxy/application_1470968575798_0510
+16/08/25 00:11:36 INFO JettyUtils: Adding filter: org.apache.hadoop.yarn.server.webproxy.amfilter.AmIpFilter
+16/08/25 00:11:37 INFO Client: Application report for application_1470968575798_0510 (state: RUNNING)
+16/08/25 00:11:37 INFO Client:
+            client token: N/A
+            diagnostics: N/A
+            ApplicationMaster host: 192.168.13.62
+            ApplicationMaster RPC port: 0
+            queue: default
+            start time: 1472109087194
+            final status: UNDEFINED
+            tracking URL: http://namenode01.nextsystem.net:8088/proxy/application_1470968575798_0510/
+            user: hadoop
+16/08/25 00:11:37 INFO YarnClientSchedulerBackend: Application application_1470968575798_0510 has started running.
+16/08/25 00:11:37 INFO Utils: Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 52568.
+16/08/25 00:11:37 INFO NettyBlockTransferService: Server created on 192.168.13.62:52568
+16/08/25 00:11:37 INFO BlockManagerMaster: Registering BlockManager BlockManagerId(driver, 192.168.13.62, 52568)
+16/08/25 00:11:37 INFO BlockManagerMasterEndpoint: Registering block manager 192.168.13.62:52568 with 366.3 MB RAM, BlockManagerId(driver, 192.168.13.62, 52568)
+16/08/25 00:11:37 INFO BlockManagerMaster: Registered BlockManager BlockManagerId(driver, 192.168.13.62, 52568)
+16/08/25 00:11:37 INFO EventLoggingListener: Logging events to hdfs://namenode01/eventLog/application_1470968575798_0510
+16/08/25 00:11:43 INFO YarnSchedulerBackend$YarnDriverEndpoint: Registered executor NettyRpcEndpointRef(null) (10.154.64.77:53079) with ID 2
+16/08/25 00:11:43 INFO BlockManagerMasterEndpoint: Registering block manager node04.mysystem.net:42482 with 912.3 MB RAM, BlockManagerId(2, node04.mysystem.net, 42482)
+16/08/25 00:11:46 INFO YarnSchedulerBackend$YarnDriverEndpoint: Registered executor NettyRpcEndpointRef(null) (192.168.13.61:40796) with ID 1
+16/08/25 00:11:46 INFO BlockManagerMasterEndpoint: Registering block manager mynode01320.nextbiosystem.net:34066 with 912.3 MB RAM, BlockManagerId(1, mynode01320.nextbiosystem.net, 34066)
+16/08/25 00:11:46 INFO YarnClientSchedulerBackend: SchedulerBackend is ready for scheduling beginning after reached minRegisteredResourcesRatio: 0.8
+16/08/25 00:11:46 WARN SparkContext: Use an existing SparkContext, some configuration may not take effect.
+16/08/25 00:11:46 INFO SharedState: Warehouse path is 'file:/home/hadoop/data-algorithms-book/src/main/java/org/dataalgorithms/chap13/spark/spark-warehouse'.
+16/08/25 00:11:46 INFO MemoryStore: Block broadcast_0 stored as values in memory (estimated size 40.0 B, free 366.3 MB)
+16/08/25 00:11:46 INFO MemoryStore: Block broadcast_0_piece0 stored as bytes in memory (estimated size 44.0 B, free 366.3 MB)
+16/08/25 00:11:46 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 192.168.13.62:52568 (size: 44.0 B, free: 366.3 MB)
+16/08/25 00:11:46 INFO SparkContext: Created broadcast 0 from broadcast at kNN.java:52
+16/08/25 00:11:46 INFO MemoryStore: Block broadcast_1 stored as values in memory (estimated size 40.0 B, free 366.3 MB)
+16/08/25 00:11:46 INFO MemoryStore: Block broadcast_1_piece0 stored as bytes in memory (estimated size 44.0 B, free 366.3 MB)
+16/08/25 00:11:46 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 192.168.13.62:52568 (size: 44.0 B, free: 366.3 MB)
+16/08/25 00:11:46 INFO SparkContext: Created broadcast 1 from broadcast at kNN.java:53
+16/08/25 00:11:51 INFO FileSourceStrategy: Pruning directories with:
+16/08/25 00:11:51 INFO FileSourceStrategy: Post-Scan Filters:
+16/08/25 00:11:51 INFO FileSourceStrategy: Pruned Data Schema: struct<value: string>
+16/08/25 00:11:51 INFO FileSourceStrategy: Pushed Filters:
+16/08/25 00:11:51 INFO MemoryStore: Block broadcast_2 stored as values in memory (estimated size 248.2 KB, free 366.1 MB)
+16/08/25 00:11:51 INFO MemoryStore: Block broadcast_2_piece0 stored as bytes in memory (estimated size 26.1 KB, free 366.0 MB)
+16/08/25 00:11:51 INFO BlockManagerInfo: Added broadcast_2_piece0 in memory on 192.168.13.62:52568 (size: 26.1 KB, free: 366.3 MB)
+16/08/25 00:11:51 INFO SparkContext: Created broadcast 2 from javaRDD at kNN.java:56
+16/08/25 00:11:51 INFO FileSourceStrategy: Planning scan with bin packing, max size: 4194304 bytes, open cost is considered as scanning 4194304 bytes.
+16/08/25 00:11:52 INFO CodeGenerator: Code generated in 365.204822 ms
+16/08/25 00:11:52 INFO deprecation: mapred.tip.id is deprecated. Instead, use mapreduce.task.id
+16/08/25 00:11:52 INFO deprecation: mapred.task.id is deprecated. Instead, use mapreduce.task.attempt.id
+16/08/25 00:11:52 INFO deprecation: mapred.task.is.map is deprecated. Instead, use mapreduce.task.ismap
+16/08/25 00:11:52 INFO deprecation: mapred.task.partition is deprecated. Instead, use mapreduce.task.partition
+16/08/25 00:11:52 INFO deprecation: mapred.job.id is deprecated. Instead, use mapreduce.job.id
+16/08/25 00:11:52 INFO SparkContext: Starting job: saveAsTextFile at kNN.java:57
+16/08/25 00:11:52 INFO DAGScheduler: Got job 0 (saveAsTextFile at kNN.java:57) with 1 output partitions
+16/08/25 00:11:52 INFO DAGScheduler: Final stage: ResultStage 0 (saveAsTextFile at kNN.java:57)
+16/08/25 00:11:52 INFO DAGScheduler: Parents of final stage: List()
+16/08/25 00:11:52 INFO DAGScheduler: Missing parents: List()
+16/08/25 00:11:52 INFO DAGScheduler: Submitting ResultStage 0 (MapPartitionsRDD[4] at saveAsTextFile at kNN.java:57), which has no missing parents
+16/08/25 00:11:52 INFO MemoryStore: Block broadcast_3 stored as values in memory (estimated size 71.1 KB, free 366.0 MB)
+16/08/25 00:11:52 INFO MemoryStore: Block broadcast_3_piece0 stored as bytes in memory (estimated size 26.6 KB, free 365.9 MB)
+16/08/25 00:11:52 INFO BlockManagerInfo: Added broadcast_3_piece0 in memory on 192.168.13.62:52568 (size: 26.6 KB, free: 366.2 MB)
+16/08/25 00:11:52 INFO SparkContext: Created broadcast 3 from broadcast at DAGScheduler.scala:1012
+16/08/25 00:11:52 INFO DAGScheduler: Submitting 1 missing tasks from ResultStage 0 (MapPartitionsRDD[4] at saveAsTextFile at kNN.java:57)
+16/08/25 00:11:52 INFO YarnScheduler: Adding task set 0.0 with 1 tasks
+16/08/25 00:11:52 INFO TaskSetManager: Starting task 0.0 in stage 0.0 (TID 0, node04.mysystem.net, partition 0, RACK_LOCAL, 5970 bytes)
+16/08/25 00:11:52 INFO YarnSchedulerBackend$YarnDriverEndpoint: Launching task 0 on executor id: 2 hostname: node04.mysystem.net.
+16/08/25 00:11:53 INFO BlockManagerInfo: Added broadcast_3_piece0 in memory on node04.mysystem.net:42482 (size: 26.6 KB, free: 912.3 MB)
+16/08/25 00:11:55 INFO BlockManagerInfo: Added broadcast_2_piece0 in memory on node04.mysystem.net:42482 (size: 26.1 KB, free: 912.2 MB)
+16/08/25 00:11:56 INFO TaskSetManager: Finished task 0.0 in stage 0.0 (TID 0) in 3403 ms on node04.mysystem.net (1/1)
+16/08/25 00:11:56 INFO YarnScheduler: Removed TaskSet 0.0, whose tasks have all completed, from pool
+16/08/25 00:11:56 INFO DAGScheduler: ResultStage 0 (saveAsTextFile at kNN.java:57) finished in 3.414 s
+16/08/25 00:11:56 INFO DAGScheduler: Job 0 finished: saveAsTextFile at kNN.java:57, took 3.578378 s
+16/08/25 00:11:56 INFO FileSourceStrategy: Pruning directories with:
+16/08/25 00:11:56 INFO FileSourceStrategy: Post-Scan Filters:
+16/08/25 00:11:56 INFO FileSourceStrategy: Pruned Data Schema: struct<value: string>
+16/08/25 00:11:56 INFO FileSourceStrategy: Pushed Filters:
+16/08/25 00:11:56 INFO MemoryStore: Block broadcast_4 stored as values in memory (estimated size 248.2 KB, free 365.7 MB)
+16/08/25 00:11:56 INFO MemoryStore: Block broadcast_4_piece0 stored as bytes in memory (estimated size 26.1 KB, free 365.7 MB)
+16/08/25 00:11:56 INFO BlockManagerInfo: Added broadcast_4_piece0 in memory on 192.168.13.62:52568 (size: 26.1 KB, free: 366.2 MB)
+16/08/25 00:11:56 INFO SparkContext: Created broadcast 4 from javaRDD at kNN.java:58
+16/08/25 00:11:56 INFO FileSourceStrategy: Planning scan with bin packing, max size: 4194304 bytes, open cost is considered as scanning 4194304 bytes.
+16/08/25 00:11:56 INFO SparkContext: Starting job: saveAsTextFile at kNN.java:59
+16/08/25 00:11:56 INFO DAGScheduler: Got job 1 (saveAsTextFile at kNN.java:59) with 1 output partitions
+16/08/25 00:11:56 INFO DAGScheduler: Final stage: ResultStage 1 (saveAsTextFile at kNN.java:59)
+16/08/25 00:11:56 INFO DAGScheduler: Parents of final stage: List()
+16/08/25 00:11:56 INFO DAGScheduler: Missing parents: List()
+16/08/25 00:11:56 INFO DAGScheduler: Submitting ResultStage 1 (MapPartitionsRDD[9] at saveAsTextFile at kNN.java:59), which has no missing parents
+16/08/25 00:11:56 INFO MemoryStore: Block broadcast_5 stored as values in memory (estimated size 71.1 KB, free 365.6 MB)
+16/08/25 00:11:56 INFO MemoryStore: Block broadcast_5_piece0 stored as bytes in memory (estimated size 26.6 KB, free 365.6 MB)
+16/08/25 00:11:56 INFO BlockManagerInfo: Added broadcast_5_piece0 in memory on 192.168.13.62:52568 (size: 26.6 KB, free: 366.2 MB)
+16/08/25 00:11:56 INFO SparkContext: Created broadcast 5 from broadcast at DAGScheduler.scala:1012
+16/08/25 00:11:56 INFO DAGScheduler: Submitting 1 missing tasks from ResultStage 1 (MapPartitionsRDD[9] at saveAsTextFile at kNN.java:59)
+16/08/25 00:11:56 INFO YarnScheduler: Adding task set 1.0 with 1 tasks
+16/08/25 00:11:56 INFO TaskSetManager: Starting task 0.0 in stage 1.0 (TID 1, node04.mysystem.net, partition 0, NODE_LOCAL, 5977 bytes)
+16/08/25 00:11:56 INFO YarnSchedulerBackend$YarnDriverEndpoint: Launching task 1 on executor id: 2 hostname: node04.mysystem.net.
+16/08/25 00:11:56 INFO BlockManagerInfo: Added broadcast_5_piece0 in memory on node04.mysystem.net:42482 (size: 26.6 KB, free: 912.2 MB)
+16/08/25 00:11:56 INFO BlockManagerInfo: Added broadcast_4_piece0 in memory on node04.mysystem.net:42482 (size: 26.1 KB, free: 912.2 MB)
+16/08/25 00:11:56 INFO TaskSetManager: Finished task 0.0 in stage 1.0 (TID 1) in 147 ms on node04.mysystem.net (1/1)
+16/08/25 00:11:56 INFO YarnScheduler: Removed TaskSet 1.0, whose tasks have all completed, from pool
+16/08/25 00:11:56 INFO DAGScheduler: ResultStage 1 (saveAsTextFile at kNN.java:59) finished in 0.148 s
+16/08/25 00:11:56 INFO DAGScheduler: Job 1 finished: saveAsTextFile at kNN.java:59, took 0.213829 s
+16/08/25 00:11:56 INFO SparkContext: Starting job: saveAsTextFile at kNN.java:67
+16/08/25 00:11:56 INFO DAGScheduler: Got job 2 (saveAsTextFile at kNN.java:67) with 1 output partitions
+16/08/25 00:11:56 INFO DAGScheduler: Final stage: ResultStage 2 (saveAsTextFile at kNN.java:67)
+16/08/25 00:11:56 INFO DAGScheduler: Parents of final stage: List()
+16/08/25 00:11:56 INFO DAGScheduler: Missing parents: List()
+16/08/25 00:11:56 INFO DAGScheduler: Submitting ResultStage 2 (MapPartitionsRDD[11] at saveAsTextFile at kNN.java:67), which has no missing parents
+16/08/25 00:11:56 INFO MemoryStore: Block broadcast_6 stored as values in memory (estimated size 73.3 KB, free 365.5 MB)
+16/08/25 00:11:56 INFO MemoryStore: Block broadcast_6_piece0 stored as bytes in memory (estimated size 27.3 KB, free 365.5 MB)
+16/08/25 00:11:56 INFO BlockManagerInfo: Added broadcast_6_piece0 in memory on 192.168.13.62:52568 (size: 27.3 KB, free: 366.2 MB)
+16/08/25 00:11:56 INFO SparkContext: Created broadcast 6 from broadcast at DAGScheduler.scala:1012
+16/08/25 00:11:56 INFO DAGScheduler: Submitting 1 missing tasks from ResultStage 2 (MapPartitionsRDD[11] at saveAsTextFile at kNN.java:67)
+16/08/25 00:11:56 INFO YarnScheduler: Adding task set 2.0 with 1 tasks
+16/08/25 00:11:56 INFO TaskSetManager: Starting task 0.0 in stage 2.0 (TID 2, node04.mysystem.net, partition 0, RACK_LOCAL, 6357 bytes)
+16/08/25 00:11:56 INFO YarnSchedulerBackend$YarnDriverEndpoint: Launching task 2 on executor id: 2 hostname: node04.mysystem.net.
+16/08/25 00:11:56 INFO BlockManagerInfo: Added broadcast_6_piece0 in memory on node04.mysystem.net:42482 (size: 27.3 KB, free: 912.2 MB)
+16/08/25 00:11:57 INFO TaskSetManager: Finished task 0.0 in stage 2.0 (TID 2) in 199 ms on node04.mysystem.net (1/1)
+16/08/25 00:11:57 INFO YarnScheduler: Removed TaskSet 2.0, whose tasks have all completed, from pool
+16/08/25 00:11:57 INFO DAGScheduler: ResultStage 2 (saveAsTextFile at kNN.java:67) finished in 0.201 s
+16/08/25 00:11:57 INFO DAGScheduler: Job 2 finished: saveAsTextFile at kNN.java:67, took 0.271246 s
+16/08/25 00:11:57 INFO SparkContext: Starting job: saveAsTextFile at kNN.java:94
+16/08/25 00:11:57 INFO DAGScheduler: Got job 3 (saveAsTextFile at kNN.java:94) with 1 output partitions
+16/08/25 00:11:57 INFO DAGScheduler: Final stage: ResultStage 3 (saveAsTextFile at kNN.java:94)
+16/08/25 00:11:57 INFO DAGScheduler: Parents of final stage: List()
+16/08/25 00:11:57 INFO DAGScheduler: Missing parents: List()
+16/08/25 00:11:57 INFO DAGScheduler: Submitting ResultStage 3 (MapPartitionsRDD[13] at saveAsTextFile at kNN.java:94), which has no missing parents
+16/08/25 00:11:57 INFO MemoryStore: Block broadcast_7 stored as values in memory (estimated size 74.1 KB, free 365.4 MB)
+16/08/25 00:11:57 INFO MemoryStore: Block broadcast_7_piece0 stored as bytes in memory (estimated size 27.7 KB, free 365.4 MB)
+16/08/25 00:11:57 INFO BlockManagerInfo: Added broadcast_7_piece0 in memory on 192.168.13.62:52568 (size: 27.7 KB, free: 366.1 MB)
+16/08/25 00:11:57 INFO SparkContext: Created broadcast 7 from broadcast at DAGScheduler.scala:1012
+16/08/25 00:11:57 INFO DAGScheduler: Submitting 1 missing tasks from ResultStage 3 (MapPartitionsRDD[13] at saveAsTextFile at kNN.java:94)
+16/08/25 00:11:57 INFO YarnScheduler: Adding task set 3.0 with 1 tasks
+16/08/25 00:11:57 INFO TaskSetManager: Starting task 0.0 in stage 3.0 (TID 3, node04.mysystem.net, partition 0, RACK_LOCAL, 6357 bytes)
+16/08/25 00:11:57 INFO YarnSchedulerBackend$YarnDriverEndpoint: Launching task 3 on executor id: 2 hostname: node04.mysystem.net.
+16/08/25 00:11:57 INFO BlockManagerInfo: Added broadcast_7_piece0 in memory on node04.mysystem.net:42482 (size: 27.7 KB, free: 912.1 MB)
+16/08/25 00:11:57 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on node04.mysystem.net:42482 (size: 44.0 B, free: 912.1 MB)
+16/08/25 00:11:57 INFO DAGScheduler: ResultStage 3 (saveAsTextFile at kNN.java:94) finished in 0.530 s
+16/08/25 00:11:57 INFO TaskSetManager: Finished task 0.0 in stage 3.0 (TID 3) in 529 ms on node04.mysystem.net (1/1)
+16/08/25 00:11:57 INFO YarnScheduler: Removed TaskSet 3.0, whose tasks have all completed, from pool
+16/08/25 00:11:57 INFO DAGScheduler: Job 3 finished: saveAsTextFile at kNN.java:94, took 0.594187 s
+16/08/25 00:11:57 INFO SparkContext: Starting job: saveAsTextFile at kNN.java:127
+16/08/25 00:11:57 INFO DAGScheduler: Registering RDD 12 (mapToPair at kNN.java:75)
+16/08/25 00:11:57 INFO DAGScheduler: Got job 4 (saveAsTextFile at kNN.java:127) with 1 output partitions
+16/08/25 00:11:57 INFO DAGScheduler: Final stage: ResultStage 5 (saveAsTextFile at kNN.java:127)
+16/08/25 00:11:57 INFO DAGScheduler: Parents of final stage: List(ShuffleMapStage 4)
+16/08/25 00:11:57 INFO DAGScheduler: Missing parents: List(ShuffleMapStage 4)
+16/08/25 00:11:57 INFO DAGScheduler: Submitting ShuffleMapStage 4 (MapPartitionsRDD[12] at mapToPair at kNN.java:75), which has no missing parents
+16/08/25 00:11:57 INFO MemoryStore: Block broadcast_8 stored as values in memory (estimated size 13.4 KB, free 365.4 MB)
+16/08/25 00:11:57 INFO MemoryStore: Block broadcast_8_piece0 stored as bytes in memory (estimated size 6.5 KB, free 365.4 MB)
+16/08/25 00:11:57 INFO BlockManagerInfo: Added broadcast_8_piece0 in memory on 192.168.13.62:52568 (size: 6.5 KB, free: 366.1 MB)
+16/08/25 00:11:57 INFO SparkContext: Created broadcast 8 from broadcast at DAGScheduler.scala:1012
+16/08/25 00:11:57 INFO DAGScheduler: Submitting 1 missing tasks from ShuffleMapStage 4 (MapPartitionsRDD[12] at mapToPair at kNN.java:75)
+16/08/25 00:11:57 INFO YarnScheduler: Adding task set 4.0 with 1 tasks
+16/08/25 00:11:57 INFO TaskSetManager: Starting task 0.0 in stage 4.0 (TID 4, node04.mysystem.net, partition 0, RACK_LOCAL, 6346 bytes)
+16/08/25 00:11:57 INFO YarnSchedulerBackend$YarnDriverEndpoint: Launching task 4 on executor id: 2 hostname: node04.mysystem.net.
+16/08/25 00:11:57 INFO BlockManagerInfo: Added broadcast_8_piece0 in memory on node04.mysystem.net:42482 (size: 6.5 KB, free: 912.1 MB)
+16/08/25 00:11:58 INFO TaskSetManager: Finished task 0.0 in stage 4.0 (TID 4) in 132 ms on node04.mysystem.net (1/1)
+16/08/25 00:11:58 INFO YarnScheduler: Removed TaskSet 4.0, whose tasks have all completed, from pool
+16/08/25 00:11:58 INFO DAGScheduler: ShuffleMapStage 4 (mapToPair at kNN.java:75) finished in 0.135 s
+16/08/25 00:11:58 INFO DAGScheduler: looking for newly runnable stages
+16/08/25 00:11:58 INFO DAGScheduler: running: Set()
+16/08/25 00:11:58 INFO DAGScheduler: waiting: Set(ResultStage 5)
+16/08/25 00:11:58 INFO DAGScheduler: failed: Set()
+16/08/25 00:11:58 INFO DAGScheduler: Submitting ResultStage 5 (MapPartitionsRDD[17] at saveAsTextFile at kNN.java:127), which has no missing parents
+16/08/25 00:11:58 INFO MemoryStore: Block broadcast_9 stored as values in memory (estimated size 77.0 KB, free 365.3 MB)
+16/08/25 00:11:58 INFO MemoryStore: Block broadcast_9_piece0 stored as bytes in memory (estimated size 29.2 KB, free 365.3 MB)
+16/08/25 00:11:58 INFO BlockManagerInfo: Added broadcast_9_piece0 in memory on 192.168.13.62:52568 (size: 29.2 KB, free: 366.1 MB)
+16/08/25 00:11:58 INFO SparkContext: Created broadcast 9 from broadcast at DAGScheduler.scala:1012
+16/08/25 00:11:58 INFO DAGScheduler: Submitting 1 missing tasks from ResultStage 5 (MapPartitionsRDD[17] at saveAsTextFile at kNN.java:127)
+16/08/25 00:11:58 INFO YarnScheduler: Adding task set 5.0 with 1 tasks
+16/08/25 00:11:58 INFO TaskSetManager: Starting task 0.0 in stage 5.0 (TID 5, node04.mysystem.net, partition 0, NODE_LOCAL, 5215 bytes)
+16/08/25 00:11:58 INFO YarnSchedulerBackend$YarnDriverEndpoint: Launching task 5 on executor id: 2 hostname: node04.mysystem.net.
+16/08/25 00:11:58 INFO BlockManagerInfo: Added broadcast_9_piece0 in memory on node04.mysystem.net:42482 (size: 29.2 KB, free: 912.1 MB)
+16/08/25 00:11:58 INFO MapOutputTrackerMasterEndpoint: Asked to send map output locations for shuffle 0 to 10.154.64.77:53079
+16/08/25 00:11:58 INFO MapOutputTrackerMaster: Size of output statuses for shuffle 0 is 162 bytes
+16/08/25 00:11:58 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on node04.mysystem.net:42482 (size: 44.0 B, free: 912.1 MB)
+16/08/25 00:11:58 INFO TaskSetManager: Finished task 0.0 in stage 5.0 (TID 5) in 582 ms on node04.mysystem.net (1/1)
+16/08/25 00:11:58 INFO YarnScheduler: Removed TaskSet 5.0, whose tasks have all completed, from pool
+16/08/25 00:11:58 INFO DAGScheduler: ResultStage 5 (saveAsTextFile at kNN.java:127) finished in 0.583 s
+16/08/25 00:11:58 INFO DAGScheduler: Job 4 finished: saveAsTextFile at kNN.java:127, took 0.808507 s
+16/08/25 00:11:58 INFO SparkUI: Stopped Spark web UI at http://192.168.13.62:4040
+16/08/25 00:11:58 INFO YarnClientSchedulerBackend: Interrupting monitor thread
+16/08/25 00:11:58 ERROR LiveListenerBus: SparkListenerBus has already stopped! Dropping event SparkListenerExecutorMetricsUpdate(1,WrappedArray())
+16/08/25 00:11:58 INFO YarnClientSchedulerBackend: Shutting down all executors
+16/08/25 00:11:58 INFO YarnSchedulerBackend$YarnDriverEndpoint: Asking each executor to shut down
+16/08/25 00:11:58 INFO SchedulerExtensionServices: Stopping SchedulerExtensionServices
+(serviceOption=None,
+ services=List(),
+ started=false)
+16/08/25 00:11:58 INFO YarnClientSchedulerBackend: Stopped
+16/08/25 00:11:58 INFO MapOutputTrackerMasterEndpoint: MapOutputTrackerMasterEndpoint stopped!
+16/08/25 00:11:58 INFO MemoryStore: MemoryStore cleared
+16/08/25 00:11:58 INFO BlockManager: BlockManager stopped
+16/08/25 00:11:58 INFO BlockManagerMaster: BlockManagerMaster stopped
+16/08/25 00:11:58 INFO OutputCommitCoordinator$OutputCommitCoordinatorEndpoint: OutputCommitCoordinator stopped!
+16/08/25 00:11:58 INFO SparkContext: Successfully stopped SparkContext
+16/08/25 00:11:58 INFO ShutdownHookManager: Shutdown hook called
+16/08/25 00:11:58 INFO ShutdownHookManager: Deleting directory /tmp/spark-faf84f36-a989-4a30-8e70-c141ff138e0d
+
+[hadoop@namenode01 spark]$ hadoop fs -ls /output
+Found 7 items
+drwxr-xr-x   - hadoop root,hadoop          0 2016-08-25 00:11 /output/R
+drwxr-xr-x   - hadoop root,hadoop          0 2016-08-25 00:11 /output/S
+-rw-r--r--   2 hadoop root,hadoop          0 2016-06-09 15:06 /output/_SUCCESS
+drwxr-xr-x   - hadoop root,hadoop          0 2016-08-25 00:11 /output/cart
+drwxr-xr-x   - hadoop root,hadoop          0 2016-08-25 00:11 /output/knnMapped
+drwxr-xr-x   - hadoop root,hadoop          0 2016-08-25 00:11 /output/knnOutput
+
+[hadoop@namenode01 spark]$ hadoop fs -ls /output/knnOutput
+Found 2 items
+-rw-r--r--   3 hadoop root,hadoop          0 2016-08-25 00:11 /output/knnOutput/_SUCCESS
+-rw-r--r--   3 hadoop root,hadoop         60 2016-08-25 00:11 /output/knnOutput/part-00000
+[hadoop@namenode01 spark]$ hadoop fs -cat /output/knnOutput/part*
+(1005,c3)
+(1001,c3)
+(1000,c1)
+(1004,c1)
+(1006,c2)
+(1003,c1)

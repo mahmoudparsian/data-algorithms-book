@@ -14,7 +14,7 @@
 #-----------------
 
 # macbook:
-export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_131.jdk/Contents/Home
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_144.jdk/Contents/Home
 
 # linux:
 # export JAVA_HOME=/usr/java/jdk8
@@ -34,8 +34,8 @@ echo "SCALA_HOME=$SCALA_HOME"
 #---------------------------------------
 # set your spark and hadoop environments
 #---------------------------------------
-export SPARK_HOME=/Users/mparsian/spark-2.1.0
-export HADOOP_HOME=/Users/mparsian/zmp/zs/hadoop-2.6.3
+export SPARK_HOME=/Users/mparsian/spark-2.2.1
+export HADOOP_HOME=/Users/mparsian/zmp/zs/hadoop-2.8.0
 export HADOOP_CONF_DIR=$HADOOP_HOME/etc/hadoop
 export YARN_CONF_DIR=$HADOOP_HOME/etc/hadoop
 

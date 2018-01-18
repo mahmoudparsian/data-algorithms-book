@@ -79,6 +79,7 @@ public final class EmailSpamDetection {
         // we create JavaPairRDD<String, Double> where ._1 is an email 
         // as a String and ._2 is classification we get from the logistic 
         // regression model
+        /*
         JavaPairRDD<String, Double> classifications = query.mapToPair(
             new PairFunction<String, String, Double>() {
             @Override
@@ -91,6 +92,18 @@ public final class EmailSpamDetection {
                 return new Tuple2<String, Double>(email, classification);
             }
         });
+        */
+        
+        JavaPairRDD<String, Double> classifications = query.mapToPair((String email) -> {
+            Vector v = tf.transform(Arrays.asList(email.split(" ")));
+            double classification = model.predict(v);
+            THE_LOGGER.info("email="+email);
+            THE_LOGGER.info("classification="+classification);
+            //
+            return new Tuple2<String, Double>(email, classification);
+        });        
+        
+        
         
         //
         // for debugging purposes: print the results

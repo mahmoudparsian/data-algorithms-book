@@ -40,7 +40,8 @@
 </repositories>        
   
     <dependencies>
-    
+        
+          
 <!-- https://mvnrepository.com/artifact/com.databricks/spark-csv_2.11 -->
 <!-- 
 <dependency>
@@ -49,7 +50,15 @@
     <version>1.5.0</version>
 </dependency>
 -->   
-    
+
+<!-- https://mvnrepository.com/artifact/com.github.scopt/scopt_2.10 -->
+<dependency>
+    <groupId>com.github.scopt</groupId>
+    <artifactId>scopt_2.10</artifactId>
+    <version>3.2.0</version>
+</dependency>
+   
+         
 <!-- https://mvnrepository.com/artifact/net.sf.jung/jung-graph-impl -->
 <dependency>
     <groupId>net.sf.jung</groupId>
