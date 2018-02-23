@@ -6,6 +6,7 @@ import org.apache.log4j.Logger;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.api.java.function.Function;
+//
 import org.apache.spark.mllib.linalg.Vector;
 import org.apache.spark.mllib.feature.HashingTF;
 import org.apache.spark.mllib.regression.LabeledPoint;
@@ -34,7 +35,9 @@ public final class EmailSpamDetectionBuildModel {
     
 
     public static void main(String[] args) {
+        //
         Util.debugArguments(args);
+        //
         if (args.length != 3) {
             throw new RuntimeException("usage: EmailSpamDetectionBuildModel <spam-path> <non-spam-path> <built-model-path>");
         }
@@ -43,6 +46,7 @@ public final class EmailSpamDetectionBuildModel {
         String spamTrainingInputPath = args[0];
         String nonSpamTrainingInputPath = args[1];
         String builtModelPath = args[2];
+        //
         THE_LOGGER.info("spamTrainingInputPath=" + spamTrainingInputPath);
         THE_LOGGER.info("nonSpamTrainingInputPath=" + nonSpamTrainingInputPath);
         THE_LOGGER.info("builtModelPath=" + builtModelPath);
@@ -67,6 +71,10 @@ public final class EmailSpamDetectionBuildModel {
         // Create a HashingTF instance to map email text to vectors of 
         // 100 features.  NOTE: initializing the hash with HashingTF(100) 
         // notifies Spark we want every string mapped to the integers 0-99.
+        //
+        // HashingTF: Maps a sequence of terms to their term frequencies (TF)
+        // using the hashing trick.
+        //
         final HashingTF tf = new HashingTF(100);
 
         // Each email is split into words, and each word is mapped to one feature.  
@@ -87,6 +95,8 @@ public final class EmailSpamDetectionBuildModel {
         // persist this RDD with the default storage level (`MEMORY_ONLY`)
         trainingData.cache();
 
+        // SGD = Stochastic Gradient Descent
+        //
         // Create a Logistic Regression learner which uses the SGD optimizer.
         // Train a classification model for Binary Logistic Regression using 
         // Stochastic Gradient Descent (SGD)       
@@ -136,6 +146,7 @@ public final class EmailSpamDetectionBuildModel {
      * @param label (as a classification) 
      *    label = 1 = positive = spam email
      *    label = 0 = negative = non-spam email
+     * 
      * @param data training data 
      * @param tf an instance of HashingTF
      * @return JavaRDD<LabeledPoint>

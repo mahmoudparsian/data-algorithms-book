@@ -1,14 +1,14 @@
 # define the installation dir for hadoop
-export HADOOP_HOME=/Users/mparsian/zmp/zs/hadoop-2.8.0
-export HADOOP_CONF_DIR=$HADOOP_HOME/etc/hadoop
-export HADOOP_HOME_WARN_SUPPRESS=true
+#export HADOOP_HOME=/Users/mparsian/zmp/zs/hadoop-2.8.0
+#export HADOOP_CONF_DIR=$HADOOP_HOME/etc/hadoop
+#export HADOOP_HOME_WARN_SUPPRESS=true
 
 export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_144.jdk/Contents/Home
 export BOOK_HOME=/Users/mparsian/zmp/github/data-algorithms-book
 export SPARK_HOME=/Users/mparsian/spark-2.2.1
 export APP_JAR=$BOOK_HOME/dist/data_algorithms_book.jar
 # defines some environment for hadoop
-source $HADOOP_CONF_DIR/hadoop-env.sh
+#source $HADOOP_CONF_DIR/hadoop-env.sh
 #
 # build all other dependent jars in OTHER_JARS
 JARS=`find $BOOK_HOME/lib -name '*.jar' `
@@ -18,18 +18,20 @@ for J in $JARS ; do
 done
 #
 
+
 # define input/output for Hadoop/HDFS
-SPAM_TRAINING=/emails/spam
-NON_SPAM_TRAINING=/emails/nospam
-MODEL=/emails/model
+SPAM_TRAINING="file://$BOOK_HOME/src/main/java/org/dataalgorithms/machinelearning/logistic/spam/resources/emails_spam.txt"
+NON_SPAM_TRAINING="file://$BOOK_HOME/src/main/java/org/dataalgorithms/machinelearning/logistic/spam/resources/emails_nospam.txt"
+MODEL_DIR="$BOOK_HOME/src/main/java/org/dataalgorithms/machinelearning/logistic/spam/resources/model"
+MODEL="file://${MODEL_DIR}"
 #
 # remove all files under input
-$HADOOP_HOME/bin/hadoop fs -rmr $MODEL
+rm -fr ${MODEL_DIR}
 #
 # remove all files under output
 driver=org.dataalgorithms.machinelearning.logistic.spam.EmailSpamDetectionBuildModel
 $SPARK_HOME/bin/spark-submit --class $driver \
-    --master yarn-cluster \
+    --master local \
     --jars $OTHER_JARS \
     --conf "spark.yarn.jar=$SPARK_JAR" \
     $APP_JAR $SPAM_TRAINING $NON_SPAM_TRAINING $MODEL

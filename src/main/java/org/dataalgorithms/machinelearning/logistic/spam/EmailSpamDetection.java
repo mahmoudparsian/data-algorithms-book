@@ -2,13 +2,15 @@ package org.dataalgorithms.machinelearning.logistic.spam;
 
 
 import scala.Tuple2;
+//
 import java.util.Arrays;
+//
 import org.apache.log4j.Logger;
-
+//
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaPairRDD;
 import org.apache.spark.api.java.JavaSparkContext;
-import org.apache.spark.api.java.function.PairFunction;
+//
 import org.apache.spark.mllib.linalg.Vector;
 import org.apache.spark.mllib.feature.HashingTF;
 import org.apache.spark.mllib.classification.LogisticRegressionModel;
