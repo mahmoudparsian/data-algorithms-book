@@ -1,14 +1,7 @@
-# define the installation dir for hadoop
-#export HADOOP_HOME=/Users/mparsian/zmp/zs/hadoop-2.8.0
-#export HADOOP_CONF_DIR=$HADOOP_HOME/etc/hadoop
-#export HADOOP_HOME_WARN_SUPPRESS=true
-
 export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_144.jdk/Contents/Home
 export BOOK_HOME=/Users/mparsian/zmp/github/data-algorithms-book
 export SPARK_HOME=/Users/mparsian/spark-2.2.1
 export APP_JAR=$BOOK_HOME/dist/data_algorithms_book.jar
-# defines some environment for hadoop
-#source $HADOOP_CONF_DIR/hadoop-env.sh
 #
 # build all other dependent jars in OTHER_JARS
 JARS=`find $BOOK_HOME/lib -name '*.jar' `

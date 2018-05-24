@@ -110,10 +110,9 @@ public class SubmitSparkPiToYARNFromJavaCode {
         //sparkConf.set("spark.yarn.access.namenodes", "hdfs://localhost:9000");
         
         //
-        //ClientArguments clientArguments = new ClientArguments(args, sparkConf);    // spark-1.6.1
         ClientArguments clientArguments = new ClientArguments(args);                 // spark-2.0.0
-        Client client = new Client(clientArguments, config, sparkConf);
-        //Client client = new Client(clientArguments, sparkConf);
+        //Client client = new Client(clientArguments, config, sparkConf);
+        Client client = new Client(clientArguments, sparkConf);
         //
         client.run();
         // done!

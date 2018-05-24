@@ -25,7 +25,7 @@ echo "JAVA_HOME=$JAVA_HOME"
 #--------
 # set ant 
 #--------
-export ANT_HOME=/Users/mparsian/zmp/zs/apache-ant-1.9.4
+export ANT_HOME=/Users/mparsian/zmp/zs/ant-1.10.3
 echo "ANT_HOME=$ANT_HOME"
 #
 export SCALA_HOME=/Users/mparsian/scala-2.11.8
@@ -34,7 +34,7 @@ echo "SCALA_HOME=$SCALA_HOME"
 #---------------------------------------
 # set your spark and hadoop environments
 #---------------------------------------
-export SPARK_HOME=/Users/mparsian/spark-2.2.1
+export SPARK_HOME=/Users/mparsian/spark-2.3.0
 export HADOOP_HOME=/Users/mparsian/zmp/zs/hadoop-2.8.0
 export HADOOP_CONF_DIR=$HADOOP_HOME/etc/hadoop
 export YARN_CONF_DIR=$HADOOP_HOME/etc/hadoop
@@ -64,6 +64,12 @@ done
 jars=`find $SCALA_HOME/lib -name '*.jar'`
 for j in $jars ; do
 	CLASSPATH=$j:$CLASSPATH
+done
+#
+#
+jars=`find $ANT_HOME/lib -name '*.jar'`
+for j in $jars ; do
+        CLASSPATH=$j:$CLASSPATH
 done
 #
 CLASSPATH=$BOOK_HOME/dist/data_algorithms_book.jar:$CLASSPATH

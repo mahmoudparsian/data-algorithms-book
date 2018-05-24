@@ -74,7 +74,8 @@ public class SubmitSparkJobToYARNFromJavaCode {
        ClientArguments cArgs = new ClientArguments(args);              // 2.0.0
        
        // create an instance of yarn Client client
-       Client client = new Client(cArgs, config, sparkConf); 
+       // Client client = new Client(cArgs, config, sparkConf); 
+       Client client = new Client(cArgs, sparkConf); 
                 
        // submit Spark job to YARN
        client.run(); 

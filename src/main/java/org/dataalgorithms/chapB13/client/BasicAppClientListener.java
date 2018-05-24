@@ -39,5 +39,14 @@ public class BasicAppClientListener implements StandaloneAppClientListener  {
     @Override
     public void executorRemoved(String id, String message, Option exitStatus, boolean p4) {
     }
-    
+     
+    /**
+     *
+     * @param str1
+     * @param str2
+     * @param str3
+     */
+    @Override
+    public void workerRemoved(String str1, String str2, String str3) {
+    }  
 }
