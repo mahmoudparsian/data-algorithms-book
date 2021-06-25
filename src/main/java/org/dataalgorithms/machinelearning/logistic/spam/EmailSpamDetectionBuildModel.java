@@ -100,7 +100,13 @@ public final class EmailSpamDetectionBuildModel {
         // Create a Logistic Regression learner which uses the SGD optimizer.
         // Train a classification model for Binary Logistic Regression using 
         // Stochastic Gradient Descent (SGD)       
-        LogisticRegressionWithSGD logisticRegression = new LogisticRegressionWithSGD();
+        // NOTE: the following params needs to be adjsted
+        LogisticRegressionWithSGD logisticRegression = new LogisticRegressionWithSGD(
+           1.0d, // double stepSize, 
+           1,    // int regParam, 
+           0.1d, //double miniBatchFraction, 
+           1.0d  //double arg3
+        );
 
         // create a model: Run the actual learning algorithm on the training data.
         LogisticRegressionModel model = logisticRegression.run(trainingData.rdd());

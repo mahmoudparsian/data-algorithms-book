@@ -153,30 +153,37 @@
             <version>2.6</version>
         </dependency>
 
-        <dependency>
-            <groupId>org.apache.spark</groupId>
-            <artifactId>spark-core_2.11</artifactId>
-            <version>2.3.0</version>
-        </dependency>
+<!-- https://mvnrepository.com/artifact/org.apache.spark/spark-core -->
+<dependency>
+    <groupId>org.apache.spark</groupId>
+    <artifactId>spark-core_2.12</artifactId>
+    <version>3.1.2</version>
+</dependency>
 
-        <dependency>
-            <groupId>org.apache.spark</groupId>
-            <artifactId>spark-mllib_2.11</artifactId>
-            <version>2.3.0</version>
-        </dependency>
+<!-- https://mvnrepository.com/artifact/org.apache.spark/spark-mllib -->
+<dependency>
+    <groupId>org.apache.spark</groupId>
+    <artifactId>spark-mllib_2.12</artifactId>
+    <version>3.1.2</version>
+    <scope>provided</scope>
+</dependency>
 
-        <dependency>
-            <groupId>org.apache.spark</groupId>
-            <artifactId>spark-sql_2.11</artifactId>
-            <version>2.3.0</version>
-        </dependency>
+<!-- https://mvnrepository.com/artifact/org.apache.spark/spark-sql -->
+<dependency>
+    <groupId>org.apache.spark</groupId>
+    <artifactId>spark-sql_2.12</artifactId>
+    <version>3.1.2</version>
+    <scope>provided</scope>
+</dependency>
 
-        <dependency>
-          <groupId>org.apache.spark</groupId>
-          <artifactId>spark-yarn_2.11</artifactId>
-          <version>2.3.0</version>
-          <scope>provided</scope>
-        </dependency>
+<!-- https://mvnrepository.com/artifact/org.apache.spark/spark-yarn -->
+<dependency>
+    <groupId>org.apache.spark</groupId>
+    <artifactId>spark-yarn_2.12</artifactId>
+    <version>3.1.2</version>
+    <scope>provided</scope>
+</dependency>
+
 
         <dependency>
             <groupId>org.anarres.lzo</groupId>

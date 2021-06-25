@@ -103,7 +103,13 @@ public final class BreastCancerDetectionBuildModel {
         trainingData.cache(); 
         
         // Create a Logistic Regression learner which uses the LBFGS optimizer.
-        LogisticRegressionWithSGD learner = new LogisticRegressionWithSGD();
+        // NOTE: the following params needs to be adjsted
+        LogisticRegressionWithSGD learner = new LogisticRegressionWithSGD(
+           1.0d, // double stepSize, 
+           1,    // int regParam, 
+           0.1d, //double miniBatchFraction, 
+           1.0d  //double arg3
+        );
 
         // Run the actual learning algorithm on the training data.
         LogisticRegressionModel model = learner.run(trainingData.rdd());

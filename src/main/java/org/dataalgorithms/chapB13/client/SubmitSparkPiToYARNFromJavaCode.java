@@ -112,7 +112,7 @@ public class SubmitSparkPiToYARNFromJavaCode {
         //
         ClientArguments clientArguments = new ClientArguments(args);                 // spark-2.0.0
         //Client client = new Client(clientArguments, config, sparkConf);
-        Client client = new Client(clientArguments, sparkConf);
+        Client client = new Client(clientArguments, sparkConf, null);
         //
         client.run();
         // done!

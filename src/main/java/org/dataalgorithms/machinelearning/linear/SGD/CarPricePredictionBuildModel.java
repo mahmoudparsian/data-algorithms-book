@@ -4,6 +4,8 @@ import org.apache.log4j.Logger;
 
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
+import org.apache.spark.mllib.classification.LogisticRegressionModel;
+import org.apache.spark.mllib.classification.LogisticRegressionWithSGD;
 import org.apache.spark.mllib.regression.LabeledPoint;
 import org.apache.spark.mllib.regression.LinearRegressionModel;
 import org.apache.spark.mllib.regression.LinearRegressionWithSGD;
@@ -59,14 +61,22 @@ public final class CarPricePredictionBuildModel {
         final int numberOfIterations = 40;      // 
         // 
         
-        // 1.6.1
-        //final LinearRegressionModel model = new LinearRegressionWithSGD(stepSize, numberOfIterations, 1.0)
-        //        .setIntercept(true)
-        //        .run(JavaRDD.toRDD(trainingData));
+        
         
         // 2.0.0
-        final LinearRegressionModel model =
-              LinearRegressionWithSGD.train(JavaRDD.toRDD(trainingData), numberOfIterations, stepSize);
+        //final LinearRegressionModel model =
+        //      LinearRegressionWithSGD.train(JavaRDD.toRDD(trainingData), numberOfIterations, stepSize);
+
+        // NOTE: the following params needs to be adjsted
+        LogisticRegressionWithSGD learner = new LogisticRegressionWithSGD(
+           stepSize, // double stepSize, 
+           1,    // int regParam, 
+           0.1d, //double miniBatchFraction, 
+           1.0d  //double arg3
+        );
+
+        // Run the actual learning algorithm on the training data.
+        LogisticRegressionModel model = learner.run(trainingData.rdd());
 
         
         //

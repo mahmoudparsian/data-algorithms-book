@@ -3,6 +3,8 @@ package org.dataalgorithms.chapB13.client;
 import scala.Option;
 import org.apache.log4j.Logger;
 import org.apache.spark.deploy.client.StandaloneAppClientListener;
+import org.apache.spark.scheduler.ExecutorDecommissionInfo;
+
 /**
  * This is a very basic AppClientListener.
  * 
@@ -36,8 +38,11 @@ public class BasicAppClientListener implements StandaloneAppClientListener  {
 
     //scala: Option[Int] exitStatus
     // p4 needs a description
-    @Override
     public void executorRemoved(String id, String message, Option exitStatus, boolean p4) {
+    }
+    
+     @Override
+    public void executorRemoved(String fullId, String message, Option<Object> exitStatus, Option<String> workerHost) {
     }
      
     /**
@@ -48,5 +53,11 @@ public class BasicAppClientListener implements StandaloneAppClientListener  {
      */
     @Override
     public void workerRemoved(String str1, String str2, String str3) {
-    }  
+    } 
+    
+    @Override
+    public void executorDecommissioned(String fullId, ExecutorDecommissionInfo decommissionInfo){
+        
+    }
+
 }

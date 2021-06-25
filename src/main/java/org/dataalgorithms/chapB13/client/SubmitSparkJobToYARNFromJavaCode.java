@@ -99,7 +99,7 @@ public class SubmitSparkJobToYARNFromJavaCode {
         //
         ClientArguments clientArguments = new ClientArguments(commandArgs);  // spark-2.0.0
         //Client client = new Client(clientArguments, config, sparkConf);
-        Client client = new Client(clientArguments, sparkConf);
+        Client client = new Client(clientArguments, sparkConf, null);
         //
         client.run();
         // done!

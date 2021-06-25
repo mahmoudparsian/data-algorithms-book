@@ -12,6 +12,7 @@ import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaPairRDD;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
+import org.apache.spark.api.java.function.FlatMapFunction;
 import org.apache.spark.api.java.function.Function;
 import org.apache.spark.api.java.function.Function2;
 import org.apache.spark.api.java.function.PairFlatMapFunction;
@@ -97,11 +98,16 @@ public class RelativeFrequency {
 
         // (word, (neighbour, sum(neighbour)))
         JavaPairRDD<String, Tuple2<String, Integer>> uniquePairs = grouped.flatMapValues(
-                new Function<Iterable<Tuple2<String, Integer>>, Iterable<Tuple2<String, Integer>>>() {
-            private static final long serialVersionUID = 5790208031487657081L;
+                new FlatMapFunction<Iterable<Tuple2<String, Integer>>, 
+                                    Tuple2<String, Integer>
+                                   >() {
+            // new Function<Iterable<Tuple2<String, Integer>>, Iterable<Tuple2<String, Integer>>>() {
+            //private static final long serialVersionUID = 5790208031487657081L;
 
             @Override
-            public Iterable<Tuple2<String, Integer>> call(Iterable<Tuple2<String, Integer>> values) throws Exception {
+            public Iterator<Tuple2<String, Integer>> call(Iterable<Tuple2<String, Integer>> values) 
+                    throws Exception {
+                //
                 Map<String, Integer> map = new HashMap<>();
                 List<Tuple2<String, Integer>> list = new ArrayList<>();
                 Iterator<Tuple2<String, Integer>> iterator = values.iterator();
@@ -116,7 +122,7 @@ public class RelativeFrequency {
                 for (Map.Entry<String, Integer> kv : map.entrySet()) {
                     list.add(new Tuple2<String, Integer>(kv.getKey(), kv.getValue()));
                 }
-                return list;
+                return list.iterator();
             }
         });
 
