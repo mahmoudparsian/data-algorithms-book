@@ -16,7 +16,7 @@ git clone https://github.com/mahmoudparsian/data-algorithms-book.git
 [2nd Edition! Coming Out @ the End of 2021](./misc/data-algorithms-2nd-ed-cover.jpg)
 ===========================================
 
-[Upgraded to Spark-2.3.0](http://spark.apache.org/news/spark-2-3-0-released.html)
+[Upgraded to Spark-3.1.2](http://spark.apache.org/releases/spark-release-3-1-2.html)
 =========================
 
 
