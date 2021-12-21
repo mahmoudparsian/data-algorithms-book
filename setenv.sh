@@ -14,7 +14,7 @@
 #-----------------
 
 # macbook:
-export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_144.jdk/Contents/Home
+export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk1.8.0_301.jdk/Contents/Home"
 
 # linux:
 # export JAVA_HOME=/usr/java/jdk8
@@ -25,54 +25,54 @@ echo "JAVA_HOME=$JAVA_HOME"
 #--------
 # set ant 
 #--------
-export ANT_HOME="/Users/mparsian/zmp/zs/ant-1.10.10"
+export ANT_HOME="/Users/mparsian/Downloads/ant-1.10.12"
 echo "ANT_HOME=$ANT_HOME"
 #
-export SCALA_HOME="/Users/mparsian/scala-2.11.8"
+export SCALA_HOME="/Users/mparsian/Downloads/scala-2.12.15"
 echo "SCALA_HOME=$SCALA_HOME"
 
 #---------------------------------------
 # set your spark and hadoop environments
 #---------------------------------------
-export SPARK_HOME=/Users/mparsian/spark-3.1.1
-export HADOOP_HOME=/Users/mparsian/zmp/zs/hadoop-2.8.0
-export HADOOP_CONF_DIR=$HADOOP_HOME/etc/hadoop
-export YARN_CONF_DIR=$HADOOP_HOME/etc/hadoop
+export SPARK_HOME=/Users/mparsian/spark-3.2.0
+export HADOOP_HOME=/Users/mparsian/Downloads/hadoop-2.10.1
+export HADOOP_CONF_DIR=${HADOOP_HOME}/etc/hadoop
+export YARN_CONF_DIR=${HADOOP_HOME}/etc/hadoop
 
 #---------
 # set PATH
 #---------
-export PATH=$SCALA_HOME/bin:$JAVA_HOME/bin:$ANT_HOME/bin:$HADOOP_HOME/bin:$PATH
+export PATH=${SCALA_HOME}/bin:${JAVA_HOME}/bin:${ANT_HOME}/bin:${HADOOP_HOME}/bin:$PATH
 echo "PATH=$PATH"
 #
-BOOK_HOME=/Users/mparsian/zmp/github/data-algorithms-book
+BOOK_HOME="/Users/mparsian/max/zmp/github/data-algorithms-book"
 CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
 CLASSPATH=$CLASSPATH:$HADOOP_CONF_DIR
 #
-jars=`find $BOOK_HOME/lib -name '*.jar'`
+jars=`find ${BOOK_HOME}/lib -name '*.jar'`
 for j in $jars ; do
 	CLASSPATH=$CLASSPATH:$j
 done
 #
 #
-jars=`find $HADOOP_HOME/ -name '*.jar'`
+jars=`find ${HADOOP_HOME}/ -name '*.jar'`
 for j in $jars ; do
 	CLASSPATH=$j:$CLASSPATH
 done
 #
 #
-jars=`find $SCALA_HOME/lib -name '*.jar'`
+jars=`find ${SCALA_HOME}/lib -name '*.jar'`
 for j in $jars ; do
 	CLASSPATH=$j:$CLASSPATH
 done
 #
 #
-jars=`find $ANT_HOME/lib -name '*.jar'`
+jars=`find ${ANT_HOME}/lib -name '*.jar'`
 for j in $jars ; do
-        CLASSPATH=$j:$CLASSPATH
+    CLASSPATH=$j:$CLASSPATH
 done
 #
-CLASSPATH=$BOOK_HOME/dist/data_algorithms_book.jar:$CLASSPATH
+CLASSPATH=${BOOK_HOME}/dist/data_algorithms_book.jar:$CLASSPATH
 CLASSPATH=$HADOOP_CONF_DIR:$CLASSPATH
 #
 #-------------------
