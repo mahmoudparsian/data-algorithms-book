@@ -15,6 +15,10 @@
    <property name="reports" location="reports"/>
    <property environment="env"/>  
    <property name="project_name" value="Data Algorithms Book"/>
+   
+   <!-- set scala.home -->
+   <property environment="env" />
+   <property name="scala.home" value="${env.SCALA_HOME}" />
   
    <path id="required_libs">
         <fileset dir="lib" includes="**/*.jar"/>
@@ -154,7 +158,7 @@
 	   <!-- scala init begin --> 
   		<property
     		name="scala-library.jar"
-    		value="${scala.home}/lib/scala-library-2.11.8.jar"
+    		value="${scala.home}/lib/scala-library.jar"
      	/>
   		<path id="build.classpath">
     		<pathelement location="${scala-library.jar}"   />

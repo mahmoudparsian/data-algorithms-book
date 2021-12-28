@@ -28,8 +28,18 @@ echo "JAVA_HOME=$JAVA_HOME"
 export ANT_HOME="/Users/mparsian/Downloads/ant-1.10.12"
 echo "ANT_HOME=$ANT_HOME"
 #
+
+#----------
+# set scala 
+#----------
 export SCALA_HOME="/Users/mparsian/Downloads/scala-2.12.15"
 echo "SCALA_HOME=$SCALA_HOME"
+
+#----------
+# set Maven 
+#----------
+export MAVEN_HOME="/Users/mparsian/Downloads/maven-3.8.3"
+echo "MAVEN_HOME=$MAVEN_HOME"
 
 #---------------------------------------
 # set your spark and hadoop environments
@@ -42,7 +52,7 @@ export YARN_CONF_DIR=${HADOOP_HOME}/etc/hadoop
 #---------
 # set PATH
 #---------
-export PATH=${SCALA_HOME}/bin:${JAVA_HOME}/bin:${ANT_HOME}/bin:${HADOOP_HOME}/bin:$PATH
+export PATH=${MAVEN_HOME}/bin:${SCALA_HOME}/bin:${JAVA_HOME}/bin:${ANT_HOME}/bin:${HADOOP_HOME}/bin:$PATH
 echo "PATH=$PATH"
 #
 BOOK_HOME="/Users/mparsian/max/zmp/github/data-algorithms-book"
