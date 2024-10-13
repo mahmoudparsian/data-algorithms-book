@@ -14,7 +14,7 @@
 #-----------------
 
 # macbook:
-export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk1.8.0_301.jdk/Contents/Home"
+export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk-1.8.jdk/Contents/Home"
 
 # linux:
 # export JAVA_HOME=/usr/java/jdk8
