@@ -1,12 +1,16 @@
-@EAS54_6_R1_2_1_413_324
-CCCTTCTTGTCTTCAGCGTTTCTCC
-+
-;;3;;;;;;;;;;;;7;;;;;;;88
-@EAS54_6_R1_2_1_540_792
-TTGGCAGGCCAAGGCCGATGGATCA
-+
-;;;;;;;;;;;7;;;;;-;;;3;83
-@EAS54_6_R1_2_1_443_348
-GTTGCTTCTGGCGTGGGTGGGGGGG
-+EAS54_6_R1_2_1_443_348
-;;;;;;;;;;;9;7;;.7;393333
+@cluster_2:UMI_ATTCCG             # record name; starts with '@'
+TTTCCGGGGCACATAATCTTCAGCCGGGCGC   # DNA sequence
++                                 # empty line; starts with '+'
+;9C;=;=<9@4868>9:67AA<9>65<=>591  # phred-scaled quality scores
+@cluster_2:UMI_ATTCCG             # record name; starts with '@'
+TTTCCGGGGCACATAATCTTCAGCCGGGCGC   # DNA sequence
++                                 # empty line; starts with '+'
+;9C;=;=<9@4868>9:67AA<9>65<=>591  # phred-scaled quality scores
+@cluster_2:UMI_ATTCCG             # record name; starts with '@'
+TTTCCGGGGCACATAATCTTCAGCCGGGCGC   # DNA sequence
++                                 # empty line; starts with '+'
+;9C;=;=<9@4868>9:67AA<9>65<=>591  # phred-scaled quality scores
+@cluster_2:UMI_ATTCCG             # record name; starts with '@'
+AAACCTTTTCACATAATCTTCAGCCGGGCGC   # DNA sequence
++                                 # empty line; starts with '+'
+;9C;=;=<9@4868>9:67AA<9>65<=>591  # phred-scaled quality scores
