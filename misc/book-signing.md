@@ -8,7 +8,7 @@ Author Book Signing at Strata+Hadoop, 2016
 ==========================================
 * O'Reilly Author Book Signing at Strata+Hadoop World San Jose
 * Scheduled on Thursday, March 31 at 10:30am. 
-* I will be siging my Data Algorithms book and the first 25 will get a FREE copy of the book.
+* I will be signing my Data Algorithms book and the first 25 will get a FREE copy of the book.
 
 
 Author Book Signing @Spark Summit 2015

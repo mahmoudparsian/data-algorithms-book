@@ -8,7 +8,7 @@ import org.apache.hadoop.mapreduce.Reducer;
 /**
  * The FastaCountBaseCombiner class implements MapReduce's
  * combine() method (in Hadoop, we call it reduce() method).
- * Note that input for combine() and reduce()  must corespond to 
+ * Note that input for combine() and reduce()  must correspond to 
  * the output of mappers.
 
  * This class implements the combine() function for counting 

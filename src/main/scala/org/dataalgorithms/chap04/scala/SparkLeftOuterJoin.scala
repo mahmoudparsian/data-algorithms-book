@@ -41,7 +41,7 @@ object SparkLeftOuterJoin {
     })
 
     val joined =  transactions leftOuterJoin users
-    // getOrElse is a method availbale on Option which either returns value 
+    // getOrElse is a method available on Option which either returns value 
     // (if present) or returns passed value (unknown in this case).
     val productLocations = joined.values.map(f => (f._1, f._2.getOrElse("unknown"))) 
   

@@ -14,4 +14,4 @@ Moving Average Scala Solution                                  |  Description   
 ## References
 * [Moving Average -- wikipedia](https://en.wikipedia.org/wiki/Moving_average)
 * [Moving Average -- Math World](http://mathworld.wolfram.com/MovingAverage.html)
-* [Moving Averages -- Simple and Exponential](http://stockcharts.com/school/doku.php?id=chart_school:technical_indicators:moving_averages)
+* [Moving Averages -- Simple and Exponential](https://web.archive.org/web/20151026161356/http://stockcharts.com/school/doku.php?id=chart_school:technical_indicators:moving_averages)

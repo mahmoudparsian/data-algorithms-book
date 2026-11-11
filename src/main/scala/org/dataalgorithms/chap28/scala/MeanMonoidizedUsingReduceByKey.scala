@@ -4,7 +4,7 @@ import org.apache.spark.SparkConf
 import org.apache.spark.SparkContext
 
 /**
- * Finding averge using monoid (implement using Spark's reduceByKey())
+ * Finding average using monoid (implement using Spark's reduceByKey())
  *
  * A monoid is a triple (T, ∗, z) such that ∗ is an associative 
  * binary operation on T, and z ∈ T has the property that for 

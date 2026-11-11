@@ -1,6 +1,8 @@
 <img src="./correlation.gif">
+
 Correlation
 ===========
+
 A correlation is a single number that describes the 
 degree of relationship between two variables (samples 
 of N-dimensions). Correlation is a measure of association 
@@ -33,6 +35,6 @@ Sources and References
 
 * [Correlation and dependence](https://en.wikipedia.org/wiki/Correlation_and_dependence)
 
-* [What Is Correlation?](https://www.verywell.com/what-is-correlation-2794986)
+* [What Is Correlation?](https://web.archive.org/web/20231127054224/https://www.verywellmind.com/what-is-correlation-2794986)
 
 [![Data Algorithms Book](https://raw.githubusercontent.com/mahmoudparsian/data-algorithms-book/master/misc/large-image.jpg)](http://shop.oreilly.com/product/0636920033950.do)

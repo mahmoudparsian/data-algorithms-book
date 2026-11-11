@@ -130,7 +130,7 @@ According to [Peter Chen's blog](http://www.datasciencecentral.com/profiles/blog
 ````
 
 
-Therefore, we create a trsnformed training data, by substituting "CNG" 
+Therefore, we create a transformed training data, by substituting "CNG" 
 to "1", "Diesel" to "1" and "Petrol" to "0". The transformed training 
 data is saved as 
 
@@ -382,7 +382,7 @@ Multiple R-squared:  0.8693,	Adjusted R-squared:  0.8684
 F-statistic:   948 on 10 and 1425 DF,  p-value: < 2.2e-16
 ````
 
-Output of ````symmary(model)````: First,	 you’re being reminded of the model 
+Output of ````summary(model)````: First,	 you’re being reminded of the model 
 formula that we	entered. Then, the model gives us the residuals and the 
 coefficients of the fixed effects; then, the output prints some overall 
 results of the model that we constructed.

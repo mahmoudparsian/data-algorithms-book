@@ -166,7 +166,7 @@ public class AllVersusAllCorrelation implements java.io.Serializable {
               return true; // do return these records
           }
           else {
-              return false; // do not retrun these records
+              return false; // do not return these records
           }
       });
       filtered.saveAsTextFile("/output/2");
@@ -228,7 +228,7 @@ public class AllVersusAllCorrelation implements java.io.Serializable {
                      return true; // do return these records
                  }
                  else {
-                     return false; // do not retrun these records
+                     return false; // do not return these records
                  }
       });
       filtered2.saveAsTextFile("/output/7");    

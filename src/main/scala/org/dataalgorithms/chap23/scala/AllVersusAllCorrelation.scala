@@ -90,7 +90,7 @@ object AllVersusAllCorrelation {
       }
     })
 
-    // For deugging purpose
+    // For debugging purpose
     finalresult.foreach(println)
 
     // save final output

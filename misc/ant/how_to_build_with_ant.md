@@ -13,7 +13,7 @@ this directory.
 Before you build, you do need to define the following (please edit these directories accordingly):
 
     # This is an example to set 3 environment variables
-    # You should update your script accrodingly
+    # You should update your script accordingly
     #
     #set Java as jdk7
     export JAVA_HOME=/usr/java/jdk7

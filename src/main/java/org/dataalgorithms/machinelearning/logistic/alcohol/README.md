@@ -40,7 +40,7 @@ Training Data
   Study Time
   Failed Classes
   Supplementary Education
-  Extracuriculars
+  Extracurriculars
   Higher Education
   Family Relationships
   Free Time

@@ -30,7 +30,7 @@ public class AnagramMapper
 
     // reuse the place holders for output key/value
     private final Text keyAsSortedText = new Text();
-    private final Text valueAsOrginalText = new Text();
+    private final Text valueAsOriginalText = new Text();
 
     private static final int DEFAULT_IGNORED_LENGTH = 3; // default
     private int N = DEFAULT_IGNORED_LENGTH;
@@ -84,8 +84,8 @@ public class AnagramMapper
             //
             String sortedWord = sort(word);
             keyAsSortedText.set(sortedWord);
-            valueAsOrginalText.set(word);
-            context.write(keyAsSortedText, valueAsOrginalText);
+            valueAsOriginalText.set(word);
+            context.write(keyAsSortedText, valueAsOriginalText);
         }
     }
     

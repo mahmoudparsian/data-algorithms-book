@@ -8,7 +8,7 @@ import org.apache.hadoop.mapreduce.Reducer;
 
 public class FastqCountBaseReducer 
   extends Reducer<Text, LongWritable, Text, LongWritable> {
-  //the types must corespond to the output of mappers
+  //the types must correspond to the output of mappers
   
     public void reduce(Text key, Iterable<LongWritable> values,  Context context) 
        throws IOException, InterruptedException {

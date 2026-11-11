@@ -43,7 +43,7 @@ git clone https://github.com/mahmoudparsian/data-algorithms-book.git
 [Spark for Cancer Outlier Profile Analysis](http://hadoopsummit.uservoice.com/forums/344955-data-science-analytics-and-spark/suggestions/11664381-spark-solution-for-cancer-outlier-profile-analysis)
 ====================================================
  
-[Webinars and Presentions on Data Algorithms](./misc/webinars.md)
+[Webinars and Presentations on Data Algorithms](./misc/webinars.md)
 =================================================================
 
 [Introduction to MapReduce](https://github.com/mahmoudparsian/data-algorithms-book/tree/master/src/main/java/org/dataalgorithms/chapB09/charcount)

@@ -43,22 +43,22 @@ object Markov {
     // combineByKey() and reduceByKey() will give a better 
     // scale-out performance
     //  
-    val coustomerGrouped = customers.groupByKey()
+    val customerGrouped = customers.groupByKey()
 
-    val sortedByDate = coustomerGrouped.mapValues(_.toList.sortBy(_._1))
+    val sortedByDate = customerGrouped.mapValues(_.toList.sortBy(_._1))
 
     val stateSequence = sortedByDate.mapValues(list => {
       val sequence = for {
         i <- 0 until list.size - 1
         (currentDate, currentPurchase) = list(i)
-        (nextDate, nextPurchse) = list(i + 1)
+        (nextDate, nextPurchase) = list(i + 1)
       } yield {
         val elapsedTime = (nextDate - currentDate) / 86400000 match {
           case diff if (diff < 30) => "S" //small
           case diff if (diff < 60) => "M" // medium
           case _                   => "L" // large
         }
-        val amountRange = (currentPurchase / nextPurchse) match {
+        val amountRange = (currentPurchase / nextPurchase) match {
           case ratio if (ratio < 0.9) => "L" // significantly less than
           case ratio if (ratio < 1.1) => "E" // more or less same
           case _                      => "G" // significantly greater than

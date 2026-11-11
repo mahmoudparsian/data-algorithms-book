@@ -33,7 +33,7 @@ import org.apache.commons.lang.StringUtils;
  *
  * Command Line Preprocessing and Featurization: to apply most machine 
  * learning algorithms, we must first preprocess and featurize the data. 
- * For featureiztion, please see the java class:
+ * For featurization, please see the java class:
  * org.dataalgorithms.machinelearning.kmeans.Featurization
  *
  * That is, for each data point, we must generate a vector of numbers 

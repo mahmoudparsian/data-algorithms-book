@@ -9,7 +9,7 @@ import org.apache.hadoop.mapreduce.Partitioner;
  * This custom partitioner allow us to distribute how outputs from the 
  * map stage are sent to the reducers.  NaturalKeyPartitioner partitions 
  * the data output from the map phase (SecondarySortMapper) before it is 
- * sent through the shuffle phase. Since we want a single reducer to recieve 
+ * sent through the shuffle phase. Since we want a single reducer to receive 
  * all time series data for a single "stockSymbol", we partition data output 
  * of the map phase by only the natural key component ("stockSymbol").
  * 

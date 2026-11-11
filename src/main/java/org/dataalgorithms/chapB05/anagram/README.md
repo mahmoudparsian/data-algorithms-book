@@ -106,7 +106,7 @@ That avoids all the overhead associated with unpacking and repacking the groups.
 
 Input Files for Testing
 =======================
-Data Set: http://www.gutenberg.org/dirs/etext02/mword10.zip
+Data Set: https://web.archive.org/web/20061210133802/https://www.gutenberg.org/dirs/etext02/mword10.zip
 
 Sample Input
 ============

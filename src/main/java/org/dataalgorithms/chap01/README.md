@@ -3,10 +3,11 @@
 
 Chapter 01: Secondary Sorting
 ==========
-The purpose of this chapter is to have a sorted values 
-for reducer keys.  For example, if our input is like 
-time series (sample is given below), the the values for 
-each key is sorted. 
+The purpose of this chapter is to associate sorted 
+values with reducer keys. For example, if our input has 
+an ordering over values for each key as in a 
+time series (a sample is given below), the values for 
+each key should be sorted (e.g. by time) after reducing.
 
 
 Each input record has the following format:

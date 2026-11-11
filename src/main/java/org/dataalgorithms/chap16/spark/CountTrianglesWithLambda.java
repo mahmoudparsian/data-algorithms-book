@@ -135,11 +135,11 @@ public class CountTrianglesWithLambda {
                   }
                   // emit triangles
                   for (long node : list) {
-                      long[] aTraingle = {key._1, key._2, node};
-                      Arrays.sort(aTraingle);
-                      Tuple3<Long,Long,Long> t3 = new Tuple3<Long,Long,Long>(aTraingle[0],
-                              aTraingle[1],
-                              aTraingle[2]);
+                      long[] aTriangle = {key._1, key._2, node};
+                      Arrays.sort(aTriangle);
+                      Tuple3<Long,Long,Long> t3 = new Tuple3<Long,Long,Long>(aTriangle[0],
+                              aTriangle[1],
+                              aTriangle[2]);
                       result.add(t3);
                   }
               }

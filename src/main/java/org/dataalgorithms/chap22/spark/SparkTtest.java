@@ -115,7 +115,7 @@ public class SparkTtest {
 
       // STEP-6: map bioset records into JavaPairRDD(K,V) pairs      
       // where K = <GeneID>
-      //       V = <Bioeset-ID>
+      //       V = <Bioset-ID>
       // Note that for TTest, <geneValue> is not used (ignored here)
       //                                                                     T       K       V
       JavaPairRDD<String, String> pairs = biosets.mapToPair(new PairFunction<String, String, String>() {
