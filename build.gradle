@@ -1,8 +1,62 @@
-// just bridge to the existing Ant build.xml for now
-// https://docs.gradle.org/2.1/userguide/ant.html#:~:text=ant.importBuild
-// (archived as is at https://web.archive.org/web/20261112032607/https://docs.gradle.org/2.1/userguide/ant.html#:~:text=ant.importBuild )
+// please ensure you are using Java 1.8 to use this Gradle
+// if having issues on your machine, consider to install dependencies mentioned in setenv.sh and fill in that file with the relevant paths, and either replace this file with a 1-line ant bridge (`ant.importBuild 'build.xml'`, https://docs.gradle.org/2.1/userguide/ant.html#:~:text=ant.importBuild ) or follow directions in misc/ant/how_to_build_with_ant.md , misc/maven/how_to_build_with_maven.md
+plugins {
+    id 'java-library'
+    id 'scala'
+}
 
-// will produce dist/data_algorithms_book.jar (same results as ant with misc/ant/how_to_build_with_ant.md)
-// please fill out env vars in setenv.sh and run `source setenv.sh` and manually install those binaries before using this (e.g. with `./gradlew build`)
-ant.importBuild 'build.xml'
+repositories {
+    mavenLocal()
+    maven {
+        url = uri('https://repos.spark-packages.org')
+    }
 
+    maven {
+        url = uri('https://repo.maven.apache.org/maven2/')
+    }
+}
+
+dependencies {
+    api 'com.github.scopt:scopt_2.10:3.2.0'
+    api 'net.sf.jung:jung-graph-impl:2.1.1'
+    api 'net.sf.jung:jung-api:2.1.1'
+    api 'net.sf.jung:jung-algorithms:2.1.1'
+    api 'org.scala-lang:scala-library:2.12.15'
+    api 'log4j:log4j:1.2.17'
+    api 'commons-cli:commons-cli:1.3'
+    api 'commons-collections:commons-collections:3.2.2'
+    api 'commons-configuration:commons-configuration:1.10'
+    api 'commons-daemon:commons-daemon:1.0.15'
+    api 'commons-io:commons-io:2.10.0'
+    api 'org.apache.commons:commons-lang3:3.4'
+    api 'commons-httpclient:commons-httpclient:3.1'
+    api 'org.hamcrest:hamcrest-all:1.3'
+    api 'junit:junit:4.13.2'
+    api 'commons-lang:commons-lang:2.6'
+    api 'org.apache.spark:spark-core_2.12:3.2.0'
+    api 'org.anarres.lzo:lzo-hadoop:1.0.0'
+    api 'edu.umd:cloud9:1.3.2'
+    api 'info.bliki.wiki:bliki-core:3.0.19'
+    api 'org.apache.hadoop:hadoop-common:2.10.1'
+    api 'org.apache.hadoop:hadoop-core:1.2.1'
+    api 'org.apache.hadoop:hadoop-client:2.10.1'
+    api 'org.scala-tools.archetypes:scala-archetype-simple:1.3'
+    api 'graphframes:graphframes:0.8.1-spark3.0-s_2.12'
+    api 'com.typesafe.scala-logging:scala-logging-slf4j_2.11:2.1.2'
+    api 'com.typesafe.scala-logging:scala-logging-api_2.11.0-RC3:2.0.1'
+    compileOnly 'org.apache.spark:spark-mllib_2.12:3.2.0'
+    compileOnly 'org.apache.spark:spark-sql_2.12:3.2.0'
+    compileOnly 'org.apache.spark:spark-yarn_2.12:3.2.0'
+}
+
+group = 'org.dataalgorithms'
+description = 'data-algorithms-book'
+java.sourceCompatibility = JavaVersion.VERSION_1_8
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+tasks.withType(Javadoc) {
+    options.encoding = 'UTF-8'
+}
