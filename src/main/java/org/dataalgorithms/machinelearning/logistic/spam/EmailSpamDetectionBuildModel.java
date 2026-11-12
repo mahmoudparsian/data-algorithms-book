@@ -83,7 +83,7 @@ public final class EmailSpamDetectionBuildModel {
         // label = 1 => spam
         JavaRDD<LabeledPoint> spamTrainingData = createLabeledPoint(1, spam, tf);
 
-        // create training data for non-spam (negaive lable)
+        // create training data for non-spam (negative label)
         // label = 0 => non-spam
         JavaRDD<LabeledPoint> nonSpamTrainingData = createLabeledPoint(0, nonSpam, tf);
         

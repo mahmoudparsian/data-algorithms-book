@@ -41,7 +41,7 @@ public class WordCountDriver  extends Configured implements Tool {
        job.setJarByClass(WordCountDriver.class);
        job.setJobName("WordCountDriver");
       
-       // if a word length is leass than N,  
+       // if a word length is less than N,  
        // then that word will be ignored.
        int N = Integer.parseInt(args[0]);
        // brodcast N, which may be used in map() and reduce()

@@ -74,12 +74,12 @@ public class NaiveBayesClassifierBuilder implements java.io.Serializable {
       // used in calculating the conditional probabilities 
       long trainingDataSize = training.count();
 
-      // STEP-4: implement map() function to all elelments of training data      
+      // STEP-4: implement map() function to all elements of training data      
       // PairFlatMapFunction<T, K, V>
       // T => Iterable<Tuple2<K, V>>
       // K = <CLASS,classification> or <attribute,classification>
       // A1,A2, ...,An,classification
-      // K = Tuple2(CLASS,classifcation) or Tuple2(attribute,classifcation)
+      // K = Tuple2(CLASS,classification) or Tuple2(attribute,classifcation)
       // V = 1      
       JavaPairRDD<Tuple2<String,String>,Integer> pairs = training.flatMapToPair((String rec) -> {
           List<Tuple2<Tuple2<String,String>,Integer>> result =
@@ -104,7 +104,7 @@ public class NaiveBayesClassifierBuilder implements java.io.Serializable {
       pairs.saveAsTextFile("/output/2");
       
       
-      // STEP-4: implement reduce() function to all elelments of training data 
+      // STEP-4: implement reduce() function to all elements of training data 
       JavaPairRDD<Tuple2<String,String>, Integer> counts = 
          pairs.reduceByKey((Integer i1, Integer i2) -> i1 + i2);      
       counts.saveAsTextFile("/output/3");

@@ -87,7 +87,7 @@ public class SparkFriendRecommendation {
 
       // STEP-4: create (K, V) pairs from input
       // K = Tuple2<Long,Long> = Tuple2(user1,user2)
-      // V = Long = 0 if diret friend, 1 if 2nd-degree friend
+      // V = Long = 0 if direct friend, 1 if 2nd-degree friend
       JavaPairRDD<Tuple2<Long,Long>, Long> rdd = lines.flatMapToPair(
           new PairFlatMapFunction<String, Tuple2<Long,Long>, Long>() {
           @Override

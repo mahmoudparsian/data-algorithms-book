@@ -115,16 +115,16 @@ public final class BreastCancerDetectionBuildModel {
         LogisticRegressionModel model = learner.run(trainingData.rdd());
 
         //
-        // Test the built model on a malignent and a benign samples
+        // Test the built model on a malignant and a benign samples
         Vector malignantSample = getMalignant();
         Vector benignSample = getBenign();        
         // basic testing of the built model:
-        // Now use the  model to predict Malignent or Benign
-        THE_LOGGER.info("Prediction for Malignent example: " + model.predict(malignantSample));
+        // Now use the  model to predict Malignant or Benign
+        THE_LOGGER.info("Prediction for Malignant example: " + model.predict(malignantSample));
         THE_LOGGER.info("Prediction for Benign example: " + model.predict(benignSample));
         //
         // output:
-        //      Prediction for Malignent example: 0.0
+        //      Prediction for Malignant example: 0.0
         //      Prediction for Benign example: 1.0
         
         

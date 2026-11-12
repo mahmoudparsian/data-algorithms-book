@@ -111,9 +111,9 @@ public class DocumentWordCount {
        JavaPairRDD<String, Tuple2<Integer,String>> wordAsKey = 
          counts.mapToPair((Tuple2<Tuple2<String,String>,Integer>  s) -> {
              String word = s._1._1;
-             String documntID = s._1._2;
+             String documentID = s._1._2;
              Integer frequency = s._2;
-             Tuple2<Integer, String> freqAndDocument = new Tuple2<Integer, String>(frequency, documntID);
+             Tuple2<Integer, String> freqAndDocument = new Tuple2<Integer, String>(frequency, documentID);
              return new Tuple2<String,Tuple2<Integer,String>>(word, freqAndDocument);
        });
 

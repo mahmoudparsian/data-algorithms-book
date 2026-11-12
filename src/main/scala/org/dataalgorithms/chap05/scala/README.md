@@ -4,7 +4,7 @@
 A relative frequency is the fraction or proportion of times an answer occurs. 
 To find the relative frequencies, divide each frequency by the total number 
 of elements in the sample. For definitions and examples, see
-[Sampling and Data: Frequency, Relative Frequency, and Cumulative Frequency](http://cnx.org/contents/jsYjzeoo@20/Sampling-and-Data-Frequency-Re).
+[Sampling and Data: Frequency, Relative Frequency, and Cumulative Frequency](https://openstax.org/books/introductory-statistics-2e/pages/1-3-frequency-frequency-tables-and-levels-of-measurement).
 
 
 ## References

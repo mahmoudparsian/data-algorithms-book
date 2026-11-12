@@ -43,7 +43,7 @@ public class SecondarySortProjectionReducer extends MapReduceBase
 
 		// note that values are sorted (by using MR's secondary sort)
         // below, builder will generate: 
-        //    CustoerID,Date1,Amount1,Date2,Amount2,...,DateN,AmountN
+        //    CustomerID,Date1,Amount1,Date2,Amount2,...,DateN,AmountN
         // where Date1 <= Date2 <= ... <= DateN
         StringBuilder builder = new StringBuilder();
         builder.append(key.toString());			

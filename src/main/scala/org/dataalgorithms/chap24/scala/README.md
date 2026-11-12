@@ -10,7 +10,7 @@ Given a set of DNA sequences, identity the number of each base:
 * ````C````: Cytosine
 * ````N````: undefined base
 
-[Java/Spark Solutions](https://github.com/mahmoudparsian/data-algorithms-book/tree/master/src/main/java/org/dataalgorithms/chap24/spark)
+[Java/Spark Solutions](https://github.com/mahmoudparsian/data-algorithms-book/tree/master/src/main/java/org/dataalgorithms/chap24/)
 ====================
 Provided custom and non-custom ````FASTQ```` and ````FASTA```` data format Solutions.
 

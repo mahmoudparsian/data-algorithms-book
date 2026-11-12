@@ -16,5 +16,5 @@ Packages
 References
 ==========
 * [Naive Bayes classifier](https://en.wikipedia.org/wiki/Naive_Bayes_classifier)
-* [Naive Bayesian](http://www.saedsayad.com/naive_bayesian.htm)
-* [Classification](https://inst.eecs.berkeley.edu/~cs188/fa09/projects/classification/classification.html)
+* [Naive Bayesian](https://web.archive.org/web/20260125022913/https://www.saedsayad.com/naive_bayesian.htm)
+* [Classification](http://web.archive.org/web/20160328013441/https://inst.eecs.berkeley.edu/~cs188/fa09/projects/classification/classification.html)

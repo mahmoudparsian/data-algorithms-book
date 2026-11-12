@@ -123,7 +123,7 @@ public class OptimizedWikipediaKMeans {
             //read the input data
             JavaRDD<Vector> data = getFeatureizedData(wikiData, context);
             THE_LOGGER.info("Number of data records " + data.count());
-            //get the initail k centriods			
+            //get the initial k centroids			
             final List<Vector> centroids = getInitialCentroids(data, K);
             THE_LOGGER.info("Done selecting initial centroids: " + centroids.size());
             long dataReadETime = System.currentTimeMillis();
@@ -135,7 +135,7 @@ public class OptimizedWikipediaKMeans {
             int i = 0;
             while (tempDist > convergeDist) {
                 System.out.println("Get the closest points");
-                //assign each point to their closest centriod 				
+                //assign each point to their closest centroid 				
                 JavaPairRDD<Integer, Tuple2<Vector, Integer>> closest = getClosest(data, centroids);
                 // reduce step
                 JavaPairRDD<Integer, Tuple2<Vector, Integer>> pointsGroup = closest.reduceByKey(
@@ -147,17 +147,17 @@ public class OptimizedWikipediaKMeans {
                     }
                 });
                 System.out.println("after reduce by key");
-                //get the new centriods				
+                //get the new centroids				
                 Map<Integer, Vector> newCentroids = getNewCentroids(pointsGroup);
-                System.out.println("after getting new centriods");
+                System.out.println("after getting new centroids");
                 //calculate the delta					
                 tempDist = Util.getDistance(centroids, newCentroids, K);
                 System.out.println("after updating the distance");
-                //assign new centriods
+                //assign new centroids
                 for (Map.Entry<Integer, Vector> t : newCentroids.entrySet()) {
                     centroids.set(t.getKey(), t.getValue());
                 }
-                System.out.println("after updating centriod list");
+                System.out.println("after updating centroid list");
                 long itrETime = System.currentTimeMillis();
                 writer.write("Iteration" + (i + 1) + " took :- " + (((double) (itrETime - itrSTime)) / 1000.0) + "\n");
                 System.out.println("Iteration" + (i + 1) + " took :- " + (((double) (itrETime - itrSTime)) / 1000.0) + "\n");
@@ -173,8 +173,8 @@ public class OptimizedWikipediaKMeans {
             writer.write("Total Program time is " + (((double) (progETime - progSTime)) / 1000.0) + "\n");
             System.out.println("Total Program time is " + (((double) (progETime - progSTime)) / 1000.0) + "\n");
             //
-            THE_LOGGER.info("Cluster centriods:");
-            outputWriter.write("Cluster centriods:\n");
+            THE_LOGGER.info("Cluster centroids:");
+            outputWriter.write("Cluster centroids:\n");
             for (Vector t : centroids) {
                 //System.out.println("" + t.apply(0)+"\t"+t.apply(1)+"\t"+t.apply(2));
                 outputWriter.write("" + t.apply(0) + " " + t.apply(1) + " " + t.apply(2) + "\n");
@@ -184,7 +184,7 @@ public class OptimizedWikipediaKMeans {
             IOUtils.closeQuietly(writer);
             IOUtils.closeQuietly(errorWriter);
             IOUtils.closeQuietly(outputWriter);
-            System.out.println("Stoping context");
+            System.out.println("Stopping context");
             if (context != null) {
                 context.stop();
             }

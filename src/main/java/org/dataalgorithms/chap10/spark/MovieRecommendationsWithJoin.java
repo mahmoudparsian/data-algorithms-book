@@ -173,7 +173,7 @@ public class MovieRecommendationsWithJoin {
     }
 	
     // now we have: filteredRDD = (user, T2((m1,r1,n1), (m2,r2,n2)) ) where m1 < m2
-    // to guarntee that we will not have duplicate movie pais per user
+    // to guarantee that we will not have duplicate movie pairs per user
     
 
     //STEP-8: generate all (movie1, movie2) combinations

@@ -98,7 +98,7 @@ public class SparkGeneAggregationByAverage {
          return 0;
       }
       
-      // now, we will average the values and see which patient passes the threshhold
+      // now, we will average the values and see which patient passes the threshold
       int passedTheTest = 0;
       for (Map.Entry<String, PairOfDoubleInteger> entry : patients.entrySet()) {
           //String patientID = entry.getKey();

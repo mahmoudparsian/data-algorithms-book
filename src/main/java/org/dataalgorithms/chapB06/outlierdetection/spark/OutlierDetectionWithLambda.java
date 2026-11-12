@@ -23,11 +23,11 @@ import org.apache.commons.lang.StringUtils;
  *
  * Based on Paper: 
  *       Title: Fast Parallel Outlier Detection for Categorical Datasets using MapReduce
- *       URL: http://www.eecs.ucf.edu/georgiopoulos/sites/default/files/247.pdf
+ *       URL: https://web.archive.org/web/20240422043806/https://www.eecs.ucf.edu/georgiopoulos/sites/default/files/247.pdf
  *
  * Additional reference: 
  *       Title: Scalable and Efficient Outlier Detection in Large Distributed Data Sets with Mixed-Type Attributes
- *       URL: http://etd.fcla.edu/CF/CFE0002734/Koufakou_Anna_200908_PhD.pdf
+ *       URL: https://stars.library.ucf.edu/cgi/viewcontent.cgi?article=4986&context=etd
  *
  * 
  * Sample input URL: https://archive.ics.uci.edu/ml/machine-learning-databases/breast-cancer-wisconsin/breast-cancer-wisconsin.data
@@ -143,7 +143,7 @@ public class OutlierDetectionWithLambda {
         JavaSparkContext context = createJavaSparkContext(); // 
         //read input (as categorical dataset) and create the first RDD       
         JavaRDD<String> records = context.textFile(inputPath);   
-        records.cache(); // cache it: since we are goint to use it again
+        records.cache(); // cache it: since we are going to use it again
         
         // Step-3: perform the map() for each RDD element
         // for each input record of: <record-id><,><data1><,><data2><,><data3><,>...
@@ -166,7 +166,7 @@ public class OutlierDetectionWithLambda {
             return results.iterator();
         });
         
-        // Step-4: find frequencies of all categirical data (keep categorical-data as String)
+        // Step-4: find frequencies of all categorical data (keep categorical-data as String)
         JavaPairRDD<String, Integer> counts = 
                 ones.reduceByKey((Integer i1, Integer i2) -> i1 + i2);    
         

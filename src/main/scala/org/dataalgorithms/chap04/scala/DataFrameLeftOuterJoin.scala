@@ -6,7 +6,7 @@ import org.apache.spark.sql.SparkSession
 
 /**
  * This approach used DataFrame add in Spark 1.3 and above.
- * DataFrame are quite powerful yet easy to use, hence higly
+ * DataFrame are quite powerful yet easy to use, hence highly
  * recommended.
  *
  * This program shows two approaches:
@@ -42,7 +42,7 @@ object DataFrameLeftOuterJoin {
     // Use below for Spark 2.0.0
     val spark = SparkSession
       .builder()
-      .appName("DataFram LeftOuterJoin")
+      .appName("DataFrame LeftOuterJoin")
       .config(sparkConf)
       .getOrCreate()
 
@@ -94,7 +94,7 @@ object DataFrameLeftOuterJoin {
     val products = product_location_distinct.groupBy("productId").count()
     products.show() // Print first 20 records on the console
     products.write.save(output + "/approach1") // Saves output in compressed Parquet format, recommended for large projects.
-    products.rdd.saveAsTextFile(output + "/approach1_textFormat") // Converts DataFram to RDD[Row] and saves it to in text file. To see output use cat command, e.g. cat output/approach1_textFormat/part-00*
+    products.rdd.saveAsTextFile(output + "/approach1_textFormat") // Converts DataFrame to RDD[Row] and saves it to in text file. To see output use cat command, e.g. cat output/approach1_textFormat/part-00*
     // Approach 1 ends
 
     //
@@ -114,7 +114,7 @@ object DataFrameLeftOuterJoin {
     val sqlResult = sql("SELECT productId, count(distinct location) locCount FROM transactions LEFT OUTER JOIN users ON transactions.userId = users.userId group by productId")
     sqlResult.show() // Print first 20 records on the console
     sqlResult.write.save(output + "/approach2") // Saves output in compressed Parquet format, recommended for large projects.
-    sqlResult.rdd.saveAsTextFile(output + "/approach2_textFormat") // Converts DataFram to RDD[Row] and saves it to in text file. To see output use cat command, e.g. cat output/approach2_textFormat/part-00*
+    sqlResult.rdd.saveAsTextFile(output + "/approach2_textFormat") // Converts DataFrame to RDD[Row] and saves it to in text file. To see output use cat command, e.g. cat output/approach2_textFormat/part-00*
     // Approach 2 ends
 
     // done

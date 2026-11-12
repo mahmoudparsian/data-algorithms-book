@@ -6,8 +6,8 @@ import org.apache.hadoop.mapreduce.Partitioner;
 
 /** 
  * The DateTemperaturePartitioner is a custom partitioner class,
- * whcih partitions data by the natural key only (using the yearMonth).
- * Without custom partitioner, Hadoop will partition your mapped data 
+ * which partitions data by the natural key only (using the yearMonth).
+ * Without a custom partitioner, Hadoop will partition your mapped data 
  * based on a hash code.
  *
  * In Hadoop, the partitioning phase takes place after the map() phase 

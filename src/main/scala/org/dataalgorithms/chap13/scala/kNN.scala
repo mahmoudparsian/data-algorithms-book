@@ -40,7 +40,7 @@ object kNN {
      * 
      * @param rAsString as r1,r2, ..., rd
      * @param sAsString as s1,s2, ..., sd
-     * @param d as dimention
+     * @param d as dimension
      */
     def calculateDistance(rAsString: String, sAsString: String, d: Int): Double = {
       val r = rAsString.split(",").map(_.toDouble)

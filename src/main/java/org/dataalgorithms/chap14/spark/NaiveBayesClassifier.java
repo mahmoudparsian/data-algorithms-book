@@ -117,7 +117,7 @@ public class NaiveBayesClassifier implements java.io.Serializable {
          @Override
          public Tuple2<String,String>  call(String rec) {
             
-            // get the classifer from the cache
+            // get the classifier from the cache
             Map<Tuple2<String,String>, Double> CLASSIFIER = broadcastClassifier.value();
             // get the classes from the cache
             List<String> CLASSES = broadcastClasses.value();

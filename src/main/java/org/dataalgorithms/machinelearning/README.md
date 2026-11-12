@@ -35,11 +35,11 @@ Machine Learning vs. Traditional Programming
 
 * [A Tour of Machine Learning Algorithms](http://machinelearningmastery.com/a-tour-of-machine-learning-algorithms/)
   
-* [The Elements of Statistical Learning, Data Mining, Inference, and Prediction, 2nd Edition](http://statweb.stanford.edu/~tibs/ElemStatLearn/printings/ESLII_print10.pdf)
+* [The Elements of Statistical Learning, Data Mining, Inference, and Prediction, 2nd Edition](https://web.archive.org/web/20150310181618/https://statweb.stanford.edu/~tibs/ElemStatLearn/printings/ESLII_print10.pdf)
 
-* [Spark Machine Learning Library Tutorial](http://web.cs.ucla.edu/~mtgarip/linear.html)
+* [Spark Machine Learning Library Tutorial](https://web.archive.org/web/20150710143949/https://web.cs.ucla.edu/~mtgarip/linear.html)
 
-* [Using Intel® Data Analytics Acceleration Library to Improve the Performance of Naïve Bayes Algorithm in Python](https://software.intel.com/en-us/articles/using-intel-data-analytics-acceleration-library-improve-performance-of-na-ve-bayes)
+* [Using Intel® Data Analytics Acceleration Library to Improve the Performance of Naïve Bayes Algorithm in Python](https://web.archive.org/web/20170715174104/https://software.intel.com/en-us/articles/using-intel-data-analytics-acceleration-library-improve-performance-of-na-ve-bayes)
 
 K-Means Clustering Algorithm
 ============================
@@ -51,9 +51,9 @@ the well known clustering problem.
  
 For details on K-Means clustering, you should read
 
-* [A Tutorial on Clustering Algorithms](http://home.deib.polimi.it/matteucc/Clustering/tutorial_html/kmeans.html)
-* [K-means and Hierarchical Clustering](http://www.autonlab.org/tutorials/kmeans11.pdf)
-* [K-Means: Step-By-Step Example](http://mnemstudio.org/clustering-k-means-example-1.htm)
+* [A Tutorial on Clustering Algorithms](https://web.archive.org/web/20150608054217/https://home.deib.polimi.it/matteucc/Clustering/tutorial_html/kmeans.html)
+* [K-means and Hierarchical Clustering](https://web.archive.org/web/20150319234433/https://autonlab.org/tutorials/kmeans11.pdf)
+* [K-Means: Step-By-Step Example](https://web.archive.org/web/20151108081532/http://mnemstudio.org/clustering-k-means-example-1.htm)
 
 K-Means using Spark's MLlib
 ===========================
@@ -157,13 +157,12 @@ never linear.
 
 For details on Linear Regression, you should read
 
-* [Linear regression](https://lagunita.stanford.edu/c4x/HumanitiesScience/StatLearning/asset/linear_regression.pdf)
+* [Linear regression](https://web.archive.org/web/20150908053846/https://lagunita.stanford.edu/c4x/HumanitiesScience/StatLearning/asset/linear_regression.pdf)
 * [Notes on linear regression analysis](http://people.duke.edu/~rnau/notes_on_linear_regression_analysis--robert_nau.pdf)
-* [Linear Regression Analysis, second edition](https://sociology.byu.edu/Hoffmann/SiteAssets/Hoffmann%20_%20Linear%20Regression%20Analysis_%20second%20edition.pdf)
+* [Linear Regression Analysis, second edition](https://web.archive.org/web/20140109050625/https://sociology.byu.edu/Hoffmann/SiteAssets/Hoffmann%20_%20Linear%20Regression%20Analysis_%20second%20edition.pdf)
 * [Simple Linear Regression](http://www.stat.cmu.edu/~hseltman/309/Book/chapter9.pdf)
 
-* Blog: Predicting Car Prices : Linear Regression
-http://www.datasciencecentral.com/profiles/blogs/predicting-car-prices-part-1-linear-regression
+* [Blog: Predicting Car Prices : Linear Regression](https://web.archive.org/web/20150627021932/http://www.datasciencecentral.com/profiles/blogs/predicting-car-prices-part-1-linear-regression)
 
 * Training Data Set: https://github.com/datailluminations/PredictingToyotaPricesBlog/blob/master/ToyotaCorolla.csv
 

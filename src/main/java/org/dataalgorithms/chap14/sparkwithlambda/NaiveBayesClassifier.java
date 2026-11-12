@@ -106,7 +106,7 @@ public class NaiveBayesClassifier implements java.io.Serializable {
       // K = A1,A2, ...,Am (data to be classified)
       // V = classification for T     
       JavaPairRDD<String,String> classified = newdata.mapToPair((String rec) -> {
-          // get the classifer from the cache
+          // get the classifier from the cache
           Map<Tuple2<String,String>, Double> CLASSIFIER = broadcastClassifier.value();
           // get the classes from the cache
           List<String> CLASSES1 = broadcastClasses.value();

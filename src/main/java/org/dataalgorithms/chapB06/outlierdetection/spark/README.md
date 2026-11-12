@@ -14,23 +14,20 @@ method for categorical datasets, called Attribute Value
 Frequency (AVF). The Spark implementation is based on 
 the following paper:
 
-* [Fast Parallel Outlier Detection for Categorical Datasets using MapReduce]
-  (http://www.eecs.ucf.edu/georgiopoulos/sites/default/files/247.pdf)
+* [Fast Parallel Outlier Detection for Categorical Datasets using MapReduce](https://web.archive.org/web/20240422043806/https://www.eecs.ucf.edu/georgiopoulos/sites/default/files/247.pdf)
 
 The "Attribute Value Frequency (AVF) algorithm is simple and 
 faster approach to detect outliers in categorical dataset which 
 minimizes the number of scans over the data. It does not create 
 more space and more search for combinations of attribute values 
 or item sets. An outlier point Xi is de-fined based on the AVF Score" 
-(source: [Analysis of outlier detection in categorical dataset]
-         (http://pnrsolution.org/Datacenter/Vol3/Issue2/85.pdf)).
+(source: [Analysis of outlier detection in categorical dataset](https://web.archive.org/web/20260613184254/https://pnrsolution.org/Datacenter/Vol3/Issue2/85.pdf)).
 
 For additional references: 
- * [Scalable and Efficient Outlier Detection in Large Distributed Data Sets with Mixed-Type Attributes]
-   (http://etd.fcla.edu/CF/CFE0002734/Koufakou_Anna_200908_PhD.pdf)
+ * [Scalable and Efficient Outlier Detection in Large Distributed Data Sets with Mixed-Type Attributes](https://stars.library.ucf.edu/cgi/viewcontent.cgi?article=4986&context=etd)
  
- * [Analysis of Outlier Detection in Categorical Dataset]
-   (http://pnrsolution.org/Datacenter/Vol3/Issue2/85.pdf)
+ * [Analysis of Outlier Detection in Categorical Dataset](https://web.archive.org/web/20260613184254/https://pnrsolution.org/Datacenter/Vol3/Issue2/85.pdf)
+
  
 Spark Algorithm for Outlier Detection
 =====================================

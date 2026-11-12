@@ -177,7 +177,7 @@ public class SparkRankProductUsingGroupByKey {
         // group values by gene
         JavaPairRDD<String, Iterable<Double>> groupedByGene = genes.groupByKey();
         
-        // calclulate mean per gene
+        // calculate mean per gene
         JavaPairRDD<String, Double> meanRDD = groupedByGene.mapValues((Iterable<Double> values) -> {
             double sum = 0.0;
             int count = 0;

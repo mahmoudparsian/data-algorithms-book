@@ -58,11 +58,11 @@ object FindCommonFriends {
     commonFriends.saveAsTextFile(output) 
 
     //Format result for easy viewing
-    val formatedResult = commonFriends.map(
+    val formattedResult = commonFriends.map(
       f => s"(${f._1._1}, ${f._1._2})\t${f._2.mkString("[", ", ", "]")}"
     )
     
-    formatedResult.foreach(println)
+    formattedResult.foreach(println)
 
     // done!
     sc.stop()
